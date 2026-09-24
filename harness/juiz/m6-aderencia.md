@@ -6,9 +6,10 @@
 ## Definições
 - **Divergência:** diferença verificável entre o que o plano diz que seria feito e o que o diff fez — algo planejado e não feito, feito de forma diferente da planejada, ou feito sem estar no plano **quando muda comportamento, arquitetura, contrato com o backend ou uma decisão de produto**. Estilo, nomes locais e refatorações sem efeito externo não são divergência.
 - **Documentada:** o próprio plano (ou um artefato de planejamento da unidade) registra a mudança — ex.: tarefa reescrita, nota de desvio, item de "decisões" atualizado. Comentário no código não conta.
+- **Regra de desempate da causa (v1.1):** divergência que envolve caminho, API, pacote ou convenção inexistente é `ctx`, mesmo que também esteja fora do produto especificado.
 - **Causa:** códigos da M5 — `ctx` (incompatibilidade com o repositório ou o backend: API, caminho, pacote ou convenção inexistente), `chk` (falha de teste, lint ou build), `inc` (implementação incompleta), `prd` (desvio do produto especificado), `amb` (ambiguidade do plano), `out` (outra).
 
-## Prompt (v1.0)
+## Prompt (v1.1)
 
 ```text
 You are auditing whether code followed its plan. You receive a PLAN and a DIFF.
@@ -25,6 +26,8 @@ Classify the cause of each divergence with exactly one code:
 ctx = mismatch with the repository or backend (nonexistent API, path, package or convention);
 chk = test, lint or build failure; inc = incomplete implementation; prd = deviation from the
 specified product; amb = the plan was ambiguous; out = other.
+If a divergence involves a path, API, package or convention that does not exist, use ctx, even if it
+is also outside the specified product.
 
 Answer only with JSON matching the schema. Cite evidence as file:line from the DIFF.
 If there are no divergences, return an empty list.

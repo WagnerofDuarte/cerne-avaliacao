@@ -45,7 +45,7 @@ Conta A. F01–F12: depois dos blocos I–III de `cenarios.md` (a falha acontece
 | F14 | `chat-insight-create` | idem, com `rnf09_mensagem_2` | malformed | idem |
 | F15 | `chat-insight-create` | idem, com `rnf09_mensagem_3` | offline | idem |
 
-**Textos novos:** `rnf09_mensagem_1` a `_3` são acrescentados às fixtures do instrumento em `cerne-avaliacao` (não ao pacote de entrada), iguais nos dois ciclos.
+**Textos novos:** `rnf09_mensagem_1` a `_3` estão em `holdout/fixtures/textos-instrumento.json` (fora do pacote de entrada; o `textos.json` do handoff continua intacto), iguais nos dois ciclos.
 
 **Conferência dos 5 endpoints:** batem com a lista congelada do backend — `entries-create`, `chat-messages-send`, `media-ocr`, `export-summary-create`, `chat-insight-create`.
 

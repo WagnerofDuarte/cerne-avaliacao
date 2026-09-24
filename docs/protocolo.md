@@ -8,8 +8,8 @@
 |---|---|
 | 0 — Instrumento de medição | Decidida em 22/09/2026 (pendente só o repositório: `GATE-C00`, `C-000`) |
 | 1 — Protocolo (P1–P14) | Decidida em 22/09/2026 (`GATE-C04`–`C07`; `C-003`) |
-| 2 — Regras por metodologia | Decidida em 22/09/2026 (`GATE-C08`–`C12`; `C-004`); leitura das notas de versão do Spec Kit pendente (`C-010`) |
-| 3 — Pacote de entrada e tabela de entrega | Gerado em 23/09/2026 (`C-005`–`C-009`); revisão no `GATE-C13` pendente |
+| 2 — Regras por metodologia | Decidida em 22/09/2026 (`GATE-C08`–`C12`; `C-004`); notas de versão lidas em 24/09/2026 |
+| 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
 | 4 — Ambiente | A preencher |
 
 ---
@@ -259,7 +259,7 @@ Mensagens sem marcador herdam a fase do marcador anterior. Sessões de correçã
 | | `bmad-correct-course` | Aprovação da proposta de mudança |
 
 ### 4.6 Pendências verificadas na Fase 4 (com as metodologias instaladas)
-- Spec Kit: modo de integração padrão para o Claude Code; notas de versão 1.0.4–1.0.5 e 1.0.7–1.0.10 (`C-010`); texto dos comandos contra a seção 4.5.
+- Spec Kit: modo de integração padrão para o Claude Code; texto dos comandos contra a seção 4.5. (Notas de versão 1.0.0–1.0.10 lidas em 24/09/2026, sem mudança de fluxo; a v1.0.11, de 24/09/2026, não é adotada.)
 - BMAD: nomes exatos das skills (`.claude/skills/`, `bmad-help`); chaves de idioma do `--set`; se o `bmad-project-context` grava no `AGENTS.md` e se o Claude Code lê esse arquivo; formato das stories (efeito na `M6_tasks`, `C-022`); nenhuma definição de agente com modelo próprio (neutralizada pelo `CLAUDE_CODE_SUBAGENT_MODEL_FORCE`, P1c); texto das skills contra a seção 4.5.
 
 ## 5. Tabela de entrega dos prompts (Fase 3, `C-009`)
@@ -281,7 +281,7 @@ Nunca entra no pacote. Decidida em 22/09/2026 (R24).
 |---|---|
 | Local nos ciclos | `docs/input/` (em `cerne-avaliacao`: `entrada/`) |
 | Idioma | Inglês; textos de interface em português, literais (P12) |
-| Protótipo | Cópia derivada do HTML congelado, com a linha que citava o TCC e as metodologias neutralizada. Original `61032a92…185d2fff` fica em `cerne-avaliacao` para a M9. Hash do derivado: *(terminal)* |
+| Protótipo | Cópia derivada do HTML congelado, com a linha que citava o TCC e as metodologias neutralizada. Original `61032a92…185d2fff` fica em `cerne-avaliacao` para a M9. Hash do derivado: `aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b` |
 | Requisitos | Tradução neutra dos requisitos reconciliados `a62d8439…3db0` |
 | Backend | Handoff traduzido e neutralizado; `openapi.yaml` com só os textos traduzidos (estrutura verificada idêntica) |
 | Fixtures | Áudio, 2 imagens de OCR, transcrição esperada, 3 textos semeados; fora `textos.json`, D16, roteiro, testes de contrato, credenciais |
@@ -289,7 +289,28 @@ Nunca entra no pacote. Decidida em 22/09/2026 (R24).
 | Complexidade | Limiar da M12 fora dos requisitos do pacote (sem requisito de produto correspondente; R27) |
 | Tela 6 | Inteira na unidade RF09: dashboard, nome, "Sair", "Apagar conta" (RNF05) (R27) |
 | Simulador (P11) | Frame 390×844 → candidatos iPhone 16e / iPhone 14; escolha no `GATE-C15` |
-| Hash do pacote | *(terminal, `GATE-C13`)* |
+| Hash do pacote | `dd6eb964b2ff50a2ce72b8b2f3fb26e86866e584156c93b4805247225d8b71c2` — `find entrada -type f -not -name '.DS_Store' \| LC_ALL=C sort \| xargs -I{} shasum -a 256 "{}" \| shasum -a 256`, calculado pelo Wagner no terminal em 24/09/2026 e conferido contra o zip (`GATE-C13`) |
+| Hash dos prompts | `d6e888c3ad18858fdc70dd202b5c537a98d22796ef31fd8b53f92f1728d91d8c` (mesma fórmula sobre `prompts/`) |
+
+### 5.2 Hashes por arquivo do pacote (`GATE-C13`, 24/09/2026)
+
+```text
+85763596609724f6ffa2342e77f8046fc9f017a006b4c97591fdbff4a3b2a196  entrada/backend/README.md
+82376248daf57648a46265bacfc9c337eba181f8df940cc65f659d350a925a02  entrada/backend/api/openapi.yaml
+0c996614fa19930d97e8c56cfdea163b5a78177c18a83a0a8957c7ad00f0f5b0  entrada/backend/error-taxonomy.md
+adff962fb13fb8e099fdeb485b227745513443361449e84e4c460ba40926ba66  entrada/backend/export-screen-states.md
+b9302d2f886006853ec6daab840d87b2e3f483e29b55f4fcf9f37202d8193203  entrada/backend/fixtures/README.md
+b833ed4f72c0f01354a1c5fcb2dd184408a654073e3ffaa64b8661aa5c18dd8b  entrada/backend/fixtures/expected-transcription.md
+3ff3df21d186a8c2d300788bf53af2e2c70a1480a5941a640b94674a66584e1a  entrada/backend/fixtures/media/audio_fixture_01.wav
+7ed3068dc0d2381259081a92feab4266867b5a0b89bb87925e0b5ed2025fc31d  entrada/backend/fixtures/media/ocr_fixture_01.png
+0ed46c03c60f5428a4f645549a1c90b0256f3e81b609a6978c18f555d8efdbd8  entrada/backend/fixtures/media/ocr_fixture_ilegivel.png
+957971e9a65de24311294a32a8638eb2883bd0407326f11fa29a4517a730e5da  entrada/backend/fixtures/seeded-search-entries.md
+042adc95e16e8e224390c20cbd3a3e1dd56b0199e740b848967254ad90232f52  entrada/backend/known-bugs.md
+5a83f0cc23f383a28fdf8abad93024d7dc74bcbeb8ce7fa4589a29e08211bda8  entrada/backend/sync-badge.md
+aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/prototype/cerne-prototype.html
+306004c7789dc1b8f798ea3d5a7a4cce456b7900ac139fdde3b6edcbd1995207  entrada/prototype/prototype-extract.md
+6f7915d16617d60ebbd79195020f65e003a140efa51c4600cb3763ac4973c37b  entrada/requirements.md
+```
 
 ## 6. Ambiente (Fase 4)
 *A preencher (`GATE-C14`, `C-010`–`C-013`).*

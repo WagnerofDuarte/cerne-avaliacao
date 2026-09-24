@@ -8,7 +8,7 @@
 - **parcial:** a decisão aparece em parte do código aplicável e não em outra parte, ou foi aplicada de forma incompleta.
 - **não:** o código não segue a decisão, ou faz o contrário.
 
-## Prompt (v1.0)
+## Prompt (v1.0 — sem mudança)
 
 ```text
 You check whether a technical DECISION from a design document was implemented in the CODE.
@@ -43,5 +43,5 @@ FILES:
 
 ## Exemplo sintético
 **Decisão:** "Chat and entries communicate only through the use case `SaveMessageAsEntry` in `lib/core/`; the chat feature never imports entries repositories."
-**Código:** existe `lib/core/usecases/save_message_as_entry.dart`; `lib/features/chat/presentation/chat_bloc.dart:14` importa `package:app/features/entries/data/entries_repository_impl.dart`.
-**Saída esperada:** `{"implemented": "partial", "evidence": ["lib/core/usecases/save_message_as_entry.dart:1", "lib/features/chat/presentation/chat_bloc.dart:14"], "justification": "The use case exists, but the chat BLoC also imports the entries repository directly."}`
+**Código:** existe `lib/core/usecases/save_message_as_entry.dart`; `lib/features/chat/presentation/chat_bloc.dart:30` chama `SaveMessageAsEntry`; mas o mesmo arquivo, na linha 14, também importa `package:app/features/entries/data/entries_repository_impl.dart`.
+**Saída esperada:** `{"implemented": "partial", "evidence": ["lib/features/chat/presentation/chat_bloc.dart:30", "lib/features/chat/presentation/chat_bloc.dart:14"], "justification": "The chat BLoC uses the SaveMessageAsEntry use case, but also imports the entries repository directly, so the decision is only partly followed."}`

@@ -36,3 +36,4 @@ Cada rubrica traz um **exemplo sintético** com a saída esperada. No `GATE-C22`
 
 ## Changelog
 - v1.0 (24/09/2026) — versão inicial.
+- v1.1 (24/09/2026) — conferência dos exemplos sintéticos (`C-021`): M6 ganhou regra de desempate da causa (`ctx` prevalece quando algo não existe), no prompt e na rubrica; exemplo da M14 reescrito para que a resposta `partial` decorra da definição sem ambiguidade (o código usa o caso de uso **e** importa o repositório). M9 e D16 sem mudança.
