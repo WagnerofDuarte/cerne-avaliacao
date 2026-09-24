@@ -6,7 +6,7 @@
 
 | Fase | Situação |
 |---|---|
-| 0 — Instrumento de medição | Decidida em 22/09/2026 (pendente só o repositório: `GATE-C00`, `C-000`) |
+| 0 — Instrumento de medição | Concluída em 24/09/2026 |
 | 1 — Protocolo (P1–P14) | Decidida em 22/09/2026 (`GATE-C04`–`C07`; `C-003`) |
 | 2 — Regras por metodologia | Decidida em 22/09/2026 (`GATE-C08`–`C12`; `C-004`); notas de versão lidas em 24/09/2026 |
 | 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
