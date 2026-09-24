@@ -94,7 +94,7 @@ They keep the "essence" of the original product flow and exist in the prototype,
 |---|---|
 | Dynamic categorization (AI) | Simplified to manual tags created by the user (My Records screen) |
 | Autonomous goal extraction | Action Plans screen — static, no logic |
-| Dynamic persona adjustment | Simple cosmetic toggle (Settings) |
+| Dynamic persona adjustment | Simple cosmetic toggle (Settings), low cost to maintain |
 
 ---
 
@@ -104,7 +104,7 @@ They keep the "essence" of the original product flow and exist in the prototype,
 |---|---|---|
 | RNF06 | Zero layer violations — the domain layer does not import `package:flutter` nor classes from `data/` | 0 violations |
 | RNF07 | Minimum test coverage of the domain layer (`lib/**/domain/**`) | ≥ 80% |
-| RNF08 | Visual fidelity to the prototype — primary colors match the prototype's hex values, typography matches family and size, spacing matches the prototype; no visual value hardcoded outside the central file `design_tokens.dart` | Every screen faithful in color, typography and spacing; 0 hardcoded values |
+| RNF08 | Visual fidelity to the prototype — the primary color matches the prototype's hex value, typography matches family and size, spacing matches the prototype; no visual value hardcoded outside the central file `design_tokens.dart` | Every screen faithful in color, typography and spacing; 0 hardcoded values |
 | RNF09 | Consistent network-error handling — `Either<Failure, T>` pattern via `fpdart` in every repository; every write endpoint (5 endpoints) handles three failure types — timeout, malformed response, no connection — covered by tests with `mocktail` | 0 repository signatures outside the pattern; 15 of 15 scenarios handled |
 
 ## 4. Other non-functional requirements

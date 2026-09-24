@@ -47,11 +47,13 @@ Este arquivo leva o app Cerne do zero absoluto — **nenhum repositório, nenhum
 
 Objetivo: bater o martelo sobre **o que** é medido e **como** — incluindo as skills — e levar o `Metricas_e_Skills_Ciclos.md` da revisão v2 para a v1.0. Nenhuma fase seguinte começa antes disto, porque as decisões de protocolo (Fase 1) e o pacote de entrada (Fase 3) dependem de saber o que será medido.
 
-- [ ] 🔴 **[MANUAL] `GATE-C00`** — Criar o repositório `cerne-avaliacao` (GitHub, privado)
+- [x] 🔴 **[MANUAL] `GATE-C00`** — Criar o repositório `cerne-avaliacao` (GitHub, privado)
   - **Por que agora:** é a casa deste plano, do documento de métricas, das decisões e, mais tarde, dos scripts e dos dados. Todas as tarefas `C-` rodam nele. Os repositórios de ciclo só nascem na Fase 5.
   - **Como confirmo:** `git remote -v` aponta para ele.
+  - **Registro (24/09/2026):** repositório privado `WagnerofDuarte/cerne-avaliacao` criado; `git remote -v` confere.
 
-- [ ] `C-000` Criar a estrutura de `cerne-avaliacao`: `docs/` (este plano, `Metricas_e_Skills_Ciclos.md`, `protocolo.md`, `desvios.md`), `entrada/` (pacote neutro, Fase 3), `skills/`, `scripts/`, `harness/`, `holdout/`, `calibracao/`, `dados/cicloA/brutos/`, `dados/cicloB/brutos/`, `dados/evidencias/`, `segredos/`; e um `.gitignore` com a linha `segredos/` (credenciais do `C-014`) — **Critério:** `tree -L 3` bate com a lista; `git check-ignore segredos/teste` responde; plano e documento de métricas versionados.
+- [x] `C-000` Criar a estrutura de `cerne-avaliacao`: `docs/` (este plano, `Metricas_e_Skills_Ciclos.md`, `protocolo.md`, `desvios.md`), `entrada/` (pacote neutro, Fase 3), `skills/`, `scripts/`, `harness/`, `holdout/`, `calibracao/`, `dados/cicloA/brutos/`, `dados/cicloB/brutos/`, `dados/evidencias/`, `segredos/`; e um `.gitignore` com a linha `segredos/` (credenciais do `C-014`) — **Critério:** `tree -L 3` bate com a lista; `git check-ignore segredos/teste` responde; plano e documento de métricas versionados.
+  - **Registro (24/09/2026):** estrutura criada e versionada (commit inicial com o instrumento das Fases 0–3 e 7); `git check-ignore -v segredos/teste` → `.gitignore:1:segredos/`; `git status` limpo; `docs/desvios.md` criado vazio.
 
 - [x] 🔴 **[MANUAL] `GATE-C01`** — Revisão integral do `Metricas_e_Skills_Ciclos.md` (revisão v2)
   - **O quê:** reler o documento inteiro e marcar tudo que discorda, falta ou sobra, antes de decidir as pendências abaixo.
