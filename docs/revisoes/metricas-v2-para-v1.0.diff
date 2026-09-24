@@ -1,0 +1,798 @@
+--- Metricas_e_Skills_Ciclos.md (v2)
++++ Metricas_e_Skills_Ciclos.md (v1.0)
+@@ -1,10 +1,13 @@
+ # Instrumento de Medição dos Ciclos Comparativos — Métricas e Skills
+ 
+ **Projeto:** TCC Wagner Duarte — GitHub Spec Kit × BMAD-METHOD (veículo: app Cerne)
+-**Status:** rascunho — definições a congelar (hash SHA-256) antes do primeiro comando `/speckit` do Ciclo A
+-**Data:** 22/09/2026
+-**Revisão:** v2 (22/09/2026) — fundamentação bibliográfica e ajustes derivados da literatura incorporados em cada métrica (§5), mapeamento das métricas nas dimensões de Macedo (2026) (§5.6), plano de análise (§14) e referências (§15)
+-**Documentos de origem:** `Requisitos_e_Fluxo_de_Telas_TCC.md` (§3, §8, §11), `doc-prototipo.md` (§4), decisões D1–D18, `Bibliografia_Complementar_TCC_Wagner.md`
++**Versão:** **v1.0** (22/09/2026), derivada da revisão v2 de 22/09/2026, com as decisões dos `GATE-C01`–`C03` do `plano-ciclos.md` (`C-001`, `C-002`)
++**Status:** publicada; o hash SHA-256 é registrado no congelamento do protocolo (`GATE-C23`, tag `protocolo-v1.0`). Depois disso, toda mudança é desvio em `docs/desvios.md`
++**Documento irmão:** `protocolo.md` — decisões P1–P14, regras por metodologia e regras operacionais de conduta do pesquisador (fonte única; §9)
++**Histórico:** v2 (22/09/2026) — fundamentação bibliográfica e ajustes derivados da literatura incorporados em cada métrica (§5), mapeamento das métricas nas dimensões de Macedo (2026) (§5.6), plano de análise (§14) e referências (§15)
++**Documentos de origem:** `Requisitos_e_Fluxo_de_Telas_TCC.md` (§3, §8, §11), `doc-prototipo.md` (§4), decisões D1–D18, `Bibliografia_Complementar_TCC_Wagner.md`, `plano-ciclos.md` (`GATE-C01`–`C03`)
++
++**Mudanças da v1.0 em relação à v2** (registro das decisões em `docs/revisoes/gate-c01-roteiro-revisao.md` e nos `GATE-C02`/`C03` do plano): skill de coleta como skill de usuário, fora do repositório do app; ID `PLAN`; JSONL como fonte primária, com subagentes e OpenTelemetry como conferência; prefixo `PROCESSO:` como série M5b; suíte hold-out só na tag `final`; M8b condicional; ferramentas de M7 e M12 (scripts próprios); avaliador de outra família (OpenAI); pareamento por RF só nas fases `IMPL` + `VALID`; superfície VS Code com extensão (P2) e uma sessão por comando do Spec Kit (P4), com os ajustes correspondentes na M14, na §5.6 e na §12; censura pela timebox; método de Pratt; convenção de tags ampliada; esquema de dados coluna a coluna (§8). Os opcionais da v2 (estimativa prévia, estabilidade de decisões) não foram adotados; a leitura dimensional final (§5.6) foi adotada.
+ 
+ ---
+ 
+@@ -21,6 +24,7 @@
+ Os ajustes usam três marcações:
+ - *[INCORPORADO]*: já refletido nas colunas de dados (§8), nas regras (§9) e no cronograma (§11);
+ - *[OPCIONAL]*: depende de decisão registrada em §13;
++- *[ADOTADO CONDICIONALMENTE]* / *[NÃO ADOTADO]*: resultado da decisão na v1.0 (§13);
+ - *Nenhum*: a literatura levantada não justifica mudança, e nada foi forçado.
+ 
+ Quando uma métrica não tem respaldo nas referências levantadas, isso é dito explicitamente. As referências completas estão na §15, com a indicação de quais foram lidas na íntegra e quais precisam ser conferidas na fonte primária antes de entrar na monografia.
+@@ -29,7 +33,7 @@
+ 
+ ## 2. Princípios do instrumento
+ 
+-**P1 — Invisibilidade para o agente medido.** Nada do instrumento pode entrar no contexto do agente durante o desenvolvimento. Dentro do projeto do app existe apenas uma skill, configurada para não ser carregada no contexto do modelo. Todo o restante roda num projeto separado.
++**P1 — Invisibilidade para o agente medido.** Nada do instrumento pode entrar no contexto do agente durante o desenvolvimento, nem ficar na árvore do repositório do app. A única skill usada durante o desenvolvimento, `/coletar-sessao`, é **skill de usuário** instalada no diretório de configuração do ciclo (`cfg-ciclo-a`/`cfg-ciclo-b`), configurada para não ser carregada no contexto do modelo. Todo o restante roda num projeto separado (`cerne-avaliacao`).
+ 
+ **P2 — Determinismo sempre que possível.** Toda métrica que pode ser calculada por script é calculada por script. O modelo nunca calcula números, apenas executa e formata.
+ 
+@@ -37,19 +41,22 @@
+ 
+ **P4 — Paridade entre ciclos.** Skills, scripts, rubricas, prompts do avaliador e suíte de testes são idênticos nos dois ciclos, com hash registrado.
+ 
+-**P5 — Pré-registro de definições, não de código.** Antes do Ciclo A, congelam-se as **definições** (rubricas, regras, cenários, critérios de seleção). O código do harness pode ser construído durante o Ciclo A, porque as métricas de RF e de ciclo são calculadas sobre snapshots preservados (tags git + transcripts) e o mesmo harness é aplicado aos dois ciclos.
++**P5 — Pré-registro de definições, não de código.** Antes do Ciclo A, congelam-se as **definições** (rubricas, regras, cenários, critérios de seleção). O código do harness pode ser construído durante o Ciclo A, porque as métricas de RF e de ciclo são calculadas sobre snapshots preservados (tags git + transcripts) e o mesmo harness é aplicado aos dois ciclos. O harness é testado **só** num repositório de calibração sintético, com violações plantadas e gabarito; nenhum script de medição roda sobre o código de um ciclo antes da fase de avaliação.
+ 
+ **P6 — Nenhum rastro no repositório do app.** Nenhum output de medição (cobertura, relatórios, screenshots) é gravado dentro do repositório medido. A avaliação opera sobre cópias temporárias.
+ 
++**P7 — Cegamento do pesquisador.** Nenhuma métrica de produto ou diferencial (M6–M15) do Ciclo A é calculada ou consultada antes do fim do Ciclo B. A coleta por sessão nunca exibe tokens, tempo, custo ou conferências derivadas deles; só confirma o registro e o que o pesquisador já sabe (as mensagens prefixadas que digitou), além da faixa da timebox (§4.1).
++
+ ---
+ 
+ ## 3. Arquitetura
+ 
+-### 3.1 Dois projetos
++### 3.1 Projetos e diretórios
+ 
+ | Projeto | Conteúdo relativo ao instrumento | Visível ao agente medido? |
+ |---|---|---|
+-| `cerne-ciclo-a` / `cerne-ciclo-b` (app) | Apenas `/coletar-sessao`, com `disable-model-invocation: true` | Não (verificado via `/context`) |
++| `cerne-ciclo-a` / `cerne-ciclo-b` (app) | Nenhum | — |
++| `cfg-ciclo-a` / `cfg-ciclo-b` (diretório de configuração do Claude Code de cada ciclo, fora dos repositórios) | `/coletar-sessao` como skill de usuário, com `disable-model-invocation: true`; `settings.json` idêntico nos dois | Não (verificado via `/context`; fallback por hook `SessionEnd`) |
+ | `cerne-avaliacao` (projeto separado do Claude Code) | Skills de avaliação, scripts, suíte hold-out, rubricas, dados coletados | Não — nunca é aberto durante sessões de desenvolvimento |
+ 
+ ### 3.2 Fluxo
+@@ -58,8 +65,8 @@
+ flowchart LR
+     S[Sessão de desenvolvimento] -->|última ação| CS["/coletar-sessao"]
+     CS --> D1[(sessoes.csv<br/>intervencoes.csv)]
+-    S -->|RF concluído| T[tag git rfNN-done]
+-    T --> AR["/avaliar-rf"]
++    S -->|unidade concluída| T[tag git rfNN-done / rfNN-incompleto]
++    T -->|fase de avaliação| AR["/avaliar-rf"]
+     AR --> D2[(rf.csv<br/>screenshots<br/>testes)]
+     AR --> JR["/julgar-rf"]
+     JR --> D3[(julgamentos.jsonl)]
+@@ -69,17 +76,21 @@
+     VJ --> D5[(kappa)]
+ ```
+ 
++As skills de avaliação só rodam depois do fim dos dois ciclos (P7). A suíte hold-out roda só na tag `final` de cada ciclo (§7).
++
+ ### 3.3 Convenções de tags git
+ 
+ | Tag | Momento |
+ |---|---|
+-| `cicloA/baseline` | Repositório vazio após `specify init`, antes de qualquer comando |
+-| `cicloA/setup-done` | Fim da configuração da metodologia (constitution no Spec Kit; agentes/templates no BMAD) |
++| `cicloA/baseline` | Pacote de entrada copiado para `docs/input/` e `.env` no lugar, **antes** da instalação da metodologia |
++| `cicloA/instalado` | Metodologia instalada (instalação cronometrada fora de sessão; M1) |
++| `cicloA/setup-done` | Fim da configuração da metodologia (constitution no Spec Kit; no BMAD, conforme o `GATE-C10`) |
++| `cicloB/plan-done` | **Só no Ciclo B:** fim do planejamento global (sessões `PLAN`) |
+ | `cicloA/f000-done` | Fim da fundação |
+-| `cicloA/rf03-done` … `cicloA/rf09-done` | Fim de cada RF, na ordem congelada |
++| `cicloA/rfNN-done` ou `cicloA/rfNN-incompleto` | Fim de cada RF, na ordem congelada; `-incompleto` quando a timebox estoura (§5.1, M2) |
+ | `cicloA/final` | Fim do ciclo |
+ 
+-No Ciclo B, o prefixo é `cicloB/`. A criação da tag é a decisão humana de "RF concluído".
++No Ciclo B, o prefixo é `cicloB/`. A criação da tag `-done` é a decisão humana de "unidade concluída"; as tags são criadas pelos scripts auxiliares (`concluir-rf`, `rf-incompleto`, `instalar-metodologia`, `iniciar-ciclo`) e registradas em `tags.csv` (§8). Nenhuma tag é movida depois de criada.
+ 
+ ---
+ 
+@@ -89,16 +100,20 @@
+ 
+ | Campo | Valor |
+ |---|---|
+-| Local | `.claude/skills/coletar-sessao/` no projeto do app (skill de projeto, **não** de plugin) |
++| Local | Skill de **usuário** em `cfg-ciclo-a/skills/coletar-sessao/` e `cfg-ciclo-b/skills/coletar-sessao/` (fonte versionada em `cerne-avaliacao/skills/coletar-sessao/`). Nunca no repositório do app: uma skill de projeto ficaria na árvore do projeto, e o agente poderia encontrá-la ao listar arquivos |
+ | Frontmatter obrigatório | `disable-model-invocation: true` |
+-| Invocação | `/coletar-sessao <ID>` — `<ID>` ∈ {`SETUP`, `F000`, `RF01`…`RF10`} |
++| Invocação | `/coletar-sessao <ID>` — `<ID>` ∈ {`SETUP`, `PLAN`, `F000`, `RF01`…`RF10`}. `PLAN` identifica as sessões de planejamento global do BMAD (brief, PRD, arquitetura, épicos, prontidão, sprint planning), que não pertencem a nenhum RF |
+ | Quando | **Última ação** de toda sessão de desenvolvimento |
+-| O que faz | Executa um script externo (caminho fora do repo) que lê o transcript JSONL da sessão e a telemetria OpenTelemetry, corta tudo a partir do timestamp da mensagem de invocação e grava uma linha em `sessoes.csv` e N linhas em `intervencoes.csv` |
+-| Métricas | 1, 2, 3, 5, D16 |
++| O que faz | Executa um script Python externo (caminho absoluto em `cerne-avaliacao`) que: lê o transcript JSONL da sessão **e os transcripts de subagentes e tarefas auxiliares da mesma sessão**, onde quer que a versão travada os grave; corta tudo a partir do timestamp da mensagem de invocação; soma tempo e tokens por categoria (principal e subagentes à parte); atribui a fase de cada trecho pela tabela congelada no `protocolo.md`; extrai as mensagens `INTERVENÇÃO [...]` e `PROCESSO:`; registra compactações; compara a soma de tokens com o total do OpenTelemetry da sessão (conferência); grava em `sessoes.csv`, `segmentos.csv`, `intervencoes.csv`, `revisoes_processo.csv` e `avisos_coleta.csv`; e copia todos os JSONL da sessão para `dados/<ciclo>/brutos/` |
++| O que exibe | Só: confirmação do registro; número de intervenções e de respostas `PROCESSO:` **reconhecidas**; um aviso por linha que começa com `INTERVEN` ou `PROCESSO` e não pôde ser lida; e a faixa da timebox da unidade ("abaixo de 50%", "50–80%", "acima de 80%", "atingido"). **Nunca** exibe tokens, tempo, custo ou a divergência com o OTel (P7) |
++| Métricas | 1, 2, 3, 5 (incluindo a série M5b), D16 |
+ 
+ **Regras:**
+ - Após a invocação, a sessão é encerrada. Uma sessão onde a skill rodou **nunca** é retomada (`--continue` / `--resume` proibidos).
+-- Antes do Ciclo A: abrir uma sessão na versão travada do Claude Code, rodar `/context` e confirmar que a skill não aparece no contexto. O print vai para o apêndice. Se aparecer, a skill não pode ser usada nessa versão e a coleta migra para um hook `SessionEnd`.
++- Antes do Ciclo A: abrir uma sessão com cada configuração (`cfg-ciclo-a`, `cfg-ciclo-b`) na versão travada do Claude Code, rodar `/context` e confirmar que a skill não aparece no contexto. O print vai para o apêndice.
++- **Fallback**, se a skill aparecer no contexto: a coleta migra para um hook `SessionEnd` que executa o mesmo script. Como o hook não recebe argumento, o pesquisador roda `scripts/marcar-sessao <ID>` no terminal antes de fechar a sessão, e o hook lê o ID gravado. Nesse modo, o corte é a última mensagem da sessão. O script nasce com os dois modos.
++- **Corte por limite de uso ou falha** (protocolo, P13): com o limite atingido, o modelo não responde e a skill não roda. A sessão é coletada no terminal, com o script em modo `manual` e `motivo_fim` registrado; a retomada é uma sessão nova com o mesmo comando.
++- A instalação da metodologia não é sessão do Claude Code: é cronometrada pelo script `instalar-metodologia` e gravada em `sessoes.csv` com `tipo_sessao = instalacao` (M1).
+ 
+ ### 4.2 `/avaliar-rf`
+ 
+@@ -106,9 +121,9 @@
+ |---|---|
+ | Local | `cerne-avaliacao` |
+ | Invocação | `/avaliar-rf <ciclo> <ID>` — ex.: `/avaliar-rf A RF04` |
+-| Quando | Após a tag `rfNN-done`; pode ser executada depois do ciclo, sobre a tag |
+-| O que faz | Faz checkout da tag numa cópia temporária, roda o harness estático, injeta os testes de medição na cópia, sobe o app no simulador fixo com o proxy, roda a suíte hold-out do RF e captura screenshots dos estados do RF |
+-| Métricas | 4, 7, 8, 9 (partes determinísticas), 10, 11, 12, 13, 6 (parte determinística) |
++| Quando | Na fase de avaliação, depois do fim dos dois ciclos (P7), sobre as tags de unidade preservadas |
++| O que faz | Faz checkout da tag numa cópia temporária e roda o harness estático e a suíte do próprio agente (regressão, cobertura). **Só na tag `final`:** compila o app com o `.env` do ciclo injetado, instala no simulador de avaliação com o proxy, roda a suíte hold-out com os critérios de **todos** os RFs, captura os screenshots dos estados da M9 e roda a M8b (se mantida) |
++| Métricas | Por tag: 4, 6 (parte determinística), 7, 8, 9 (hardcodes), 10 (assinaturas), 12, 13. Só na `final`: 8b, 9 (cor e tipografia), 10 (cenários), 11 |
+ 
+ ### 4.3 `/julgar-rf`
+ 
+@@ -117,7 +132,7 @@
+ | Local | `cerne-avaliacao` |
+ | Invocação | `/julgar-rf <ciclo> <ID>` |
+ | Quando | Após `/avaliar-rf` do mesmo RF |
+-| O que faz | Envia ao modelo avaliador o `plan.md`/`tasks.md` do RF (Spec Kit) ou architecture/stories correspondentes (BMAD) + diff entre a tag do RF e a tag anterior; aplica a rubrica de aderência 3 vezes; grava as três saídas e o voto majoritário |
++| O que faz | Envia ao modelo avaliador o `plan.md`/`tasks.md` do RF (Spec Kit) ou a arquitetura e as stories da unidade, atribuídas pelo `mapa-stories.csv` (BMAD), anonimizados + diff entre a tag do RF e a tag anterior; aplica a rubrica de aderência 3 vezes; grava as três saídas e o voto majoritário |
+ | Métricas | 6 (divergências não documentadas) |
+ 
+ ### 4.4 `/avaliar-ciclo`
+@@ -127,7 +142,7 @@
+ | Local | `cerne-avaliacao` |
+ | Invocação | `/avaliar-ciclo <ciclo>` |
+ | Quando | Após `cicloX/final` |
+-| O que faz | Agrega os CSVs; roda os checks de consistência de padrões; roda os checks estáticos de handoff e o avaliador para as decisões não estáticas; roda o avaliador visual de espaçamento sobre os pares screenshot × frame; gera as tabelas da monografia |
++| O que faz | Agrega os CSVs, incluindo a linha de planejamento global (`PLAN`, zerada no Spec Kit por construção) e a série M5b; roda os checks de consistência de padrões; roda os checks estáticos de handoff e o avaliador para as decisões não estáticas; roda o avaliador visual de espaçamento sobre os pares screenshot × frame; gera as tabelas da monografia |
+ | Métricas | 1, 2, 4 (totais), 9 (espaçamento e score final), 14, 15 |
+ 
+ ### 4.5 `/validar-juiz`
+@@ -150,7 +165,12 @@
+ 
+ #### M1 — Tempo de setup inicial
+ - **Definição:** tempo gasto configurando a metodologia antes da primeira linha de código do app (constitution no Spec Kit; agentes/templates no BMAD).
+-- **Operacionalização:** duas medidas reportadas lado a lado — (a) **tempo em sessão**: soma da duração das sessões com ID `SETUP`, do início ao corte; (b) **tempo de calendário**: intervalo entre o primeiro timestamp de `SETUP` e a tag `setup-done`.
++- **Operacionalização:** M1 = **instalação** + **sessões `SETUP`**, com os componentes reportados lado a lado:
++  - (a) **instalação**: duração do instalador da metodologia, cronometrada fora de sessão pelo script `instalar-metodologia` (`tipo_sessao = instalacao`); no BMAD inclui as respostas ao instalador interativo;
++  - (b) **tempo em sessão**: soma do **tempo ativo** das sessões com ID `SETUP` (definição na M2);
++  - (c) **tempo de calendário**: intervalo entre o início da instalação e a tag `setup-done`.
++
++  **Assimetria a declarar:** se, no BMAD, os princípios técnicos (`P-SETUP`) não puderem entrar no setup e forem para a primeira mensagem da arquitetura (decisão do `GATE-C10`), o custo correspondente cai em `PLAN`, não em M1. A definição registra qual caso ocorreu.
+ - **Unidade:** horas.
+ - **Skills:** `/coletar-sessao` (coleta), `/avaliar-ciclo` (agregação).
+ - **Mecanismo:** D.
+@@ -167,7 +187,9 @@
+ 
+ #### M2 — Tempo total do ciclo (por RF e total)
+ - **Definição:** tempo do início ao fim, por RF e total.
+-- **Operacionalização:** mesmas duas medidas de M1, agrupadas por ID. Tempo de calendário por RF = intervalo entre a tag anterior e `rfNN-done`.
++- **Operacionalização:** tempo em sessão e tempo de calendário, agrupados por ID.
++- **Tempo ativo (definição de "tempo em sessão", decidida em 22/09/2026, `GATE-C05`):** soma dos intervalos entre eventos consecutivos do transcript, do início ao corte. Intervalo que termina numa ação do agente (resposta, chamada de ferramenta, resultado de comando) conta inteiro. Intervalo que termina numa mensagem do pesquisador conta **até 30 minutos**; o excedente vai para `pausa_s`. O tempo bruto (início → corte) também é gravado. A timebox usa o tempo ativo. A verificação de "concluído" acontece fora de sessão (protocolo, P4) e aparece só no tempo de calendário. Tempo de calendário por RF = intervalo entre a tag anterior e `rfNN-done` (ou `rfNN-incompleto`). O planejamento global do BMAD (`PLAN`) é reportado como **linha própria**, fora de qualquer RF; no Spec Kit essa linha é zero por construção, e isso é resultado, não defeito.
++- **Timebox e censura:** cada unidade tem teto de tempo em sessão (protocolo, P7). Uma unidade encerrada no teto recebe a tag `-incompleto`, e o seu tempo é um **limite inferior**, marcado como censurado (`timebox_censurado` em `rf.csv`). O tratamento na análise está na §14.
+ - **Unidade:** horas.
+ - **Skills:** `/coletar-sessao`, `/avaliar-ciclo`.
+ - **Mecanismo:** D.
+@@ -184,14 +206,14 @@
+   - `IMPL`: implementação;
+   - `VALID`: análise, checklist, revisão e QA.
+ 
+-  A fase é atribuída a partir dos marcadores do transcript: comandos `/speckit.*` no Ciclo A e ativações de persona ou workflow do BMAD no Ciclo B. Mensagens sem marcador herdam a fase do marcador anterior. A tabela de mapeamento comando/persona → fase é congelada antes do Ciclo A para os dois frameworks. O mapeamento do BMAD é feito a partir da versão travada, com a mesma granularidade do Spec Kit (P4). A coleta vai para o novo arquivo `segmentos.csv` (§8), sem trabalho manual adicional. Fundamento: o overhead de especificação medido à parte por Farrag e a comparação por família de Taghavi & Bhavani.
++  A fase é atribuída a partir dos marcadores do transcript: comandos `/speckit.*` no Ciclo A e ativações de persona ou workflow do BMAD no Ciclo B. Mensagens sem marcador herdam a fase do marcador anterior. A tabela de mapeamento comando/persona → fase é congelada antes do Ciclo A para os dois frameworks, no `protocolo.md` (`C-004`). O mapeamento do BMAD é feito a partir da versão travada, com a mesma granularidade do Spec Kit (P4). A coleta vai para o novo arquivo `segmentos.csv` (§8), sem trabalho manual adicional. Fundamento: o overhead de especificação medido à parte por Farrag e a comparação por família de Taghavi & Bhavani.
+   - *Limitação a declarar:* a fronteira entre fases é aproximada. O agente pode, por exemplo, replanejar dentro de `/speckit.implement`.
+ - *[INCORPORADO — prioridade média]* **Segmentos de espera por limite de taxa.** Taghavi & Bhavani (2026, §3.3) excluem das análises de latência as execuções interrompidas por limite de taxa, mas as mantêm nas análises de qualidade. Regra adotada: quando identificável no transcript ou na telemetria, o tempo de espera por limite de taxa ou indisponibilidade da API é marcado (`excluido_rate_limit`) e subtraído do tempo em sessão, sendo reportado à parte.
+-- *[OPCIONAL — prioridade baixa]* **Estimativa prévia por RF.** Antes de cada RF, registrar em `cerne-avaliacao` (fora do contexto do agente, P1) uma estimativa de horas, para comparar com o tempo medido (gap percepção × realidade; Becker et al., 2025, via Farrag). *Limitação:* em N=1, com o próprio pesquisador como sujeito, o dado é fraco e sujeito a ancoragem. Só adotar se o custo for de segundos por RF.
++- *[NÃO ADOTADO na v1.0 — trabalho futuro]* **Estimativa prévia por RF.** Antes de cada RF, registrar em `cerne-avaliacao` (fora do contexto do agente, P1) uma estimativa de horas, para comparar com o tempo medido (gap percepção × realidade; Becker et al., 2025, via Farrag). *Limitação:* em N=1, com o próprio pesquisador como sujeito, o dado é fraco e sujeito a ancoragem. Só adotar se o custo for de segundos por RF.
+ 
+ #### M3 — Custo de tokens do desenvolvimento
+ - **Definição:** tokens consumidos pelo Claude Code durante a construção (não confundir com os tokens do backend em produção).
+-- **Operacionalização:** input, output, cache read e cache write por sessão, lidos da telemetria OpenTelemetry; transcript JSONL como fonte de conferência. Custo em USD calculado pela tabela de preços registrada no protocolo, não pelo valor estimado da ferramenta.
++- **Operacionalização:** input, output, cache read e cache write por sessão, lidos do **transcript JSONL** (fonte primária), somando o transcript principal e os transcripts de subagentes e tarefas auxiliares da mesma sessão; a parcela dos subagentes é gravada à parte. A telemetria **OpenTelemetry**, ligada nos dois ciclos, serve só de conferência: a diferença relativa entre as duas somas é gravada (`div_otel`) e, acima da tolerância fixada no script de coleta, reportada — nunca corrigida à mão. Custo em USD calculado pela tabela de preços congelada no protocolo (`C-023`), não pelo valor estimado da ferramenta.
+ - **Unidade:** tokens por categoria; USD.
+ - **Skills:** `/coletar-sessao`, `/avaliar-ciclo`.
+ - **Mecanismo:** D.
+@@ -210,7 +232,7 @@
+ 
+ #### M4 — Nº de artefatos gerados
+ - **Definição:** documentos de especificação produzidos pela metodologia.
+-- **Operacionalização:** contagem de arquivos por tipo em `specs/NNN-*/` e `.specify/memory/` (Spec Kit) ou nos diretórios de saída do BMAD, na tag de cada RF e na tag final. Lista de tipos contáveis congelada no protocolo.
++- **Operacionalização:** contagem de arquivos por tipo em `specs/NNN-*/` e `.specify/memory/` (Spec Kit), na tag de cada RF e na tag final; no BMAD, nos diretórios de saída da versão travada, lidos nas tags `plan-done` e `final` (os artefatos nascem nas sessões `PLAN`, e a contagem incremental por RF seria zero). A lista de tipos contáveis por framework é regra concreta do `C-022`.
+ - **Unidade:** contagem.
+ - **Skills:** `/avaliar-rf`, `/avaliar-ciclo`.
+ - **Mecanismo:** D.
+@@ -229,7 +251,7 @@
+ - **Definição:** vezes em que o pesquisador interrompeu ou redirecionou o agente.
+ - **Operacionalização:** contagem de mensagens com prefixo `INTERVENÇÃO [tipo]:` no transcript, antes do corte. Intervenções que não são mensagens (edição manual, permissão negada, interrupção por Esc) são **sempre** seguidas de uma mensagem prefixada descrevendo-as.
+ - **Taxonomia provisória de tipos:** `redirecionamento`, `correção`, `edição manual`, `permissão negada`, `interrupção`, `esclarecimento não solicitado`.
+-- **Pendente → resolvida na v2:** responder perguntas geradas pela própria metodologia (ex.: `/speckit.clarify`) **não** conta como intervenção. É registrado com o prefixo `PROCESSO:` e contado à parte como "revisão humana exigida pelo processo" (ver ajustes abaixo; Macedo, 2026).
++- **Série M5b — revisão humana exigida pelo processo:** responder a uma pausa **prevista pela metodologia** (pergunta, menu ou pedido de aprovação que consta da lista de gatilhos congelada no `protocolo.md` para aquele framework) **não** conta como intervenção. A resposta começa com `PROCESSO:` e é contada à parte (`n_processo`, `revisoes_processo.csv`; Macedo, 2026). Confirmação dada a uma pausa que o agente fez **por conta própria**, fora da lista de gatilhos, é mensagem neutra (protocolo, P5b) e não entra em nenhuma das duas séries.
+ - **Unidade:** contagem por RF e total; distribuição por tipo.
+ - **Skill:** `/coletar-sessao`.
+ - **Mecanismo:** D (contagem); H (classificação no momento, via prefixo).
+@@ -268,13 +290,13 @@
+   - no Spec Kit: `/speckit.clarify`, `/speckit.checklist` e aprovação de plano;
+   - no BMAD: elicitações das personas de analista e PM, revisão de PRD e readiness checks.
+ 
+-  Essas respostas recebem o prefixo próprio `PROCESSO:` e são contadas como "revisão humana exigida pelo processo", termo da agenda de Macedo (2026, §7), no novo arquivo `revisoes_processo.csv` (§8). **Regra de paridade:** a lista de gatilhos que contam como `PROCESSO` é congelada para os dois frameworks antes do Ciclo A, porque o BMAD tem, por desenho, mais pontos de elicitação.
++  Essas respostas recebem o prefixo próprio `PROCESSO:` e são contadas como "revisão humana exigida pelo processo", termo da agenda de Macedo (2026, §7), no novo arquivo `revisoes_processo.csv` (§8). **Regra de paridade:** a lista de gatilhos que contam como `PROCESSO` é congelada para os dois frameworks antes do Ciclo A, no `protocolo.md` (`C-004`), porque o BMAD tem, por desenho, mais pontos de elicitação. Os itens acima são exemplos; vale a lista congelada da versão travada.
+ - *[INCORPORADO — prioridade média]* **Normalização por fase.** As contagens são reportadas por RF e por fase (segmentação da M2). Isso atende à medida "correções por fase" de Macedo (2026, §7) e evita penalizar o BMAD apenas por ter mais fases.
+ 
+ #### M6 — Aderência ao plano
+ - **Definição:** divergências não documentadas entre o plano gerado e o código entregue.
+ - **Operacionalização em duas partes:**
+-  - **D:** % de itens marcados como concluídos no `tasks.md`; cruzamento entre arquivos citados no `plan.md` e arquivos alterados no diff do RF (citados e não alterados; alterados e não citados).
++  - **D:** % de itens marcados como concluídos no `tasks.md` (Spec Kit) ou % de checkboxes de tarefas marcados nas stories da unidade, atribuídas pelo `mapa-stories.csv` (BMAD; formato da versão travada, regra do `C-022`); cruzamento entre arquivos citados no `plan.md` e arquivos alterados no diff do RF (citados e não alterados; alterados e não citados).
+   - **J:** o avaliador recebe plano + diff e devolve lista estruturada `{divergência, evidência arquivo:linha, documentada: sim/não}`. Conta-se o número de divergências não documentadas no voto majoritário das 3 execuções.
+ - **Unidade:** % de tarefas; contagem de divergências não documentadas por RF.
+ - **Skills:** `/avaliar-rf` (D), `/julgar-rf` (J), `/validar-juiz`.
+@@ -292,18 +314,18 @@
+   - (b) **pacotes** ausentes do `pubspec.yaml` na tag do RF;
+   - (c) **endpoints, campos do schema e códigos de erro** que não constam da Especificação Técnica do backend congelado (23 endpoints, schema e taxonomia de 13 erros).
+ 
+-  O backend congelado funciona como *ground truth* externo. É uma vantagem metodológica em relação a Taghavi & Bhavani, cujos repositórios abertos estavam em evolução. As novas colunas em `rf.csv` são `M6_inexist_arq`, `M6_inexist_pkg` e `M6_inexist_backend`. As referências são extraídas por expressões regulares congeladas no protocolo (caminhos `lib/...`, nomes de pacote, rotas do backend, códigos da taxonomia de erros), a ajustar ao formato real das rotas.
++  O backend congelado funciona como *ground truth* externo. É uma vantagem metodológica em relação a Taghavi & Bhavani, cujos repositórios abertos estavam em evolução. As novas colunas em `rf.csv` são `M6_inexist_arq`, `M6_inexist_pkg` e `M6_inexist_backend`. As referências são extraídas por expressões regulares escritas no `C-022` e congeladas com hash (caminhos `lib/...`, nomes de pacote, rotas do backend no formato real da Especificação Técnica, códigos da taxonomia de erros), com o hash da versão da Especificação Técnica usada como referência.
+   - *Limitação a declarar:* referências em prosa livre podem escapar da regex. Se isso for relevante, cobrir com o avaliador J.
+ - *[INCORPORADO — prioridade média]* **Causa na saída do avaliador.** O schema de saída da parte J ganha o campo `causa`, com os mesmos códigos da M5 (`ctx`, `chk`, `inc`, `prd`, `amb`, `out`). Isso permite cruzar as divergências da M6 com as intervenções da M5 e ver se as divergências não documentadas se concentram em cegueira de contexto (`ctx`) ou em desvio de produto (`prd`).
+ 
+ ### 5.2 Métricas de produto (§8.2)
+ 
+ #### M7 — Violações de camada (RNF06)
+-- **Definição:** imports proibidos entre camadas (domínio importando `package:flutter` ou classes de `data/`).
++- **Definição:** imports proibidos entre camadas (domínio importando `package:flutter` ou classes de `data/`). As regras estruturais do RF07 ("nenhum BLoC importa outro BLoC") e do RF10 ("o chat não importa o repositório de entradas") **não** contam aqui: são critérios de aceite e contam só na M11.
+ - **Operacionalização:** lint de arquitetura executado com **configuração do harness**, não com o `analysis_options.yaml` do app (que o agente pode ter alterado). Mapeamento de camadas por pasta congelado no protocolo ou no pacote de entrada.
+ - **Meta:** 0.
+ - **Skill:** `/avaliar-rf`. **Mecanismo:** D.
+-- **Pendente:** fechar a ferramenta (§3 ainda diz "`clean_architecture_kit` ou `import_linter`"; confirmar o equivalente Dart, já que `import-linter` é do ecossistema Python).
++- **Ferramenta (decidida):** script próprio do harness, em Python, que lê os `import` de cada arquivo (relativos e `package:<app>/...`) e aplica o mapa de camadas da convenção de pastas congelada no pacote de entrada (`lib/core/` + `lib/features/<feature>/{data,domain,presentation}/`). O mesmo script emite à parte as regras estruturais do RF07 e do RF10, que alimentam a M11. Validado contra o gabarito do repositório de calibração. `import-linter` é ferramenta Python para código Python e não se aplica.
+ 
+ **Fundamentação bibliográfica (blindagem)**
+ - **Taghavi & Bhavani (2026, resumo e §1)** apontam as violações arquiteturais como um dos sintomas típicos da cegueira de contexto em agentes que trabalham a partir de especificação.
+@@ -313,7 +335,7 @@
+ 
+ **Ajustes derivados da literatura**
+ - *[INCORPORADO — sem custo de coleta]* **Trajetória por RF.** Além do valor final, reportar a série da M7 em cada tag `rfNN-done` e o RF em que cada violação surgiu (nova coluna `M7_novas` em `rf.csv`). A previsão de Farrag (§4.2.5) é que as violações aumentam com o tamanho do projeto. A série testa essa previsão e permite comparar qual framework contém melhor a erosão. O `/avaliar-rf` já produz o dado por RF; muda apenas a análise.
+-- A pendência #1 (escolha da ferramenta) permanece. A literatura levantada não resolve essa escolha.
++- Pendência #1 resolvida por critério de instrumento (determinismo, configuração do harness), não pela literatura.
+ 
+ #### M8 — Cobertura de testes no domínio (RNF07)
+ - **Definição:** cobertura de linhas em `lib/**/domain/**`.
+@@ -327,9 +349,9 @@
+ - **Farrag (2026, §7.2)**, sobre o pipeline TDAD (Rehan, 2026): o mutation testing é usado para validar a própria suíte e garantir que os testes distinguem implementações corretas de incorretas, com mutation scores de 86–100%. É o precedente para complementar a cobertura com mutation score.
+ 
+ **Ajustes derivados da literatura**
+-- *[OPCIONAL — prioridade média; depende da nova pendência #8]* **M8b — mutation score do domínio.** Mutation testing restrito a `lib/**/domain/**`, aplicado à suíte do agente, na cópia temporária, e reportado ao lado da M8 (nova coluna `M8b_mutation` em `rf.csv`). Há ao menos um pacote candidato no pub.dev (`mutation_test`). Antes de adotar, confirmar maturidade, tempo de execução e compatibilidade com a versão do Flutter. Como o custo de execução cresce com o tamanho da suíte, pode ser aplicado só às tags `f000-done` e `final`, se necessário.
++- *[ADOTADO CONDICIONALMENTE na v1.0]* **M8b — mutation score do domínio.** Mutation testing restrito a `lib/**/domain/**`, aplicado à suíte do agente, na cópia temporária, e reportado ao lado da M8 (coluna `M8b_mutation` em `ciclo.csv`). Há ao menos um pacote candidato no pub.dev (`mutation_test`). Antes de adotar, confirmar maturidade, tempo de execução e compatibilidade com a versão do Flutter. Como o custo de execução cresce com o tamanho da suíte, é aplicado **só na tag `final`**. **Condição:** o módulo precisa detectar o mutante sobrevivente plantado no repositório de calibração até a data de corte da trilha paralela (06/11); se não detectar, a M8b sai, e vale o item seguinte (ameaça declarada). Ferramenta e versão travadas no `protocolo.md`.
+ - *[INCORPORADO — obrigatório se a M8b não for adotada]* Registrar em §12 a ameaça de que a M8 mede linhas executadas pela suíte do agente, e não a capacidade dessa suíte de detectar defeitos (validação circular; Farrag, 2026).
+-- *[INCORPORADO — interpretação]* Na monografia, a M8 é interpretada como "disciplina de teste do agente". A evidência de qualidade funcional vem da M11 e da M13, ambas medidas pela suíte hold-out.
++- *[INCORPORADO — interpretação]* Na monografia, a M8 é interpretada como "disciplina de teste do agente". A evidência de qualidade funcional independente do agente vem da M10 e da M11, medidas pela suíte hold-out na tag `final`, e da M8b, se mantida. A M13 é medida pela suíte do próprio agente (§5.2, M13) e, por isso, está sujeita à mesma ressalva de validação circular.
+ 
+ #### M9 — Fidelidade visual (RNF08)
+ - **Definição:** rubrica de 3 pontos por tela + ausência de valores hardcoded.
+@@ -340,7 +362,7 @@
+   - **Espaçamento ±4dp (J):** avaliador com visão compara o par screenshot × frame do protótipo, na mesma resolução. Alternativa determinística (casar bounding boxes do protótipo com o render tree) registrada como possível, mas não adotada por custo.
+ - **Unidade:** score 0–3 por estado; contagem de hardcodes.
+ - **Skills:** `/avaliar-rf` (captura e partes D), `/avaliar-ciclo` (J e score final), `/validar-juiz`.
+-- **Pendente:** lista dos estados avaliados (dos 32) e dispositivo do simulador.
++- **Estados e dispositivo:** os 32 estados do protótipo **menos** os das telas de extensão, que não são implementadas (fecha no `GATE-C06`, P10); dispositivo único do simulador, com as dimensões lógicas dos frames (P11). A lista, com o caminho de navegação e o frame de cada estado, fica em `holdout/estados-m9.md` (`C-020`). Cor, tipografia e espaçamento são medidos nos screenshots da execução na tag `final`; hardcodes, em toda tag.
+ 
+ **Fundamentação bibliográfica (blindagem)**
+ - **Si et al. — Design2Code** *(levantada anteriormente; conferir na fonte primária)* propõe métricas automáticas de comparação entre screenshots gerados e de referência. Essas métricas combinam similaridade visual global com correspondência de elementos (texto, posição e cor). É o precedente acadêmico da alternativa determinística para espaçamento (casar os bounding boxes do protótipo com o render tree), que está registrada como possível mas não foi adotada por custo. Vale citá-la ao justificar essa escolha.
+@@ -355,9 +377,10 @@
+ - **Definição:** padrão `Either<Failure, T>` + 15 cenários de falha tratados (5 endpoints de escrita × 3 falhas).
+ - **Operacionalização:**
+   - **Assinaturas (D):** check estático dos repositórios.
+-  - **15 cenários (D, caixa-preta):** o mitmproxy injeta timeout, resposta malformada e offline em cada endpoint de escrita; o Maestro verifica que a UI exibe o estado de erro tratado, sem crash.
++  - **15 cenários (D, caixa-preta):** o mitmproxy acrescenta o cabeçalho `X-Test-Fault` (`timeout`, `malformed`, `offline`) à chamada de cada endpoint de escrita e o backend executa a falha, com registro em log (decidido em 24/09/2026); o Maestro verifica que a UI exibe o estado de erro tratado, sem crash.
+ - **Desvio a registrar:** a §3 define os 15 cenários como testes `mocktail`, que seriam escritos pelo próprio agente. A medição passa para a suíte hold-out; os testes `mocktail` do agente podem ser reportados como dado secundário.
+ - **Meta:** 0 assinaturas fora do padrão / 15 de 15.
++- **Quando:** assinaturas em toda tag; os 15 cenários só na tag `final` (§7), por isso `M10_cenarios` é métrica de ciclo.
+ - **Skill:** `/avaliar-rf`.
+ 
+ **Fundamentação bibliográfica (blindagem)**
+@@ -371,7 +394,8 @@
+ 
+ #### M11 — Conformidade com critérios de aceite (RF01–RF10)
+ - **Definição:** critérios de aceite da §1 que passam / total, por RF.
+-- **Operacionalização:** suíte hold-out de caixa-preta (seção 7), escrita antes do Ciclo A, fora do repo do app. Critérios estruturais (ex.: RF07 "nenhum BLoC importa outro BLoC"; RF10 "chat não importa repositório de entradas") são checados estaticamente.
++- **Operacionalização:** suíte hold-out de caixa-preta (seção 7), escrita antes do Ciclo A, fora do repo do app, executada **só na tag `final`**, com os critérios de todos os RFs. Critérios estruturais (RF07 "nenhum BLoC importa outro BLoC"; RF10 "chat não importa repositório de entradas") são checados estaticamente, pelo mesmo script da M7, e contam **só** aqui.
++- **Mudança de construto a declarar:** a M11 por RF significa "critérios do RF atendidos no app final", não "atendidos no momento da entrega do RF". Uma regressão posterior aparece como critério não atendido do RF afetado.
+ - **Unidade:** % por RF e total.
+ - **Skill:** `/avaliar-rf`. **Mecanismo:** D.
+ 
+@@ -390,19 +414,20 @@
+ - **Definição:** média por método e contagem de métodos acima de 10.
+ - **Operacionalização:** ferramenta executada pelo harness na cópia, restrita ao domínio.
+ - **Skill:** `/avaliar-rf`. **Mecanismo:** D.
+-- **Pendente:** fechar DCM (pago) × fork open-source de `dart_code_metrics`.
++- **Ferramenta (decidida):** CLI Dart próprio do harness (`harness/m12/`) sobre a AST do `package:analyzer`, chamado pelo orquestrador Python. **Regra de contagem** (McCabe, 1976): complexidade do método = 1 + número de `if`, `for`, `for-in`, `while`, `do`, `case` (cada rótulo), `catch`, `&&`, `||`, `?:`, `??` e `if` de coleção. Validado contra valores calculados à mão para cada método do domínio do repositório de calibração.
++- **Desvio da fonte a declarar:** a §8.2 dos requisitos previa DCM (pago) ou fork do `dart_code_metrics`. A troca se justifica por determinismo, regra documentada e ausência de dependência de ferramenta paga ou sem manutenção.
+ 
+ **Fundamentação bibliográfica (blindagem)**
+ - Nenhuma das referências levantadas nesta pesquisa trata a complexidade ciclomática como métrica de comparação entre processos de desenvolvimento com IA. A âncora adequada é a clássica, **McCabe (1976)**, que define a métrica e propõe 10 como limite superior de referência, o mesmo limiar usado na operacionalização.
+ - Relação apenas indireta, insuficiente para citar como blindagem: **Farrag (2026, §4.2.3)**, citando Imai (2023), observa que os assistentes funcionam bem nos níveis sintático e de função, mas não evitam code smells em níveis mais altos de abstração.
+ 
+ **Ajustes derivados da literatura**
+-- Nenhum. Não vale forçar ancoragem em referências de IA; citar McCabe (1976). A pendência #2 (ferramenta) permanece.
++- Nenhum. Não vale forçar ancoragem em referências de IA; citar McCabe (1976). A pendência #2 foi resolvida (ferramenta acima).
+ 
+ #### M13 — Taxa de regressão
+ - **Definição:** % de testes que passavam no RF anterior e passam a falhar após um RF novo.
+-- **Operacionalização:** a cada `/avaliar-rf`, grava-se a lista de IDs de testes aprovados (suíte do agente + suíte hold-out, reportadas separadamente) e compara-se com o RF anterior.
+-- **Regra proposta:** teste que existia e passava e **deixou de existir** conta como regressão, reportado em coluna própria. Sem essa regra, apagar um teste que falha zera a métrica.
++- **Operacionalização:** a cada tag de unidade, grava-se a lista de IDs de testes aprovados **da suíte do próprio agente** e compara-se com a tag anterior. A suíte hold-out não entra na M13: ela roda só na tag `final` (§7). Isso volta à definição original da §8.2 dos requisitos ("roda a suíte completa do RNF07 a cada RF").
++- **Regra (decidida):** teste que existia e passava e **deixou de existir** conta como regressão, na coluna própria `M13_apagados`; a M13 é reportada com e sem os apagados. Sem essa regra, apagar um teste que falha zera a métrica; a coluna separada preserva o caso de remoção legítima numa refatoração.
+ - **Skill:** `/avaliar-rf`. **Mecanismo:** D.
+ 
+ **Fundamentação bibliográfica (blindagem)**
+@@ -412,15 +437,16 @@
+ - A regra dos testes apagados (pendência #5) não tem respaldo direto na literatura levantada. Ela se sustenta pelo raciocínio do próprio instrumento (sem a regra, apagar um teste que falha zera a métrica) e se conecta ao risco de validação circular (Farrag, 2026, §5.3.1).
+ 
+ **Ajustes derivados da literatura**
+-- *[INCORPORADO — cosmético]* Reportar também o complemento, **segurança de regressão = 1 − taxa de regressão**, por RF e por suíte (agente × hold-out), para comparação direta com os números do TDAD e de Taghavi & Bhavani. Nova coluna `M13_seguranca` em `rf.csv`.
+-- *Pendência #5:* recomendação de manter a regra proposta, em que testes apagados contam como regressão, reportados em coluna própria.
++- *[INCORPORADO — cosmético]* Reportar também o complemento, **segurança de regressão = 1 − taxa de regressão**, por RF (suíte do agente), para comparação direta com os números do TDAD e de Taghavi & Bhavani. Nova coluna `M13_seguranca` em `rf.csv`.
++- *Pendência #5 — resolvida:* regra mantida, com coluna própria.
+ 
+ ### 5.3 Métricas diferenciais (§8.3)
+ 
+ #### M14 — Fidelidade de handoff
+ - **Definição:** das 8–10 decisões técnicas registradas no plano, quantas aparecem corretamente implementadas no código final.
++- **Nota de desenho (P4 do protocolo, 22/09/2026):** nos dois ciclos o contexto é reiniciado a cada fase (uma sessão por comando do Spec Kit; uma por workflow do BMAD), e as decisões só atravessam as fases **pelos artefatos**. A M14 mede, portanto, a **fidelidade do handoff mediado por artefatos** — o quanto os artefatos de cada método carregam as decisões até o código —, e não o contraste "agente único × reset de contexto" previsto na §8.3 dos requisitos, que deixou de variar entre os ciclos (divergência registrada no `protocolo.md`). A fundamentação abaixo continua válida para a progressão planejamento → arquitetura → stories → implementação do BMAD; para o Spec Kit, o paralelo é spec → plan → tasks → implement.
+ - **Operacionalização:**
+-  - **Seleção:** o **critério** de seleção é pré-registrado antes do Ciclo A; as decisões são extraídas do `plan.md`/`architecture.md` pela aplicação desse critério.
++  - **Seleção:** o **critério** de seleção é pré-registrado antes do Ciclo A (`C-022`); as decisões são extraídas do `plan.md`/`architecture.md` pela aplicação desse critério. O `C-022` define também de qual artefato de cada ciclo as decisões saem (no Spec Kit há um `plan.md` por unidade; no BMAD, uma arquitetura global).
+   - **Decisões verificáveis estaticamente (D):** convertidas em checks (ex.: assinaturas `Either`, isolamento entre BLoCs).
+   - **Decisões que exigem leitura (J):** o avaliador recebe a decisão e acesso de leitura à cópia do código; devolve `{implementada: sim/parcial/não, evidência}`; 3 execuções, maioria.
+ - **Unidade:** decisões implementadas / total.
+@@ -435,7 +461,7 @@
+ 
+ **Ajustes derivados da literatura**
+ - *[INCORPORADO — critério de seleção]* O critério pré-registrado de seleção das 8–10 decisões deve priorizar decisões que **atravessam fronteiras de fase ou papel**, ou seja, decisões definidas no plano ou na arquitetura e consumidas na implementação. São essas que o construto "handoff" pretende medir, segundo a descrição do fluxo em Macedo (2026, §5). Decisões locais a uma única tarefa medem pouco sobre transmissão de contexto.
+-- *[OPCIONAL — prioridade baixa]* **Estabilidade das decisões** (agenda de Macedo, 2026, §7). Para cada decisão selecionada, o histórico git do arquivo de plano ou arquitetura mostra se ela foi reescrita durante o ciclo. O desfecho da M14 passa a ter quatro categorias:
++- *[NÃO ADOTADO na v1.0 — trabalho futuro]* **Estabilidade das decisões** (agenda de Macedo, 2026, §7). Para cada decisão selecionada, o histórico git do arquivo de plano ou arquitetura mostra se ela foi reescrita durante o ciclo. O desfecho da M14 passa a ter quatro categorias:
+   - (1) implementada conforme o plano original;
+   - (2) alterada no artefato e implementada conforme a alteração (deriva documentada);
+   - (3) divergente sem registro no artefato (deriva não documentada);
+@@ -458,7 +484,8 @@
+ - Nenhum. As regras concretas pré-registradas já são mais rigorosas que o autorrelato usado no piloto de Farrag, e essa diferença de rigor pode ser destacada na monografia.
+ 
+ ### 5.4 Log auxiliar — Classificação de bugs (D16)
+-- **Operacionalização:** severidade incluída no prefixo da intervenção quando o tipo é `correção` (ex.: `INTERVENÇÃO [correção|S2]:`), registrada no momento.
++- **Operacionalização:** severidade incluída no prefixo da intervenção quando o tipo é `correção` (ex.: `INTERVENÇÃO [correção|S2|ctx]:`), registrada no momento.
++- **Escala (decidida em 24/09/2026):** `S1` cosmético — detalhe visual ou de texto, nenhum critério de aceite afetado; `S2` funcional com contorno — um critério ou requisito falha em parte, mas o fluxo é utilizável ou há contorno razoável; `S3` bloqueante — um critério de aceite fica impossível, ou há crash ou perda de dados. Derivada do eixo bloqueante/não bloqueante da política de defeito do backend (D16).
+ - **Validação:** uma amostra é reclassificada pelo avaliador em `/validar-juiz`; a concordância entre a classificação do pesquisador e a do avaliador substitui o revisor externo ausente na D16.
+ - **Skills:** `/coletar-sessao`, `/validar-juiz`.
+ 
+@@ -473,7 +500,7 @@
+   - (b) a concordância obtida é reportada como limitação;
+   - (c) nenhuma reclassificação posterior feita pelo avaliador substitui a classificação humana.
+ 
+-  Sem essa regra, um kappa baixo abriria margem para escolher a posteriori qual classificação usar. O mesmo princípio vale, na §6, para as partes J de M6, M9 e M14. A diferença é que, nelas, κ baixo leva a reportar o resultado J com a ressalva e o resultado humano da amostra ao lado.
++  Sem essa regra, um kappa baixo abriria margem para escolher a posteriori qual classificação usar. O mesmo princípio vale, na §6, para as partes J de M6, M9 e M14. A diferença é que, nelas, κ baixo leva a rotular a métrica como **exploratória** e a reportar o resultado J com a ressalva e o resultado humano da amostra ao lado.
+ 
+ ### 5.5 Resumo
+ 
+@@ -486,13 +513,13 @@
+ | M5 | Intervenções | D + H (classificação) | coletar-sessao | Rasnayaka et al. 2024; Taghavi & Bhavani 2026; Macedo 2026 | Nível N1/N2; campo de causa; `PROCESSO:`; por fase |
+ | M6 | Aderência ao plano | D + J | avaliar-rf, julgar-rf, validar-juiz | Macedo 2026; Taghavi & Bhavani 2026; Farrag 2026 | Referências inexistentes (arq./pacote/backend); causa no J |
+ | M7 | Violações de camada | D | avaliar-rf | Taghavi & Bhavani 2026; Farrag 2026; Macedo 2026 | Trajetória por RF |
+-| M8 | Cobertura do domínio | D | avaliar-rf | Farrag 2026 (TDAD) | M8b mutation (opcional) ou ameaça registrada |
++| M8 | Cobertura do domínio | D | avaliar-rf | Farrag 2026 (TDAD) | M8b só na tag `final`, condicionada à calibração; senão, ameaça registrada |
+ | M9 | Fidelidade visual | D + J | avaliar-rf, avaliar-ciclo, validar-juiz | Design2Code; DOne; Baltes et al. 2025 (analogia) | Nenhum |
+ | M10 | Erro de rede | D | avaliar-rf | Farrag 2026; Negri-Ribalta et al. 2024; Taghavi & Bhavani 2026 | Nenhum (citar fonte primária) |
+ | M11 | Critérios de aceite | D | avaliar-rf | Farrag 2026 (TDAD); Taghavi & Bhavani 2026; Piskala 2026 | Nomenclatura; ressalva interpretativa |
+-| M12 | Complexidade | D | avaliar-rf | McCabe 1976 | Nenhum |
++| M12 | Complexidade | D | avaliar-rf | McCabe 1976 | Nenhum da literatura; ferramenta própria com regra documentada |
+ | M13 | Regressão | D | avaliar-rf | Farrag 2026 (TDAD); Taghavi & Bhavani 2026 | Coluna de segurança de regressão |
+-| M14 | Fidelidade de handoff | D + J | avaliar-ciclo, validar-juiz | Macedo 2026; Farrag 2026; Taghavi & Bhavani 2026 | Critério de seleção; estabilidade (opcional) |
++| M14 | Fidelidade de handoff | D + J | avaliar-ciclo, validar-juiz | Macedo 2026; Farrag 2026; Taghavi & Bhavani 2026 | Critério de seleção (`C-022`); estabilidade não adotada |
+ | M15 | Consistência de padrões | D | avaliar-ciclo | Farrag 2026; Taghavi & Bhavani 2026 | Nenhum |
+ | D16 | Classificação de bugs | H + J (validação) | coletar-sessao, validar-juiz | Baltes et al. 2025; Cohen 1960; Landis & Koch 1977 | Regra pré-registrada para κ < 0,61 |
+ 
+@@ -503,31 +530,31 @@
+ | Dimensão | Nota documental Spec Kit | Nota documental BMAD | Métricas que observam a dimensão | Pergunta empírica correspondente (Macedo, Tab. 7) |
+ |---|---|---|---|---|
+ | Especificação | 2 | 2 | M4 (descritiva), M6, M11 | As specs reduzem a ambiguidade ou a deslocam? (a M4 não responde a isso; M6 e M11 respondem em parte) |
+-| Contexto | 1 | 2 | M6 (referências inexistentes), M5 (causa `ctx`), M7, M14, M15 | O agente consulta a evidência certa do repositório antes de propor mudanças? |
++| Contexto | 1 | 2 | M6 (referências inexistentes), M5 (causa `ctx`), M7, M14, M15 | O agente consulta a evidência certa do repositório antes de propor mudanças? *(Com o reset de contexto nos dois ciclos (P4), a dimensão é observada pelo que os artefatos transmitem, não pela continuidade da sessão.)* |
+ | Papéis | 1 | 2 | M14; M2 e M3 por fase (overhead de coordenação) | A decomposição em agentes especializados melhora a qualidade ou aumenta o overhead de coordenação? |
+ | Execução | 1 | 1 | M2, M3, M5 | A autonomia reduz o tempo total sem aumentar incidentes ou retrabalho? |
+ | Validação | 1 | 2 | M5 (`PROCESSO`), M8/M8b, M13, M6 (divergências detectadas × escapadas) | Checklists, gates e artefatos detectam erros antes do merge? |
+ | Portabilidade | 2 | 1 | Não medida: variável controlada (agente fixo, Claude Code em versão travada) | Não se aplica ao desenho |
+ 
+-*[OPCIONAL — prioridade baixa]* **Leitura dimensional final.** Ao fim dos dois ciclos, pontuar cada ciclo na rubrica 0/1/2 de Macedo com base no **comportamento observado** (evidências de M2–M15), e não na documentação, e comparar com as notas documentais da Tab. 6 (Spec Kit 8/12; BMAD 10/12). Isso responde diretamente a uma limitação que o próprio autor declara: a pontuação foi feita por um único avaliador, a partir da documentação, sem medição empírica validada por terceiros (Macedo, 2026, §2). A pontuação observada também será de um único avaliador; por isso deve ser acompanhada da evidência de cada nota e declarada como tal.
++*[ADOTADO na v1.0 — análise descritiva, sem coleta nova]* **Leitura dimensional final.** Ao fim dos dois ciclos, pontuar cada ciclo na rubrica 0/1/2 de Macedo com base no **comportamento observado** (evidências de M2–M15), e não na documentação, e comparar com as notas documentais da Tab. 6 (Spec Kit 8/12; BMAD 10/12). Isso responde diretamente a uma limitação que o próprio autor declara: a pontuação foi feita por um único avaliador, a partir da documentação, sem medição empírica validada por terceiros (Macedo, 2026, §2). A pontuação observada também será de um único avaliador; por isso deve ser acompanhada da evidência de cada nota e declarada como tal.
+ 
+ ---
+ 
+ ## 6. Protocolo do avaliador LLM
+ 
+-- **Modelo:** ID exato fixado no protocolo, com parâmetros congelados. Idêntico para os dois ciclos.
++- **Modelo:** família **OpenAI (GPT)** — outra família em relação ao agente de desenvolvimento —, com entrada de imagem (necessária para a M9). ID exato: **`gpt-5.5-2026-04-23`** (snapshot datado; fixado no `protocolo.md` em 24/09/2026); disponibilidade conferida na página de descontinuações do fornecedor no congelamento do protocolo e no portão da avaliação. `reasoning.effort = medium`, fixado explicitamente em toda chamada; os demais parâmetros ficam no padrão e são todos registrados. Idêntico para os dois ciclos.
+ - **Rubricas e prompts:** congelados antes do Ciclo A, com hash.
+ - **Execuções:** 3 por item; resultado = voto majoritário. Itens sem maioria vão obrigatoriamente para a amostra humana.
+ - **Cegamento:** o avaliador não recebe o nome da metodologia nem o ciclo de origem; artefatos são anonimizados (ex.: nomes de diretório do Spec Kit/BMAD substituídos por rótulos neutros).
+-- **Validação humana:** amostra aleatória por métrica, apresentada sem o voto do avaliador. Tamanho e limiar de kappa a fixar no protocolo (proposta: ≥20 itens por métrica e kappa ≥0,61, faixa "substancial" de Landis & Koch).
+-- **Ameaça registrada:** viés de autopreferência — um modelo Claude avaliando código produzido por um modelo Claude. Pendente decidir se o avaliador é de outra família.
++- **Validação humana:** amostra aleatória por métrica, apresentada sem o voto do avaliador. **≥20 itens por métrica julgada** (M6, espaçamento da M9, M14, D16), **somados** aos itens sem maioria, que entram obrigatoriamente. Limiar **κ ≥ 0,61** (faixa "substancial" de Landis & Koch). Com n≈20, o intervalo de confiança do κ é largo; isso é declarado como limitação.
++- **Ameaça registrada:** viés de autopreferência — mitigado pela escolha de um avaliador de outra família. Permanecem o viés próprio do avaliador e a dependência de um fornecedor externo, cobertos pela validação humana.
+ 
+ **Fundamentação e ajustes do protocolo (v2)**
+ - **Três execuções com voto majoritário:** Baltes et al. (2025, §3.1.1) registram que anotações confiáveis por LLM podem exigir várias execuções do mesmo input para votação por maioria, e que ainda assim é preciso validar contra anotação humana. As duas coisas já estão previstas.
+-- **Recomendação para a pendência #6 — avaliador de outra família.** Taghavi & Bhavani (2026, §3.3) separam geração e avaliação usando como juiz um modelo de família diferente do gerador (gerador MiniMax-M2.5; juiz Claude Opus 4.6), com o objetivo explícito de reduzir o viés de autoavaliação. Baltes et al. (2025, §3.1.2) registram que LLMs se comportam de forma diferente ao revisar as próprias saídas. Como o agente de desenvolvimento aqui é da família Claude, as duas referências apontam para um avaliador de **outra família**. Custo: acesso à API de outro fornecedor. Se isso for inviável, manter um avaliador Claude, ampliar a amostra humana e registrar a ameaça como não mitigada.
++- **Pendência #6 — resolvida: avaliador de outra família (OpenAI).** Taghavi & Bhavani (2026, §3.3) separam geração e avaliação usando como juiz um modelo de família diferente do gerador (gerador MiniMax-M2.5; juiz Claude Opus 4.6), com o objetivo explícito de reduzir o viés de autoavaliação. Baltes et al. (2025, §3.1.2) registram que LLMs se comportam de forma diferente ao revisar as próprias saídas. Como o agente de desenvolvimento aqui é da família Claude, as duas referências apontam para um avaliador de **outra família**. Custo: acesso à API de outro fornecedor. Se isso for inviável, manter um avaliador Claude, ampliar a amostra humana e registrar a ameaça como não mitigada.
+ - **Reporte obrigatório** (Baltes et al., 2025, §4.2 e §4.4): ID exato do modelo avaliador, data das execuções e **todos** os parâmetros, inclusive os padrão; prompts completos com hash e um changelog de versões do prompt (v1.0, v1.1, ...) caso haja qualquer revisão antes do congelamento; logs completos das três execuções em `julgamentos.jsonl` (já previsto).
+ - **Itens sem maioria vão para a amostra humana** (já previsto). O procedimento é análogo ao de Taghavi & Bhavani (2026, §3.4), que encaminham para revisão manual os casos com nota composta abaixo de 3,0.
+-- **Regra para kappa abaixo do limiar** (ver D16): o resultado J é reportado com ressalva, ao lado do resultado humano da amostra. Nenhuma troca de avaliador ou de rubrica é feita depois de ver os dados.
++- **Regra para kappa abaixo do limiar** (ver D16): a métrica é rotulada **exploratória**; o resultado J é reportado com ressalva, ao lado do resultado humano da amostra. Na D16, a classificação humana registrada no momento continua sendo o dado primário. Nenhuma troca de avaliador ou de rubrica é feita depois de ver os dados.
+ - **LLM aberto como baseline** (Baltes et al., 2025, §4.6): não se aplica. O objeto de estudo é o processo, com agente fixo, e não o modelo. Justificar em uma frase na monografia.
+ 
+ ---
+@@ -537,37 +564,180 @@
+ - **Escrita:** antes do Ciclo A, a partir dos critérios de aceite da §1 e dos textos visíveis do protótipo. Mantida em `cerne-avaliacao`, nunca no repo do app.
+ - **Componentes:**
+   - **Maestro:** navegação e asserções de UI por texto visível; captura de screenshots para M9.
+-  - **mitmproxy:** injeção de falhas (timeout, malformada, offline, corte no meio do stream SSE do RF04) e contagem de requisições (debounce de 300ms do RF06).
++  - **mitmproxy:** acréscimo de `X-Test-Key`/`X-Test-Now` em toda chamada; injeção de falhas por `X-Test-Fault` (timeout, malformada, offline, `ai_timeout`), executadas pelo backend; manipulação direta do tráfego para o corte no meio do stream SSE do RF04 (critério de aceite do RF04, conta na M11), respostas forjadas e reescritas; contagem de requisições (debounce de 300 ms do RF06). Cenários em `holdout/cenarios.md`, `holdout/rnf09.md` e `holdout/estados-m9.md`.
+   - **SQL no `ciclo-a`/`ciclo-b`:** asserções de estado (ex.: idempotência do RF10, ausência de entrada parcial no RF01).
+-- **Ambiente de execução:** backend em `replay_strict`; banco resetado e populado com o seed congelado antes de cada execução (inclui os cenários 0/1/>30 do RF09 e os pares semânticos do RF06).
++- **Quando roda:** **só na tag `final` de cada ciclo**, com os critérios de todos os RFs, a partir de um build da tag numa cópia temporária, com o `.env` do ciclo injetado, no simulador de avaliação. Motivos: o cache de IA é gravado uma única vez (D5), e execuções em tags intermediárias exigiriam novas gravações; e a regressão entre RFs já é medida pela suíte do agente (M13). Custo declarado na §12: perde-se a regressão medida por uma suíte independente entre RFs.
++- **Ambiente de execução:** backend em `replay_strict`; banco resetado e populado com o seed congelado antes de cada execução (inclui os cenários 0/1/>30 do RF09 e os pares semânticos do RF06). O cache de IA segue a estratégia aprovada no `GATE-C19` do plano (proposta: uma passada em `record` com o app do Ciclo A, exportada para o ambiente do Ciclo B). Um `REPLAY_MISS` no Ciclo B é achado sobre o app, registrado, e o cenário é rerodado com IA ao vivo, marcado como tal.
+ - **Limite conhecido:** o critério de 5 minutos em background do RF03 exige espera real.
+-- **Fallback, se o cronograma apertar:** checklist manual roteirizado com gravação de tela para M10 e M11. Nesse caso, ambos passam a mecanismo H e isso é declarado na monografia.
++- **Fallback, com data de corte:** se a suíte não estiver implementada e validada até **06/11** (fim da trilha paralela), M10 e M11 passam a um checklist manual roteirizado com gravação de tela. Nesse caso, ambos passam a mecanismo H, e isso é registrado como desvio e declarado na monografia.
+ 
+ ---
+ 
+ ## 8. Dados coletados
+ 
+-Todos os arquivos ficam em `cerne-avaliacao/dados/<ciclo>/`, versionados.
++Todos os arquivos ficam em `cerne-avaliacao/dados/<ciclo>/`, versionados. Esquema coluna a coluna (`C-002`).
++
++**Tipos:** `str` texto · `int` inteiro ≥ 0 · `dec` decimal · `frac` fração entre 0 e 1 · `bool` verdadeiro/falso · `ts` timestamp ISO-8601 com fuso · `enum{…}` valor da lista · `?` pode ficar vazio.
++
++**Chaves comuns:** `ciclo` = `enum{A,B}`; `id_rf` = `enum{SETUP,PLAN,F000,RF01…RF10}`; `sessao_id` = `str` (ID da sessão no Claude Code; nas linhas de instalação, `inst-<ciclo>`); `fase` = `enum{ESPEC,IMPL,VALID}`.
++
++### 8.1 Gravados pela `/coletar-sessao` (e pelos scripts auxiliares)
++
++**`sessoes.csv`** — uma linha por sessão (e uma por instalação da metodologia)
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo, id_rf, sessao_id | chaves | — |
++| tipo_sessao | `enum{instalacao,desenvolvimento}` | `instalacao` vem do `instalar-metodologia`; campos de tokens ficam 0 |
++| modo_coleta | `enum{skill,hook,manual,script}` | `manual` para sessão cortada por limite de uso ou falha (protocolo, P13); `script` só para instalação |
++| motivo_fim | `enum{normal,limite_uso,falha}` | — |
++| inicio, corte | `ts` | `corte` = timestamp da mensagem de invocação (skill) ou da última mensagem (hook) |
++| duracao_s | `int` | **tempo ativo** (M2): intervalos que terminam em ação do agente inteiros; esperas pelo pesquisador limitadas a 30 min cada; sem a espera por limite de taxa |
++| duracao_bruta_s | `int` | início → corte |
++| pausa_s | `int` | excedente das esperas pelo pesquisador acima de 30 min |
++| rate_limit_s | `int` | espera por limite de taxa ou indisponibilidade, quando identificável (M2) |
++| tokens_input, tokens_output, cache_read, cache_write | `int` | transcript principal |
++| sub_tokens_input, sub_tokens_output, sub_cache_read, sub_cache_write | `int` | transcripts de subagentes e tarefas auxiliares |
++| custo_usd | `dec` | tabela de preços congelada (`C-023`), soma principal + subagentes |
++| n_intervencoes | `int` | M5 |
++| n_processo | `int` | série M5b |
++| n_avisos | `int` | linhas com prefixo mal formado (ver `avisos_coleta.csv`) |
++| n_compactacoes | `int` | compactações de contexto antes do corte |
++| n_msgs_contexto_ide | `int` | mensagens do pesquisador que chegaram com arquivo aberto ou seleção injetados pela extensão do VS Code (P2) |
++| div_otel | `dec?` | diferença relativa entre a soma do JSONL e o total do OpenTelemetry |
++| div_otel_alerta | `bool` | `div_otel` acima da tolerância fixada no script |
++| modelo | `str` | ID exato |
++| versao_claude_code | `str` | — |
++| config_raciocinio | `str` | nível de raciocínio configurado |
++
++**`segmentos.csv`** — um segmento de fase dentro de uma sessão
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo, id_rf, sessao_id, fase | chaves | fase pela tabela comando/workflow → fase do `protocolo.md` |
++| marcador_origem | `str` | comando ou workflow que abriu o segmento; mensagens sem marcador herdam a fase anterior |
++| inicio, fim | `ts` | — |
++| duracao_s | `int` | — |
++| tokens_input, tokens_output, cache_read, cache_write | `int` | principal |
++| sub_tokens_input, sub_tokens_output, sub_cache_read, sub_cache_write | `int` | subagentes |
++| excluido_rate_limit | `bool` | segmento de espera por limite de taxa |
++
++**`intervencoes.csv`** — uma intervenção
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo, id_rf, sessao_id, fase | chaves | — |
++| timestamp | `ts` | — |
++| tipo | `enum{redirecionamento,correção,edição manual,permissão negada,interrupção,esclarecimento não solicitado}` | — |
++| severidade | `enum{S1,S2,S3}?` | só para `correção`: S1 cosmético · S2 funcional com contorno · S3 bloqueante (§5.4) |
++| nivel | `enum{N1,N2}?` | só para `edição manual` |
++| causa | `enum{ctx,chk,inc,prd,amb,out}?` | obrigatória para `redirecionamento`, `correção`, `edição manual` |
++| texto | `str` | truncado em 200 caracteres |
++
++**`revisoes_processo.csv`** — uma resposta `PROCESSO:` (série M5b)
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo, id_rf, sessao_id, fase | chaves | — |
++| timestamp | `ts` | — |
++| gatilho | `str` | item da lista de gatilhos congelada no `protocolo.md` |
++| texto | `str` | truncado em 200 caracteres |
++
++**`avisos_coleta.csv`** — uma linha com prefixo não reconhecido
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo, id_rf, sessao_id | chaves | — |
++| timestamp | `ts` | — |
++| linha | `str` | início da mensagem, truncado em 200 caracteres |
++
++**`tags.csv`** — uma tag criada pelos scripts auxiliares
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo | chave | — |
++| tag | `str` | nome completo, ex.: `cicloA/rf04-done` |
++| tipo | `enum{baseline,instalado,setup-done,plan-done,done,incompleto,final}` | — |
++| id_rf | `id_rf?` | para `done` e `incompleto` |
++| commit | `str` | SHA |
++| data | `ts` | — |
++
++**`mapa-stories.csv`** — só Ciclo B; uma story (`GATE-B03` do plano)
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| story_id | `str` | como o BMAD a identifica |
++| arquivo | `str` | caminho no repositório |
++| unidade | `enum{F000,RF01…RF10}` | story que cobre dois RFs vai para o primeiro na ordem de entrega |
++| nota | `str?` | — |
++
++### 8.2 Gravados na avaliação
++
++**`rf.csv`** — uma unidade (F000, RF01–RF10) por ciclo
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo, id_rf | chaves | — |
++| tag, commit | `str` | tag da unidade |
++| timebox_censurado | `bool` | unidade encerrada no teto (tag `-incompleto`) |
++| M4 | `int` | no Ciclo B, ver §5.1 (M4) |
++| M6_tasks | `frac` | `tasks.md` (A) ou checkboxes das stories da unidade (B) |
++| M6_citados_nao_alterados, M6_alterados_nao_citados | `int` | — |
++| M6_inexist_arq, M6_inexist_pkg, M6_inexist_backend | `int` | regex do `C-022` |
++| M6_div_nao_doc | `int` | parte J, voto majoritário |
++| M7, M7_novas | `int` | só RNF06 |
++| M8 | `frac` | cobertura de linhas do domínio |
++| M9_hardcodes | `int` | — |
++| M10_assinaturas | `int` | repositórios fora do padrão `Either` |
++| M11_aprovados, M11_total | `int` | da execução na tag `final`; inclui os estruturais do RF07/RF10 |
++| M11 | `frac` | `M11_aprovados / M11_total` |
++| M12_media | `dec` | — |
++| M12_acima | `int` | métodos com complexidade > 10 |
++| M13 | `frac` | suíte do agente, contando os apagados |
++| M13_sem_apagados | `frac` | suíte do agente, sem os apagados |
++| M13_apagados | `int` | — |
++| M13_seguranca | `frac` | 1 − `M13` |
++
++**`estados_m9.csv`** — um estado avaliado por ciclo (lista do `C-020`)
+ 
+-| Arquivo | Uma linha por | Colunas principais |
++| Coluna | Tipo | Observação |
+ |---|---|---|
+-| `sessoes.csv` | sessão | ciclo, id_rf, sessao_id, inicio, corte, duracao_s, tokens_input, tokens_output, cache_read, cache_write, custo_usd, n_intervencoes, n_processo, modelo, versao_claude_code, config_raciocinio |
+-| `segmentos.csv` *(v2)* | segmento de fase dentro de uma sessão | ciclo, id_rf, sessao_id, fase (`ESPEC`/`IMPL`/`VALID`), marcador_origem, inicio, fim, duracao_s, tokens_input, tokens_output, cache_read, cache_write, excluido_rate_limit |
+-| `intervencoes.csv` | intervenção | ciclo, id_rf, sessao_id, timestamp, fase, tipo, severidade, nivel (`N1`/`N2`, só para edição manual), causa (`ctx`/`chk`/`inc`/`prd`/`amb`/`out`), texto (truncado) |
+-| `revisoes_processo.csv` *(v2)* | resposta a gatilho da metodologia | ciclo, id_rf, sessao_id, timestamp, fase, gatilho (da lista congelada), texto (truncado) |
+-| `rf.csv` | RF avaliado | ciclo, id_rf, tag, commit, M4, M6_tasks, M6_inexist_arq, M6_inexist_pkg, M6_inexist_backend, M7, M7_novas, M8, M8b_mutation (se adotada), M9_hardcodes, M10_assinaturas, M10_cenarios, M11, M12_media, M12_acima, M13, M13_apagados, M13_seguranca |
+-| `julgamentos.jsonl` | execução do avaliador | métrica, item, ciclo, execução (1–3), saída estruturada (M6 inclui `causa`), voto final, modelo_avaliador, data, hash_prompt |
+-| `validacao.csv` | item da amostra | métrica, item, classificação humana, voto do avaliador |
+-| `ciclo.csv` | ciclo | totais e médias de M1–M15; totais por fase (M2, M3, M5); descritores de topologia (M3) |
+-| `estimativas.csv` *(v2, opcional)* | RF | ciclo, id_rf, estimativa_h (registrada antes do RF), timestamp |
++| ciclo | chave | — |
++| estado_id | `str` | — |
++| cor_ok, tipografia_ok | `bool` | D, sobre o screenshot e a árvore de widgets da `final` |
++| espacamento_ok | `bool` | J, voto majoritário |
++| score | `int` | 0–3 |
+ 
+-Dados brutos preservados para o apêndice de reprodutibilidade: transcripts JSONL, exportação OpenTelemetry, screenshots, logs do proxy, relatórios de teste.
++**`julgamentos.jsonl`** — uma execução do avaliador: `metrica` (`M6`, `M9`, `M14`, `D16`), `item_id`, `ciclo_anon`, `execucao` (1–3), `saida` (objeto estruturado; na M6 inclui `causa`), `voto_final`, `sem_maioria` (`bool`), `modelo_avaliador`, `reasoning_effort`, `data`, `hash_prompt`.
++
++**`validacao.csv`** — um item da amostra: `metrica`, `item_id`, `classificacao_humana` (`str`), `voto_avaliador` (`str`), `sem_maioria` (`bool`).
++
++**`ciclo.csv`** — uma linha por ciclo
++
++| Coluna | Tipo | Observação |
++|---|---|---|
++| ciclo | chave | — |
++| M1_instalacao_h, M1_sessao_h, M1_total_h, M1_calendario_h | `dec` | §5.1, M1 |
++| M2_total_h, M2_plan_h, M2_espec_h, M2_impl_h, M2_valid_h | `dec` | `M2_plan_h` = 0 no Spec Kit |
++| `M3_tokens_*`, `M3_sub_tokens_*`, `M3_custo_usd` | `int`/`dec` | totais e por fase (colunas `_espec`, `_impl`, `_valid`) |
++| M3_razao_in_out, M3_frac_cache_read | `dec`/`frac` | descritores de topologia |
++| M4_total | `int` | — |
++| M5_total, M5b_total | `int` | também por fase e por causa |
++| M8b_mutation | `frac?` | só na `final`; vazio se retirada |
++| M10_cenarios | `int` | 0–15, só na `final` |
++| M14 | `frac` | decisões implementadas / selecionadas |
++| M15_divergencias | `int` | — |
++| M9_score_medio | `dec` | média de `estados_m9.csv` |
++
++Dados brutos preservados para o apêndice de reprodutibilidade: transcripts JSONL (principal e subagentes), exportação OpenTelemetry, screenshots, logs do proxy, relatórios de teste.
+ 
+ ---
+ 
+ ## 9. Regras operacionais
+ 
+-1. `/coletar-sessao` é sempre a última ação da sessão; a sessão é encerrada logo depois e nunca retomada.
++Esta seção traz só as regras que afetam os **dados**. As regras de conduta do pesquisador — descrever o sintoma e nunca a solução, mensagens neutras, RDR, não editar artefatos da metodologia, timebox — ficam **só** no `protocolo.md`, seção "Regras operacionais", que é a fonte única delas.
++
++1. `/coletar-sessao` é sempre a última ação da sessão; a sessão é encerrada logo depois e nunca retomada. No modo de fallback (hook), `scripts/marcar-sessao <ID>` é rodado antes de fechar a sessão.
+ 2. Toda intervenção começa com `INTERVENÇÃO [tipo|campos]:`. Os campos, separados por `|`, são:
+    - severidade `Sn`, só para `correção`;
+    - nível `N1`/`N2`, só para `edição manual`;
+@@ -576,10 +746,9 @@
+    Exemplos: `INTERVENÇÃO [correção|S2|ctx]:`, `INTERVENÇÃO [edição manual|N1|chk]:`, `INTERVENÇÃO [redirecionamento|prd]:`. Intervenções fora do chat são seguidas de uma mensagem prefixada.
+ 3. Nenhum output de medição é gravado no repo do app. `/avaliar-rf` trabalha sempre sobre cópia temporária da tag.
+ 4. `cerne-avaliacao` nunca é aberto durante uma sessão de desenvolvimento.
+-5. A tag `rfNN-done` só é criada quando o pesquisador declara o RF concluído; não é movida depois.
++5. As tags seguem a §3.3; a tag `-done` só é criada quando o pesquisador declara a unidade concluída, e nenhuma tag é movida depois.
+ 6. Skills, scripts, rubricas, prompts e suíte têm hash registrado no protocolo. Qualquer alteração posterior é desvio documentado.
+-7. *(v2)* Toda resposta a um gatilho da lista congelada de revisões exigidas pelo processo (ex.: `/speckit.clarify`, elicitações das personas do BMAD, aprovação de plano ou PRD) começa com `PROCESSO:` e **não** leva o prefixo `INTERVENÇÃO`. Se a resposta também corrige o agente, a correção é registrada numa mensagem `INTERVENÇÃO` separada.
+-8. *(v2, opcional)* Se a estimativa prévia for adotada (M2), ela é registrada em `cerne-avaliacao/dados/<ciclo>/estimativas.csv` antes da primeira sessão do RF, nunca no repositório do app.
++7. Toda resposta a uma pausa prevista pela metodologia — item da lista de gatilhos congelada no `protocolo.md` — começa com `PROCESSO:` e **não** leva o prefixo `INTERVENÇÃO`. Confirmação a uma pausa espontânea do agente não leva prefixo. Se a resposta também corrige o agente, a correção é registrada numa mensagem `INTERVENÇÃO` separada.
+ 
+ ---
+ 
+@@ -589,36 +758,33 @@
+ |---|---|---|
+ | Classificar a intervenção no prefixo (tipo, severidade, nível, causa) | Entrada de dado no momento | Por intervenção |
+ | Marcar respostas a gatilhos do processo com `PROCESSO:` | Entrada de dado no momento | Por gatilho |
+-| Registrar estimativa prévia de horas *(opcional)* | Entrada de dado | Por RF |
+-| Criar a tag de RF concluído | Decisão de "pronto" | Por RF |
+-| Escrever suíte hold-out, rubricas, regras de M14/M15 | Preparação do instrumento | Uma vez, antes do Ciclo A |
++| Consultar e atualizar o RDR ao responder à metodologia | Protocolo | Por pergunta nova |
++| Acompanhar a faixa da timebox exibida na coleta | Decisão de parada | Por sessão |
++| Rodar `marcar-sessao` antes de fechar a sessão *(só no fallback)* | Entrada de dado | Por sessão |
++| Criar a tag de unidade concluída ou incompleta | Decisão de "pronto" | Por unidade |
++| Mapear stories para unidades (`mapa-stories.csv`) | Entrada de dado | Uma vez, no Ciclo B |
++| Escrever suíte hold-out, rubricas, regras de M4/M6/M14/M15 | Preparação do instrumento | Uma vez, antes do Ciclo A |
+ | Classificar a amostra cega | Validação do avaliador | Uma vez, após os dois ciclos |
+ 
+ ---
+ 
+ ## 11. Cronograma do instrumento
+ 
+-**Congelado antes do primeiro `/speckit` do Ciclo A:**
+-- `/coletar-sessao` funcionando e verificada via `/context`.
+-- Convenção de tags.
+-- Taxonomia de intervenções e severidades.
+-- Rubricas e prompts do avaliador.
+-- Cenários da suíte hold-out descritos em texto.
+-- Regras concretas de M15 e critério de seleção de M14.
+-- Regras de M13 (testes apagados) e definição de tempo de M1/M2.
+-- Ferramentas de M7 e M12 escolhidas.
+-- *(v2)* Códigos de causa da M5 e regra de nível N1/N2.
+-- *(v2)* Lista de gatilhos `PROCESSO` para os dois frameworks (paridade).
+-- *(v2)* Tabela de mapeamento comando/persona → fase (`ESPEC`/`IMPL`/`VALID`) para Spec Kit e BMAD, a partir das versões travadas.
+-- *(v2)* Expressões regulares de extração de referências da M6 (arquivos, pacotes, rotas, códigos de erro) e a versão da Especificação Técnica do backend usada como referência, com hash.
+-- *(v2)* Critério de seleção da M14 revisado (decisões que atravessam fronteiras de fase ou papel).
+-- *(v2)* Regra para κ abaixo do limiar (D16 e §6).
+-- *(v2)* Família e ID do modelo avaliador (pendência #6).
+-- *(v2)* Decisão sobre M8b (pendência #8).
+-
+-**Pode ser construído durante o Ciclo A:**
+-- Código de `/avaliar-rf`, `/julgar-rf`, `/avaliar-ciclo`, `/validar-juiz`.
+-- Implementação da suíte hold-out em Maestro/mitmproxy/SQL.
++**Congelado antes do primeiro comando do Ciclo A** (`GATE-C23`, tag `protocolo-v1.0`):
++- `/coletar-sessao` funcionando nos dois modos (skill e hook) e verificada via `/context`.
++- Convenção de tags (§3.3).
++- Taxonomia de intervenções, severidades, códigos de causa e regra de nível N1/N2.
++- Lista de gatilhos `PROCESSO` e tabela comando/workflow → fase dos dois frameworks, nas versões travadas (`protocolo.md`, `C-004`).
++- Rubricas e prompts do avaliador, com o ID exato do modelo (`C-021`).
++- Cenários da suíte hold-out e lista de estados da M9, em texto (`C-018`–`C-020`).
++- Regras concretas do `C-022`: critério de seleção da M14 (decisões que atravessam fronteiras de fase ou papel, e artefato de origem em cada ciclo), convenções da M15, regex da M6 com o hash da Especificação Técnica, tipos contáveis da M4, regra da `M6_tasks` no Ciclo B.
++- Tabela de preços da M3 (`C-023`).
++- Regras de M13, M1/M2 (incluindo instalação e censura), κ abaixo do limiar e plano de análise (§14).
++- Ferramentas de M7 e M12 (scripts próprios, §5.2).
++
++**Pode ser construído durante o Ciclo A** (trilha paralela, testado só no repositório de calibração):
++- Código de `/avaliar-rf`, `/julgar-rf`, `/avaliar-ciclo`, `/validar-juiz` e dos módulos do harness.
++- Implementação da suíte hold-out em Maestro/mitmproxy/SQL e o módulo da M8b, com data de corte em 06/11.
+ 
+ ---
+ 
+@@ -626,34 +792,52 @@
+ 
+ | Ameaça | Tratamento |
+ |---|---|
+-| Prefixo `INTERVENÇÃO` visível ao agente pode alterar seu comportamento | Efeito simétrico nos dois ciclos; declarado na monografia |
+-| `disable-model-invocation` pode não remover a skill do contexto em alguma versão | Verificação via `/context` na versão travada; fallback para hook `SessionEnd` |
+-| Autopreferência do avaliador LLM | Cegamento, 3 execuções, validação humana com kappa; avaliador de outra família como opção |
++| Prefixos `INTERVENÇÃO` e `PROCESSO:` visíveis ao agente podem alterar seu comportamento | Efeito simétrico nos dois ciclos; declarado na monografia |
++| BMAD completo (protocolo, `GATE-C10`): brainstorming e forge-idea pedem ideias ao pesquisador; ideias fora do pacote podem entrar no PRD e mudar o escopo só do Ciclo B | Respostas só a partir do pacote, registradas no RDR; itens do PRD sem origem no pacote identificados na avaliação e reportados |
++| Escolhas livres do pesquisador na elicitação avançada e no party mode entram nos artefatos do Ciclo B | Cada escolha registrada no RDR (método, melhorias aceitas e descartadas); declarada como decisão não reproduzível |
++| `bmad-qa-generate-e2e-tests` acrescenta ao Ciclo B testes que o Ciclo A não tem | Parte do método; M8 e M13 do B reportadas também sem esses testes |
++| Assinatura com limites de uso (protocolo, P13): cortes semanais podem parar um ciclo por dias, em semanas diferentes em cada ciclo | Cortes contados por ciclo (`motivo_fim = limite_uso`); sessões retomadas com o mesmo comando; datas dos cortes reportadas junto do tempo de calendário |
++| Pacote de entrada traduzido para o inglês (protocolo, P12) | Tradução fiel conferida lado a lado no `GATE-C13`; textos de interface mantidos literais em português |
++| A extensão do VS Code (superfície escolhida, P2) injeta o arquivo aberto e a seleção em cada mensagem, sem opção de desligar de forma permanente | Mitigação manual antes de cada mensagem (fechar editores, desligar o anexo); ocorrências contadas por sessão (`n_msgs_contexto_ide`) e reportadas por ciclo |
++| Reset de contexto imposto ao Spec Kit (uma sessão por comando, P4) | Decisão de desenho: o contraste "agente único × reset" da §8.3 dos requisitos deixa de ser testado; a hipótese passa a ser a fidelidade do handoff mediado por artefatos (M14). Divergência registrada e declarada |
++| `disable-model-invocation` pode não remover a skill do contexto em alguma versão | Verificação via `/context` nas duas configurações; fallback por hook `SessionEnd` com `marcar-sessao` |
++| Viés do avaliador LLM | Avaliador de outra família (OpenAI), cegamento, 3 execuções, validação humana com kappa; dependência de fornecedor externo declarada |
+ | Circularidade do RNF08 (protótipo produzido no próprio projeto) | Já registrada; mantida |
+-| Redefinição do mecanismo de M10 em relação à §3 | Registrada como desvio de protocolo |
+-| Harness implementado depois de ver o código do Ciclo A | Definições congeladas antes; harness idêntico aplicado aos dois ciclos |
+-| *(v2)* Validação circular: a cobertura (M8) é medida sobre testes escritos pelo próprio agente | M8b (mutation score), se adotada; caso contrário, a ameaça é declarada e a evidência funcional vem da suíte hold-out (M10, M11, M13) (Farrag, 2026, §5.3.1) |
+-| *(v2)* Modelos comerciais mudam de comportamento sem mudar de identificador de versão | Versão do Claude Code travada, modelo e data registrados por sessão; a mudança silenciosa não pode ser excluída e é declarada como confound temporal (Baltes et al., 2025, §1; Farrag, 2026, §7.4.5) |
+-| *(v2)* Fronteiras de fase aproximadas (M2, M3, M5 por fase) | Mapeamento congelado e idêntico em granularidade; reportar também os totais sem segmentação |
+-| *(v2)* Ordem fixa dos ciclos (D18): no teste pareado por RF, cada diferença soma método, aprendizado e deriva temporal | Enquadramento como estudo de caso; testes estatísticos tratados como complementares aos descritivos (§14) |
+-| *(v2)* Regex da M6 pode não capturar referências em prosa livre | Declarar a cobertura da regex; complementar com o avaliador J quando necessário |
+-| *(v2)* Leitura dimensional final (§5.6) feita por um único avaliador | Declarar; acompanhar cada nota da evidência que a sustenta (mesma limitação que Macedo, 2026, declara para as notas documentais) |
++| Redefinição do mecanismo de M10 em relação à §3 dos requisitos | Registrada como desvio de protocolo |
++| Troca da ferramenta da M12 em relação à §8.2 dos requisitos | Script próprio com regra documentada e validada à mão; declarada como desvio |
++| Harness implementado depois de ver o código do Ciclo A | Definições congeladas antes; harness testado só no repositório de calibração e idêntico nos dois ciclos |
++| Validação circular: a cobertura (M8) e a regressão (M13) são medidas sobre testes escritos pelo próprio agente | M8b na tag `final`, se passar na calibração; senão, ameaça declarada. Evidência funcional independente: M10 e M11 (hold-out na `final`) (Farrag, 2026, §5.3.1) |
++| Suíte hold-out só na tag `final` | Perde-se a regressão medida por suíte independente entre RFs; a M11 por RF passa a significar "atendido no app final". Declarado |
++| Transcripts de subagentes fora do arquivo principal podem ser subcontados | Soma principal + subagentes; conferência independente pelo OpenTelemetry (`div_otel`) |
++| Timebox censura o tempo das unidades incompletas | Valor do teto marcado como censurado; análise de sensibilidade (§14) |
++| Planejamento global do BMAD fora dos pares por RF | Par principal só em `IMPL` + `VALID`; especificação comparada no nível do ciclo (§14) |
++| Modelos comerciais mudam de comportamento sem mudar de identificador de versão | Versão do Claude Code travada, modelo e data registrados por sessão; a mudança silenciosa não pode ser excluída e é declarada como confound temporal (Baltes et al., 2025, §1; Farrag, 2026, §7.4.5) |
++| Fronteiras de fase aproximadas (M2, M3, M5 por fase) | Mapeamento congelado e idêntico em granularidade; reportar também os totais sem segmentação |
++| Ordem fixa dos ciclos (D18): no teste pareado por RF, cada diferença soma método, aprendizado e deriva temporal | Enquadramento como estudo de caso; testes estatísticos tratados como complementares aos descritivos (§14) |
++| Regex da M6 pode não capturar referências em prosa livre | Declarar a cobertura da regex; complementar com o avaliador J quando necessário |
++| Leitura dimensional final (§5.6) feita por um único avaliador | Declarar; acompanhar cada nota da evidência que a sustenta (mesma limitação que Macedo, 2026, declara para as notas documentais) |
+ 
+ ---
+ 
+-## 13. Decisões pendentes que bloqueiam o congelamento
+-
+-1. Ferramenta de lint de arquitetura (M7).
+-2. DCM × fork open-source (M12).
+-3. Suíte hold-out × checklist manual (M10, M11).
+-4. ~~Respostas a `/speckit.clarify` contam ou não como intervenção (M5).~~ **Resolvida na v2:** não contam; registradas como `PROCESSO:` (Macedo, 2026). Falta apenas congelar a lista de gatilhos dos dois frameworks.
+-5. Testes apagados contam como regressão (M13). *Recomendação v2:* manter a regra proposta. A literatura não trata do tema; a regra se sustenta pelo raciocínio do instrumento.
+-6. Modelo e família do avaliador; tamanho da amostra e limiar de kappa (seção 6). *Recomendação v2:* avaliador de outra família (Taghavi & Bhavani, 2026; Baltes et al., 2025).
+-7. Estados do protótipo avaliados e dispositivo do simulador (M9).
+-8. *(v2)* Adoção da M8b (mutation score): ferramenta Dart disponível e madura? Aplicar a todas as tags ou só a `f000-done` e `final`?
+-9. *(v2)* Tabela de mapeamento comando/persona → fase para a versão travada do BMAD (nomes de personas e workflows variam entre versões).
+-10. *(v2)* Formato real das rotas do backend para as regex da M6.
+-11. *(v2)* Adoção da estimativa prévia por RF (M2, opcional) e da estabilidade de decisões (M14, opcional).
++## 13. Pendências
++
++Todas as pendências da v2 foram decididas nos `GATE-C01`–`C03` do plano (22/09/2026), (os dois subitens antes adiados — item 7 e o ID do avaliador — foram decididos no `GATE-C06` e em 24/09/2026):
++
++| # | Pendência | Situação |
++|---|---|---|
++| 1 | Ferramenta da M7 | Decidida: script próprio (§5.2) |
++| 2 | Ferramenta da M12 | Decidida: CLI Dart próprio sobre a AST (§5.2) |
++| 3 | Hold-out × checklist | Decidida: hold-out, com fallback em 06/11 (§7) |
++| 4 | Respostas à metodologia (M5) | Decidida: `PROCESSO:`, série M5b; lista de gatilhos congelada no `C-004` |
++| 5 | Testes apagados (M13) | Decidida: coluna própria; M13 com e sem |
++| 6 | Avaliador | Decidida: OpenAI `gpt-5.5-2026-04-23`, `medium`, ≥20 itens + sem maioria, κ ≥ 0,61, regra de κ baixo |
++| 7 | Estados da M9 e dispositivo | Decidida no `GATE-C06` (22/09/2026): os 32 estados menos os das telas de extensão, que não são construídas (P10); lista no `C-020`. Só iOS, um modelo de simulador com as dimensões dos frames, escolhido a partir do HTML do protótipo (`C-006`) e travado no `GATE-C15` (P11) |
++| 8 | M8b | Decidida: só na `final`, condicionada à calibração até 06/11 |
++| 9 | Tabela de fases | Decidida: mantida; congelada no `C-004` |
++| 10 | Regex da M6 | Decidida: escritas no `C-022` |
++| 11 | Opcionais (estimativa prévia, estabilidade) | Decidida: não adotados; trabalho futuro |
++| 12 | Tags da hold-out | Decidida: só na `final` |
++| — | Leitura dimensional final (§5.6) | Decidida: adotada como análise descritiva, declarada como pontuação de avaliador único (`C-001`, 22/09/2026) |
+ 
+ ---
+ 
+@@ -661,9 +845,13 @@
+ 
+ **Natureza do estudo.** Estudo de caso com um único desenvolvedor, dois tratamentos aplicados em sequência e ordem fixa (D18). As comparações são, antes de tudo, **descritivas**. Testes estatísticos entram como complemento e nunca como base de generalização (Runeson & Höst, 2009).
+ 
+-**Unidade de pareamento: o RF.** Seguindo Taghavi & Bhavani (2026, §4.1), que tratam cada tarefa como sujeito pareado entre condições, o RF é a unidade de pareamento. Isso dá até 10 pares (RF01–RF10), com `SETUP` e `F000` fora do pareamento. Métricas analisadas por par: M2 (total e por fase), M3, M5 (total e por causa), M6, M11 e M13. Para M7, a análise é a trajetória por RF, e não o valor pareado.
++**Unidade de pareamento: o RF.** Seguindo Taghavi & Bhavani (2026, §4.1), que tratam cada tarefa como sujeito pareado entre condições, o RF é a unidade de pareamento. Isso dá até 10 pares (RF01–RF10), com `SETUP` e `F000` fora do pareamento. Métricas analisadas por par: M2 e M3 (ver regra de fase abaixo), M5 (total e por causa), M6, M11 e M13. Para M7, a análise é a trajetória por RF, e não o valor pareado.
++
++**Teste.** Wilcoxon signed-rank pareado (Wilcoxon, 1945), o mesmo teste usado por Taghavi & Bhavani (2026). Diferenças nulas (comuns em M5 e M13) são tratadas pelo **método de Pratt** (pré-registrado): os zeros permanecem no ranqueamento. Excluí-los descartaria evidência de igualdade e inflaria a diferença aparente. O tamanho de efeito é reportado pela correlação rank-bisserial pareada. Com n ≤ 10, o poder é baixo e o valor de p não é o resultado principal.
++
++**Par principal por fase (M2, M3).** No Spec Kit, a especificação de cada RF acontece dentro do RF; no BMAD, acontece antes, nas sessões `PLAN`, fora de qualquer RF. Comparar totais por RF compararia "especificação + implementação" (A) com "só implementação" (B). Por isso o **par principal por RF usa só as fases `IMPL` + `VALID`** (`segmentos.csv`). A especificação é comparada no **nível do ciclo**: soma de `ESPEC` dos RFs no Ciclo A × `PLAN` + `ESPEC` dentro das stories no Ciclo B. Os totais por RF, sem segmentação, são reportados como descritivos.
+ 
+-**Teste.** Wilcoxon signed-rank pareado (Wilcoxon, 1945), o mesmo teste usado por Taghavi & Bhavani (2026). O tratamento de diferenças nulas (comuns em métricas com meta 0, como M7) é pré-registrado: método de Pratt ou exclusão, a escolher antes da análise e declarar. O tamanho de efeito é reportado pela correlação rank-bisserial pareada. Com n ≤ 10, o poder é baixo e o valor de p não é o resultado principal.
++**Censura pela timebox.** Uma unidade encerrada no teto (`timebox_censurado`) entra no par com o valor do teto, marcado como censurado (limite inferior). Faz-se uma análise de sensibilidade excluindo os pares com censura em qualquer dos ciclos, e as duas leituras são reportadas. A M11 dessa unidade é medida normalmente (conta o que passou na tag `final`).
+ 
+ **Ressalva obrigatória.** Como a ordem é fixa, cada diferença pareada soma o efeito do método, o efeito de aprendizado do pesquisador e a deriva temporal da ferramenta. O teste não separa esses componentes (ver §12).
+ 
