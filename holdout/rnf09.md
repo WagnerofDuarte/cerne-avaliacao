@@ -25,7 +25,7 @@ Um cenário passa quando as quatro condições valem:
 
 ## Os 15 cenários
 
-Conta A. F01–F12: depois dos blocos I–III de `cenarios.md` (a falha acontece antes do handler, então a chamada-alvo não toca no cache de replay nem no banco), com banco resetado ao fim. **F13–F15: dentro do Bloco I**, porque o gatilho do insight exige uma mensagem de chat bem-sucedida antes, e o chat depende do cache.
+Conta A. F01–F12: depois dos blocos I–III de `cenarios.md` (a falha acontece antes do handler, então a chamada-alvo não toca no cache de replay nem no banco). **F13–F15: dentro do Bloco I**, porque o gatilho do insight exige uma mensagem de chat bem-sucedida antes, e o chat depende do cache. Nenhum reset entre `cenarios.md` e este arquivo: F01–F12 não usam IA, então não precisam de cache; se algum dia um cenário de falha vier a precisar de IA, o reset é feito só via `reset-ambiente` (`C-015`), que reimporta o cache automaticamente.
 
 | # | Função (`x-cerne-function`) | Como provocar a chamada | Falha | Estado esperado (protótipo) |
 |---|---|---|---|---|

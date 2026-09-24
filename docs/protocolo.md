@@ -327,6 +327,12 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 | 4 | Requisitos §10 | Voyage `voyage-3` ou `voyage-4` | `voyage-4`, fixo pelo backend | Pacote de entrada (`C-005`) | plano |
 | 5 | `doc-prototipo.md` (abertura) | App Flutter para iOS e Android | Desenvolvimento e avaliação só no iOS (P11) | P11 | 22/09/2026 |
 
+## 9. Cache de IA e reset (`GATE-C19`, achado e corrigido em 24/09/2026)
+
+- **`--force` do `replay-cache-import.ts`:** confirmado, lendo o script — sempre mescla (`on conflict (cache_key) do nothing`), nunca sobrescreve. `--force` só libera a importação sobre um destino não vazio. **Nunca usado no fluxo normal**: todo reset deixa o destino vazio antes de importar.
+- **Achado crítico:** `record` e `replay` são idênticos no código do backend (os dois gravam no cache); um reset recria o schema `experiment` inteiro (cache, config do worker). Um reset "nu" entre a importação do cache e a execução medida — como a v1 do `V-002` tinha — apagaria o cache e produziria `REPLAY_MISS` em tudo.
+- **Correção:** `scripts/reset-ambiente <a|b>` (`C-015`) nunca é um reset isolado; é sempre reset → reconfigurar `worker_config` → reimportar `harness/cache-ciclo-a.json` (se existir) → rodar `backfill-seed-embeddings.ts`. Todo reset, em qualquer ponto do plano ou da suíte, passa por esse wrapper. `V-002` e `holdout/cenarios.md`/`rnf09.md` atualizados de acordo.
+
 ## 8. Especificação da avaliação (Fase 7)
 
 | Item | Decisão | Data |

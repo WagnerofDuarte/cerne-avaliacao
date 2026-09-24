@@ -8,7 +8,9 @@
 
 ## 0. Condições gerais
 
-**Ambiente.** Build da tag `final` do ciclo numa cópia temporária, com o `.env` do ciclo; simulador de avaliação (`sim-eval`, modelo da P11); backend do ciclo em `replay_strict`, com o cache de IA preparado conforme o `GATE-C19`; banco resetado e populado com o seed congelado antes de cada bloco.
+**Ambiente.** Build da tag `final` do ciclo numa cópia temporária, com o `.env` do ciclo; simulador de avaliação (`sim-eval`, modelo da P11); backend do ciclo em `replay_strict`, com o cache de IA preparado conforme o `GATE-C19`.
+
+**Reset.** O banco é resetado e populado com o seed congelado **uma única vez**, antes do início da suíte inteira (não antes de cada bloco) — todo reset, aqui ou em qualquer ponto, passa sempre por `scripts/reset-ambiente`, que reimporta o cache congelado automaticamente (`C-015`); um `db reset` isolado apagaria o cache. A ordem dos blocos (I → II → III) evita a necessidade de resets no meio, porque nenhum bloco depende de um estado que um bloco anterior tenha alterado de forma incompatível — ver a nota de cada bloco.
 
 **Proxy (mitmproxy) em todas as requisições do app:**
 - acrescenta `X-Test-Key: <TEST_FAULT_KEY>` (lido de `segredos/`) e `X-Test-Now: 2026-09-23T09:41:00Z` — a âncora do seed, para que janelas relativas do backend (ex.: `period=30d`) caiam sempre sobre os dados semeados;
