@@ -189,24 +189,26 @@ Critério geral: seguir o fluxo da documentação oficial da versão travada, se
 | | Spec Kit | BMAD-METHOD |
 |---|---|---|
 | Versão | **v1.0.10** (22/09/2026) | **v6.11.0** (10/08/2026) |
-| Instalação | `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.0.10` | `npx bmad-method@6.11.0 install --directory <repo> --modules bmm --tools claude-code --yes` + `--set` de idioma (inglês), chaves conferidas com `--list-options bmm` |
+| Instalação | `uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@v1.0.10` | `npx bmad-method@6.11.0 install --directory <repo> --modules bmm --tools claude-code --yes` + idioma inglês via `--communication-language`/`--document-output-language` (flags do `install`, não chave de `--set`; correção de 25/09/2026 — ver `GATE-C14`/Fase 4 abaixo) |
 | Inicialização | `specify init --here --force --non-interactive --integration claude` | — (a instalação já configura) |
 | Modo no Claude Code | Padrão da versão para `claude` (registrado na instalação) | Skills em `.claude/skills/` |
 | Versões posteriores | Não adotadas | Corte da v7 não adotado |
 
 ### 4.2 Sequência do Ciclo A — Spec Kit (`GATE-C09`)
-1. **Setup (`SETUP`):** `/speckit.constitution` com `P-SETUP`.
+*Nomes dos comandos corrigidos em 25/09/2026 (Fase 4): a versão instalada usa hífen (`/speckit-constitution`), não ponto (`/speckit.constitution`, forma antiga usada por engano nas Fases 0–2 deste documento e no `plano-ciclos.md`).*
+1. **Setup (`SETUP`):** `/speckit-constitution` com `P-SETUP`.
 2. **Por unidade (F000, RF03, RF01, RF02, RF07, RF06, RF04, RF10, RF08, RF05, RF09), uma sessão por comando:**
-   1. `/speckit.specify` com o prompt da unidade
-   2. `/speckit.clarify`
-   3. `/speckit.checklist`
-   4. `/speckit.plan` com `P-TECH`
-   5. `/speckit.tasks`
-   6. `/speckit.analyze`
-   7. `/speckit.implement`
-   8. `/speckit.converge`
+   1. `/speckit-specify` com o prompt da unidade
+   2. `/speckit-clarify`
+   3. `/speckit-checklist`
+   4. `/speckit-plan` com `P-TECH`
+   5. `/speckit-tasks`
+   6. `/speckit-analyze`
+   7. `/speckit-implement`
+   8. `/speckit-converge`
    9. Se o `converge` não reportar *Converged*: voltar ao passo 7 (laço `implement` → `converge`).
 3. **Verificação de concluído** (P6), fora de sessão; correções em sessão aberta por `INTERVENÇÃO [correção|…]`.
+4. **Fora do fluxo:** `speckit-taskstoissues` (converte tasks em issues do GitHub; existe na instalação, não é usado — achado de 25/09/2026, Fase 4).
 
 ### 4.3 Sequência do Ciclo B — BMAD (`GATE-C10`)
 1. **B1 Setup (`SETUP`):** instalação por flags → `bmad-project-context` com `P-SETUP`.
@@ -246,7 +248,7 @@ Mensagens sem marcador herdam a fase do marcador anterior. Sessões de correçã
 | | `checklist` | Perguntas sobre foco e escopo do checklist |
 | | `analyze` | Oferta de sugerir correções para os problemas encontrados |
 | | `implement` | Confirmação para seguir com checklists incompletos |
-| | `converge` | Confirmação para acrescentar o trabalho restante como tarefas, se pedida |
+| | `converge` | ~~Confirmação para acrescentar o trabalho restante como tarefas, se pedida~~ — **não é gatilho na v1.0.10** (correção de 25/09/2026, Fase 4): o texto do comando instalado só imprime um resumo dos achados antes de gravar (“no file writes yet”), sem nenhum “ask the user” antes de acrescentar as tarefas em `tasks.md`. Não conta como `PROCESSO:` pela definição operacional acima. |
 | BMAD | `bmad-project-context` | Regras que o usuário quer seguidas |
 | | `bmad-brainstorming`, `bmad-forge-idea` | Perguntas e pedidos de ideias ao usuário |
 | | `bmad-deep-recon` | Escolha do modo e do tipo de pesquisa |
@@ -262,16 +264,23 @@ Mensagens sem marcador herdam a fase do marcador anterior. Sessões de correçã
 - Spec Kit: modo de integração padrão para o Claude Code; texto dos comandos contra a seção 4.5. (Notas de versão 1.0.0–1.0.10 lidas em 24/09/2026, sem mudança de fluxo; a v1.0.11, de 24/09/2026, não é adotada.)
 - BMAD: nomes exatos das skills (`.claude/skills/`, `bmad-help`); chaves de idioma do `--set`; se o `bmad-project-context` grava no `AGENTS.md` e se o Claude Code lê esse arquivo; formato das stories (efeito na `M6_tasks`, `C-022`); nenhuma definição de agente com modelo próprio (neutralizada pelo `CLAUDE_CODE_SUBAGENT_MODEL_FORCE`, P1c); texto das skills contra a seção 4.5.
 
+**Registro (25/09/2026) — conferência textual em diretórios descartáveis (fora de `cerne-avaliacao`, nunca a instalação definitiva do `C-010`/B0):**
+- Spec Kit v1.0.10 instalado via `uv tool install` + `specify init --here --force --non-interactive --integration claude` (flag confirmada correta). Comandos reais usam **hífen**: `/speckit-constitution`, `/speckit-specify`, `/speckit-clarify`, `/speckit-checklist`, `/speckit-plan`, `/speckit-tasks`, `/speckit-analyze`, `/speckit-implement`, `/speckit-converge` — corrigido nas seções 4.2 e 5 (a forma com ponto não existe no CLI instalado). `clarify`/`analyze`/`checklist` confirmados "optional" pelo próprio CLI. `implement` e `analyze` confirmados como gatilhos reais (texto citado na seção 4.5). `converge` **não** confirmado como gatilho — corrigido na 4.5. Skill extra fora do fluxo: `speckit-taskstoissues` — registrada na 4.2.
+- BMAD v6.11.0 instalado via `npx bmad-method@6.11.0 install --directory . --modules bmm --tools claude-code --yes` (49 skills → `.claude/skills`). `--list-options bmm` só lista `bmm.user_skill_level`, `bmm.planning_artifacts`, `bmm.implementation_artifacts`, `bmm.project_knowledge` — **nenhuma é de idioma**; idioma é `--communication-language`/`--document-output-language`, flags do próprio `install` — corrigido na 4.1. `bmad-project-context` confirmado pela descrição da skill: grava um bloco verificado dentro de `AGENTS.md`. `bmad-prd` confirmado como skill única com detecção de intenção Create/Update/Validate (pergunta se ambíguo) — bate com a 4.5. Nenhum `SKILL.md` das 49 skills declara `model:` no frontmatter (grep vazio) — confirma "nenhuma definição de agente com modelo próprio", sem precisar do `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` para neutralizar nada nas skills em si.
+- **Demais skills conferidas contra a seção 4.5, texto real batendo com a tabela:** `bmad-sprint-planning` (gate `PASS`/`CONCERNS`/`FAIL`, literal); `bmad-code-review` (descrição: "structured triage" — bate com "Triagem dos achados"); `bmad-retrospective` (verdict de aceitação do épico com fail-safe na Fase 4 do workflow, discussão de "going-in concerns" opcional); `bmad-correct-course` ("Get explicit user approval for complete proposal", literal); `bmad-deep-recon` (escolha explícita Run/Draft + tipo de pesquisa inferido, confirmado só se ambíguo); `bmad-brainstorming`/`bmad-forge-idea` (perguntas abertas de descoberta, confirmação de premissas); `bmad-architecture` (escolha Coaching/Fast path como passo de ativação, decisões estruturais "shown, not silently made").
+- **Achado importante (25/09/2026):** o Claude Code só lê `AGENTS.md` automaticamente a partir da **v2.1.277** (antes disso, ignora o arquivo por completo), e mesmo a partir daí só se **não existir `CLAUDE.md`** na hierarquia do projeto (senão `CLAUDE.md` prevalece, a menos que `claude-md-and-agents-md` seja configurado em "Project instructions"). Fonte: documentação oficial (`memory.md`, seção "AGENTS.md"). Nem o instalador do Spec Kit nem o do BMAD criam `CLAUDE.md`/`AGENTS.md` sozinhos (conferido nos dois diretórios descartáveis — só `.claude/skills/`); o `AGENTS.md` só nasce quando `bmad-project-context` roda de verdade. **Isto afeta o `C-011`:** a versão mínima ali travada é "≥ v2.1.197" — abaixo de v2.1.277, o bloco que o `bmad-project-context` grava em `AGENTS.md` no B1 simplesmente não seria lido pelo Claude Code, e a suposição do protocolo (que o Claude Code lê esse arquivo) ficaria falsa sem nenhum aviso. Preciso que o Wagner trave o `C-011` em **≥ v2.1.277**, não só "≥ v2.1.197", e confirme que nenhum `CLAUDE.md` pessoal/do projeto sobra em `cfg-ciclo-b` nem no repositório do Ciclo B.
+- **Ainda em aberto desta conferência:** `bmad-build` ("Parada quando não consegue fixar a intenção" da 4.5 — só achei HALT por falha do `uv`, não por intenção ambígua; precisa de leitura mais funda do `SKILL.md` ou de um teste real); `bmad-create-epics-and-stories` (nenhuma menção a elicitação/party mode/aprovação de seção encontrada por palavra-chave — pode ser texto diferente do esperado, não necessariamente ausência); `bmad-prfaq`/`bmad-product-brief`/`bmad-ux` (confirmados quanto a perguntas de descoberta, mas não especificamente quanto a "oferta de elicitação avançada e party mode"); formato real das stories geradas por `bmad-create-epics-and-stories` (só dá para confirmar rodando de verdade, não só lendo o `SKILL.md`).
+
 ## 5. Tabela de entrega dos prompts (Fase 3, `C-009`)
 
 Nunca entra no pacote. Decidida em 22/09/2026 (R24).
 
 | Prompt | Ciclo A — Spec Kit | Ciclo B — BMAD |
 |---|---|---|
-| `P-SETUP` | Argumento do `/speckit.constitution` (A1) | Regras do `bmad-project-context` no setup (B1) |
-| `P-GLOBAL` | Anexado ao `P-F000` no primeiro `/speckit.specify` | Argumento do `bmad-brainstorming` (primeira skill de análise). As demais skills de análise são chamadas sem argumento; quando perguntam de onde partir, a resposta vem do pacote, com `PROCESSO:` e texto fixado no RDR |
-| `P-F000`, `P-RF01`…`P-RF10` | Argumento do `/speckit.specify` da unidade, uma por vez, na ordem da P9 | Todos de uma vez, na ordem da P9, como entrada do `bmad-prd` (criar). O `bmad-build` recebe só a story, sem reenviar o `P-RFxx` |
-| `P-TECH` | Argumento do `/speckit.plan` de toda unidade | Primeira mensagem do `bmad-architecture` (uma vez) |
+| `P-SETUP` | Argumento do `/speckit-constitution` (A1) | Regras do `bmad-project-context` no setup (B1) |
+| `P-GLOBAL` | Anexado ao `P-F000` no primeiro `/speckit-specify` | Argumento do `bmad-brainstorming` (primeira skill de análise). As demais skills de análise são chamadas sem argumento; quando perguntam de onde partir, a resposta vem do pacote, com `PROCESSO:` e texto fixado no RDR |
+| `P-F000`, `P-RF01`…`P-RF10` | Argumento do `/speckit-specify` da unidade, uma por vez, na ordem da P9 | Todos de uma vez, na ordem da P9, como entrada do `bmad-prd` (criar). O `bmad-build` recebe só a story, sem reenviar o `P-RFxx` |
+| `P-TECH` | Argumento do `/speckit-plan` de toda unidade | Primeira mensagem do `bmad-architecture` (uma vez) |
 | — | `clarify`, `checklist`, `tasks`, `analyze`, `implement`, `converge`: sem argumento | `bmad-prd` (validar), `bmad-ux`, `bmad-create-epics-and-stories`, `bmad-sprint-planning`, `bmad-code-review`, `bmad-qa-generate-e2e-tests`, `bmad-retrospective`: sem argumento além do que a própria skill pede |
 
 **Diferença de método, não de informação:** o BMAD recebe todos os `P-RFxx` no planejamento, e o Spec Kit um por vez. O `requirements.md` completo está no repositório dos dois desde o início. Declarar na monografia.
