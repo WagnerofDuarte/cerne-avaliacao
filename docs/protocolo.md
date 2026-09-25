@@ -333,7 +333,23 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** dados coletados pelo Wagner via `system_profiler SPHardwareDataType` e `sw_vers`. O macOS não é atualizado entre o início do Ciclo A e o fim do Ciclo B (Apêndice — Erros comuns a evitar, `plano-ciclos.md`).
 
-### 6.2–6.5 `C-010`, `GATE-C15`, `C-011`, `C-012`, `C-013`, `GATE-C16`
+### 6.2 Ferramentas de linha de comando (`C-010`)
+| Ferramenta | Versão travada |
+|---|---|
+| Flutter (via `fvm`) | 3.47.5 • channel stable |
+| Dart | 3.13.4 |
+| Node | v26.10.0 (LTS, para o instalador do BMAD) |
+| uv | 0.12.19 |
+| CocoaPods | 1.17.0 |
+| Spec Kit CLI (`specify`) | 1.0.10 (`GATE-C08`) |
+
+**Achado — Flutter sem versão fixa no plano:** `P8`/`C-010` diziam "a versão travada (via fvm)" sem nunca ter fixado um número. Decisão (25/09/2026): travar no **stable mais recente do dia** (mesmo critério do `GATE-C08` para o Spec Kit — "a mais recente estável no dia do congelamento"), resolvido para Flutter 3.47.5/Dart 3.13.4 via `fvm install stable && fvm global stable`.
+
+**Achado — conflito de instalação do Spec Kit CLI:** a máquina tinha um `specify` instalado via **Homebrew** (`brew info specify`: mesmo projeto, mas a fórmula segue "stable" sem trava de tag — tinha puxado a v1.0.11, a versão **não adotada** citada na 4.6), na frente do `specify-cli` correto (instalado via `uv tool install --from git+.../spec-kit.git@v1.0.10`) no `PATH`. Corrigido com `brew uninstall specify`. Em seguida, `~/.local/bin` (diretório de binários do `uv tool`) não estava no `PATH` — o `uv tool update-shell` não escreveu em `~/.zshrc`; corrigido manualmente com `export PATH="$HOME/.local/bin:$PATH"`. Confirmado ao final: `specify` → `~/.local/bin/specify` → `1.0.10`. **Fica registrado para quem reproduzir o ambiente:** não instalar `specify` via Homebrew; usar só `uv tool install` com a tag travada.
+
+**Registro (25/09/2026):** todas as seis versões acima conferidas por comando real, na máquina do Wagner (MacBook Pro, `GATE-C14`). BMAD **não** instalado globalmente — confirmado que só entra via `npx bmad-method@6.11.0` no B0, conforme o `C-010` original.
+
+### 6.3–6.5 `GATE-C15`, `C-011`, `C-012`, `C-013`, `GATE-C16`
 *A preencher — itens seguintes da Fase 4, em andamento.*
 
 ## 7. Divergências em relação aos documentos-fonte
