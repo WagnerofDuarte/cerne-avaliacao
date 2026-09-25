@@ -343,9 +343,10 @@ O pacote é **tudo** que o agente medido recebe como informação de produto, ig
 - [x] `C-010` Instalar e travar as ferramentas de linha de comando: `fvm` com a versão de Flutter fixada (P8); Node LTS (para o instalador do BMAD); `uv`/Python (para o CLI do Spec Kit e os scripts do harness); CocoaPods; o CLI do Spec Kit na versão exata do `GATE-C08`. O instalador do BMAD **não** é instalado globalmente: roda via `npx` com a versão fixada, só no B0 — **Critério:** `fvm flutter --version`, `node -v`, `uv --version`, `pod --version` e a versão do CLI do Spec Kit registrados no `protocolo.md`.
   - **Registro (25/09/2026):** Flutter 3.47.5/Dart 3.13.4 (stable do dia, decisão registrada — P8 nunca tinha fixado um número), Node v26.10.0, uv 0.12.19, CocoaPods 1.17.0, Spec Kit CLI 1.0.10. Achado de ambiente corrigido: um `specify` do Homebrew (seguindo "stable", tinha puxado a v1.0.11 não adotada) disputava o PATH com o `uv tool install` correto — desinstalado; `~/.local/bin` também precisou ser adicionado ao PATH manualmente (`uv tool update-shell` não escreveu em `~/.zshrc`). Detalhe completo em `protocolo.md` §6.2.
 
-- [ ] 🔴 **[MANUAL] `GATE-C15`** — Xcode e simuladores
+- [x] 🔴 **[MANUAL] `GATE-C15`** — Xcode e simuladores
   - **O quê:** travar a versão do Xcode e do runtime de iOS. Criar **dois** simuladores do mesmo modelo (P11): `sim-dev` (desenvolvimento, sem proxy) e `sim-aval` (avaliação, com o certificado do mitmproxy instalado). Separar os dois evita que o proxy de avaliação interfira no desenvolvimento, e que estado de desenvolvimento vaze para a avaliação.
   - **Como confirmo:** `xcrun simctl list devices` mostra os dois; versões registradas.
+  - **Registro (25/09/2026):** Xcode 27.0 (`27A266a`), runtime iOS 27.0 (`24A434`). Modelo: **iPhone 16e** (escolhido entre os dois candidatos do "Itens em aberto" — mais representativo do hardware atual da Apple). `sim-dev`/`sim-aval` criados e confirmados via `xcrun simctl list devices` (`Shutdown`). Certificado do mitmproxy no `sim-aval` fica para o `C-013`. Detalhe em `protocolo.md` §6.3.
 
 - [ ] `C-011` Instalar o Claude Code na versão fixada (≥ v2.1.277 — piso revisto em 25/09/2026, Fase 4: v2.1.197 é o exigido pelo Sonnet 5/P1, mas `AGENTS.md` só é lido automaticamente a partir da v2.1.277, condição do `bmad-project-context`/B1; ver `protocolo.md` §4.6) e desligar a atualização automática (`DISABLE_AUTOUPDATER=1`, ou o mecanismo da versão). Criar **dois diretórios de configuração limpos**, `cfg-ciclo-a` e `cfg-ciclo-b`, sem CLAUDE.md pessoal, skills pessoais, MCPs ou plugins, e com um script `abrir-ciclo <a|b>` que exporta `CLAUDE_CONFIG_DIR` e abre o **VS Code** no repositório certo, numa janela própria (P2), para que a extensão herde a configuração do ciclo. Travar as versões do VS Code e da extensão do Claude Code e desligar a atualização automática de extensões. A única coisa instalada nesses diretórios, mais tarde, é a `/coletar-sessao` (`C-016`) — **Critério:** `claude --version` registrado; `abrir-ciclo a` abre uma sessão onde `/context` não mostra nenhuma skill, MCP ou memória pessoal.
 
@@ -879,7 +880,7 @@ Só começa depois do `GATE-B05` e do `GATE-H02`. É o primeiro momento em que n
 - **Contexto de projeto do BMAD em greenfield** (`bmad-project-context`). Decidido no `GATE-C10`; falta conferir, com a versão instalada, se grava no `AGENTS.md` e se o Claude Code lê esse arquivo.
 - **Corte da v7 do BMAD.** A v6.11.0 anuncia remoções no corte da v7. Se a v7 sair durante o Ciclo B, a versão travada continua.
 - **`whisper_ggml` no simulador.** Resolvido pelo spike do `GATE-C16`, se ele for feito.
-- **Dimensões do dispositivo** (P11). **Resolvido (23/09/2026):** frame 390×844 (declarado no HTML); candidatos iPhone 16e ou iPhone 14, escolha no `GATE-C15`.
+- **Dimensões do dispositivo** (P11). **Resolvido (23/09/2026, escolha final em 25/09/2026 no `GATE-C15`):** frame 390×844 (declarado no HTML); entre os candidatos iPhone 16e e iPhone 14, travado em **iPhone 16e**.
 
 ## Apêndice — Erros comuns a evitar
 

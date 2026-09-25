@@ -349,7 +349,18 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** todas as seis versões acima conferidas por comando real, na máquina do Wagner (MacBook Pro, `GATE-C14`). BMAD **não** instalado globalmente — confirmado que só entra via `npx bmad-method@6.11.0` no B0, conforme o `C-010` original.
 
-### 6.3–6.5 `GATE-C15`, `C-011`, `C-012`, `C-013`, `GATE-C16`
+### 6.3 Xcode e simuladores (`GATE-C15`)
+| Item | Valor |
+|---|---|
+| Xcode | 27.0 (build `27A266a`) |
+| Runtime iOS | 27.0 (build `24A434`) |
+| Modelo do simulador | iPhone 16e — escolhido entre os dois candidatos do P11/"Itens em aberto" (iPhone 16e vs. iPhone 14, ambos com frame 390×844); iPhone 16e por ser o aparelho atual da linha Apple, mais representativo de hardware corrente em 2026 |
+| `sim-dev` (desenvolvimento, sem proxy) | UDID `37026B12-65F7-420A-9031-28576897CD1F` |
+| `sim-aval` (avaliação, com certificado do mitmproxy) | UDID `A583D8DA-BC53-48A2-83CA-BE8E9B4FCA8C` — certificado do mitmproxy instalado só no `C-013` |
+
+**Registro (25/09/2026):** os dois simuladores criados via `xcrun simctl create <nome> "iPhone 16e" "com.apple.CoreSimulator.SimRuntime.iOS-27-0"`, confirmados em estado `Shutdown` por `xcrun simctl list devices`.
+
+### 6.4–6.5 `C-011`, `C-012`, `C-013`, `GATE-C16`
 *A preencher — itens seguintes da Fase 4, em andamento.*
 
 ## 7. Divergências em relação aos documentos-fonte
