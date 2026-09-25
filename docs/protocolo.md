@@ -360,7 +360,23 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** os dois simuladores criados via `xcrun simctl create <nome> "iPhone 16e" "com.apple.CoreSimulator.SimRuntime.iOS-27-0"`, confirmados em estado `Shutdown` por `xcrun simctl list devices`.
 
-### 6.4–6.5 `C-011`, `C-012`, `C-013`, `GATE-C16`
+### 6.4 Claude Code, VS Code e diretórios de configuração (`C-011`)
+| Item | Valor |
+|---|---|
+| Claude Code CLI | 2.1.282 (acima do piso `v2.1.277`) |
+| Extensão Claude Code (VS Code) | 2.1.282 |
+| VS Code | 1.139.1 |
+| Diretórios de config | `~/cerne/cfg-ciclo-a`, `~/cerne/cfg-ciclo-b` (limpos, sem `CLAUDE.md`/skills/MCPs/plugins pessoais do repositório) |
+| Script | `~/cerne/bin/abrir-ciclo <a|b>` — exporta `CLAUDE_CONFIG_DIR`, abre VS Code em janela própria |
+| Atualização automática | Claude Code: `DISABLE_AUTOUPDATER` vai no `settings.json` do `C-012`. VS Code: `update.mode: none`. Extensões: `extensions.autoUpdate: false` |
+
+**Achado — VS Code já instalado:** o cask do Homebrew recusou por já existir `/Applications/Visual Studio Code.app`; resolvido com o app existente + "Shell Command: Install 'code' command in PATH" pela paleta de comandos, sem reinstalar.
+
+**Verificação do `/context` em `abrir-ciclo a`:** modelo mostrou `claude-opus-5-5` (esperado — o `settings.json` do `C-012`, que fixaria `claude-sonnet-5`, ainda não existe nessa checagem). Categoria "Skills" não veio zerada (2,1k tokens). Investigado com o Wagner: é uma skill pessoal da conta dele, sem relação com o trabalho de desenvolvimento do TCC (nome omitido a pedido dele). **Ameaça registrada:** como não é um arquivo dentro de `cfg-ciclo-a`/`cfg-ciclo-b` nem do repositório de ciclo, provavelmente é carregada pela conta/marketplace independente do `CLAUDE_CONFIG_DIR` — apareceria de forma simétrica nos dois ciclos, sem favorecer Spec Kit ou BMAD. Não é `CLAUDE.md`, skill de desenvolvimento nem MCP pessoal ligado a este projeto.
+
+**Registro (25/09/2026):** critério do `C-011` considerado satisfeito com a ressalva acima.
+
+### 6.5 `C-012`, `C-013`, `GATE-C16`
 *A preencher — itens seguintes da Fase 4, em andamento.*
 
 ## 7. Divergências em relação aos documentos-fonte
