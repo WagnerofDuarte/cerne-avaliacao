@@ -322,7 +322,19 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 ```
 
 ## 6. Ambiente (Fase 4)
-*A preencher (`GATE-C14`, `C-010`–`C-013`).*
+
+### 6.1 Máquina (`GATE-C14`)
+| Item | Valor |
+|---|---|
+| Modelo | MacBook Pro (`MacBookPro18,3`) |
+| Chip | Apple M1 Pro |
+| Memória | 16 GB |
+| macOS | 27.0 (build `26A428`) |
+
+**Registro (25/09/2026):** dados coletados pelo Wagner via `system_profiler SPHardwareDataType` e `sw_vers`. O macOS não é atualizado entre o início do Ciclo A e o fim do Ciclo B (Apêndice — Erros comuns a evitar, `plano-ciclos.md`).
+
+### 6.2–6.5 `C-010`, `GATE-C15`, `C-011`, `C-012`, `C-013`, `GATE-C16`
+*A preencher — itens seguintes da Fase 4, em andamento.*
 
 ## 7. Divergências em relação aos documentos-fonte
 

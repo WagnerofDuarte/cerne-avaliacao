@@ -335,9 +335,10 @@ O pacote é **tudo** que o agente medido recebe como informação de produto, ig
 ## Fase 4 — Ambiente e ferramentas
 **Prazo proposto: 27 a 28/09/2026**
 
-- [ ] 🔴 **[MANUAL] `GATE-C14`** — Registrar a máquina
+- [x] 🔴 **[MANUAL] `GATE-C14`** — Registrar a máquina
   - **O quê:** modelo do Mac, chip, memória, versão do macOS. O macOS **não** é atualizado entre o início do Ciclo A e o fim do Ciclo B.
   - **Como confirmo:** dados registrados no `protocolo.md`, seção "Ambiente".
+  - **Registro (25/09/2026):** MacBook Pro (`MacBookPro18,3`), Apple M1 Pro, 16 GB, macOS 27.0 (build `26A428`) — dados do Wagner via `system_profiler SPHardwareDataType`/`sw_vers`, gravados em `protocolo.md` §6.1.
 
 - [ ] `C-010` Instalar e travar as ferramentas de linha de comando: `fvm` com a versão de Flutter fixada (P8); Node LTS (para o instalador do BMAD); `uv`/Python (para o CLI do Spec Kit e os scripts do harness); CocoaPods; o CLI do Spec Kit na versão exata do `GATE-C08`. O instalador do BMAD **não** é instalado globalmente: roda via `npx` com a versão fixada, só no B0 — **Critério:** `fvm flutter --version`, `node -v`, `uv --version`, `pod --version` e a versão do CLI do Spec Kit registrados no `protocolo.md`.
 
