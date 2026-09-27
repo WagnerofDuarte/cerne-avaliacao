@@ -10,7 +10,7 @@
 | 1 — Protocolo (P1–P14) | Decidida em 22/09/2026 (`GATE-C04`–`C07`; `C-003`) |
 | 2 — Regras por metodologia | Decidida em 22/09/2026 (`GATE-C08`–`C12`; `C-004`); notas de versão lidas em 24/09/2026 |
 | 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
-| 4 — Ambiente | Concluída em 27/09/2026 (`GATE-C14`–`C16`; pivô de simulador para iPhone 16 Pro físico no `GATE-C16`) |
+| 4 — Ambiente | `GATE-C14`–`C16` concluídos em 27/09/2026 (pivô de simulador para iPhone 16 Pro físico no `GATE-C16`); `C-024` (isolamento dev/avaliação) escrito, verificação de rede pendente |
 
 ---
 
@@ -433,7 +433,16 @@ Permissão de microfone: **não testada** — o app é só o modelo padrão do `
 
 `/tmp/smoke` apagado ao final, confirmado pelo Wagner.
 
-**Registro (27/09/2026):** critério do `GATE-C16` satisfeito — ambiente de desenvolvimento/avaliação (iPhone 16 Pro físico) confirmado funcional, incluindo o ponto de maior risco (`whisper_ggml`). Fase 4 encerrada — ver "Encerramento da Fase 4" em `plano-ciclos.md`.
+**Registro (27/09/2026):** critério do `GATE-C16` satisfeito — ambiente de desenvolvimento/avaliação (iPhone 16 Pro físico) confirmado funcional, incluindo o ponto de maior risco (`whisper_ggml`). Falta só o `C-024` (§6.8) para fechar a Fase 4 por completo.
+
+### 6.8 Isolamento dev/avaliação no dispositivo único (`C-024`)
+
+Procedimento (substitui `sim-dev`/`sim-aval`):
+1. **Desenvolvimento:** app instalado sem proxy configurado; certificado do mitmproxy **não** instalado no iPhone.
+2. **Avaliação (Parte IV):** instalar o certificado do mitmproxy (via `http://mitm.it` com o proxy manual do Wi-Fi apontando para o Mac, porta 8080) + confiança total em Ajustes → Geral → Sobre → Configurações de Confiança de Certificado; configurar o proxy manual do Wi-Fi.
+3. **Voltar ao desenvolvimento:** desligar o proxy manual do Wi-Fi e remover o certificado (Ajustes → Geral → VPN e Gerenciamento de Dispositivo → remover o perfil).
+
+**Pendência (27/09/2026):** passos escritos e o caminho de rede confirmado alcançável (`http://192.168.18.27:8080` direto no Safari responde com `502` do próprio `mitmproxy`), mas a interceptação de tráfego geral **não foi confirmada** — `http://mitm.it` não mostrou a página de certificado mesmo com o proxy manual configurado corretamente (IP/porta certos, Private Relay desligado, sem perfil de MDM, testado em duas redes Wi-Fi diferentes — 5 GHz e 2,4 GHz — e após reconectar o Wi-Fi). Causa não identificada (possível isolamento de cliente no roteador doméstico). **Decisão do Wagner (27/09/2026):** documentar o procedimento como está e adiar a verificação completa para mais perto da Parte IV, quando o proxy for de fato necessário pela primeira vez — não travar o fechamento da Fase 4 por um problema de rede doméstica. Proxy do Wi-Fi desligado e `mitmproxy` parado no Mac ao final desta tentativa.
 
 ## 7. Divergências em relação aos documentos-fonte
 
