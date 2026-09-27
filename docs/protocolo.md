@@ -121,8 +121,10 @@ Uma unidade por RF, antecedida da F000: F000 → RF03 → RF01 → RF02 → RF07
 ### P10 — Telas de extensão *(22/09/2026, `GATE-C06`)*
 Não são construídas (requisitos §2: "não recebem implementação funcional em nenhum dos dois ciclos"). Placeholders de menu aceitos. Se o agente começar a construir uma: uma `INTERVENÇÃO [redirecionamento|prd]` apontando a §2. Estados das telas de extensão fora da M9.
 
-### P11 — Plataforma e dispositivo *(22/09/2026, `GATE-C06`)*
+### P11 — Plataforma e dispositivo *(22/09/2026, `GATE-C06`; revisado 27/09/2026, `GATE-C16`)*
 Só iOS. Simulador de um único modelo, com dimensões lógicas iguais às dos frames do protótipo — modelo escolhido a partir do HTML (`C-006`) e travado no `GATE-C15`; o mesmo para desenvolvimento e avaliação, em instâncias separadas (`sim-dev`, `sim-eval`). Android fora. Limites do simulador: sem câmera (foto do RF01 pela galeria), Face ID pelo menu Features, microfone do Mac.
+
+**Revisão (27/09/2026, achado do `GATE-C16`):** o `whisper_ggml` (P8) não roda no simulador iOS — limitação documentada do FFmpeg que ele empacota, confirmada em pesquisa externa, não é peculiaridade desta máquina. Decisão: **dispositivo físico único, iPhone 16 Pro do Wagner, para os dois ciclos inteiros** (não só para RF02) — substitui o simulador por completo. Frame do HTML (390×844, iPhone 16e/14) superado pelas dimensões reais do iPhone 16 Pro (402×874 pts); tratado como desvio (seção 7, item 6), não como reabertura da escolha de modelo do `GATE-C15`. Câmera real disponível agora (não precisa mais da galeria para a foto do RF01 — ver se isso muda alguma decisão de unidade). Face ID: biometria real do aparelho, não mais simulada pelo menu Features. Microfone: do próprio iPhone, não mais do Mac. Isolamento dev/avaliação (antes `sim-dev`/`sim-eval` como duas instâncias separadas): como só há um aparelho físico, vira um procedimento de reset manual entre fases (`C-024`).
 
 ### P12 — Idioma *(22/09/2026, `GATE-C06`, contra a recomendação)*
 **Inglês** para prompts, pacote de entrada, artefatos das metodologias, respostas `PROCESSO:`, RDR e código. **Textos de interface em português**, literais do protótipo. O pacote de entrada é tradução fiel dos documentos-fonte (conferida no `GATE-C13`); endpoints, códigos de erro, IDs e tokens não são traduzidos. Os marcadores `INTERVENÇÃO` e `PROCESSO:` ficam em português, como tokens fixos, com o corpo da mensagem em inglês. Instalador do BMAD configurado em inglês.
@@ -360,6 +362,8 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** os dois simuladores criados via `xcrun simctl create <nome> "iPhone 16e" "com.apple.CoreSimulator.SimRuntime.iOS-27-0"`, confirmados em estado `Shutdown` por `xcrun simctl list devices`.
 
+**Revisão (27/09/2026, achado do `GATE-C16`):** `sim-dev`/`sim-aval` **substituídos** por um único **iPhone 16 Pro físico** (Wagner) para os dois ciclos inteiros — `whisper_ggml` não roda em simulador (ver P11, revisão 27/09/2026, e seção 7 item 6). Os dois simuladores continuam criados (não apagados), mas deixam de ser o ambiente de desenvolvimento/avaliação. Xcode/runtime seguem os mesmos, usados para parear o iPhone via cabo/wireless.
+
 ### 6.4 Claude Code, VS Code e diretórios de configuração (`C-011`)
 | Item | Valor |
 |---|---|
@@ -430,6 +434,7 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 | 3 | Requisitos §8.3 | Contraste "pipeline de agente único (Spec Kit) × fluxo com reset de contexto entre fases (BMAD)"; M14 mede perda de contexto entre fases | Reset de contexto a cada fase nos dois ciclos (P4); hipótese reformulada para fidelidade do handoff mediado por artefatos | P4; Métricas v1.0, M14, §5.6, §12 | 22/09/2026 |
 | 4 | Requisitos §10 | Voyage `voyage-3` ou `voyage-4` | `voyage-4`, fixo pelo backend | Pacote de entrada (`C-005`) | plano |
 | 5 | `doc-prototipo.md` (abertura) | App Flutter para iOS e Android | Desenvolvimento e avaliação só no iOS (P11) | P11 | 22/09/2026 |
+| 6 | Protótipo HTML (frame) + P11/`GATE-C15` | Frame 390×844 (iPhone 16e/14), simulador único para dev e avaliação | `whisper_ggml` (P8) não roda em simulador iOS (limitação documentada do FFmpeg empacotado, confirmada externamente) — dev e avaliação passam a um único iPhone 16 Pro físico do Wagner (402×874 pts), nos dois ciclos inteiros; isolamento dev/avaliação vira reset manual entre fases (`C-024`) | P11; `GATE-C15`/`GATE-C16` | 27/09/2026 |
 
 ## 9. Cache de IA e reset (`GATE-C19`, achado e corrigido em 24/09/2026)
 
