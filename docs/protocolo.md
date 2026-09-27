@@ -376,7 +376,35 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** critério do `C-011` considerado satisfeito com a ressalva acima.
 
-### 6.5 `C-012`, `C-013`, `GATE-C16`
+### 6.5 `settings.json` único (`C-012`)
+
+```json
+{
+  "model": "claude-sonnet-5",
+  "alwaysThinkingEnabled": true,
+  "env": {
+    "CLAUDE_CODE_EFFORT_LEVEL": "high",
+    "CLAUDE_CODE_SUBAGENT_MODEL": "claude-sonnet-5",
+    "CLAUDE_CODE_SUBAGENT_MODEL_FORCE": "1",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "claude-haiku-4-5-20251001",
+    "DISABLE_AUTOUPDATER": "1",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "OTEL_METRICS_EXPORTER": "otlp",
+    "OTEL_LOGS_EXPORTER": "otlp",
+    "OTEL_EXPORTER_OTLP_PROTOCOL": "grpc",
+    "OTEL_EXPORTER_OTLP_ENDPOINT": "http://localhost:4317"
+  },
+  "permissions": {
+    "allow": []
+  }
+}
+```
+
+`permissions.allow` fica vazio de propósito: o P3 pede que a allowlist inclua "o comando que executa o script de coleta", mas o `/coletar-sessao` (`C-016`) só existe na Fase 6. Será preenchido então, mantendo os dois arquivos idênticos.
+
+**Registro (25/09/2026):** arquivo colado em `~/cerne/cfg-ciclo-a/settings.json` e `~/cerne/cfg-ciclo-b/settings.json`; `diff` vazio; hash SHA-256 idêntico nos dois: `fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369`.
+
+### 6.6 `C-013`, `GATE-C16`
 *A preencher — itens seguintes da Fase 4, em andamento.*
 
 ## 7. Divergências em relação aos documentos-fonte
