@@ -10,7 +10,7 @@
 | 1 — Protocolo (P1–P14) | Decidida em 22/09/2026 (`GATE-C04`–`C07`; `C-003`) |
 | 2 — Regras por metodologia | Decidida em 22/09/2026 (`GATE-C08`–`C12`; `C-004`); notas de versão lidas em 24/09/2026 |
 | 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
-| 4 — Ambiente | A preencher |
+| 4 — Ambiente | Concluída em 27/09/2026 (`GATE-C14`–`C16`; pivô de simulador para iPhone 16 Pro físico no `GATE-C16`) |
 
 ---
 
@@ -420,8 +420,20 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** todas as versões acima conferidas por comando real, na máquina do Wagner.
 
-### 6.7 `GATE-C16`
-*A preencher — item seguinte da Fase 4, em andamento.*
+### 6.7 Teste de fumaça só de ambiente (`GATE-C16`)
+
+App descartável (`fvm flutter create smoke` em `/tmp/smoke`, fora de qualquer repositório de ciclo) com `whisper_ggml` adicionado (`flutter pub add`).
+
+**Resultado (27/09/2026):** builda e roda com sucesso no **iPhone 16 Pro físico** (ambiente definitivo, ver revisão do P11/`GATE-C15` acima). No `sim-dev`, o mesmo build falha por completo — achado que motivou a mudança de plataforma (detalhe em §7 item 6 e no registro do `plano-ciclos.md`). Sequência de correções até funcionar, todas normais para assinatura de desenvolvedor pessoal em device real (nada relacionado ao `whisper_ggml`):
+1. Deployment target do `Podfile` subido para 15.6 (exigência do próprio `whisper_ggml`).
+2. Bundle Identifier trocado de `com.example.smoke` (namespace reservado, não registrável) para `com.wagnerduarte.smoke`.
+3. Certificado "Apple Development: wagnerofduarte@gmail.com" confiado no aparelho (Ajustes → Geral → VPN e Gerenciamento de Dispositivo).
+
+Permissão de microfone: **não testada** — o app é só o modelo padrão do `flutter create`, sem nenhum código que chame gravação de áudio; o critério original previa o microfone do Mac (cenário de simulador, superado pela mudança de plataforma). Fica para quando o RF02 for implementado de verdade.
+
+`/tmp/smoke` apagado ao final, confirmado pelo Wagner.
+
+**Registro (27/09/2026):** critério do `GATE-C16` satisfeito — ambiente de desenvolvimento/avaliação (iPhone 16 Pro físico) confirmado funcional, incluindo o ponto de maior risco (`whisper_ggml`). Fase 4 encerrada — ver "Encerramento da Fase 4" em `plano-ciclos.md`.
 
 ## 7. Divergências em relação aos documentos-fonte
 
