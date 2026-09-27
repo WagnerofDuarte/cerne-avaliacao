@@ -11,6 +11,7 @@
 | 2 — Regras por metodologia | Decidida em 22/09/2026 (`GATE-C08`–`C12`; `C-004`); notas de versão lidas em 24/09/2026 |
 | 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
 | 4 — Ambiente | `GATE-C14`–`C16` concluídos em 27/09/2026 (pivô de simulador para iPhone 16 Pro físico no `GATE-C16`); `C-024` (isolamento dev/avaliação) escrito, verificação de rede pendente |
+| 5 — Repositórios, credenciais e ambientes de backend | Em andamento (`GATE-C17` concluído em 27/09/2026) |
 
 ---
 
@@ -473,4 +474,14 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 | Escala de severidade `Sn` (D16) | S1 cosmético · S2 funcional com contorno · S3 bloqueante | 24/09/2026 (R30) |
 | `M6_tasks` no Ciclo B sem checkboxes | % de stories `done` no `sprint-status.yaml`, declarado como granularidade mais grossa | 24/09/2026 (R30) |
 | Tabela de preços da M3 | `harness/precos.md` (consulta de 24/09/2026) | 24/09/2026 |
+
+## 10. Repositórios, credenciais e ambientes de backend (Fase 5)
+
+### 10.1 Repositórios de ciclo (`GATE-C17`)
+| Repositório | Situação |
+|---|---|
+| `WagnerofDuarte/cerne-ciclo-a` | Criado, privado, vazio |
+| `WagnerofDuarte/cerne-ciclo-b` | Criado, privado, vazio |
+
+**Registro (27/09/2026):** os dois clonados localmente, `git log --oneline` vazio nos dois — confirmado.
 

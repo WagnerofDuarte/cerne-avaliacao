@@ -385,9 +385,10 @@ O pacote é **tudo** que o agente medido recebe como informação de produto, ig
 ## Fase 5 — Repositórios, credenciais e ambientes de backend
 **Prazo proposto: 28/09/2026**
 
-- [ ] 🔴 **[MANUAL] `GATE-C17`** — Criar os repositórios de ciclo
+- [x] 🔴 **[MANUAL] `GATE-C17`** — Criar os repositórios de ciclo
   - **O quê:** `cerne-ciclo-a` e `cerne-ciclo-b` no GitHub, privados e **vazios** (sem README, sem `.gitignore`, sem licença), para que a instalação de cada metodologia seja o primeiro conteúdo.
   - **Como confirmo:** os dois clonados localmente, sem commits.
+  - **Registro (27/09/2026):** `WagnerofDuarte/cerne-ciclo-a` e `WagnerofDuarte/cerne-ciclo-b` criados privados no GitHub, clonados localmente, `git log --oneline` vazio nos dois (confirmado pelo warning "cloned an empty repository" e "does not have any commits yet").
 
 - [ ] `C-014` Montar o `.env` de cada ciclo a partir das credenciais do pacote de handoff — URL e `anon key` do projeto Supabase do ciclo; **nunca** `service_role` —, guardado em `cerne-avaliacao/segredos/` (fora do Git) e copiado para o repositório do ciclo só no A0/B0 — **Critério:** os dois `.env` existem; `grep service_role` vazio nos dois.
   - **Registro (24/09/2026):** `segredos/.env.ciclo-a` e `.env.ciclo-b` criados, só com `FUNCTIONS_BASE_URL` (`https://<ref>.functions.supabase.co`) e `SUPABASE_ANON_KEY`; `grep service_role` vazio nos dois — confirmado. As credenciais de banco (`service_role`, senha do Postgres) recebidas junto **não são usadas aqui**: guardadas à parte, em `segredos/db.ciclo-a.env`/`db.ciclo-b.env`, para os scripts do `C-015` (`reset-ambiente`, importação/exportação de cache, backfill de embeddings, configuração do worker — todos conectam direto no Postgres, nunca pela API). `P-SETUP.md` do pacote de entrada ajustado para fixar os dois nomes de variável, que antes não estavam definidos.
