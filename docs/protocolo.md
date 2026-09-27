@@ -404,8 +404,20 @@ aa8263b221d110a599f58877935152eba2fe5802a5b272c04d16ee84864cae0b  entrada/protot
 
 **Registro (25/09/2026):** arquivo colado em `~/cerne/cfg-ciclo-a/settings.json` e `~/cerne/cfg-ciclo-b/settings.json`; `diff` vazio; hash SHA-256 idêntico nos dois: `fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369`.
 
-### 6.6 `C-013`, `GATE-C16`
-*A preencher — itens seguintes da Fase 4, em andamento.*
+### 6.6 Ferramentas de avaliação (`C-013`)
+| Ferramenta | Versão travada |
+|---|---|
+| Maestro | 2.10.0 |
+| Java (dependência do Maestro) | `openjdk@21` (Homebrew) |
+| mitmproxy | 12.2.3 |
+| Coletor OpenTelemetry local | `otelcol-contrib` 0.161.0 — binário oficial (GitHub Releases, não há formula pronto no Homebrew, só `opentelemetry-cpp`, que é biblioteca, não o coletor). Config em `~/cerne/otelcol/config.yaml`: recebe OTLP grpc em `localhost:4317` (mesmo endpoint do `settings.json`, `C-012`), exporta para `~/cerne/otelcol/output.jsonl` |
+| SDK OpenAI (avaliador) | 3.19.2, em ambiente Python `~/cerne/harness-venv` (`uv venv`) |
+| Dependências Python do harness | Só a SDK da OpenAI travada por enquanto — os scripts do harness (M7, M12, `div_otel`, etc.) ainda não existem (Fase 6+); demais dependências entram quando os scripts forem escritos, registradas aqui |
+
+**Registro (25/09/2026):** todas as versões acima conferidas por comando real, na máquina do Wagner.
+
+### 6.7 `GATE-C16`
+*A preencher — item seguinte da Fase 4, em andamento.*
 
 ## 7. Divergências em relação aos documentos-fonte
 
