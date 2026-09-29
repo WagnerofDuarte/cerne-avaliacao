@@ -463,6 +463,7 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 - **`--force` do `replay-cache-import.ts`:** confirmado, lendo o script — sempre mescla (`on conflict (cache_key) do nothing`), nunca sobrescreve. `--force` só libera a importação sobre um destino não vazio. **Nunca usado no fluxo normal**: todo reset deixa o destino vazio antes de importar.
 - **Achado crítico:** `record` e `replay` são idênticos no código do backend (os dois gravam no cache); um reset recria o schema `experiment` inteiro (cache, config do worker). Um reset "nu" entre a importação do cache e a execução medida — como a v1 do `V-002` tinha — apagaria o cache e produziria `REPLAY_MISS` em tudo.
 - **Correção:** `scripts/reset-ambiente <a|b>` (`C-015`) nunca é um reset isolado; é sempre reset → reconfigurar `worker_config` → reimportar `harness/cache-ciclo-a.json` (se existir) → rodar `backfill-seed-embeddings.ts`. Todo reset, em qualquer ponto do plano ou da suíte, passa por esse wrapper. `V-002` e `holdout/cenarios.md`/`rnf09.md` atualizados de acordo.
+- **Registro (29/09/2026):** proposta aprovada pelo Wagner sem ajustes. `GATE-C19` fechado — a confirmação do comportamento de `--force` já estava satisfeita por leitura direta do código-fonte (achado de 24/09/2026, acima), sem pendência de máquina. Próximo passo: `C-015`, escrever os wrappers de verdade.
 
 ## 8. Especificação da avaliação (Fase 7)
 
