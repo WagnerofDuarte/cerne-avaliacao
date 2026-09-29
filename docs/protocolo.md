@@ -508,4 +508,6 @@ Não foi possível comparar o hash com o valor exato registrado em 11/09/2026 �
 
 **Nota de segurança (28/09/2026):** a senha do banco do `ciclo-a` apareceu em texto puro no chat desta sessão durante o diagnóstico do `%40`. Recomendado ao Wagner trocar essa senha no painel do Supabase (Project Settings → Database → Reset database password) antes do `GATE-C23`.
 
-**Pendência:** `TEST_FAULT_KEY` de cada ambiente hospedado ainda não confirmado (não bloqueou o `GATE-C18`, mas precisa fechar antes da Parte IV/hold-out).
+**`segredos/db.ciclo-a.env`/`db.ciclo-b.env`:** também eram fantasmas (mesma causa do `.env.ciclo-*`) — recriados de verdade em 28/09/2026 com a connection string do pooler (`%40` na senha); `schema-hash.ts` reconfirmado com os dois, mesmo hash de antes (`f33a12b4...9868e2`).
+
+**Pendência — `TEST_FAULT_KEY`:** tentativa de confirmar o valor configurado nos ambientes hospedados via teste leve e seguro (`X-Test-Now` no `dashboard-aggregate-get`, sem sujar a conta seed) esbarrou num erro de app não relacionado — `404 NOT_FOUND "perfil do usuário autenticado não encontrado"` para a conta `cenario-cheio@cerne.test` nesse endpoint específico (achado à parte, pode ser relevante para a avaliação real — anotado aqui, não investigado agora). **Decisão do Wagner (28/09/2026):** adiar a confirmação do `TEST_FAULT_KEY` para mais perto da Parte IV, quando o proxy de falhas for montado de qualquer forma — não bloqueia a Fase 5.
