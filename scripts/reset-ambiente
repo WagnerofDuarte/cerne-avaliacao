@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# scripts/reset-ambiente <a|b> [--dry-run]  (C-015, GATE-C19)
+#
+# Wrapper de 4 passos — nunca um reset isolado (protocolo.md §9):
+#   1. Reset de dados (truncate + seed) — ver scripts/db-truncate-and-seed.ts
+#      e a divergência registrada em protocolo.md §7 item 7 (não existe
+#      `supabase db reset` contra projeto remoto).
+#   2. Reconfigurar experiment.worker_config (configure-worker.ts).
+#   3. Reimportar o cache congelado, se harness/cache-ciclo-a.json existir
+#      (replay-cache-import.ts, sem --force).
+#   4. Backfill dos embeddings da conta A (backfill-seed-embeddings.ts).
+# Os passos 2 e 3 são mantidos mesmo sabendo que o truncate real não
+# apaga o schema experiment — garantia redundante, idempotente.
+
+CICLO="${1:-}"
+DRY_RUN=0
+[[ "${2:-}" == "--dry-run" ]] && DRY_RUN=1
+
+if [[ "$CICLO" != "a" && "$CICLO" != "b" ]]; then
+  echo "Uso: scripts/reset-ambiente <a|b> [--dry-run]" >&2
+  exit 1
+fi
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+: "${CERNE_BACKEND_DIR:?Defina CERNE_BACKEND_DIR apontando para o clone local do cerne-backend}"
+
+ENV_APP="$HERE/segredos/.env.ciclo-$CICLO"
+ENV_DB="$HERE/segredos/db.ciclo-$CICLO.env"
+for f in "$ENV_APP" "$ENV_DB"; do
+  [[ -f "$f" ]] || { echo "Arquivo não encontrado: $f" >&2; exit 1; }
+done
+
+set -a
+# shellcheck disable=SC1090
+source "$ENV_APP"
+# shellcheck disable=SC1090
+source "$ENV_DB"
+set +a
+
+: "${SUPABASE_DB_URL:?Falta SUPABASE_DB_URL (deveria vir de $ENV_DB)}"
+: "${VOYAGE_API_KEY:?Falta VOYAGE_API_KEY (deveria vir de $ENV_DB)}"
+: "${PROMPT_VERSION:?Falta PROMPT_VERSION (deveria vir de $ENV_DB)}"
+: "${EXPORT_WORKER_SECRET:?Falta EXPORT_WORKER_SECRET (deveria vir de $ENV_DB)}"
+: "${FUNCTIONS_BASE_URL:?Falta FUNCTIONS_BASE_URL (deveria vir de $ENV_APP)}"
+
+CACHE_FILE="$HERE/harness/cache-ciclo-a.json"
+
+echo "== reset-ambiente $CICLO =="
+echo "1. Reset (truncate + seed) — schema experiment intocado"
+echo "2. Reconfigurar experiment.worker_config"
+if [[ -f "$CACHE_FILE" ]]; then
+  echo "3. Reimportar cache congelado ($CACHE_FILE)"
+else
+  echo "3. (pulado — $CACHE_FILE ainda não existe)"
+fi
+echo "4. Backfill dos embeddings da conta A"
+
+if [[ "$DRY_RUN" == "1" ]]; then
+  echo "-- --dry-run: nada executado --"
+  exit 0
+fi
+
+read -r -p "Confirma o reset do ambiente 'ciclo-$CICLO'? Isso apaga entries/chat_sessions/chat_messages/insights/export_jobs desse projeto. Digite 'sim' para continuar: " CONFIRM
+if [[ "$CONFIRM" != "sim" ]]; then
+  echo "Cancelado."
+  exit 1
+fi
+
+echo "-- Passo 1: reset (truncate + seed) --"
+deno run --allow-net --allow-env --allow-read \
+  "$HERE/scripts/db-truncate-and-seed.ts" \
+  --seed "$CERNE_BACKEND_DIR/supabase/seed/seed.sql"
+
+echo "-- Passo 2: reconfigurar experiment.worker_config --"
+deno run --allow-net --allow-env "$CERNE_BACKEND_DIR/scripts/configure-worker.ts"
+
+if [[ -f "$CACHE_FILE" ]]; then
+  echo "-- Passo 3: reimportar cache congelado --"
+  deno run -A "$CERNE_BACKEND_DIR/scripts/replay-cache-import.ts" --in "$CACHE_FILE"
+else
+  echo "-- Passo 3: pulado (sem cache congelado ainda) --"
+fi
+
+echo "-- Passo 4: backfill dos embeddings da conta A --"
+deno run --allow-net --allow-env "$CERNE_BACKEND_DIR/scripts/backfill-seed-embeddings.ts"
+
+echo "== reset-ambiente $CICLO concluído =="

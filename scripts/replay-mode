@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# scripts/replay-mode <a|b> <record|replay|replay_strict> [--dry-run]  (C-015)
+#
+# REPLAY_MODE é lido via Deno.env.get em
+# cerne-backend/supabase/functions/_shared/deps.ts — nos ambientes
+# hospedados, o único mecanismo para isso é `supabase secrets set`.
+# O project-ref é extraído de SUPABASE_DB_URL (segredos/db.ciclo-<x>.env),
+# nunca hardcoded, para não arriscar trocar ciclo-a com ciclo-b.
+#
+# Ainda não testado de verdade nesta sessão — antes de confiar no
+# mecanismo, confirme com `supabase secrets list --project-ref <ref>`
+# depois de rodar isto uma vez.
+
+CICLO="${1:-}"
+MODO="${2:-}"
+DRY_RUN=0
+[[ "${3:-}" == "--dry-run" ]] && DRY_RUN=1
+
+if [[ "$CICLO" != "a" && "$CICLO" != "b" ]]; then
+  echo "Uso: scripts/replay-mode <a|b> <record|replay|replay_strict> [--dry-run]" >&2
+  exit 1
+fi
+case "$MODO" in
+  record|replay|replay_strict) ;;
+  *)
+    echo "Modo inválido: '$MODO' (use record, replay ou replay_strict)" >&2
+    exit 1
+    ;;
+esac
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ENV_DB="$HERE/segredos/db.ciclo-$CICLO.env"
+[[ -f "$ENV_DB" ]] || { echo "Arquivo não encontrado: $ENV_DB" >&2; exit 1; }
+
+set -a
+# shellcheck disable=SC1090
+source "$ENV_DB"
+set +a
+
+: "${SUPABASE_DB_URL:?Falta SUPABASE_DB_URL (deveria vir de $ENV_DB)}"
+
+REF="$(echo "$SUPABASE_DB_URL" | sed -n 's#.*postgres\.\([a-z0-9]*\):.*#\1#p')"
+if [[ -z "$REF" ]]; then
+  echo "Não consegui extrair o project-ref de SUPABASE_DB_URL em $ENV_DB." >&2
+  exit 1
+fi
+
+echo "== replay-mode ciclo-$CICLO -> $MODO (project-ref $REF) =="
+
+if [[ "$DRY_RUN" == "1" ]]; then
+  echo "-- --dry-run: nada executado --"
+  exit 0
+fi
+
+read -r -p "Confirma REPLAY_MODE=$MODO no ambiente 'ciclo-$CICLO' (project-ref $REF)? Digite 'sim' para continuar: " CONFIRM
+if [[ "$CONFIRM" != "sim" ]]; then
+  echo "Cancelado."
+  exit 1
+fi
+
+supabase secrets set "REPLAY_MODE=$MODO" --project-ref "$REF"
+echo "== replay-mode ciclo-$CICLO -> $MODO concluído =="
