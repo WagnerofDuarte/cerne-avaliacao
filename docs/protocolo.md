@@ -485,3 +485,27 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 
 **Registro (27/09/2026):** os dois clonados localmente, `git log --oneline` vazio nos dois — confirmado.
 
+### 10.2 Credenciais e ambientes de backend (`C-014`, `GATE-C18`)
+
+**Achado crítico de processo (28/09/2026):** o registro original do `C-014` (24/09/2026) descrevia `segredos/.env.ciclo-a`/`.env.ciclo-b` como criados — mas foi escrito numa sessão de nuvem anterior, que criou os arquivos no próprio container efêmero dela, nunca na máquina real do Wagner. O container foi reciclado, os arquivos nunca existiram de fato fora daquela sessão. Só descoberto agora, ao tentar usá-los de verdade para o `GATE-C18`. **Isto é um risco geral de todo trabalho feito em sessão de nuvem sem o passo explícito de "peça para o usuário confirmar/criar na máquina dele": um registro "concluído" pode descrever um artefato que só existiu dentro do container.** Vale reconferir os outros artefatos supostamente criados em sessões de nuvem anteriores (ex.: `segredos/db.ciclo-a.env`/`db.ciclo-b.env`, mencionados no mesmo registro do `C-014`) antes de depender deles no `C-015`.
+
+`segredos/.env.ciclo-a`/`.env.ciclo-b` recriados de fato em 28/09/2026, com `FUNCTIONS_BASE_URL` e `SUPABASE_ANON_KEY` pegos direto no painel do Supabase (Project Settings → API, valores públicos por design). `grep -c service_role` = `0` nos dois.
+
+**`GATE-C18` — conferência dos ambientes:**
+| Item | `ciclo-a` | `ciclo-b` |
+|---|---|---|
+| Hash do schema (`schema-hash.ts`) | `f33a12b44912ae129a4702bcf7c8fffdcd93d7defad15df2323171cf779868e2` | idêntico |
+| Estrutura | extensões=6, colunas=91, tabelas com RLS=12, constraints=39, índices=17, triggers=2, funções=14, políticas=32, grants=83 (idêntico nos dois) | — |
+| Login (`auth-login`, conta `cenario-cheio@cerne.test`) | `200` | `200` |
+| Chamada autenticada (`entries-list`) | `200`, 20 entradas (= `limit` default do endpoint) | `200`, 20 entradas |
+
+Não foi possível comparar o hash com o valor exato registrado em 11/09/2026 — o roteiro de congelamento do `cerne-backend` documenta o procedimento, mas não guarda o hash em texto (só foi impresso no terminal na hora). A comparação feita é `ciclo-a` == `ciclo-b`, que é o que importa para a validade do experimento (nenhum ciclo começa com estrutura diferente do outro).
+
+**Achados reais de ambiente durante a conferência (não são erro de configuração do Wagner):**
+- A connection string **direta** do Supabase (`db.<ref>.supabase.co:5432`) exige IPv6; a rede do Wagner não tem saída IPv6 — a conexão trava para sempre (nunca dá erro claro), em vez de falhar rápido. Resolvido usando a connection string do **pooler** (`aws-0-sa-east-1.pooler.supabase.com:5432`, usuário `postgres.<project-ref>`).
+- A senha do Postgres contém um `@` literal — precisa de `%40` na connection string; sem isso, o parser da URL quebra silenciosamente (o `@` da senha vira parte do host) e a conexão também trava, com o mesmo sintoma do problema de IPv6 (mais difícil de diferenciar).
+- URL correta dos endpoints das Edge Functions: `{FUNCTIONS_BASE_URL}/<x-cerne-function>` (nome da função, com hífen — ex.: `auth-login`, `entries-list`), **não** o path do OpenAPI (`/auth/login`, `/entries`) — documentado no próprio `openapi.yaml`, linha 6-8, mas fácil de errar na primeira leitura.
+
+**Nota de segurança (28/09/2026):** a senha do banco do `ciclo-a` apareceu em texto puro no chat desta sessão durante o diagnóstico do `%40`. Recomendado ao Wagner trocar essa senha no painel do Supabase (Project Settings → Database → Reset database password) antes do `GATE-C23`.
+
+**Pendência:** `TEST_FAULT_KEY` de cada ambiente hospedado ainda não confirmado (não bloqueou o `GATE-C18`, mas precisa fechar antes da Parte IV/hold-out).
