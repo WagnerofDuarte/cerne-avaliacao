@@ -42,7 +42,7 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 
 ## Prompts de intenção (`prompts/`)
 
-**Hash combinado:** `a97753fda0604e8a77443ef6dd913e7ebad22aff9f0e66723be454910bcc5c36`
+**Hash combinado:** `71af323b4c5ced78966ddc02a6fa7e8949efc4022894af997cc5cfb95c7d8150` — atualizado em 01/10/2026 pelo desvio D-001 (`P-SETUP.md`); no congelamento era `a97753fda0604e8a77443ef6dd913e7ebad22aff9f0e66723be454910bcc5c36`
 
 (Fica fora de `entrada/` por desenho — R27 — e tem hash à parte desde o `GATE-C13`.)
 
@@ -60,7 +60,7 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 | `P-RF08.md` | `18df84300a0f937239e1c3a9cd36a4b7d35b8cee092bd9af045c1b3c7f1261c6` |
 | `P-RF09.md` | `a09915b1da678b8f7baef994e6991d8e858ee34095afb6966df7d75e2429cf61` |
 | `P-RF10.md` | `75acf9b3dd43dbfc261610873a7b0d0d39df605decc4e6e9e70a5a45bfb6a3d0` |
-| `P-SETUP.md` | `46fa242eb0e5ae205ff05683b2d26777cf5d01406bb12a2868c060d1a14d3971` |
+| `P-SETUP.md` | `6c040ea1852cfaccb77c59cd9091435a98695b081de8d4e0f5f2109faecbca65` (D-001; antes `46fa242eb0e5ae205ff05683b2d26777cf5d01406bb12a2868c060d1a14d3971`) |
 | `P-TECH.md` | `fc758e40bce6ea498e8ceb79e84591806f605338c681df9c6be4a7256f7f4cba` |
 
 ## Suíte hold-out (`holdout/`)
@@ -98,7 +98,7 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 |---|---|
 | `skills/coletar-sessao/SKILL.md` | `87c63d60ef9c48ec958f241e496d109ef872031a45f0ad8cf0c3f510e7407fc5` |
 
-**Scripts (skill + auxiliares) — hash combinado:** `137b234a1be868be5cf32ecb462b4694cf021822e3cb8ecc5e0d42593b1448df`
+**Scripts (skill + auxiliares) — hash combinado:** `caaf01702bc56ab4fb6ae81494157cf1a995d58f76f68090483fa090fbc00e7d` — atualizado em 01/10/2026 pelo desvio D-004 (arquivo novo `faixa-plan`; nenhum script existente alterado); no congelamento era `137b234a1be868be5cf32ecb462b4694cf021822e3cb8ecc5e0d42593b1448df`
 
 | Arquivo | SHA-256 |
 |---|---|
@@ -107,6 +107,7 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 | `coletar_sessao.py` | `5e2e8e09c30829aa2671cb68a754e0ed8e7925c8886fe4b8fa154a84a7f0b195` |
 | `concluir-rf` | `3c63882c4f57ad360ebe84cebd3d759f2634f585e33931ed6deeaca1966ec845` |
 | `db-truncate-and-seed.ts` | `a9fea32f2cbc9f02bf4688410bac2419bfd006d9181df01124b36a53fb8159e6` |
+| `faixa-plan` | `2424ebb6538c8ae22651bb6d6aefe52d72b20b888726d4a39b87953a53e84637` (novo, D-004) |
 | `iniciar-ciclo` | `4420572495a993e0ed8485aad392058d7a374fc05ec57c9e15426d330ed9d1fa` |
 | `instalar-metodologia` | `f38011365a7bafa4043b4618c23dbe34d1bcb30770ce27438223d3c1bfd578cf` |
 | `registrar_instalacao.py` | `dc13e54c168f25de982bba2814ed68ef6faff40a00f0272146a0c050addf5ee6` |
