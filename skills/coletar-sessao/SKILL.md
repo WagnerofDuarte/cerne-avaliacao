@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 Você recebeu o argumento `<ID>`, onde `<ID>` é um de: `SETUP`, `PLAN`, `F000`, `RF01`…`RF10`.
 
+**Se `<ID>` não foi fornecido, ou não é exatamente um desses valores: PARE. Não adivinhe, não infira pelo que estava sendo discutido na sessão. Pergunte ao usuário qual ID usar e espere a resposta antes de rodar qualquer coisa.** Gravar o ID errado corrompe a atribuição de tempo/tokens por unidade de trabalho (M1-M3) — é um erro sério, não um detalhe.
+
 Rode exatamente este comando, pelo caminho absoluto (nunca relativo — esta skill roda de dentro do repositório do ciclo, não de `cerne-avaliacao`), substituindo `<ID>` pelo argumento recebido e `<CICLO>` por `a` ou `b` conforme o `CLAUDE_CONFIG_DIR` desta sessão (`cfg-ciclo-a` → `a`; `cfg-ciclo-b` → `b`):
 
 ```
