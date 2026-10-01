@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# scripts/iniciar-ciclo <a|b>  (C-017)
+#
+# Copia o pacote de entrada (entrada/ -> docs/input/) e o .env do ciclo
+# para o repositório do ciclo, cria o .gitignore de uma linha, confere que
+# a cópia bate byte a byte com a fonte (hash por arquivo), e faz o commit
+# + tag `baseline`. A metodologia é instalada depois, por
+# scripts/instalar-metodologia (nunca aqui).
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=./_ciclo_common.sh
+source "$HERE/_ciclo_common.sh"
+
+CICLO="${1:-}"
+[[ "$CICLO" == "a" || "$CICLO" == "b" ]] || { echo "Uso: scripts/iniciar-ciclo <a|b>" >&2; exit 1; }
+
+CICLO_DIR="$(ciclo_dir "$CICLO")"
+PREFIX="$(tag_prefix "$CICLO")"
+ENV_APP="$REPO_ROOT_AVALIACAO/segredos/.env.ciclo-$CICLO"
+[[ -f "$ENV_APP" ]] || { echo "Arquivo não encontrado: $ENV_APP" >&2; exit 1; }
+[[ -d "$CICLO_DIR/.git" ]] || { echo "Não é um repositório git: $CICLO_DIR" >&2; exit 1; }
+
+if [[ -d "$CICLO_DIR/docs/input" ]] && [[ -n "$(ls -A "$CICLO_DIR/docs/input" 2>/dev/null)" ]]; then
+  read -r -p "'$CICLO_DIR/docs/input' já não está vazio. Sobrescrever e recriar o baseline? Digite 'sim': " CONFIRM
+  [[ "$CONFIRM" == "sim" ]] || { echo "Cancelado."; exit 1; }
+fi
+
+echo "-- Copiando entrada/ -> docs/input/ --"
+mkdir -p "$CICLO_DIR/docs/input"
+rm -rf "$CICLO_DIR/docs/input"/*
+cp -R "$REPO_ROOT_AVALIACAO/entrada/." "$CICLO_DIR/docs/input/"
+
+echo "-- Copiando .env --"
+cp "$ENV_APP" "$CICLO_DIR/.env"
+
+echo "-- Criando .gitignore (linha única: .env) --"
+printf '.env\n' > "$CICLO_DIR/.gitignore"
+
+echo "-- Conferindo hashes (cópia == fonte, arquivo a arquivo) --"
+SRC_HASHES="$(cd "$REPO_ROOT_AVALIACAO/entrada" && find . -type f | sort | xargs sha256sum | sed 's#  \./#  #')"
+DST_HASHES="$(cd "$CICLO_DIR/docs/input" && find . -type f | sort | xargs sha256sum | sed 's#  \./#  #')"
+if [[ "$SRC_HASHES" != "$DST_HASHES" ]]; then
+  echo "ERRO: hash da cópia não bate com a fonte (entrada/). Diff:" >&2
+  diff <(echo "$SRC_HASHES") <(echo "$DST_HASHES") >&2 || true
+  exit 1
+fi
+echo "Hashes conferidos: $(echo "$SRC_HASHES" | wc -l | tr -d ' ') arquivos, todos idênticos."
+
+cd "$CICLO_DIR"
+git add -A
+git commit -m "Baseline: copy input package and .env scaffold"
+git tag "$PREFIX/baseline"
+COMMIT_SHA="$(git rev-parse HEAD)"
+
+registrar_tag "$CICLO" "$PREFIX/baseline" "baseline" "" "$COMMIT_SHA"
+
+echo "== iniciar-ciclo $CICLO concluído: tag $PREFIX/baseline em $COMMIT_SHA =="

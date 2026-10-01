@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# scripts/rf-incompleto <a|b> <ID>  (C-017, P7 — timebox estourado)
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+exec "$HERE/_concluir_unidade.sh" "${1:-}" "${2:-}" "incompleto"

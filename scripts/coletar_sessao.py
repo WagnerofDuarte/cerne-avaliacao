@@ -108,6 +108,14 @@ OTEL_TOLERANCE = 0.02
 
 MOTIVOS_FIM = {"normal", "limite_uso", "falha"}
 
+# dados/ usa o nome completo do ciclo (cicloA/cicloB, não a/b) — convenção
+# já em uso no repositório (dados/cicloA/, dados/cicloB/ já existem).
+DADOS_SUBDIR = {"a": "cicloA", "b": "cicloB"}
+
+
+def dados_dir_default(ciclo: str) -> Path:
+    return REPO_ROOT / "dados" / DADOS_SUBDIR[ciclo]
+
 
 # ---------------------------------------------------------------------------
 # Leitura de preços (harness/precos.md) — nunca duplicado à mão
@@ -686,6 +694,9 @@ CSV_FIELDS = {
     "avisos_coleta.csv": [
         "ciclo", "id_rf", "sessao_id", "timestamp", "linha",
     ],
+    "tags.csv": [
+        "ciclo", "tag", "tipo", "id_rf", "commit", "data",
+    ],
 }
 
 
@@ -760,7 +771,7 @@ def coletar(
     if motivo_fim not in MOTIVOS_FIM:
         raise ValueError(f"motivo_fim inválido: {motivo_fim}")
 
-    dados_dir = dados_dir or (REPO_ROOT / "dados" / ciclo)
+    dados_dir = dados_dir or dados_dir_default(ciclo)
     main_path = transcript_path or find_latest_transcript()
     all_records = load_jsonl(main_path)
     records, corte_ts = cut_records(all_records, mode)

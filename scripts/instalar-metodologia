@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# scripts/instalar-metodologia <a|b>  (C-017, M1)
+#
+# Roda o instalador da metodologia travada para o ciclo (GATE-C08),
+# cronometra, grava a duração em sessoes.csv (tipo_sessao=instalacao) e
+# cria a tag `instalado`. Ciclo A: Spec Kit (specify init). Ciclo B: BMAD
+# (npx bmad-method install) — nunca instalado globalmente, só aqui.
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=./_ciclo_common.sh
+source "$HERE/_ciclo_common.sh"
+
+CICLO="${1:-}"
+[[ "$CICLO" == "a" || "$CICLO" == "b" ]] || { echo "Uso: scripts/instalar-metodologia <a|b>" >&2; exit 1; }
+
+CICLO_DIR="$(ciclo_dir "$CICLO")"
+PREFIX="$(tag_prefix "$CICLO")"
+[[ -d "$CICLO_DIR/.git" ]] || { echo "Não é um repositório git: $CICLO_DIR" >&2; exit 1; }
+
+cd "$CICLO_DIR"
+INICIO="$(now_iso)"
+INICIO_EPOCH="$(date -u +%s)"
+
+if [[ "$CICLO" == "a" ]]; then
+  echo "-- Instalando Spec Kit (v1.0.10, GATE-C08) --"
+  specify init --here --force --non-interactive --integration claude
+  COMMIT_MSG="Install Spec Kit v1.0.10 scaffolding"
+else
+  echo "-- Instalando BMAD-METHOD v6.11.0 (GATE-C08) --"
+  npx bmad-method@6.11.0 install \
+    --directory . \
+    --modules bmm \
+    --tools claude-code \
+    --communication-language English \
+    --document-output-language English \
+    --yes
+  COMMIT_MSG="Install BMAD-METHOD v6.11.0 (bmm module, claude-code)"
+fi
+
+CORTE="$(now_iso)"
+CORTE_EPOCH="$(date -u +%s)"
+DURACAO_S=$((CORTE_EPOCH - INICIO_EPOCH))
+
+git add -A
+git commit -m "$COMMIT_MSG"
+git tag "$PREFIX/instalado"
+COMMIT_SHA="$(git rev-parse HEAD)"
+
+registrar_tag "$CICLO" "$PREFIX/instalado" "instalado" "" "$COMMIT_SHA"
+
+python3 "$REPO_ROOT_AVALIACAO/scripts/registrar_instalacao.py" \
+  --ciclo "$CICLO" --inicio "$INICIO" --corte "$CORTE" --duracao-s "$DURACAO_S"
+
+echo "== instalar-metodologia $CICLO concluído em ${DURACAO_S}s: tag $PREFIX/instalado em $COMMIT_SHA =="

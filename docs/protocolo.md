@@ -541,3 +541,20 @@ Não foi possível comparar o hash com o valor exato registrado em 11/09/2026 �
 ### 11.2 `C-016` — estado
 
 `scripts/coletar_sessao.py` (parser + CLI nos 3 modos: `skill`, `hook`, `manual`) e `skills/coletar-sessao/SKILL.md` escritos em `cerne-avaliacao`. 12 testes unitários (`scripts/tests/test_coletar_sessao.py`) cobrindo os 4 cenários do critério do plano (sem intervenção; 3 intervenções de tipos diferentes; compactação no meio; subagente com tokens em arquivo separado) × os 3 modos — todos passando, incluindo a confirmação de que o corte do modo `skill` exclui a mensagem de invocação e tudo depois, e que os tokens do subagente somam nas colunas `sub_*` sem se misturar com os do principal. Falta: `C-017`, e a verificação real (não sintética) nos `GATE-C20`/`GATE-C21`.
+
+**Achado/correção (01/10/2026):** o caminho default de `dados/<ciclo>/` no script usava `dados/a`/`dados/b` — errado; o repositório já usa `dados/cicloA`/`dados/cicloB` desde a Fase 0. Corrigido.
+
+### 11.3 `C-017` — scripts auxiliares (`iniciar-ciclo`, `instalar-metodologia`, `concluir-rf`, `rf-incompleto`)
+
+Escritos em `cerne-avaliacao/scripts/`, com lógica compartilhada em `_ciclo_common.sh`/`_concluir_unidade.sh` e gravação em `tags.csv`/`sessoes.csv` via `registrar_tag.py`/`registrar_instalacao.py` (reaproveitam `coletar_sessao.py`, nunca duplicam o esquema das colunas). Dependem de `CERNE_CICLO_A_DIR`/`CERNE_CICLO_B_DIR` (clones locais de `cerne-ciclo-a`/`cerne-ciclo-b`, mesmo padrão do `CERNE_BACKEND_DIR` da Fase 5).
+
+**Testado de ponta a ponta (01/10/2026), num repositório git descartável fora de `cerne-ciclo-a`/`b` de verdade:**
+- `iniciar-ciclo a`: copiou os 15 arquivos de `entrada/` para `docs/input/`, hash por arquivo idêntico à fonte (confere com os 15 hashes do `GATE-C13` §5.2), `.gitignore` de uma única linha (`.env`), commit + tag `cicloA/baseline`.
+- `instalar-metodologia a`: instalou o Spec Kit v1.0.10 de verdade (30 arquivos — `.claude/skills/speckit-*`, `.specify/`), tag `cicloA/instalado`, linha gravada em `sessoes.csv` com `tipo_sessao=instalacao`, `modo_coleta=script`.
+- `concluir-rf a F000`: testado a partir de um branch de feature de propósito — fez o merge em `main` de verdade (`git merge --no-ff`) e criou a tag `cicloA/f000-done`.
+- `rf-incompleto a RF03`: já em `main` — detectou corretamente que não havia merge a fazer e criou `cicloA/rf03-incompleto`.
+- ID de RF inválido (`RF99`) rejeitado com erro antes de qualquer ação.
+
+`tags.csv`/`sessoes.csv` gerados pelo ensaio apagados depois (não existiam antes do ensaio, nenhuma sobra).
+
+**Não testado de ponta a ponta — risco residual baixo, registrado:** o ramo BMAD de `instalar-metodologia b` (`npx bmad-method@6.11.0 install --directory . --modules bmm --tools claude-code --communication-language English --document-output-language English --yes`). As flags foram confirmadas de verdade via `--help` nesta sessão (`--communication-language`/`--document-output-language` aceitam qualquer string, default `English`), e a instalação em si (sem as flags de idioma explícitas) já tinha sido validada de verdade na Trilha 1 da Fase 4.
