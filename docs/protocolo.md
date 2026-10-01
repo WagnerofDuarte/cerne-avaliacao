@@ -515,3 +515,27 @@ Não foi possível comparar o hash com o valor exato registrado em 11/09/2026 �
 **`segredos/db.ciclo-a.env`/`db.ciclo-b.env`:** também eram fantasmas (mesma causa do `.env.ciclo-*`) — recriados de verdade em 28/09/2026 com a connection string do pooler (`%40` na senha); `schema-hash.ts` reconfirmado com os dois, mesmo hash de antes (`f33a12b4...9868e2`).
 
 **Pendência — `TEST_FAULT_KEY`:** tentativa de confirmar o valor configurado nos ambientes hospedados via teste leve e seguro (`X-Test-Now` no `dashboard-aggregate-get`, sem sujar a conta seed) esbarrou num erro de app não relacionado — `404 NOT_FOUND "perfil do usuário autenticado não encontrado"` para a conta `cenario-cheio@cerne.test` nesse endpoint específico (achado à parte, pode ser relevante para a avaliação real — anotado aqui, não investigado agora). **Decisão do Wagner (28/09/2026):** adiar a confirmação do `TEST_FAULT_KEY` para mais perto da Parte IV, quando o proxy de falhas for montado de qualquer forma — não bloqueia a Fase 5.
+
+## 11. Instrumento mínimo pré-ciclo (Fase 6)
+
+### 11.1 Formato do transcript JSONL do Claude Code (`C-016`)
+
+**Risco de base:** a documentação oficial do Claude Code avisa que o formato interno do transcript "muda entre versões" e recomenda `/export` ou `claude -p --output-format json` em vez de parsing direto — não há schema público estável. Os campos abaixo foram confirmados contra uma sessão **real** do Wagner (Claude Code 2.1.282, 01/10/2026), não contra a documentação oficial, que não os garante entre versões. Qualquer atualização do Claude Code travado (`C-011`) exige reconferir isto antes de confiar nos dados coletados.
+
+**Confirmado de verdade, por inspeção de sessão real:**
+- Caminho do transcript: `~/.claude/projects/<cwd-com-não-alfanuméricos-trocados-por-"->/<session-id>.jsonl`; desloca por completo com `CLAUDE_CONFIG_DIR` (a mesma variável que isola `cfg-ciclo-a`/`cfg-ciclo-b`, `C-011`).
+- `timestamp`: ISO 8601 com milissegundos e `Z` (ex.: `2026-10-01T02:07:11.454Z`), em todo tipo de registro.
+- Mensagem de usuário humana: `{"type": "user", "origin": {"kind": "human"}, "message": {"role": "user", "content": [...]}}`. Mensagens/eventos de sistema (ex.: slash command) não têm `origin.kind: "human"` — é o campo usado para nunca confundir uma mensagem do pesquisador com qualquer outra coisa.
+- Resposta do assistente: `{"type": "assistant", "message": {"id": "msg_...", "model": "...", "usage": {...}}}`. `usage` por mensagem, incluindo `cache_creation.ephemeral_5m_input_tokens`/`ephemeral_1h_input_tokens` — bate exatamente com a regra 2 do `harness/precos.md` (preços diferentes para escrita de cache de 5 min e de 1h). Mensagens do mesmo turno podem repetir o mesmo `message.id` em mais de uma linha (um bloco de conteúdo por linha) — o script deduplica por esse campo antes de somar.
+- Slash command / skill invocada: `{"type": "system", "subtype": "local_command", "commandRun": {"command": "<nome>", "args": "..."}}` — é o sinal usado para a segmentação por fase (`protocolo.md` §4.4).
+- **Achado não previsto no plano original:** o contexto que a extensão do Claude Code no VS Code injeta (arquivo aberto, seleção) **não** aparece como um campo/atributo separado da mensagem — aparece como um **bloco de texto próprio**, dentro do mesmo `message.content` da mensagem do usuário, envolto em `<ide_selection>...</ide_selection>`, antes do texto que o pesquisador de fato escreveu. `n_msgs_contexto_ide` (P2) é contado em cima desse marcador. Sessões abertas pelo terminal (`entrypoint: "cli"`) nunca têm esse bloco; sessões abertas pela extensão (`entrypoint: "claude-vscode"`) só têm quando havia de fato um arquivo com seleção ativa no momento de enviar a mensagem.
+
+**Não confirmado empiricamente** (nenhuma sessão de teste gerou o evento de verdade; implementado por relato de comunidade, com degradação segura para 0/vazio se não bater, nunca por suposição silenciosa) — **confirmar no `GATE-C21`**, que já previa provocar um subagente de propósito:
+- Caminho dos transcripts de subagentes (esperado: diretório irmão do `.jsonl` principal, `<session-id>/subagents/workflows/<run>/agent-*.jsonl`).
+- Formato do evento de compactação automática (`{"type": "system", "subtype": "compact_boundary", "compactMetadata": {...}}`).
+
+**Decisão própria do script, sem valor congelado em nenhuma fonte, pendente de revisão do Wagner antes do `GATE-C23`:** tolerância de `div_otel` fixada em 2%.
+
+### 11.2 `C-016` — estado
+
+`scripts/coletar_sessao.py` (parser + CLI nos 3 modos: `skill`, `hook`, `manual`) e `skills/coletar-sessao/SKILL.md` escritos em `cerne-avaliacao`. 12 testes unitários (`scripts/tests/test_coletar_sessao.py`) cobrindo os 4 cenários do critério do plano (sem intervenção; 3 intervenções de tipos diferentes; compactação no meio; subagente com tokens em arquivo separado) × os 3 modos — todos passando, incluindo a confirmação de que o corte do modo `skill` exclui a mensagem de invocação e tudo depois, e que os tokens do subagente somam nas colunas `sub_*` sem se misturar com os do principal. Falta: `C-017`, e a verificação real (não sintética) nos `GATE-C20`/`GATE-C21`.
