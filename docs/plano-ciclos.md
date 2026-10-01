@@ -504,8 +504,9 @@ O que se congela aqui são **definições em texto**. O código correspondente �
   - **Andamento (24/09/2026):** ID fixado — `gpt-5.5-2026-04-23`, `reasoning.effort = medium` (R29). `harness/juiz/`: protocolo comum com regras de anonimização e 4 rubricas (M6, M9, M14, D16), cada uma com prompt v1.0, schema, regra de maioria e exemplo sintético. **Lacuna encontrada:** a escala de severidade `Sn` da D16 nunca foi definida (a §8 do documento de métricas remete à "política D16", que só tem bloqueante/não bloqueante); proposta S1–S3 na rubrica, a confirmar. **Falta:** a aplicação à mão dos 4 exemplos pelo Wagner (critério).
   - **Registro (24/09/2026):** os 4 exemplos sintéticos aplicados à mão às rubricas — conferência feita pelo Claude, a pedido do Wagner. M9 e D16 chegam à saída esperada sem ambiguidade. M6: a causa da 2ª divergência admitia `ctx` ou `prd` → acrescentada regra de desempate (`ctx` prevalece quando algo não existe), prompt v1.1. M14: o exemplo admitia `partial` ou `no` → exemplo reescrito para o código usar o caso de uso e também importar o repositório, o que leva a `partial` pela definição. Changelog em `harness/juiz/README.md`.
 
-- [ ] `C-022` Escrever como regras concretas (regex, caminhos, assinaturas): o critério de seleção das 8–10 decisões da M14; as 3–4 convenções da M15; **as regex de referências inexistentes da M6** (arquivos, pacotes, rotas, campos do schema, códigos da taxonomia de erros), com o hash da Especificação Técnica do backend usada como referência (`GATE-C02` item 10); **a lista de tipos de artefato contáveis da M4** por framework — no Ciclo B, lida nas tags `plan-done` e `final`; e **a regra da `M6_tasks` no Ciclo B**: % de checkboxes de tarefas marcados nas stories de cada unidade, atribuídas pelo `mapa-stories.csv` (`GATE-B03`), com o formato dos arquivos de story confirmado na versão travada (`GATE-C01` R6) — **Critério:** cada regra da M15, as regex da M6 e a contagem da M4 são executáveis contra o repositório de calibração; o critério da M14 é aplicável a um `plan.md` qualquer sem julgamento adicional; a regra da `M6_tasks` do B é aplicável a um arquivo de story de exemplo da versão travada.
+- [x] `C-022` Escrever como regras concretas (regex, caminhos, assinaturas): o critério de seleção das 8–10 decisões da M14; as 3–4 convenções da M15; **as regex de referências inexistentes da M6** (arquivos, pacotes, rotas, campos do schema, códigos da taxonomia de erros), com o hash da Especificação Técnica do backend usada como referência (`GATE-C02` item 10); **a lista de tipos de artefato contáveis da M4** por framework — no Ciclo B, lida nas tags `plan-done` e `final`; e **a regra da `M6_tasks` no Ciclo B**: % de checkboxes de tarefas marcados nas stories de cada unidade, atribuídas pelo `mapa-stories.csv` (`GATE-B03`), com o formato dos arquivos de story confirmado na versão travada (`GATE-C01` R6) — **Critério:** cada regra da M15, as regex da M6 e a contagem da M4 são executáveis contra o repositório de calibração; o critério da M14 é aplicável a um `plan.md` qualquer sem julgamento adicional; a regra da `M6_tasks` do B é aplicável a um arquivo de story de exemplo da versão travada.
   - **Andamento (24/09/2026):** `harness/regras.md` — M14 (fontes: constitution + `plan.md` da F000 × arquitetura do BMAD; regra de candidata e seleção das 10 primeiras, R29), M15 (4 convenções, referência na feature do RF01, R29), regex da M6 contra o contrato entregue, tipos da M4, e a `M6_tasks` do B com regra alternativa condicional. **Falta:** a execução das regras contra o repositório de calibração, que só existe na trilha paralela (`H-001`, `H-002`).
+  - **Decisão de sequenciamento (01/10/2026):** fechado com escopo de **texto**, por decisão do Wagner — bate com o próprio preâmbulo desta fase (linha acima: "o que se congela aqui são definições em texto; o código correspondente é escrito na trilha paralela e testado no repositório de calibração") e com o checklist de congelamento, que só pede as regras "escritas" (ver "Checklist de congelamento", item Instrumento), não "testadas". A metade do critério que depende do `H-001` (execução de verdade contra o repositório de calibração) fica para a trilha paralela do harness, em paralelo ao Ciclo A, sem bloquear o `GATE-C23` nem o início do ciclo — mesmo prazo próprio que o `GATE-H01` já tinha (06/11).
 
 - [x] `C-023` Congelar a tabela de preços usada para a M3, com a data e a fonte — **Critério:** preço por categoria de token do modelo da P1 registrado.
   - **Registro (24/09/2026):** `harness/precos.md` — Sonnet 5 (2,00 / 10,00 / 2,50 / 4,00 / 0,20) e Haiku 4.5 (1,00 / 5,00 / 1,25 / 2,00 / 0,10) por MTok, página oficial de preços da Anthropic consultada em 24/09/2026.
@@ -517,6 +518,7 @@ O que se congela aqui são **definições em texto**. O código correspondente �
 
 ### Encerramento da Fase 7 — notas para quem retomar
 **Situação em 24/09/2026: fechada por completo.** `C-018`, `C-019`, `C-020`, `C-023`, `C-021` e `GATE-C22` concluídos; `C-022` escrito, com um único ponto ainda condicional (a regra alternativa da `M6_tasks` do B, a confirmar com a versão instalada do BMAD — já previsto, não é pendência nova).
+- **Correção (01/10/2026):** o `C-022` tinha ficado com o checkbox `[ ]` por engano (seu critério completo exige rodar as regras contra o `H-001`, que não existe) — fechado agora com escopo de texto, por decisão do Wagner, amparada no próprio preâmbulo desta fase e no checklist de congelamento (que só pede as regras "escritas"). Nenhuma mudança de conteúdo, só a correção do estado do item.
 - **Arquivos:** `holdout/cenarios.md` (28 cenários), `holdout/rnf09.md` (15 falhas), `holdout/estados-m9.md` (31 estados), `harness/juiz/` (protocolo + 4 rubricas), `harness/regras.md` (M4, M6, M14, M15, `M6_tasks` do B), `harness/precos.md`.
 - **Decisões (R29–R30):** avaliador `gpt-5.5-2026-04-23`; M14 a partir da constitution + `plan.md` da F000 (A) e da arquitetura (B); M15 com referência na feature do RF01 e 4 convenções; escala de severidade S1–S3 (era uma lacuna: nunca tinha sido definida); `M6_tasks` do B por status `done` se as stories não tiverem checkboxes; falhas da hold-out injetadas pelo backend a partir do cabeçalho posto pelo proxy.
 - **Achados:** o HTML traz um catálogo oficial de 32 estados e um painel de tokens *ground truth* — o extrato do protótipo foi refeito com eles (revisar no `GATE-C13`); o backend tem superfície de teste (`X-Test-Key`, `X-Test-Now`, `X-Test-Fault`) que a hold-out passa a usar; a ordem dos cenários precisa respeitar o cache de replay (IA antes de escrita na conta A).
@@ -532,23 +534,24 @@ O que se congela aqui são **definições em texto**. O código correspondente �
 *Nenhum ciclo começa antes de todos os itens abaixo estarem marcados.*
 
 **Instrumento**
-- [ ] `Metricas_e_Skills_Ciclos.md` v1.0 publicado, sem pendência aberta
-- [ ] `/coletar-sessao` testada, verificada fora do contexto (`GATE-C20`) e ensaiada (`GATE-C21`)
-- [ ] Cenários da hold-out, estados da M9, rubricas, regras da M14/M15 e tabela de preços escritos (Fase 7)
+- [x] `Metricas_e_Skills_Ciclos.md` v1.0 publicado, sem pendência aberta
+- [x] `/coletar-sessao` testada, verificada fora do contexto (`GATE-C20`) e ensaiada (`GATE-C21`)
+- [x] Cenários da hold-out, estados da M9, rubricas, regras da M14/M15 e tabela de preços escritos (Fase 7)
 
 **Protocolo**
-- [ ] `protocolo.md` com P1–P14, regras por metodologia e tabela de entrega dos prompts
-- [ ] `rdr.md` criado, vazio
-- [ ] `desvios.md` criado, vazio
+- [x] `protocolo.md` com P1–P14, regras por metodologia e tabela de entrega dos prompts
+- [x] `rdr.md` criado, vazio
+- [x] `desvios.md` criado, vazio
 
 **Pacote de entrada**
-- [ ] Pacote completo, revisado quanto à neutralidade (`GATE-C13`)
+- [x] Pacote completo, revisado quanto à neutralidade (`GATE-C13`)
 
 **Ambiente**
-- [ ] Máquina, Xcode, simuladores, Flutter, Claude Code, Spec Kit, BMAD, Maestro, mitmproxy com versões travadas e registradas
-- [ ] `settings.json` idêntico nas duas configurações
-- [ ] Repositórios de ciclo vazios; `.env` prontos; ambientes de backend conferidos (`GATE-C18`)
-- [ ] Estratégia de cache de IA e de reset aprovada (`GATE-C19`); wrappers testados em `--dry-run` (`C-015`)
+- [x] Máquina, Xcode, simuladores, Flutter, Claude Code, Spec Kit, BMAD, Maestro, mitmproxy com versões travadas e registradas
+- [x] `settings.json` idêntico nas duas configurações
+- [x] Repositórios de ciclo vazios; `.env` prontos; ambientes de backend conferidos (`GATE-C18`)
+- [x] Estratégia de cache de IA e de reset aprovada (`GATE-C19`); wrappers testados em `--dry-run` (`C-015`)
+- [x] **Registro (01/10/2026):** checklist revisado item a item — todos satisfeitos pelo trabalho das Fases 0–7. Pronto para o `GATE-C23`.
 
 **Congelamento**
 - [ ] 🔴 **[MANUAL] `GATE-C23`** — Congelar
