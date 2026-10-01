@@ -583,6 +583,8 @@ Até aqui, tudo foi feito uma vez e vale para os dois ciclos. A partir daqui, ca
 
 Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 
+> **Nota (01/10/2026):** esta Parte II foi revisada contra as ferramentas reais antes da A1. Valem os desvios D-001 (correção do `P-SETUP`), D-002 (commit de fechamento antes de toda tag; `setup-done`/`final` criadas à mão com `scripts/registrar_tag.py`) e D-003 (perguntas espontâneas) em `docs/desvios.md`. Correções de texto: comandos com hífen (`/speckit-specify`, não `/speckit.specify`), ambiente no iPhone 16 Pro físico (não `sim-dev`; Face ID, câmera e microfone reais). O passo a passo detalhado está em `docs/plano-ciclo-A-speckit.md`.
+
 ## A0 — Instalação e baseline
 **Prazo proposto: 01/10/2026**
 
@@ -719,6 +721,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 
 # PARTE III — CICLO B (BMAD-METHOD)
 **Prazo proposto: 23/10 a 13/11/2026**
+
+> **Nota (01/10/2026): o texto de B0–B3 e do bloco-padrão abaixo está desatualizado e não deve ser seguido.** Vale a sequência do `protocolo.md` §4.3 (`GATE-C10`): instalação por flags; B1 `bmad-project-context` com `P-SETUP`; B2 brainstorming → forge-idea → deep-recon → prfaq → product-brief; B3 prd (criar) → prd (validar) → ux; B4 architecture → create-epics-and-stories → sprint-planning, tag `plan-done`, timebox 32 h (medida pelo `scripts/faixa-plan`); por story build → code-review → qa-generate-e2e-tests; retrospectiva por épico. Mais os desvios D-002 e D-004 a D-007. O passo a passo detalhado está em `docs/plano-ciclo-B-bmad.md`.
 
 Tudo aqui acontece em `cerne-ciclo-b`, aberto sempre com `abrir-ciclo b`. Unidades de trabalho, ordem, timebox, definição de "concluído", regras de intervenção e o RDR são os mesmos do Ciclo A.
 

@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""scripts/faixa-plan — faixa da timebox do planejamento global do BMAD.
+
+32 h de tempo ativo para B2–B4 (GATE-C10, R23). Soma `duracao_s` das sessões
+`PLAN` do Ciclo B iniciadas antes da tag `cicloB/plan-done` (todas, se a tag
+ainda não existe) — as retrospectivas, que vêm depois, ficam fora. Imprime só
+a faixa, nunca o valor (P7 do documento de métricas). Desvio D-004.
+"""
+import csv
+from pathlib import Path
+
+DADOS = Path(__file__).resolve().parent.parent / "dados" / "cicloB"
+LIMITE_S = 32 * 3600
+
+plan_done = None
+tags = DADOS / "tags.csv"
+if tags.exists():
+    with tags.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row.get("tag") == "cicloB/plan-done":
+                plan_done = row.get("data")
+
+total = 0
+sessoes = DADOS / "sessoes.csv"
+if sessoes.exists():
+    with sessoes.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            if row.get("ciclo") != "b" or row.get("id_rf") != "PLAN":
+                continue
+            if plan_done and (row.get("inicio") or "") >= plan_done:
+                continue
+            total += int(row.get("duracao_s") or 0)
+
+pct = total / LIMITE_S
+if pct >= 1:
+    faixa = "atingido"
+elif pct > 0.8:
+    faixa = "acima de 80%"
+elif pct >= 0.5:
+    faixa = "50-80%"
+else:
+    faixa = "abaixo de 50%"
+print(f"Timebox do planejamento (B2–B4): {faixa}.")
