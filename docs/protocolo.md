@@ -13,6 +13,8 @@
 | 4 — Ambiente | `GATE-C14`–`C16` concluídos em 27/09/2026 (pivô de simulador para iPhone 16 Pro físico no `GATE-C16`); `C-024` (isolamento dev/avaliação) escrito, verificação de rede pendente |
 | 5 — Repositórios, credenciais e ambientes de backend | Concluída em 29/09/2026 (`GATE-C17`–`C-015`) |
 | 6 — Instrumento mínimo pré-ciclo | Concluída em 01/10/2026 (`C-016`–`GATE-C21`) |
+| 7 — Especificação da avaliação | Concluída em 24/09/2026, `C-022` fechado em 01/10/2026 (`C-018`–`GATE-C22`) |
+| **Congelamento** | **`GATE-C23` em 01/10/2026 — tag `protocolo-v1.0`** |
 
 ---
 
@@ -459,6 +461,7 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 | 5 | `doc-prototipo.md` (abertura) | App Flutter para iOS e Android | Desenvolvimento e avaliação só no iOS (P11) | P11 | 22/09/2026 |
 | 6 | Protótipo HTML (frame) + P11/`GATE-C15` | Frame 390×844 (iPhone 16e/14), simulador único para dev e avaliação | `whisper_ggml` (P8) não roda em simulador iOS (limitação documentada do FFmpeg empacotado, confirmada externamente) — dev e avaliação passam a um único iPhone 16 Pro físico do Wagner (402×874 pts), nos dois ciclos inteiros; isolamento dev/avaliação vira reset manual entre fases (`C-024`) | P11; `GATE-C15`/`GATE-C16` | 27/09/2026 |
 | 7 | `protocolo.md` §9 (achado 24/09/2026) | "Um reset recria o schema `experiment` inteiro do zero (`ai_replay_cache`, `worker_config`)" | Isso vale para `supabase db reset` **local** (`dev`). Nos ambientes hospedados (`ciclo-a`/`ciclo-b`), não existe esse comando contra projeto remoto (`docs/roteiro_de_congelamento.md`, achado no Passo 7) — o reset real ali é um `TRUNCATE` manual de só `entries, chat_sessions, chat_messages, insights, export_jobs`, que **não toca** `experiment.worker_config` nem `experiment.ai_replay_cache`. Os passos 2 (reconfigurar worker) e 3 (reimportar cache) do `reset-ambiente` (`C-015`) não são estritamente necessários a cada execução nesses ambientes — mantidos mesmo assim, por decisão do Wagner, como garantia redundante idempotente (não fazem mal repetir) | `C-015` | 29/09/2026 |
+| 8 | `plano-ciclos.md`, `GATE-C23` | "Gerar hashes de: ... os arquivos de `holdout/` e de `harness/juiz/`" — não menciona `harness/regras.md` (`C-022`) nem `harness/precos.md` (`C-023`) | São definições congeladas da Fase 7 tanto quanto as outras — incluídos no congelamento por extensão, mesmo fora da lista literal do gate. Nunca reduz a cobertura do congelamento, só amplia | `docs/hashes-congelamento.md` | 01/10/2026 |
 
 ## 9. Cache de IA e reset (`GATE-C19`, achado e corrigido em 24/09/2026)
 

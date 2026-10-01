@@ -554,9 +554,10 @@ O que se congela aqui são **definições em texto**. O código correspondente �
 - [x] **Registro (01/10/2026):** checklist revisado item a item — todos satisfeitos pelo trabalho das Fases 0–7. Pronto para o `GATE-C23`.
 
 **Congelamento**
-- [ ] 🔴 **[MANUAL] `GATE-C23`** — Congelar
+- [x] 🔴 **[MANUAL] `GATE-C23`** — Congelar
   - **O quê:** gerar `docs/hashes-congelamento.md` com o SHA-256 de: `Metricas_e_Skills_Ciclos.md`, `protocolo.md`, cada arquivo do pacote de entrada e o hash do pacote inteiro, a skill e seu script, os scripts auxiliares, `settings.json`, os arquivos de `holdout/` e de `harness/juiz/`. Commit e tag `protocolo-v1.0` em `cerne-avaliacao`.
   - **Como confirmo:** tag criada; `hashes-congelamento.md` versionado. A partir daqui, qualquer mudança nesses arquivos exige uma entrada em `desvios.md`.
+  - **Registro (01/10/2026):** `docs/hashes-congelamento.md` gerado — `Metricas_e_Skills_Ciclos.md`, `protocolo.md`, pacote de entrada (15 arquivos + hash combinado, idêntico ao `GATE-C13`), `prompts/` (14 arquivos + combinado), `holdout/` (6 arquivos + combinado, incluindo o HTML de referência — bit a bit igual ao do pacote), `harness/juiz/` (5 arquivos + combinado), skill + scripts auxiliares (13 arquivos + combinado), e o hash já registrado do `settings.json` (não versionado neste repositório). **Achado registrado (`protocolo.md` §7 item 8):** o texto do gate não menciona `harness/regras.md`/`harness/precos.md` — incluídos por extensão, nunca reduzindo a cobertura. Commit e tag `protocolo-v1.0` criados e enviados ao GitHub. **A partir daqui, qualquer mudança nesses arquivos exige entrada em `docs/desvios.md`.**
 
 ---
 
