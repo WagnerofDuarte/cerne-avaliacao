@@ -204,6 +204,7 @@ Escrever `$AVAL/dados/cicloB/aprendizado-previo.md` com o que você aprendeu no 
 
 ### 3.5 Preparações específicas do B
 
+- [ ] Variáveis e `abrir-ciclo` da preparação única do A (`docs/plano-ciclo-A-speckit.md`, seções 3.2 e 3.3) continuam valendo: `echo "$CERNE_CICLO_B_DIR"` mostra o caminho do clone; `git -C "$CERNE_CICLO_B_DIR" status` funciona; `grep -c cfg-ciclo-b ~/cerne/bin/abrir-ciclo` ≥ 1.
 - [x] D-004 a D-007 já registrados e `scripts/faixa-plan` já no repositório (commit `6c9686d`). Conferir: `"$AVAL/scripts/faixa-plan"` → `Timebox do planejamento (B2–B4): abaixo de 50%.`
 - [ ] `fvm flutter devices | grep "$IPHONE"` lista o iPhone; proxy do Wi-Fi desligado; nenhum perfil do mitmproxy (`C-024`).
 - [ ] Coletor OTel rodando (`~/cerne/otelcol/otelcol-contrib --config ~/cerne/otelcol/config.yaml`).
