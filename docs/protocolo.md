@@ -12,6 +12,7 @@
 | 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
 | 4 — Ambiente | `GATE-C14`–`C16` concluídos em 27/09/2026 (pivô de simulador para iPhone 16 Pro físico no `GATE-C16`); `C-024` (isolamento dev/avaliação) escrito, verificação de rede pendente |
 | 5 — Repositórios, credenciais e ambientes de backend | Concluída em 29/09/2026 (`GATE-C17`–`C-015`) |
+| 6 — Instrumento mínimo pré-ciclo | Concluída em 01/10/2026 (`C-016`–`GATE-C21`) |
 
 ---
 
@@ -558,3 +559,20 @@ Escritos em `cerne-avaliacao/scripts/`, com lógica compartilhada em `_ciclo_com
 `tags.csv`/`sessoes.csv` gerados pelo ensaio apagados depois (não existiam antes do ensaio, nenhuma sobra).
 
 **Não testado de ponta a ponta — risco residual baixo, registrado:** o ramo BMAD de `instalar-metodologia b` (`npx bmad-method@6.11.0 install --directory . --modules bmm --tools claude-code --communication-language English --document-output-language English --yes`). As flags foram confirmadas de verdade via `--help` nesta sessão (`--communication-language`/`--document-output-language` aceitam qualquer string, default `English`), e a instalação em si (sem as flags de idioma explícitas) já tinha sido validada de verdade na Trilha 1 da Fase 4.
+
+### 11.4 `GATE-C20` e `GATE-C21` — verificação real
+
+**`GATE-C20`:** skill copiada para `~/cerne/cfg-ciclo-a/skills/` e `~/cerne/cfg-ciclo-b/skills/`; `/context all` nas duas configurações (repositório descartável, `CLAUDE_CONFIG_DIR` apontando para cada uma) — `coletar-sessao` não aparece em nenhuma categoria, nas duas. Resultado esperado do `disable-model-invocation: true`; não precisou do fallback do hook `SessionEnd`. Resolve o relato antigo de "Itens em aberto" sobre `disable-model-invocation` não funcionar em algumas versões — não se confirmou na v2.1.282.
+
+**`GATE-C21` — achado real, corrigido na hora:** no ensaio geral (repositório descartável, `/tmp/teste-gate-c21`), a skill foi invocada **sem** o argumento `<ID>` — em vez de parar e perguntar, o modelo **adivinhou** `F000` sozinho e gravou a sessão inteira sob esse ID. É um risco real: numa sessão de verdade, isso corromperia a atribuição de M1-M3 por unidade de trabalho. `SKILL.md` corrigido na hora (instrução explícita: nunca adivinhar, sempre perguntar se o `<ID>` não vier certo) e recopiado para os dois `cfg-ciclo-*`. A correção em si não foi reensaiada à parte — custo baixo de conferir na primeira sessão real do Ciclo A.
+
+**Resto do ensaio, confirmado com dados reais (mesmo com o ID errado, os valores em si saíram corretos):**
+- `sessoes.csv`: `n_intervencoes=2`, `n_processo=1`, `modelo=claude-sonnet-5`, `config_raciocinio=high` (confirma que `$CLAUDE_CODE_EFFORT_LEVEL`, do `settings.json` do `C-012`, chega ao script via Bash); nenhum token/tempo/custo exibido ao usuário.
+- `intervencoes.csv`: os dois tipos (`redirecionamento|prd`, `correção|S2|ctx`) com os campos certos.
+- `tags.csv`: `cicloA/baseline` e `cicloA/f000-done`, commit e data corretos.
+- `dados/cicloA/brutos/`: recebeu o `.jsonl` da sessão **e** o `agent-*.jsonl` do subagente provocado de propósito — **confirma de verdade** o caminho dos transcripts de subagente que o `C-016` não tinha conseguido confirmar antes (`<session-id>/subagents/...`, certo na v2.1.282).
+- **P1c confirmado:** `model` do subagente, conferido linha a linha no `.jsonl`, é só `claude-sonnet-5`. Resolve o item correspondente em "Itens em aberto".
+
+**Ainda sem confirmação real** (não ocorreram no ensaio, não eram esperados nele): formato do evento de compactação automática (`system/compact_boundary`) e detecção de `rate_limit_s`. Os dois continuam com degradação seguro para 0/vazio — revisar quando ocorrerem de verdade num ciclo.
+
+Limpeza do ensaio: `tags.csv`, `sessoes.csv`, `intervencoes.csv`, `revisoes_processo.csv`, `segmentos.csv` e os `.jsonl` de `brutos/` apagados (não existiam antes); `/tmp/teste-gate-c21`/`/tmp/teste-gate-c20` removidos; `git status` conferido limpo.
