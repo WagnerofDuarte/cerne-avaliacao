@@ -12,6 +12,9 @@
 | 3 — Pacote de entrada e tabela de entrega | Concluída em 24/09/2026 (`C-005`–`C-009`; `GATE-C13` com hashes) |
 | 4 — Ambiente | `GATE-C14`–`C16` concluídos em 27/09/2026 (pivô de simulador para iPhone 16 Pro físico no `GATE-C16`); `C-024` (isolamento dev/avaliação) escrito, verificação de rede pendente |
 | 5 — Repositórios, credenciais e ambientes de backend | Concluída em 29/09/2026 (`GATE-C17`–`C-015`) |
+| 6 — Instrumento mínimo pré-ciclo | Concluída em 01/10/2026 (`C-016`–`GATE-C21`) |
+| 7 — Especificação da avaliação | Concluída em 24/09/2026, `C-022` fechado em 01/10/2026 (`C-018`–`GATE-C22`) |
+| **Congelamento** | **`GATE-C23` em 01/10/2026 — tag `protocolo-v1.0`** |
 
 ---
 
@@ -458,6 +461,7 @@ Decisões que contrariam o texto de um documento-fonte, tomadas antes do congela
 | 5 | `doc-prototipo.md` (abertura) | App Flutter para iOS e Android | Desenvolvimento e avaliação só no iOS (P11) | P11 | 22/09/2026 |
 | 6 | Protótipo HTML (frame) + P11/`GATE-C15` | Frame 390×844 (iPhone 16e/14), simulador único para dev e avaliação | `whisper_ggml` (P8) não roda em simulador iOS (limitação documentada do FFmpeg empacotado, confirmada externamente) — dev e avaliação passam a um único iPhone 16 Pro físico do Wagner (402×874 pts), nos dois ciclos inteiros; isolamento dev/avaliação vira reset manual entre fases (`C-024`) | P11; `GATE-C15`/`GATE-C16` | 27/09/2026 |
 | 7 | `protocolo.md` §9 (achado 24/09/2026) | "Um reset recria o schema `experiment` inteiro do zero (`ai_replay_cache`, `worker_config`)" | Isso vale para `supabase db reset` **local** (`dev`). Nos ambientes hospedados (`ciclo-a`/`ciclo-b`), não existe esse comando contra projeto remoto (`docs/roteiro_de_congelamento.md`, achado no Passo 7) — o reset real ali é um `TRUNCATE` manual de só `entries, chat_sessions, chat_messages, insights, export_jobs`, que **não toca** `experiment.worker_config` nem `experiment.ai_replay_cache`. Os passos 2 (reconfigurar worker) e 3 (reimportar cache) do `reset-ambiente` (`C-015`) não são estritamente necessários a cada execução nesses ambientes — mantidos mesmo assim, por decisão do Wagner, como garantia redundante idempotente (não fazem mal repetir) | `C-015` | 29/09/2026 |
+| 8 | `plano-ciclos.md`, `GATE-C23` | "Gerar hashes de: ... os arquivos de `holdout/` e de `harness/juiz/`" — não menciona `harness/regras.md` (`C-022`) nem `harness/precos.md` (`C-023`) | São definições congeladas da Fase 7 tanto quanto as outras — incluídos no congelamento por extensão, mesmo fora da lista literal do gate. Nunca reduz a cobertura do congelamento, só amplia | `docs/hashes-congelamento.md` | 01/10/2026 |
 
 ## 9. Cache de IA e reset (`GATE-C19`, achado e corrigido em 24/09/2026)
 
@@ -512,6 +516,66 @@ Não foi possível comparar o hash com o valor exato registrado em 11/09/2026 �
 
 **Nota de segurança (28/09/2026):** a senha do banco do `ciclo-a` apareceu em texto puro no chat desta sessão durante o diagnóstico do `%40`. Recomendado ao Wagner trocar essa senha no painel do Supabase (Project Settings → Database → Reset database password) antes do `GATE-C23`.
 
+**Atualização (30/09/2026):** `segredos/.env.ciclo-a`, `.env.ciclo-b`, `db.ciclo-a.env` e `db.ciclo-b.env` foram comitados e enviados ao GitHub pelo Wagner (commit `a662a6f`, "keys and secrets"), junto com a remoção da linha `segredos/` do `.gitignore` — ou seja, `SUPABASE_DB_URL`, `VOYAGE_API_KEY` e `EXPORT_WORKER_SECRET` ficaram no histórico do repositório. **Decisão explícita do Wagner (01/10/2026):** isto foi proposital, para facilitar o acesso dos dois às credenciais num projeto pessoal, sem risco considerado relevante — a recomendação de rotação acima não se aplica a este caso; os segredos continuam no repositório por decisão dele, não por descuido.
+
 **`segredos/db.ciclo-a.env`/`db.ciclo-b.env`:** também eram fantasmas (mesma causa do `.env.ciclo-*`) — recriados de verdade em 28/09/2026 com a connection string do pooler (`%40` na senha); `schema-hash.ts` reconfirmado com os dois, mesmo hash de antes (`f33a12b4...9868e2`).
 
 **Pendência — `TEST_FAULT_KEY`:** tentativa de confirmar o valor configurado nos ambientes hospedados via teste leve e seguro (`X-Test-Now` no `dashboard-aggregate-get`, sem sujar a conta seed) esbarrou num erro de app não relacionado — `404 NOT_FOUND "perfil do usuário autenticado não encontrado"` para a conta `cenario-cheio@cerne.test` nesse endpoint específico (achado à parte, pode ser relevante para a avaliação real — anotado aqui, não investigado agora). **Decisão do Wagner (28/09/2026):** adiar a confirmação do `TEST_FAULT_KEY` para mais perto da Parte IV, quando o proxy de falhas for montado de qualquer forma — não bloqueia a Fase 5.
+
+## 11. Instrumento mínimo pré-ciclo (Fase 6)
+
+### 11.1 Formato do transcript JSONL do Claude Code (`C-016`)
+
+**Risco de base:** a documentação oficial do Claude Code avisa que o formato interno do transcript "muda entre versões" e recomenda `/export` ou `claude -p --output-format json` em vez de parsing direto — não há schema público estável. Os campos abaixo foram confirmados contra uma sessão **real** do Wagner (Claude Code 2.1.282, 01/10/2026), não contra a documentação oficial, que não os garante entre versões. Qualquer atualização do Claude Code travado (`C-011`) exige reconferir isto antes de confiar nos dados coletados.
+
+**Confirmado de verdade, por inspeção de sessão real:**
+- Caminho do transcript: `~/.claude/projects/<cwd-com-não-alfanuméricos-trocados-por-"->/<session-id>.jsonl`; desloca por completo com `CLAUDE_CONFIG_DIR` (a mesma variável que isola `cfg-ciclo-a`/`cfg-ciclo-b`, `C-011`).
+- `timestamp`: ISO 8601 com milissegundos e `Z` (ex.: `2026-10-01T02:07:11.454Z`), em todo tipo de registro.
+- Mensagem de usuário humana: `{"type": "user", "origin": {"kind": "human"}, "message": {"role": "user", "content": [...]}}`. Mensagens/eventos de sistema (ex.: slash command) não têm `origin.kind: "human"` — é o campo usado para nunca confundir uma mensagem do pesquisador com qualquer outra coisa.
+- Resposta do assistente: `{"type": "assistant", "message": {"id": "msg_...", "model": "...", "usage": {...}}}`. `usage` por mensagem, incluindo `cache_creation.ephemeral_5m_input_tokens`/`ephemeral_1h_input_tokens` — bate exatamente com a regra 2 do `harness/precos.md` (preços diferentes para escrita de cache de 5 min e de 1h). Mensagens do mesmo turno podem repetir o mesmo `message.id` em mais de uma linha (um bloco de conteúdo por linha) — o script deduplica por esse campo antes de somar.
+- Slash command / skill invocada: `{"type": "system", "subtype": "local_command", "commandRun": {"command": "<nome>", "args": "..."}}` — é o sinal usado para a segmentação por fase (`protocolo.md` §4.4).
+- **Achado não previsto no plano original:** o contexto que a extensão do Claude Code no VS Code injeta (arquivo aberto, seleção) **não** aparece como um campo/atributo separado da mensagem — aparece como um **bloco de texto próprio**, dentro do mesmo `message.content` da mensagem do usuário, envolto em `<ide_selection>...</ide_selection>`, antes do texto que o pesquisador de fato escreveu. `n_msgs_contexto_ide` (P2) é contado em cima desse marcador. Sessões abertas pelo terminal (`entrypoint: "cli"`) nunca têm esse bloco; sessões abertas pela extensão (`entrypoint: "claude-vscode"`) só têm quando havia de fato um arquivo com seleção ativa no momento de enviar a mensagem.
+
+**Não confirmado empiricamente** (nenhuma sessão de teste gerou o evento de verdade; implementado por relato de comunidade, com degradação segura para 0/vazio se não bater, nunca por suposição silenciosa) — **confirmar no `GATE-C21`**, que já previa provocar um subagente de propósito:
+- Caminho dos transcripts de subagentes (esperado: diretório irmão do `.jsonl` principal, `<session-id>/subagents/workflows/<run>/agent-*.jsonl`).
+- Formato do evento de compactação automática (`{"type": "system", "subtype": "compact_boundary", "compactMetadata": {...}}`).
+
+**Decisão própria do script, sem valor congelado em nenhuma fonte, pendente de revisão do Wagner antes do `GATE-C23`:** tolerância de `div_otel` fixada em 2%.
+
+### 11.2 `C-016` — estado
+
+`scripts/coletar_sessao.py` (parser + CLI nos 3 modos: `skill`, `hook`, `manual`) e `skills/coletar-sessao/SKILL.md` escritos em `cerne-avaliacao`. 12 testes unitários (`scripts/tests/test_coletar_sessao.py`) cobrindo os 4 cenários do critério do plano (sem intervenção; 3 intervenções de tipos diferentes; compactação no meio; subagente com tokens em arquivo separado) × os 3 modos — todos passando, incluindo a confirmação de que o corte do modo `skill` exclui a mensagem de invocação e tudo depois, e que os tokens do subagente somam nas colunas `sub_*` sem se misturar com os do principal. Falta: `C-017`, e a verificação real (não sintética) nos `GATE-C20`/`GATE-C21`.
+
+**Achado/correção (01/10/2026):** o caminho default de `dados/<ciclo>/` no script usava `dados/a`/`dados/b` — errado; o repositório já usa `dados/cicloA`/`dados/cicloB` desde a Fase 0. Corrigido.
+
+### 11.3 `C-017` — scripts auxiliares (`iniciar-ciclo`, `instalar-metodologia`, `concluir-rf`, `rf-incompleto`)
+
+Escritos em `cerne-avaliacao/scripts/`, com lógica compartilhada em `_ciclo_common.sh`/`_concluir_unidade.sh` e gravação em `tags.csv`/`sessoes.csv` via `registrar_tag.py`/`registrar_instalacao.py` (reaproveitam `coletar_sessao.py`, nunca duplicam o esquema das colunas). Dependem de `CERNE_CICLO_A_DIR`/`CERNE_CICLO_B_DIR` (clones locais de `cerne-ciclo-a`/`cerne-ciclo-b`, mesmo padrão do `CERNE_BACKEND_DIR` da Fase 5).
+
+**Testado de ponta a ponta (01/10/2026), num repositório git descartável fora de `cerne-ciclo-a`/`b` de verdade:**
+- `iniciar-ciclo a`: copiou os 15 arquivos de `entrada/` para `docs/input/`, hash por arquivo idêntico à fonte (confere com os 15 hashes do `GATE-C13` §5.2), `.gitignore` de uma única linha (`.env`), commit + tag `cicloA/baseline`.
+- `instalar-metodologia a`: instalou o Spec Kit v1.0.10 de verdade (30 arquivos — `.claude/skills/speckit-*`, `.specify/`), tag `cicloA/instalado`, linha gravada em `sessoes.csv` com `tipo_sessao=instalacao`, `modo_coleta=script`.
+- `concluir-rf a F000`: testado a partir de um branch de feature de propósito — fez o merge em `main` de verdade (`git merge --no-ff`) e criou a tag `cicloA/f000-done`.
+- `rf-incompleto a RF03`: já em `main` — detectou corretamente que não havia merge a fazer e criou `cicloA/rf03-incompleto`.
+- ID de RF inválido (`RF99`) rejeitado com erro antes de qualquer ação.
+
+`tags.csv`/`sessoes.csv` gerados pelo ensaio apagados depois (não existiam antes do ensaio, nenhuma sobra).
+
+**Não testado de ponta a ponta — risco residual baixo, registrado:** o ramo BMAD de `instalar-metodologia b` (`npx bmad-method@6.11.0 install --directory . --modules bmm --tools claude-code --communication-language English --document-output-language English --yes`). As flags foram confirmadas de verdade via `--help` nesta sessão (`--communication-language`/`--document-output-language` aceitam qualquer string, default `English`), e a instalação em si (sem as flags de idioma explícitas) já tinha sido validada de verdade na Trilha 1 da Fase 4.
+
+### 11.4 `GATE-C20` e `GATE-C21` — verificação real
+
+**`GATE-C20`:** skill copiada para `~/cerne/cfg-ciclo-a/skills/` e `~/cerne/cfg-ciclo-b/skills/`; `/context all` nas duas configurações (repositório descartável, `CLAUDE_CONFIG_DIR` apontando para cada uma) — `coletar-sessao` não aparece em nenhuma categoria, nas duas. Resultado esperado do `disable-model-invocation: true`; não precisou do fallback do hook `SessionEnd`. Resolve o relato antigo de "Itens em aberto" sobre `disable-model-invocation` não funcionar em algumas versões — não se confirmou na v2.1.282.
+
+**`GATE-C21` — achado real, corrigido na hora:** no ensaio geral (repositório descartável, `/tmp/teste-gate-c21`), a skill foi invocada **sem** o argumento `<ID>` — em vez de parar e perguntar, o modelo **adivinhou** `F000` sozinho e gravou a sessão inteira sob esse ID. É um risco real: numa sessão de verdade, isso corromperia a atribuição de M1-M3 por unidade de trabalho. `SKILL.md` corrigido na hora (instrução explícita: nunca adivinhar, sempre perguntar se o `<ID>` não vier certo) e recopiado para os dois `cfg-ciclo-*`. A correção em si não foi reensaiada à parte — custo baixo de conferir na primeira sessão real do Ciclo A.
+
+**Resto do ensaio, confirmado com dados reais (mesmo com o ID errado, os valores em si saíram corretos):**
+- `sessoes.csv`: `n_intervencoes=2`, `n_processo=1`, `modelo=claude-sonnet-5`, `config_raciocinio=high` (confirma que `$CLAUDE_CODE_EFFORT_LEVEL`, do `settings.json` do `C-012`, chega ao script via Bash); nenhum token/tempo/custo exibido ao usuário.
+- `intervencoes.csv`: os dois tipos (`redirecionamento|prd`, `correção|S2|ctx`) com os campos certos.
+- `tags.csv`: `cicloA/baseline` e `cicloA/f000-done`, commit e data corretos.
+- `dados/cicloA/brutos/`: recebeu o `.jsonl` da sessão **e** o `agent-*.jsonl` do subagente provocado de propósito — **confirma de verdade** o caminho dos transcripts de subagente que o `C-016` não tinha conseguido confirmar antes (`<session-id>/subagents/...`, certo na v2.1.282).
+- **P1c confirmado:** `model` do subagente, conferido linha a linha no `.jsonl`, é só `claude-sonnet-5`. Resolve o item correspondente em "Itens em aberto".
+
+**Ainda sem confirmação real** (não ocorreram no ensaio, não eram esperados nele): formato do evento de compactação automática (`system/compact_boundary`) e detecção de `rate_limit_s`. Os dois continuam com degradação seguro para 0/vazio — revisar quando ocorrerem de verdade num ciclo.
+
+Limpeza do ensaio: `tags.csv`, `sessoes.csv`, `intervencoes.csv`, `revisoes_processo.csv`, `segmentos.csv` e os `.jsonl` de `brutos/` apagados (não existiam antes); `/tmp/teste-gate-c21`/`/tmp/teste-gate-c20` removidos; `git status` conferido limpo.
