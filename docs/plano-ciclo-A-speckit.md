@@ -1287,23 +1287,26 @@ Em `plano-ciclos.md`: o que aconteceu de inesperado, desvios registrados e decis
 
 ## 16. Calendário
 
+**Revisado em 07/10/2026 (decisão do Wagner):** o Ciclo A começou com 6 dias de atraso e **mantém as datas finais** (fim em 21/10, transição em 22/10). As datas por unidade abaixo são só um guia de ritmo: a regra de parada continua sendo a timebox em tempo ativo (P7), e uma unidade que atrasar empurra as seguintes sem alterar nenhuma regra.
+
 | Data | Etapa | Saída |
 |---|---|---|
-| 01/10 | Seção 3 (preparação) + A0 | `cicloA/baseline`, `cicloA/instalado`, `GATE-A02` |
-| 01–02/10 | A1 SETUP | `cicloA/setup-done` |
-| 02–04/10 | A2 F000 (12 h) | `cicloA/f000-done` |
-| 04–05/10 | A3 RF03 | `cicloA/rf03-done` |
-| 05–07/10 | A4 RF01 | `cicloA/rf01-done` |
-| 07–08/10 | A5 RF02 | `cicloA/rf02-done` |
-| 08–10/10 | A6 RF07 | `cicloA/rf07-done` |
-| 10–11/10 | A7 RF06 | `cicloA/rf06-done` |
-| 11–13/10 | A8 RF04 | `cicloA/rf04-done` |
-| 13–14/10 | A9 RF10 | `cicloA/rf10-done` |
-| 14–16/10 | A10 RF08 | `cicloA/rf08-done` |
-| 16–18/10 | A11 RF05 | `cicloA/rf05-done` |
-| 18–20/10 | A12 RF09 | `cicloA/rf09-done` |
+| 07/10 | Seção 3 (preparação) + A0 + A1 | `cicloA/baseline`, `cicloA/instalado`, `GATE-A02`, `cicloA/setup-done` |
+| 08–09/10 | A2 F000 (12 h) | `cicloA/f000-done` |
+| 10/10 | A3 RF03 | `cicloA/rf03-done` |
+| 11–12/10 | A4 RF01 | `cicloA/rf01-done` |
+| 12–13/10 | A5 RF02 | `cicloA/rf02-done` |
+| 14/10 | A6 RF07 | `cicloA/rf07-done` |
+| 15/10 | A7 RF06 | `cicloA/rf06-done` |
+| 16/10 | A8 RF04 | `cicloA/rf04-done` |
+| 17/10 | A9 RF10 | `cicloA/rf10-done` |
+| 18/10 | A10 RF08 | `cicloA/rf08-done` |
+| 19/10 | A11 RF05 | `cicloA/rf05-done` |
+| 20/10 | A12 RF09 | `cicloA/rf09-done` |
 | 21/10 | Encerramento | `cicloA/final`, `GATE-A03` |
 | 22/10 | Transição | `GATE-X02` |
+
+Se o ritmo não couber até 21/10, a decisão de estender (ou não) é tomada de novo, registrada nas notas e em `desvios.md` — nunca encurtando timebox.
 
 Em paralelo (fora das sessões, em `cerne-avaliacao`): a trilha do harness (`H-001`–`H-006`), com corte da hold-out e da M8b em **06/11** (`GATE-H01`). Ela nunca toca `cerne-ciclo-a`.
 
