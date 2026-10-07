@@ -224,17 +224,24 @@ diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-s
 ```
 **Critério:** `OK-a` e `OK-b`. Se houver diferença, copie de novo: `cp "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-a/skills/coletar-sessao/SKILL.md` (idem `cfg-ciclo-b`).
 
+**Skills da conta (D-009).** A conta do claude.ai sincroniza skills próprias (`aula`, `docs`, `docx`, `pdf`, `pptx`, `xlsx`, `skill-creator`…) para dentro do diretório de configuração. Em 07/10/2026 elas estavam só no `cfg-ciclo-a` (assimetria). Os dois diretórios só podem ter a `coletar-sessao`:
+```bash
+ls ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-b/skills      # só coletar-sessao nos dois
+ls ~/cerne/cfg-ciclo-a/plugins ~/cerne/cfg-ciclo-b/plugins    # sem pasta synced
+```
+Se aparecer `synced`, mova para fora (`mv ~/cerne/cfg-ciclo-a/skills/synced ~/cerne/backup-synced-$(date +%Y%m%d)-skills`, idem `plugins/synced`) e confira de novo no `/context` do `GATE-A02`/`GATE-B02`. Se elas voltarem sozinhas, pare: a alternativa decidida é desligar as skills na conta durante os ciclos.
+
 ### 3.5 `settings.json` intacto
 
 ```bash
 shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json
 ```
-**Critério:** os dois `fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369`.
+**Critério:** os dois `db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2` (hash vigente desde o D-009, 07/10/2026: o congelado `fdb46287…5369` + `"theme": "dark"` gravado pelo próprio Claude Code).
 
 ### 3.6 Versões travadas (P8, §6 do protocolo)
 
 ```bash
-sw_vers -productVersion        # 27.0
+sw_vers -productVersion        # 27.0.1 (build 26A434; D-010 — era 27.0)
 xcodebuild -version            # Xcode 27.0 / Build version 27A266a
 fvm flutter --version          # Flutter 3.47.5 • channel stable … Dart 3.13.4
 claude --version               # 2.1.282
@@ -243,7 +250,13 @@ specify version 2>/dev/null | grep -i "cli version" ; which specify   # 1.0.10 ;
 uv --version                   # uv 0.12.19
 node -v                        # v26.10.0
 ```
-**Critério:** todos iguais. Qualquer diferença: **parar** (atualização acidental muda o ambiente entre ciclos).
+**Critério:** todos iguais. Qualquer diferença: **parar** (atualização acidental muda o ambiente entre ciclos). O aviso "A new version of Flutter is available!" é esperado: **nunca** rode `flutter upgrade`.
+
+**Atualizações automáticas desligadas (D-010)** — conferir:
+```bash
+defaults read /Library/Preferences/com.apple.SoftwareUpdate | grep -E "AutomaticCheckEnabled|AutomaticDownload|AutomaticallyInstallMacOSUpdates|CriticalUpdateInstall|ConfigDataInstall"   # todas = 0
+defaults read /Library/Preferences/com.apple.commerce AutoUpdate     # 0 (App Store, inclui o Xcode)
+```
 
 ### 3.7 Backend `ciclo-a`
 
@@ -262,7 +275,7 @@ node -v                        # v26.10.0
 ```bash
 fvm flutter devices | grep -i "$IPHONE"
 ```
-**Critério:** o iPhone aparece na lista.
+**Critério:** o iPhone aparece na lista, com **iOS 27.0.1 (24A446)** (D-010). Atualizações automáticas do iOS desligadas: Ajustes → Geral → Atualização de Software → Atualizações Automáticas (todas desligadas).
 
 ### 3.9 Coletor OpenTelemetry
 
@@ -1274,23 +1287,26 @@ Em `plano-ciclos.md`: o que aconteceu de inesperado, desvios registrados e decis
 
 ## 16. Calendário
 
+**Revisado em 07/10/2026 (decisão do Wagner):** o Ciclo A começou com 6 dias de atraso e **mantém as datas finais** (fim em 21/10, transição em 22/10). As datas por unidade abaixo são só um guia de ritmo: a regra de parada continua sendo a timebox em tempo ativo (P7), e uma unidade que atrasar empurra as seguintes sem alterar nenhuma regra.
+
 | Data | Etapa | Saída |
 |---|---|---|
-| 01/10 | Seção 3 (preparação) + A0 | `cicloA/baseline`, `cicloA/instalado`, `GATE-A02` |
-| 01–02/10 | A1 SETUP | `cicloA/setup-done` |
-| 02–04/10 | A2 F000 (12 h) | `cicloA/f000-done` |
-| 04–05/10 | A3 RF03 | `cicloA/rf03-done` |
-| 05–07/10 | A4 RF01 | `cicloA/rf01-done` |
-| 07–08/10 | A5 RF02 | `cicloA/rf02-done` |
-| 08–10/10 | A6 RF07 | `cicloA/rf07-done` |
-| 10–11/10 | A7 RF06 | `cicloA/rf06-done` |
-| 11–13/10 | A8 RF04 | `cicloA/rf04-done` |
-| 13–14/10 | A9 RF10 | `cicloA/rf10-done` |
-| 14–16/10 | A10 RF08 | `cicloA/rf08-done` |
-| 16–18/10 | A11 RF05 | `cicloA/rf05-done` |
-| 18–20/10 | A12 RF09 | `cicloA/rf09-done` |
+| 07/10 | Seção 3 (preparação) + A0 + A1 | `cicloA/baseline`, `cicloA/instalado`, `GATE-A02`, `cicloA/setup-done` |
+| 08–09/10 | A2 F000 (12 h) | `cicloA/f000-done` |
+| 10/10 | A3 RF03 | `cicloA/rf03-done` |
+| 11–12/10 | A4 RF01 | `cicloA/rf01-done` |
+| 12–13/10 | A5 RF02 | `cicloA/rf02-done` |
+| 14/10 | A6 RF07 | `cicloA/rf07-done` |
+| 15/10 | A7 RF06 | `cicloA/rf06-done` |
+| 16/10 | A8 RF04 | `cicloA/rf04-done` |
+| 17/10 | A9 RF10 | `cicloA/rf10-done` |
+| 18/10 | A10 RF08 | `cicloA/rf08-done` |
+| 19/10 | A11 RF05 | `cicloA/rf05-done` |
+| 20/10 | A12 RF09 | `cicloA/rf09-done` |
 | 21/10 | Encerramento | `cicloA/final`, `GATE-A03` |
 | 22/10 | Transição | `GATE-X02` |
+
+Se o ritmo não couber até 21/10, a decisão de estender (ou não) é tomada de novo, registrada nas notas e em `desvios.md` — nunca encurtando timebox.
 
 Em paralelo (fora das sessões, em `cerne-avaliacao`): a trilha do harness (`H-001`–`H-006`), com corte da hold-out e da M8b em **06/11** (`GATE-H01`). Ela nunca toca `cerne-ciclo-a`.
 

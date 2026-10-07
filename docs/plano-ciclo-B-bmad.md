@@ -171,10 +171,11 @@ git diff --stat protocolo-v1.0 -- docs/protocolo.md docs/Metricas_e_Skills_Ciclo
 
 ```bash
 sw_vers -productVersion; xcodebuild -version; fvm flutter --version; claude --version; code --version | head -1; uv --version; node -v
-shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369
+shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2 (D-009)
 diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-sessao/SKILL.md && echo OK-b
+ls ~/cerne/cfg-ciclo-b/skills ~/cerne/cfg-ciclo-b/plugins      # só coletar-sessao; sem pasta synced (D-009)
 ```
-**Critério:** macOS 27.0; Xcode 27.0 (27A266a); Flutter 3.47.5 / Dart 3.13.4; Claude Code 2.1.282; VS Code 1.139.1; uv 0.12.19; Node v26.10.0; hash idêntico; `OK-b`. Confirmar também que o modelo `claude-sonnet-5` continua disponível (página de modelos da Anthropic). **Se algo mudou ou o modelo saiu do ar: parar e decidir com a orientadora.**
+**Critério:** macOS 27.0.1, build 26A434 (D-010); Xcode 27.0 (27A266a); Flutter 3.47.5 / Dart 3.13.4; Claude Code 2.1.282; VS Code 1.139.1; uv 0.12.19; Node v26.10.0; hash idêntico; `OK-b`. Confirmar também que o modelo `claude-sonnet-5` continua disponível (página de modelos da Anthropic). **Se algo mudou ou o modelo saiu do ar: parar e decidir com a orientadora.**
 
 ### 3.3 🔴 `GATE-X01` Backend `ciclo-b`
 
