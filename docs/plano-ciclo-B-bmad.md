@@ -175,7 +175,7 @@ shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # db5d321b34ad3a400fcc57bfd
 diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-sessao/SKILL.md && echo OK-b
 ls ~/cerne/cfg-ciclo-b/skills ~/cerne/cfg-ciclo-b/plugins      # só coletar-sessao; sem pasta synced (D-009)
 ```
-**Critério:** macOS 27.0; Xcode 27.0 (27A266a); Flutter 3.47.5 / Dart 3.13.4; Claude Code 2.1.282; VS Code 1.139.1; uv 0.12.19; Node v26.10.0; hash idêntico; `OK-b`. Confirmar também que o modelo `claude-sonnet-5` continua disponível (página de modelos da Anthropic). **Se algo mudou ou o modelo saiu do ar: parar e decidir com a orientadora.**
+**Critério:** macOS 27.0.1, build 26A434 (D-010); Xcode 27.0 (27A266a); Flutter 3.47.5 / Dart 3.13.4; Claude Code 2.1.282; VS Code 1.139.1; uv 0.12.19; Node v26.10.0; hash idêntico; `OK-b`. Confirmar também que o modelo `claude-sonnet-5` continua disponível (página de modelos da Anthropic). **Se algo mudou ou o modelo saiu do ar: parar e decidir com a orientadora.**
 
 ### 3.3 🔴 `GATE-X01` Backend `ciclo-b`
 

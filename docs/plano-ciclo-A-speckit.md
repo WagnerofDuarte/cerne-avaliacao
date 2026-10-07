@@ -241,7 +241,7 @@ shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.jso
 ### 3.6 Versões travadas (P8, §6 do protocolo)
 
 ```bash
-sw_vers -productVersion        # 27.0
+sw_vers -productVersion        # 27.0.1 (build 26A434; D-010 — era 27.0)
 xcodebuild -version            # Xcode 27.0 / Build version 27A266a
 fvm flutter --version          # Flutter 3.47.5 • channel stable … Dart 3.13.4
 claude --version               # 2.1.282
@@ -250,7 +250,13 @@ specify version 2>/dev/null | grep -i "cli version" ; which specify   # 1.0.10 ;
 uv --version                   # uv 0.12.19
 node -v                        # v26.10.0
 ```
-**Critério:** todos iguais. Qualquer diferença: **parar** (atualização acidental muda o ambiente entre ciclos).
+**Critério:** todos iguais. Qualquer diferença: **parar** (atualização acidental muda o ambiente entre ciclos). O aviso "A new version of Flutter is available!" é esperado: **nunca** rode `flutter upgrade`.
+
+**Atualizações automáticas desligadas (D-010)** — conferir:
+```bash
+defaults read /Library/Preferences/com.apple.SoftwareUpdate | grep -E "AutomaticCheckEnabled|AutomaticDownload|AutomaticallyInstallMacOSUpdates|CriticalUpdateInstall|ConfigDataInstall"   # todas = 0
+defaults read /Library/Preferences/com.apple.commerce AutoUpdate     # 0 (App Store, inclui o Xcode)
+```
 
 ### 3.7 Backend `ciclo-a`
 
