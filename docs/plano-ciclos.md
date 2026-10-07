@@ -591,11 +591,13 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Preparação (07/10/2026, `docs/plano-ciclo-A-speckit.md` §3):** concluída. Achados registrados como D-009 (tema no `settings.json`; skills da conta sincronizadas só em `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446` adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone). `abrir-ciclo` substituído (a versão antiga abriria o diretório corrente quando não achava o repositório). Calendário revisado: início em 07/10, datas finais mantidas.
 - **Assinatura (P13), 07/10/2026:** plano **Pro** do Claude. Limites vigentes: os da página de uso do plano Pro nesta data (tipos de limite a anotar aqui na primeira consulta à página).
 
-- [ ] `A-001` Rodar `iniciar-ciclo a` — **Critério:** tag `cicloA/baseline` criada; hash do `docs/input/` igual ao do congelamento.
+- [x] `A-001` Rodar `iniciar-ciclo a` — **Critério:** tag `cicloA/baseline` criada; hash do `docs/input/` igual ao do congelamento.
+  - **Registro (07/10/2026):** 15 arquivos copiados, hashes idênticos à fonte; commit `1cd770a` com tag `cicloA/baseline`; `.env` fora do git (2 variáveis, nenhum `service_role`). Enviado ao GitHub.
 
-- [ ] 🔴 **[MANUAL] `GATE-A01`** — Instalar o Spec Kit
+- [x] 🔴 **[MANUAL] `GATE-A01`** — Instalar o Spec Kit
   - **O quê:** no terminal, fora de sessão do Claude Code, rodar `scripts/instalar-metodologia a`, que executa o `specify init` da versão travada com os parâmetros registrados no `GATE-C08` e grava a duração em `sessoes.csv` com `tipo_sessao = instalacao` (parte da M1). Commit do resultado.
   - **Como confirmo:** estrutura do Spec Kit presente (`.specify/`, comandos ou skills do Spec Kit para o Claude Code); tag `cicloA/instalado`.
+  - **Registro (07/10/2026):** `specify init --here --force --non-interactive --integration claude` em 5 s (M1, linha `SETUP/instalacao/script` em `sessoes.csv`); 30 arquivos, 10 skills `speckit-*` (`speckit-taskstoissues` fica fora do fluxo), sem `.specify/extensions.yml` e sem `CLAUDE.md`; commit `28ef31d` com tag `cicloA/instalado`; árvore limpa. Enviado ao GitHub.
 
 - [ ] 🔴 **[MANUAL] `GATE-A02`** — Conferência de largada
   - **O quê:** abrir uma sessão com `abrir-ciclo a`, rodar `/context` e conferir: modelo correto, nenhuma skill além das do Spec Kit, `coletar-sessao` ausente do contexto. Fechar a sessão **sem** mandar nenhuma mensagem.
