@@ -599,9 +599,10 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - **Como confirmo:** estrutura do Spec Kit presente (`.specify/`, comandos ou skills do Spec Kit para o Claude Code); tag `cicloA/instalado`.
   - **Registro (07/10/2026):** `specify init --here --force --non-interactive --integration claude` em 5 s (M1, linha `SETUP/instalacao/script` em `sessoes.csv`); 30 arquivos, 10 skills `speckit-*` (`speckit-taskstoissues` fica fora do fluxo), sem `.specify/extensions.yml` e sem `CLAUDE.md`; commit `28ef31d` com tag `cicloA/instalado`; árvore limpa. Enviado ao GitHub.
 
-- [ ] 🔴 **[MANUAL] `GATE-A02`** — Conferência de largada
+- [x] 🔴 **[MANUAL] `GATE-A02`** — Conferência de largada
   - **O quê:** abrir uma sessão com `abrir-ciclo a`, rodar `/context` e conferir: modelo correto, nenhuma skill além das do Spec Kit, `coletar-sessao` ausente do contexto. Fechar a sessão **sem** mandar nenhuma mensagem.
   - **Como confirmo:** screenshot em `dados/evidencias/`. Essa sessão não é medida — nenhuma mensagem foi enviada, logo não há `/coletar-sessao`.
+  - **Registro (07/10/2026):** `abrir-ciclo a` (versão nova, seção 3.3 do plano A) abriu o repositório real; `/context`: modelo `claude-sonnet-5`, só skills `speckit-*`, nenhuma skill da conta (confirma a remoção do D-009), `coletar-sessao` ausente. Sessão fechada sem mensagem e sem coleta. Evidência: `dados/evidencias/gate-a02-ciclo-a.png`.
 
 ## A1 — Setup (constitution)
 **Prazo proposto: 01 a 02/10/2026**
