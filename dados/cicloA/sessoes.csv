@@ -1,0 +1,2 @@
+ciclo,id_rf,sessao_id,tipo_sessao,modo_coleta,motivo_fim,inicio,corte,duracao_s,duracao_bruta_s,pausa_s,rate_limit_s,tokens_input,tokens_output,cache_read,cache_write,sub_tokens_input,sub_tokens_output,sub_cache_read,sub_cache_write,custo_usd,n_intervencoes,n_processo,n_avisos,n_compactacoes,n_msgs_contexto_ide,div_otel,div_otel_alerta,modelo,versao_claude_code,config_raciocinio
+a,SETUP,instalacao-1efd1bd9-3f1d-48c6-9f44-3afdfcca7d36,instalacao,script,normal,2026-10-07T13:47:40.000Z,2026-10-07T13:47:45.000Z,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,,False,,,
