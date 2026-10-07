@@ -275,7 +275,7 @@ defaults read /Library/Preferences/com.apple.commerce AutoUpdate     # 0 (App St
 ```bash
 fvm flutter devices | grep -i "$IPHONE"
 ```
-**Critério:** o iPhone aparece na lista.
+**Critério:** o iPhone aparece na lista, com **iOS 27.0.1 (24A446)** (D-010). Atualizações automáticas do iOS desligadas: Ajustes → Geral → Atualização de Software → Atualizações Automáticas (todas desligadas).
 
 ### 3.9 Coletor OpenTelemetry
 
