@@ -1,10 +1,19 @@
 # Plano de execução — Ciclo A (GitHub Spec Kit v1.0.10)
 
 **Projeto:** TCC Wagner Duarte — Spec Kit × BMAD-METHOD (veículo: app Cerne)
-**Versão deste documento:** 1.1 — 01/10/2026 (decisões D-001 a D-008 tomadas e aplicadas no repositório, commit `6c9686d` na branch `claude/wizardly-clarke-xj5ade`)
+**Versão deste documento:** 1.2 — 07/10/2026 (seção 3 e A0 executadas; ajustes do que foi aprendido na execução e desvios D-009/D-010). Versão 1.1: 01/10/2026, decisões D-001 a D-008
 **Base:** protocolo congelado (tag `protocolo-v1.0` em `cerne-avaliacao`) — `docs/protocolo.md`, `docs/Metricas_e_Skills_Ciclos.md` v1.0, `prompts/`, `entrada/`, `scripts/`, `skills/coletar-sessao/`.
 **Conferido contra:** Spec Kit v1.0.10 reinstalado em pasta descartável (texto real de cada comando); `cerne-backend` (commit `5a0f809`); `cerne-backend-handoff` (commit `fa998d9`); `cerne-ciclo-a` no GitHub (vazio em 01/10/2026).
 **Precedência:** protocolo congelado > comportamento real das ferramentas > este documento > `plano-ciclos.md` Parte II. Onde este documento corrige a Parte II, a correção está listada no Apêndice B.
+
+> **Situação da execução (07/10/2026):**
+> | Etapa | Situação | Evidência |
+> |---|---|---|
+> | Seção 3 — preparação única | ✅ concluída | Achados viraram D-009 (tema no `settings.json`; skills da conta só no `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446`; atualizações automáticas desligadas). `abrir-ciclo` substituído. Assinatura: plano **Pro** |
+> | `A-001` baseline | ✅ | `cicloA/baseline` em `1cd770a` |
+> | `GATE-A01` Spec Kit | ✅ (5 s, M1) | `cicloA/instalado` em `28ef31d` |
+> | `GATE-A02` largada | ✅ | `dados/evidencias/gate-a02-ciclo-a.png` |
+> | **Próximo:** A1 (seção 8) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -100,6 +109,8 @@ cerne-backend ──► cerne-backend-handoff ──► cerne-avaliacao (laborat
 
 A conferência deste plano contra as ferramentas e os repositórios reais encontrou seis pontos em que seguir o plano como estava **não daria certo**. **Todos foram decididos por você em 01/10/2026 (opção ⭐ em todos) e já estão registrados em `docs/desvios.md` (D-001 a D-008) e aplicados no repositório** — commit `6c9686d`, branch `claude/wizardly-clarke-xj5ade`. O texto abaixo explica cada um.
 
+Na execução da seção 3 (07/10/2026) apareceram mais dois achados, também decididos e registrados: **D-009** (o Claude Code gravou `"theme": "dark"` nos dois `settings.json` — hash novo `db5d321b…91e2`; skills da conta do claude.ai sincronizadas só no `cfg-ciclo-a`, removidas) e **D-010** (macOS e iOS 27.0.1 adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone).
+
 ### 2.1 🔴 BLOQUEANTE — `P-SETUP` contradiz o contrato da API (autenticação) — ✅ decidido
 
 **Achado.** O `P-SETUP` (congelado) diz ao agente: *"Send `SUPABASE_ANON_KEY` as the `Authorization: Bearer <key>` header … on every call … After login, keep using the same anon key for Edge Function invocation; the user's own session token is a separate concern"*. Mas o contrato entregue (`docs/input/backend/api/openapi.yaml`) marca **20 dos 23 endpoints** com `bearerAuth` (JWT do usuário), e o gateway do backend (`_shared/gateway.ts`, `authenticate()`) lê **só** o `Authorization` para identificar o usuário. Seguindo o `P-SETUP` ao pé da letra, toda chamada autenticada recebe `AUTH_INVALID`. Só `auth-signup`, `auth-login` e `auth-refresh` são públicos. (O `GATE-C18` já tinha confirmado na prática: `entries-list` só respondeu 200 com o token do usuário.)
@@ -150,7 +161,7 @@ Tudo 🧑 [MANUAL], no terminal do Mac. Faça na ordem e marque cada item. Nenhu
 
 ### 3.1 `cerne-avaliacao` local na versão congelada
 
-O PR #2 (congelamento) já está em `main`. Os desvios D-001 a D-008 (commit `6c9686d`) estão na branch `claude/wizardly-clarke-xj5ade` e precisam chegar ao seu `main` antes da A1 — pelo merge de um PR dessa branch no GitHub, ou direto:
+Os desvios e os planos chegam à `main` por PR (os de 01/10 e 07/10 já foram mesclados: #3, #4, #5). Antes de cada dia de ciclo, basta manter o `main` local igual ao GitHub:
 
 ```bash
 TCC="/Users/wagnerduarte/Documents/Faculdade/2026.2/TCC"
@@ -158,12 +169,11 @@ AVAL="$TCC/cerne-avaliacao"
 cd "$AVAL"
 git checkout main
 git pull origin main
-git pull origin claude/wizardly-clarke-xj5ade      # traz os desvios D-001 a D-008 (dispensável se o PR já foi mesclado)
 git fetch --tags
 git tag --list 'protocolo-v1.0'          # deve imprimir: protocolo-v1.0
 git diff --stat protocolo-v1.0 -- docs/protocolo.md docs/Metricas_e_Skills_Ciclos.md entrada prompts holdout harness scripts skills
 ```
-**Critério:** o último comando lista **só** `prompts/P-SETUP.md` (D-001) e `scripts/faixa-plan` (D-004) — as duas diferenças documentadas em `desvios.md`. Conferir também: `sha256sum prompts/P-SETUP.md` → `6c040ea1852cfaccb77c59cd9091435a98695b081de8d4e0f5f2109faecbca65`.
+**Critério:** o último comando lista **só** `prompts/P-SETUP.md` (D-001) e `scripts/faixa-plan` (D-004) — as duas diferenças documentadas em `desvios.md`. Conferir também: `shasum -a 256 prompts/P-SETUP.md` → `6c040ea1852cfaccb77c59cd9091435a98695b081de8d4e0f5f2109faecbca65` e `"$AVAL/scripts/faixa-plan"` → `Timebox do planejamento (B2–B4): abaixo de 50%.` (✅ conferido em 07/10/2026)
 
 ### 3.2 Variáveis de ambiente permanentes
 
@@ -187,6 +197,10 @@ echo "$CERNE_CICLO_A_DIR"; git -C "$CERNE_CICLO_A_DIR" log --oneline 2>&1 | head
 **Critério:** o caminho aparece; o `git log` diz que não há commits (`does not have any commits yet`). Se já houver commits (por exemplo, se você rodou `iniciar-ciclo` antes deste documento), pare e me diga — não siga.
 
 ### 3.3 `abrir-ciclo` aponta para o repositório real
+
+O comando é **`abrir-ciclo a`** (com espaço: `a` é o argumento), não `abrir-ciclo-a`. Ele (1) recusa rodar com o VS Code aberto, (2) exporta `CLAUDE_CONFIG_DIR=~/cerne/cfg-ciclo-a` e (3) abre o VS Code na pasta `cerne-ciclo-a`. Abrir o VS Code de outro jeito (Dock, `code .`) faria o Claude Code usar a sua configuração pessoal (`~/.claude`): modelo, raciocínio e permissões errados e transcripts num lugar onde a coleta não acha.
+
+> **Achado de 07/10/2026:** a versão antiga procurava o repositório em `~/cerne/cerne-ciclo-a` (não existe) e, sem achar, rodava `code -n .` — abriria **a pasta corrente do terminal**. Rodada de dentro de `cerne-avaliacao`, a sessão medida teria aberto no laboratório. Substituída pela versão abaixo (✅ 07/10/2026).
 
 O `abrir-ciclo` foi escrito na Fase 4, **antes** de `cerne-ciclo-a` existir, com um modo de "cai para `code -n .`". Ele nunca foi testado contra o repositório real.
 ```bash
@@ -252,6 +266,8 @@ node -v                        # v26.10.0
 ```
 **Critério:** todos iguais. Qualquer diferença: **parar** (atualização acidental muda o ambiente entre ciclos). O aviso "A new version of Flutter is available!" é esperado: **nunca** rode `flutter upgrade`.
 
+Avisos de versão nova do **Supabase CLI** (ex.: "v2.120.0 available") também são ignorados: nada é atualizado até 13/11.
+
 **Atualizações automáticas desligadas (D-010)** — conferir:
 ```bash
 defaults read /Library/Preferences/com.apple.SoftwareUpdate | grep -E "AutomaticCheckEnabled|AutomaticDownload|AutomaticallyInstallMacOSUpdates|CriticalUpdateInstall|ConfigDataInstall"   # todas = 0
@@ -279,20 +295,23 @@ fvm flutter devices | grep -i "$IPHONE"
 
 ### 3.9 Coletor OpenTelemetry
 
-Num terminal dedicado (deixe aberto durante todas as sessões do dia):
+**O que é:** durante as sessões, o Claude Code envia sozinho a sua telemetria (contagens de tokens e eventos) para `localhost:4317` — está ligado no `settings.json` dos dois ciclos. O coletor (`otelcol-contrib`, instalado no `C-013`) recebe esses dados e grava em `~/cerne/otelcol/output.jsonl`. A fonte principal da M3 é o transcript; o OTel é a **segunda fonte, de conferência**: a coleta compara as duas e grava a diferença (`div_otel`), o que acusa, por exemplo, tokens de subagente não contados (`GATE-C03`).
+
+**Antes de cada dia de sessões**, numa janela própria do Terminal (deixe aberta enquanto houver sessões; reinício do Mac ou janela fechada → rode de novo):
 ```bash
 ~/cerne/otelcol/otelcol-contrib --config ~/cerne/otelcol/config.yaml
 ```
-O coletor só serve de conferência (`div_otel`). Se ele não estiver rodando, a coleta funciona do mesmo jeito, com `div_otel` vazio — anote o dia nas notas. Nunca abra `~/cerne/otelcol/output.jsonl` (tem números de tokens).
+Conferir se está ligado: `lsof -nP -iTCP:4317 -sTCP:LISTEN` → uma linha `otelcol-c … 127.0.0.1:4317 (LISTEN)` (✅ 07/10/2026). O coletor só serve de conferência (`div_otel`). Se ele não estiver rodando, a coleta funciona do mesmo jeito, com `div_otel` vazio — anote o dia nas notas. Nunca abra `~/cerne/otelcol/output.jsonl` (tem números de tokens).
 
 ### 3.10 Registro da assinatura (P13)
 
-Anote em `plano-ciclos.md`, no encerramento da A0: o plano da assinatura do Claude e os limites vigentes hoje (texto da página de uso/planos). Só o plano e os limites, nunca o consumo.
+Anote em `plano-ciclos.md`, na A0: o plano da assinatura do Claude e os limites vigentes hoje (texto da página de uso/planos). Só o plano e os limites, nunca o consumo. ✅ 07/10/2026: plano **Pro** (falta anotar os tipos de limite — só os rótulos da página de uso — na primeira consulta).
 
 ### 3.11 Decisões da seção 2 registradas
 
-- [x] D-001 a D-008 decididos e registrados em `desvios.md`; `P-SETUP` corrigido; hashes atualizados (commit `6c9686d`). Falta só trazê-los para o seu `main` (3.1).
-- [ ] Este documento aberto **fora** do VS Code.
+- [x] D-001 a D-010 decididos e registrados em `desvios.md`; `P-SETUP` corrigido; hashes atualizados; tudo na `main`.
+- [x] Seções 3.1–3.10 conferidas com as saídas reais da máquina (07/10/2026).
+- [ ] Este documento aberto **fora** do VS Code (navegador ou celular, pelo GitHub).
 
 ---
 
@@ -304,7 +323,7 @@ Esta é a rotina de **toda** sessão 🧑🤖🧪 do ciclo, inclusive as de corr
 
 1. 🧑 Coletor OTel rodando (3.9).
 2. 🧑 VS Code **fechado** por completo (Cmd+Q).
-3. 🧑 No terminal: `abrir-ciclo a`.
+3. 🧑 No terminal: `abrir-ciclo a` (com espaço; seção 3.3).
 4. 🧑 No VS Code: abrir o painel do Claude Code e começar uma **conversa nova**. Nunca usar "continuar" ou retomar uma conversa anterior.
 5. 🧑 Fechar **todos** os editores (Cmd+K W) e **desligar o anexo de contexto** (ícone de olho no campo de mensagem). Isso vale antes de **cada** mensagem (P2). Se o VS Code reabrir arquivos sozinho, feche-os de novo.
 
@@ -462,7 +481,7 @@ Conferidas no texto dos comandos instalados:
 
 ## 7. A0 — Instalação e baseline
 
-**Data proposta:** 01/10/2026.
+**Data proposta:** 01/10/2026. **Executada em 07/10/2026** (✅ `A-001`, `GATE-A01`, `GATE-A02`).
 
 ### 7.1 `A-001` ⚙️📏 Baseline
 
@@ -493,9 +512,26 @@ Roda `specify init --here --force --non-interactive --integration claude` dentro
 ls "$CERNE_CICLO_A_DIR/.claude/skills"     # 10 pastas speckit-* (analyze, checklist, clarify, constitution, converge, implement, plan, specify, tasks, taskstoissues)
 ls "$CERNE_CICLO_A_DIR/.specify"           # init-options.json integration.json integrations memory scripts templates workflows
 test -f "$CERNE_CICLO_A_DIR/.specify/extensions.yml" && echo "ATENÇÃO: extensões presentes" || echo "sem extensões (correto)"
+test -e "$CERNE_CICLO_A_DIR/CLAUDE.md" && echo "ATENÇÃO: CLAUDE.md existe" || echo "sem CLAUDE.md (correto)"
 git -C "$CERNE_CICLO_A_DIR" tag             # cicloA/baseline cicloA/instalado
+git -C "$CERNE_CICLO_A_DIR" status --short  # vazio
+cut -d, -f2,4,5 "$AVAL/dados/cicloA/sessoes.csv"   # SETUP,instalacao,script (só colunas sem números)
 ```
 `speckit-taskstoissues` vem instalado, mas fica **fora do fluxo** (§4.2) e nunca é chamado.
+
+**Avisos esperados na saída do `specify init` (não são problema):**
+- *"Current directory is not empty (4 items)"* — são `docs/`, `.gitignore`, `.env` e `.git`, do baseline.
+- *"Consider adding .claude/ (or parts of it) to .gitignore"* — sugestão genérica. **Não** faça: mexer no `.gitignore` é edição manual.
+
+Se o script der erro, **não rode de novo** (uma segunda execução duplica a linha de instalação da M1): guarde a saída e resolva antes.
+
+### 7.2b 📏 Backup da A0
+
+```bash
+git -C "$CERNE_CICLO_A_DIR" push origin main --tags
+cd "$AVAL" && git add dados && git commit -m "Ciclo A: baseline e instalação (<data>)" && git push origin main
+```
+O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (✅ 07/10/2026).
 
 ### 7.3 🔴 `GATE-A02` 🧑 Conferência de largada (sessão **não** medida)
 
@@ -503,12 +539,19 @@ git -C "$CERNE_CICLO_A_DIR" tag             # cicloA/baseline cicloA/instalado
 2. Digitar só `/context` (nenhuma outra mensagem).
 3. Conferir:
    - modelo `claude-sonnet-5`. Se aparecer outro, o `CLAUDE_CONFIG_DIR` não pegou: **pare**, revise 3.3;
-   - skills: só `speckit-*` (mais a skill pessoal da conta já registrada como ameaça no `C-011`, se aparecer);
+   - skills: **só** `speckit-*` — nenhuma skill da conta (`aula`, `docs`, `pdf`…). Se aparecer alguma, a sincronização da conta voltou: **pare** (D-009, seção 3.4);
    - `coletar-sessao` **ausente**;
    - nenhum `CLAUDE.md`/memória de projeto.
-4. Screenshot → salvar como `$AVAL/dados/evidencias/gate-a02-ciclo-a.png`.
-5. Fechar a sessão **sem** `/coletar-sessao`. Ela não é medida e fica registrada só pela evidência.
+4. **Screenshot novo** (os do `GATE-C20` eram de um repositório descartável): Cmd+Shift+4 sobre o painel do Claude Code. O arquivo vai para a Mesa; mova e versione:
+   ```bash
+   mv "$(ls -t ~/Desktop/Screenshot*.png ~/Desktop/Captura*.png 2>/dev/null | head -1)" "$AVAL/dados/evidencias/gate-a02-ciclo-a.png"
+   cd "$AVAL" && git add dados/evidencias/gate-a02-ciclo-a.png && git commit -m "Ciclo A: evidência do GATE-A02" && git push origin main
+   ```
+   (O nome do arquivo depende do idioma do macOS: `Screenshot…` em inglês, `Captura de Tela…` em português.)
+5. **Fechar** = encerrar essa conversa: fechar a aba do painel ou Cmd+Q no VS Code. **Sem** `/coletar-sessao` — só houve `/context` (comando local, não é mensagem ao agente), então não há o que medir. O transcript dela fica em `~/cerne/cfg-ciclo-a/projects/` e é a única sessão que o `A-003` aceita sem linha em `sessoes.csv`. Nunca reabrir essa conversa; a A1 começa numa conversa nova.
 6. Registrar no `plano-ciclos.md`: `A-001`, `GATE-A01`, `GATE-A02` com data.
+
+✅ Executado em 07/10/2026: modelo `claude-sonnet-5`, só `speckit-*`, `coletar-sessao` ausente.
 
 ---
 
