@@ -125,4 +125,10 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369
 ```
 
+**Atualizado em 07/10/2026 (desvio D-009):** o Claude Code acrescentou `"theme": "dark"` aos dois arquivos no primeiro uso (30/09) e reordenou as chaves; conteúdo funcional idêntico, iguais entre si. Hash vigente:
+
+```
+db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2
+```
+
 Se esse hash mudar numa reconferência futura (ex.: X-002 antes do Ciclo B), é desvio — registrar em `desvios.md`.

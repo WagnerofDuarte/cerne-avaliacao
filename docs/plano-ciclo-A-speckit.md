@@ -224,12 +224,19 @@ diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-s
 ```
 **Critério:** `OK-a` e `OK-b`. Se houver diferença, copie de novo: `cp "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-a/skills/coletar-sessao/SKILL.md` (idem `cfg-ciclo-b`).
 
+**Skills da conta (D-009).** A conta do claude.ai sincroniza skills próprias (`aula`, `docs`, `docx`, `pdf`, `pptx`, `xlsx`, `skill-creator`…) para dentro do diretório de configuração. Em 07/10/2026 elas estavam só no `cfg-ciclo-a` (assimetria). Os dois diretórios só podem ter a `coletar-sessao`:
+```bash
+ls ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-b/skills      # só coletar-sessao nos dois
+ls ~/cerne/cfg-ciclo-a/plugins ~/cerne/cfg-ciclo-b/plugins    # sem pasta synced
+```
+Se aparecer `synced`, mova para fora (`mv ~/cerne/cfg-ciclo-a/skills/synced ~/cerne/backup-synced-$(date +%Y%m%d)-skills`, idem `plugins/synced`) e confira de novo no `/context` do `GATE-A02`/`GATE-B02`. Se elas voltarem sozinhas, pare: a alternativa decidida é desligar as skills na conta durante os ciclos.
+
 ### 3.5 `settings.json` intacto
 
 ```bash
 shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json
 ```
-**Critério:** os dois `fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369`.
+**Critério:** os dois `db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2` (hash vigente desde o D-009, 07/10/2026: o congelado `fdb46287…5369` + `"theme": "dark"` gravado pelo próprio Claude Code).
 
 ### 3.6 Versões travadas (P8, §6 do protocolo)
 
