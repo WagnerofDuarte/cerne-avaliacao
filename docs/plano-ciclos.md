@@ -589,7 +589,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 01/10/2026**
 
 - **Preparação (07/10/2026, `docs/plano-ciclo-A-speckit.md` §3):** concluída. Achados registrados como D-009 (tema no `settings.json`; skills da conta sincronizadas só em `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446` adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone). `abrir-ciclo` substituído (a versão antiga abriria o diretório corrente quando não achava o repositório). Calendário revisado: início em 07/10, datas finais mantidas.
-- **Pré-voo (08/10/2026):** ambiente igual após reinício. Achados: **D-011** (`.DS_Store` do Finder; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; sincronização desligada nos dois `settings.json`, hash vigente `3904700b…5922`; o `/context` do `GATE-A02` é anterior ao fim da sincronização, por isso o `GATE-A02b`).
+- **Pré-voo (08/10/2026):** ambiente igual após reinício. Achados: **D-011** (`.DS_Store` do Finder; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; sincronização desligada nos dois `settings.json`, hash vigente `3904700b…5922`; o painel do `/context` do `GATE-A02` não lista nomes de skills e não prova ausência, por isso o `GATE-A02b`).
 - **Assinatura (P13), 07/10/2026:** plano **Pro** do Claude. Limites vigentes: os da página de uso do plano Pro nesta data (tipos de limite a anotar aqui na primeira consulta à página).
 
 - [x] `A-001` Rodar `iniciar-ciclo a` — **Critério:** tag `cicloA/baseline` criada; hash do `docs/input/` igual ao do congelamento.

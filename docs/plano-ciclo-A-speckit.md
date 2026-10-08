@@ -247,7 +247,7 @@ diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-s
 ls ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-b/skills      # só coletar-sessao nos dois
 ls ~/cerne/cfg-ciclo-a/plugins ~/cerne/cfg-ciclo-b/plugins    # sem pasta synced
 ```
-Se aparecer `synced`, **pare**. A pasta já voltou uma vez sozinha (criada durante a sessão do `GATE-A02`, porque o Claude Code baixa as skills da conta em segundo plano a cada início de sessão, e o `/context` é uma foto anterior ao download). A solução vigente é o **D-012**: os dois `settings.json` têm `"syncClaudeAiSkills": false` e `"syncClaudeAiPlugins": false`. Desligar skills na conta **não** resolve (`pdf` e `xlsx` sincronizam sempre). A pasta `.trash` que o Claude Code cria ao mover o que já tinha baixado não é problema: nada ali é carregado.
+Se aparecer `synced`, **pare**. A pasta já voltou uma vez sozinha (criada durante a sessão do `GATE-A02`, porque o Claude Code baixa as skills da conta em segundo plano a cada início de sessão; o painel do `/context` mostra só categorias, sem nomes, e não prova ausência). A solução vigente é o **D-012**: os dois `settings.json` têm `"syncClaudeAiSkills": false` e `"syncClaudeAiPlugins": false`. Desligar skills na conta **não** resolve (`pdf` e `xlsx` sincronizam sempre). A pasta `.trash` que o Claude Code cria ao mover o que já tinha baixado não é problema: nada ali é carregado.
 
 ### 3.5 `settings.json` intacto
 
@@ -555,12 +555,12 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
 5. **Fechar** = encerrar essa conversa: fechar a aba do painel ou Cmd+Q no VS Code. **Sem** `/coletar-sessao` — só houve `/context` (comando local, não é mensagem ao agente), então não há o que medir. O transcript dela fica em `~/cerne/cfg-ciclo-a/projects/` e é a única sessão que o `A-003` aceita sem linha em `sessoes.csv`. Nunca reabrir essa conversa; a A1 começa numa conversa nova.
 6. Registrar no `plano-ciclos.md`: `A-001`, `GATE-A01`, `GATE-A02` com data.
 
-✅ Executado em 07/10/2026: modelo `claude-sonnet-5`, só `speckit-*`, `coletar-sessao` ausente. ⚠️ **Limite desta evidência (achado de 08/10, D-012):** o `/context` foi tirado antes do fim da sincronização em segundo plano; a pasta `skills/synced` foi criada durante essa sessão. Por isso o `GATE-A02b` repete a conferência com a sincronização desligada.
+✅ Executado em 07/10/2026: modelo `claude-sonnet-5`, só `speckit-*`, `coletar-sessao` ausente. ⚠️ **Limite desta evidência (achado de 08/10, D-012):** o painel do `/context` mostra só categorias e tokens, sem nomes de skills; a pasta `skills/synced` foi criada durante essa sessão. Por isso o `GATE-A02b` repete a conferência com a sincronização desligada.
 
 ### 7.3b 🔴 `GATE-A02b` 🧑 Reconferência de largada (D-012; sessão **não** medida)
 
 1. VS Code fechado (Cmd+Q). `abrir-ciclo a` → painel do Claude Code → conversa nova.
-2. Digitar só `/context` (nenhuma outra mensagem) e conferir: modelo `claude-sonnet-5`; skills **só** `speckit-*`; `coletar-sessao` ausente; nenhum `CLAUDE.md`/memória de projeto.
+2. Digitar só `/context` (nenhuma outra mensagem) e conferir: modelo `claude-sonnet-5`; nenhuma skill da conta (o painel só mostra a linha `Skills` em tokens; as skills embutidas do Claude Code aparecem nos dois ciclos, a prova de ausência das da conta é o `ls` do passo 5); `coletar-sessao` fora da lista do modelo (ela continua **invocável** por você com `/`, é assim que o protocolo a usa); nenhum `CLAUDE.md`/memória de projeto.
 3. Screenshot do painel → `$AVAL/dados/evidencias/gate-a02b-ciclo-a.png` (mesmo procedimento do `GATE-A02`).
 4. **Deixar a sessão aberta por 2 minutos** (a sincronização em segundo plano, se estivesse ativa, rodaria nesse intervalo) e fechar com Cmd+Q, **sem** `/coletar-sessao`.
 5. Conferir que as pastas **não voltaram**:
