@@ -131,4 +131,10 @@ fdb4628757e596db7ea6bc57ec523309bf1c1591ac175f83caa2e07ea8285369
 db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2
 ```
 
+**Atualizado em 08/10/2026 (desvio D-012):** acrescentadas aos dois arquivos as chaves `"syncClaudeAiSkills": false` e `"syncClaudeAiPlugins": false` (única diferença, conferida por `diff` nos dois). Hash vigente, idêntico nos dois:
+
+```
+3904700bc5637f05675b73788a72c1bf4a934b1b763ab4ac0aa227bf10405922
+```
+
 Se esse hash mudar numa reconferência futura (ex.: X-002 antes do Ciclo B), é desvio — registrar em `desvios.md`.

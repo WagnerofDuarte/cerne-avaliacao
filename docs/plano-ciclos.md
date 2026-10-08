@@ -589,6 +589,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 01/10/2026**
 
 - **Preparação (07/10/2026, `docs/plano-ciclo-A-speckit.md` §3):** concluída. Achados registrados como D-009 (tema no `settings.json`; skills da conta sincronizadas só em `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446` adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone). `abrir-ciclo` substituído (a versão antiga abriria o diretório corrente quando não achava o repositório). Calendário revisado: início em 07/10, datas finais mantidas.
+- **Pré-voo (08/10/2026):** ambiente igual após reinício. Achados: **D-011** (`.DS_Store` do Finder; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; sincronização desligada nos dois `settings.json`, hash vigente `3904700b…5922`; o `/context` do `GATE-A02` é anterior ao fim da sincronização, por isso o `GATE-A02b`).
 - **Assinatura (P13), 07/10/2026:** plano **Pro** do Claude. Limites vigentes: os da página de uso do plano Pro nesta data (tipos de limite a anotar aqui na primeira consulta à página).
 
 - [x] `A-001` Rodar `iniciar-ciclo a` — **Critério:** tag `cicloA/baseline` criada; hash do `docs/input/` igual ao do congelamento.
@@ -603,6 +604,10 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - **O quê:** abrir uma sessão com `abrir-ciclo a`, rodar `/context` e conferir: modelo correto, nenhuma skill além das do Spec Kit, `coletar-sessao` ausente do contexto. Fechar a sessão **sem** mandar nenhuma mensagem.
   - **Como confirmo:** screenshot em `dados/evidencias/`. Essa sessão não é medida — nenhuma mensagem foi enviada, logo não há `/coletar-sessao`.
   - **Registro (07/10/2026):** `abrir-ciclo a` (versão nova, seção 3.3 do plano A) abriu o repositório real; `/context`: modelo `claude-sonnet-5`, só skills `speckit-*`, nenhuma skill da conta (confirma a remoção do D-009), `coletar-sessao` ausente. Sessão fechada sem mensagem e sem coleta. Evidência: `dados/evidencias/gate-a02-ciclo-a.png`.
+
+- [ ] 🔴 **[MANUAL] `GATE-A02b`** — Reconferência de largada (D-012)
+  - **O quê:** repetir o `GATE-A02` com a sincronização de skills/plugins da conta desligada nos dois `settings.json` (D-012): `abrir-ciclo a`, só `/context`, esperar 2 min com a sessão aberta, fechar sem coletar. Depois, `ls` em `~/cerne/cfg-ciclo-a/skills` e `plugins`: sem `synced`. Detalhe na seção 7.3b do plano A.
+  - **Como confirmo:** screenshot em `dados/evidencias/gate-a02b-ciclo-a.png`; pastas `synced` ausentes depois dos 2 min; hash dos `settings.json` igual nos dois (`3904700b…5922`).
 
 ## A1 — Setup (constitution)
 **Prazo proposto: 01 a 02/10/2026**
@@ -705,7 +710,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 ## Encerramento do Ciclo A
 **Prazo proposto: 21/10/2026**
 
-- [ ] `A-003` Conferir a completude dos dados do ciclo: toda sessão do transcript tem linha em `sessoes.csv`, exceto a sessão de conferência do `GATE-A02`, registrada em `dados/evidencias/`; toda unidade tem tag `-done` ou `-incompleto`; todos os JSONL copiados — **Critério:** script de conferência sem pendências. (Conferir completude não é olhar métrica: o script só conta linhas e arquivos.)
+- [ ] `A-003` Conferir a completude dos dados do ciclo: toda sessão do transcript tem linha em `sessoes.csv`, exceto as sessões de conferência do `GATE-A02` e do `GATE-A02b` (D-012), registradas em `dados/evidencias/`; toda unidade tem tag `-done` ou `-incompleto`; todos os JSONL copiados — **Critério:** script de conferência sem pendências. (Conferir completude não é olhar métrica: o script só conta linhas e arquivos.)
 - [ ] 📏 **[COLETA]** Tag `cicloA/final`.
 - [ ] 🔴 **[MANUAL] `GATE-A03`** — Nota de encerramento do Ciclo A: o que aconteceu de inesperado, desvios registrados, decisões novas no RDR.
 

@@ -171,9 +171,9 @@ git diff --stat protocolo-v1.0 -- docs/protocolo.md docs/Metricas_e_Skills_Ciclo
 
 ```bash
 sw_vers -productVersion; xcodebuild -version; fvm flutter --version; claude --version; code --version | head -1; uv --version; node -v
-shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2 (D-009)
+shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # 3904700bc5637f05675b73788a72c1bf4a934b1b763ab4ac0aa227bf10405922 (D-012; antes: db5d321b…91e2, D-009)
 diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-sessao/SKILL.md && echo OK-b
-ls ~/cerne/cfg-ciclo-b/skills ~/cerne/cfg-ciclo-b/plugins      # só coletar-sessao; sem pasta synced (D-009)
+ls ~/cerne/cfg-ciclo-b/skills ~/cerne/cfg-ciclo-b/plugins      # só coletar-sessao; sem pasta synced (D-009, D-012)
 ```
 **Critério:** macOS 27.0.1, build 26A434 (D-010); Xcode 27.0 (27A266a); Flutter 3.47.5 / Dart 3.13.4; Claude Code 2.1.282; VS Code 1.139.1; uv 0.12.19; Node v26.10.0; hash idêntico; `OK-b`. Confirmar também que o modelo `claude-sonnet-5` continua disponível (página de modelos da Anthropic). **Se algo mudou ou o modelo saiu do ar: parar e decidir com a orientadora.**
 
@@ -373,7 +373,7 @@ Se não houver `CLAUDE.md`, o Claude Code lê o `AGENTS.md` (≥ v2.1.277), cond
 - skills: as 49 `bmad-*` (mais a skill pessoal da conta registrada no `C-011`, se aparecer);
 - `coletar-sessao` ausente.
 
-Screenshot → `$AVAL/dados/evidencias/gate-b02-ciclo-b.png`. Fechar **sem** coletar.
+Screenshot → `$AVAL/dados/evidencias/gate-b02-ciclo-b.png`. **Deixar a sessão aberta por 2 minutos**, fechar **sem** coletar e conferir que `~/cerne/cfg-ciclo-b/skills` e `plugins` continuam **sem `synced`** (D-012: o `/context` sozinho não prova ausência, porque a sincronização da conta roda em segundo plano; o `settings.json` do B já tem `syncClaudeAiSkills` e `syncClaudeAiPlugins` = `false`).
 
 ---
 

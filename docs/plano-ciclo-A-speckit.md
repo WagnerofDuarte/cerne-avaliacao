@@ -6,14 +6,16 @@
 **Conferido contra:** Spec Kit v1.0.10 reinstalado em pasta descartável (texto real de cada comando); `cerne-backend` (commit `5a0f809`); `cerne-backend-handoff` (commit `fa998d9`); `cerne-ciclo-a` no GitHub (vazio em 01/10/2026).
 **Precedência:** protocolo congelado > comportamento real das ferramentas > este documento > `plano-ciclos.md` Parte II. Onde este documento corrige a Parte II, a correção está listada no Apêndice B.
 
-> **Situação da execução (07/10/2026):**
+> **Situação da execução (08/10/2026):**
 > | Etapa | Situação | Evidência |
 > |---|---|---|
 > | Seção 3 — preparação única | ✅ concluída | Achados viraram D-009 (tema no `settings.json`; skills da conta só no `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446`; atualizações automáticas desligadas). `abrir-ciclo` substituído. Assinatura: plano **Pro** |
+> | Pré-voo de 08/10 | ✅ ambiente igual após reinício; **D-011** (gitignore global para `.DS_Store`) e **D-012** (sincronização de skills/plugins da conta desligada nos dois `settings.json`; hash vigente `3904700b…5922`) | `desvios.md` |
 > | `A-001` baseline | ✅ | `cicloA/baseline` em `1cd770a` |
 > | `GATE-A01` Spec Kit | ✅ (5 s, M1) | `cicloA/instalado` em `28ef31d` |
 > | `GATE-A02` largada | ✅ | `dados/evidencias/gate-a02-ciclo-a.png` |
-> | **Próximo:** A1 (seção 8) | — | — |
+> | `GATE-A02b` reconferência de largada (7.3b) | ⬜ | `dados/evidencias/gate-a02b-ciclo-a.png` |
+> | **Próximo:** A1 (seção 8), depois do `GATE-A02b` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -110,6 +112,8 @@ cerne-backend ──► cerne-backend-handoff ──► cerne-avaliacao (laborat
 A conferência deste plano contra as ferramentas e os repositórios reais encontrou seis pontos em que seguir o plano como estava **não daria certo**. **Todos foram decididos por você em 01/10/2026 (opção ⭐ em todos) e já estão registrados em `docs/desvios.md` (D-001 a D-008) e aplicados no repositório** — commit `6c9686d`, branch `claude/wizardly-clarke-xj5ade`. O texto abaixo explica cada um.
 
 Na execução da seção 3 (07/10/2026) apareceram mais dois achados, também decididos e registrados: **D-009** (o Claude Code gravou `"theme": "dark"` nos dois `settings.json` — hash novo `db5d321b…91e2`; skills da conta do claude.ai sincronizadas só no `cfg-ciclo-a`, removidas) e **D-010** (macOS e iOS 27.0.1 adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone).
+
+No pré-voo de 08/10/2026 apareceram mais dois: **D-011** (`.DS_Store` criados pelo Finder sujavam o `git status` e entrariam nos commits de fechamento; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; a sincronização é desligada nos dois `settings.json`, novo hash `3904700b…5922`; reconferência `GATE-A02b`, seção 7.3b).
 
 ### 2.1 🔴 BLOQUEANTE — `P-SETUP` contradiz o contrato da API (autenticação) — ✅ decidido
 
@@ -243,14 +247,14 @@ diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-s
 ls ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-b/skills      # só coletar-sessao nos dois
 ls ~/cerne/cfg-ciclo-a/plugins ~/cerne/cfg-ciclo-b/plugins    # sem pasta synced
 ```
-Se aparecer `synced`, mova para fora (`mv ~/cerne/cfg-ciclo-a/skills/synced ~/cerne/backup-synced-$(date +%Y%m%d)-skills`, idem `plugins/synced`) e confira de novo no `/context` do `GATE-A02`/`GATE-B02`. Se elas voltarem sozinhas, pare: a alternativa decidida é desligar as skills na conta durante os ciclos.
+Se aparecer `synced`, **pare**. A pasta já voltou uma vez sozinha (criada durante a sessão do `GATE-A02`, porque o Claude Code baixa as skills da conta em segundo plano a cada início de sessão, e o `/context` é uma foto anterior ao download). A solução vigente é o **D-012**: os dois `settings.json` têm `"syncClaudeAiSkills": false` e `"syncClaudeAiPlugins": false`. Desligar skills na conta **não** resolve (`pdf` e `xlsx` sincronizam sempre). A pasta `.trash` que o Claude Code cria ao mover o que já tinha baixado não é problema: nada ali é carregado.
 
 ### 3.5 `settings.json` intacto
 
 ```bash
 shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json
 ```
-**Critério:** os dois `db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2` (hash vigente desde o D-009, 07/10/2026: o congelado `fdb46287…5369` + `"theme": "dark"` gravado pelo próprio Claude Code).
+**Critério:** os dois `3904700bc5637f05675b73788a72c1bf4a934b1b763ab4ac0aa227bf10405922` (hash vigente desde o D-012, 08/10/2026: o hash anterior `db5d321b…91e2`, do D-009, mais as chaves `syncClaudeAiSkills` e `syncClaudeAiPlugins` = `false`; o original congelado era `fdb46287…5369`).
 
 ### 3.6 Versões travadas (P8, §6 do protocolo)
 
@@ -551,7 +555,20 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
 5. **Fechar** = encerrar essa conversa: fechar a aba do painel ou Cmd+Q no VS Code. **Sem** `/coletar-sessao` — só houve `/context` (comando local, não é mensagem ao agente), então não há o que medir. O transcript dela fica em `~/cerne/cfg-ciclo-a/projects/` e é a única sessão que o `A-003` aceita sem linha em `sessoes.csv`. Nunca reabrir essa conversa; a A1 começa numa conversa nova.
 6. Registrar no `plano-ciclos.md`: `A-001`, `GATE-A01`, `GATE-A02` com data.
 
-✅ Executado em 07/10/2026: modelo `claude-sonnet-5`, só `speckit-*`, `coletar-sessao` ausente.
+✅ Executado em 07/10/2026: modelo `claude-sonnet-5`, só `speckit-*`, `coletar-sessao` ausente. ⚠️ **Limite desta evidência (achado de 08/10, D-012):** o `/context` foi tirado antes do fim da sincronização em segundo plano; a pasta `skills/synced` foi criada durante essa sessão. Por isso o `GATE-A02b` repete a conferência com a sincronização desligada.
+
+### 7.3b 🔴 `GATE-A02b` 🧑 Reconferência de largada (D-012; sessão **não** medida)
+
+1. VS Code fechado (Cmd+Q). `abrir-ciclo a` → painel do Claude Code → conversa nova.
+2. Digitar só `/context` (nenhuma outra mensagem) e conferir: modelo `claude-sonnet-5`; skills **só** `speckit-*`; `coletar-sessao` ausente; nenhum `CLAUDE.md`/memória de projeto.
+3. Screenshot do painel → `$AVAL/dados/evidencias/gate-a02b-ciclo-a.png` (mesmo procedimento do `GATE-A02`).
+4. **Deixar a sessão aberta por 2 minutos** (a sincronização em segundo plano, se estivesse ativa, rodaria nesse intervalo) e fechar com Cmd+Q, **sem** `/coletar-sessao`.
+5. Conferir que as pastas **não voltaram**:
+   ```bash
+   ls ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-a/plugins     # skills: só coletar-sessao; plugins: sem synced
+   shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json   # 3904700b…5922 nos dois
+   ```
+6. Esta sessão deixa **mais um transcript** sem linha em `sessoes.csv`: o `A-003` passa a aceitar dois (`GATE-A02` e `GATE-A02b`). Nunca reabrir essa conversa.
 
 ---
 
@@ -1290,13 +1307,13 @@ O Spec Kit sem a extensão `git` não cria branches: tudo fica em `main`. Se o a
 Os comandos abaixo só **contam** linhas e arquivos:
 ```bash
 cd "$AVAL/dados/cicloA"
-ls ~/cerne/cfg-ciclo-a/projects/*/*.jsonl | wc -l          # sessões no Claude Code (inclui a do GATE-A02)
-tail -n +2 sessoes.csv | grep -vc ",instalacao,"            # sessões coletadas (deve ser o total acima menos 1)
+ls ~/cerne/cfg-ciclo-a/projects/*/*.jsonl | wc -l          # sessões no Claude Code (inclui as do GATE-A02 e do GATE-A02b)
+tail -n +2 sessoes.csv | grep -vc ",instalacao,"            # sessões coletadas (deve ser o total acima menos 2)
 ls brutos/*.jsonl | grep -vc '^brutos/agent-'               # transcripts principais copiados
 cut -d, -f2,3 tags.csv                                      # tags registradas: baseline, instalado, setup-done, 11 unidades
 git -C "$CERNE_CICLO_A_DIR" tag | sort                      # mesmas tags no repositório
 ```
-**Critério:** toda sessão tem linha (exceto a do `GATE-A02`); as 11 unidades têm `-done` ou `-incompleto`; os brutos estão copiados.
+**Critério:** toda sessão tem linha (exceto as do `GATE-A02` e do `GATE-A02b`, D-012); as 11 unidades têm `-done` ou `-incompleto`; os brutos estão copiados.
 
 ### 14.2 📏 Tag `cicloA/final`
 
