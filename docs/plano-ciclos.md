@@ -664,7 +664,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 10 `/speckit-implement` (11/10, 2º): 0 intervenções, 1 `PROCESSO: yes` (mesmo texto do RDR nº 2).
   - [x] Sessão 11 `/speckit-converge` (11/10): *Converged*.
   - **P6 (11/10):** (a) ok; (b) `flutter analyze` sem problemas; (c) `flutter test` passou; (d) iPhone: o app só abre pelo `flutter run` (modo debug, regra do iOS 14+, ambiente). **Falhas no roteiro:** (1) splash totalmente branca (esperado: wordmark "Cerne" sobre verde escuro com 3 pontos, ~1,8 s) → S2; (2) criar conta mostra "sem conexão - toque para tentar novamente", com o iPhone com internet (Safari), proxy desligado e o backend respondendo do Mac → S3. Ambiente descartado; **sessão de correção** (9.4), uma intervenção por sintoma. Os logs `TUIPredictionViewCell` do terminal são do teclado do iOS (ignorados).
-  - [ ] Sessão de correção → nova P6 → `concluir-rf a F000` (repetir até *Converged* ou timebox) → P6 → `concluir-rf a F000` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
+  - [x] Sessão 12 (correção, 11/10): sessão `70b4c91d`; 2 intervenções reconhecidas (`[correção|S3|prd]` cadastro e `[correção|S2|prd]` splash), 0 `PROCESSO:`; alerta `div_otel` (4ª vez). **Achado de ambiente (D-017):** o cadastro por e-mail estava desligado no Supabase (`Email signups are disabled`, item 3.7.1 do pré-voo não conferido); corrigido nos dois projetos (`ciclo-a` e `ciclo-b`). A 1ª intervenção tem a causa real `amb` (foi digitada como `prd`; mantida como está, anotada). Só a 2ª (splash) gerou mudança de código.
+  - [ ] Nova P6 [(b), (c), (d)] → `concluir-rf a F000` (repetir até *Converged* ou timebox) → P6 → `concluir-rf a F000` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
 - **Notas de encerramento:** *(preencher)*
 
 ## A3 — RF03 Cofre de autenticação biométrica
