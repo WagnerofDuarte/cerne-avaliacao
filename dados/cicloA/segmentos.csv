@@ -1,0 +1,2 @@
+ciclo,id_rf,sessao_id,fase,marcador_origem,inicio,fim,duracao_s,tokens_input,tokens_output,cache_read,cache_write,sub_tokens_input,sub_tokens_output,sub_cache_read,sub_cache_write,excluido_rate_limit
+a,SETUP,f2b3d499-e974-4a3c-a63f-bf0e116128a1,SETUP,(nenhum),2026-10-11T18:38:18.775Z,2026-10-11T18:45:03.072Z,404,14,9015,310247,67381,0,0,0,0,False
