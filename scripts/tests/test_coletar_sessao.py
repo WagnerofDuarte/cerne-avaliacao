@@ -244,6 +244,79 @@ def test_extract_slash_command_formas():
     assert cs.extract_slash_command(_user(0, "<command-name>/speckit-plan</command-name>", human=False)) is None
 
 
+def _ask_answer(i: int, answer: str, pergunta: str = "Which option?") -> dict:
+    """Resposta pelo painel de perguntas do agente (`AskUserQuestion`), forma
+    real confirmada em sessão real (D-015): registro `user` sem origin humana,
+    `toolUseResult` com `questions` e `answers`."""
+    return {
+        "type": "user",
+        "timestamp": _ts(i),
+        "uuid": f"u{i}",
+        "message": {"role": "user", "content": [{"type": "tool_result", "tool_use_id": "toolu_x", "content": f'User has answered your questions: "{pergunta}"="{answer}".'}]},
+        "toolUseResult": {"questions": [{"question": pergunta, "options": []}], "answers": {pergunta: answer}},
+    }
+
+
+def test_resposta_do_painel_com_processo_e_reconhecida(tmp_path: Path, dados_dir: Path):
+    main = tmp_path / "proj" / "sess_ask.jsonl"
+    records = [
+        _slash_str(0, "speckit-clarify"),
+        _assistant(1, "msg_1"),
+        _ask_answer(2, "PROCESSO: Use your technical judgment, following the input package."),
+        _assistant(3, "msg_2"),
+        _ask_answer(4, "Generic HTTP interceptor"),  # clique em opcao: sem prefixo, nao conta
+        _assistant(5, "msg_3"),
+        _user(6, "/coletar-sessao F000"),
+    ]
+    _write_jsonl(main, records)
+
+    resultado = cs.coletar(ciclo="a", id_rf="F000", mode="skill", transcript_path=main, dados_dir=dados_dir)
+    assert resultado.n_processo == 1
+    assert resultado.n_intervencoes == 0
+
+    import csv
+
+    with (dados_dir / "revisoes_processo.csv").open() as f:
+        rows = list(csv.DictReader(f))
+    assert rows[0]["gatilho"] == "speckit-clarify"
+    assert rows[0]["fase"] == "ESPEC"
+
+
+def test_resposta_do_painel_com_intervencao_e_reconhecida(tmp_path: Path, dados_dir: Path):
+    main = tmp_path / "proj" / "sess_ask2.jsonl"
+    records = [
+        _slash_str(0, "speckit-implement"),
+        _assistant(1, "msg_1"),
+        _ask_answer(2, "INTERVENÇÃO [redirecionamento|prd]: Section 2 says extension screens are out of scope."),
+        _assistant(3, "msg_2"),
+        _user(4, "/coletar-sessao F000"),
+    ]
+    _write_jsonl(main, records)
+    resultado = cs.coletar(ciclo="a", id_rf="F000", mode="skill", transcript_path=main, dados_dir=dados_dir)
+    assert resultado.n_intervencoes == 1
+
+
+def test_ask_user_answers_formas():
+    assert cs.ask_user_answers(_ask_answer(0, "x")) == ["x"]
+    assert cs.ask_user_answers(_user(0, "oi")) is None  # mensagem humana nao e resposta de painel
+    assert cs.ask_user_answers(_assistant(0, "m")) is None
+    assert cs.is_researcher_record(_ask_answer(0, "x")) is True
+    multi = _ask_answer(0, "a")
+    multi["toolUseResult"]["answers"] = {"q1": ["a", "b"], "q2": "c"}
+    assert cs.ask_user_answers(multi) == ["a, b", "c"]
+
+
+def test_espera_pela_resposta_do_painel_tem_teto_de_pausa(tmp_path: Path):
+    # a resposta chega 40 min depois da pergunta: 30 min contam, 10 vao para pausa_s
+    base = _ask_answer(0, "x")
+    base["timestamp"] = "2026-10-01T11:40:00.000Z"
+    ant = _assistant(0, "m1")
+    ant["timestamp"] = "2026-10-01T11:00:00.000Z"
+    tempos = cs.compute_tempos([ant, base])
+    assert tempos.pausa_s == 10 * 60
+    assert tempos.duracao_s == 30 * 60
+
+
 # ---------------------------------------------------------------------------
 # 3. Compactação no meio
 # ---------------------------------------------------------------------------

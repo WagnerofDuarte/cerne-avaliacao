@@ -652,7 +652,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Andamento (11/10/2026):**
   - [x] Sessão 1 `/speckit-specify` (`P-F000` + `P-GLOBAL`): sessão `fe43912c`; o agente criou `specs/001-foundation/` (spec e checklist de qualidade próprio) sem perguntas Q1–Q3; 0 intervenções, 0 `PROCESSO:`; `/coletar-sessao F000` registrou normalmente (mesmo aviso de subagentes da `SETUP`: não usou subagente).
   - [x] Check 8.5 depois do primeiro `/speckit-specify`: `ESPEC,speckit-specify` presente em `segmentos.csv` (confirma a correção do D-014).
-  - [ ] Sessões 2–9 (clarify, checklist, plan, tasks, analyze, implement, converge) → P6 → `concluir-rf a F000`.
+  - [x] Sessão 2 `/speckit-clarify`: sessão `391601bd`; o agente fez 1 pergunta (gatilho de expiração de sessão, painel com 3 opções); resposta `PROCESSO: Use your technical judgment, following the input package.` digitada em *Other*; o agente encerrou o Q&A sem gravar `## Clarifications` (spec inalterada); 0 intervenções. **Achado:** a coleta mostrou `PROCESSO` reconhecidos = 0 (a resposta do painel não é mensagem humana no transcript) → **D-015** (coletor corrigido, regra do *Other* no plano A, 5.4 item 7). Linha desta sessão re-derivada na Parte IV (`H-007`).
+  - [ ] Sessões 3–9 (checklist, plan, tasks, analyze, implement, converge) → P6 → `concluir-rf a F000`.
 - **Notas de encerramento:** *(preencher)*
 
 ## A3 — RF03 Cofre de autenticação biométrica
@@ -868,6 +869,7 @@ Roda em `cerne-avaliacao`, em paralelo aos ciclos, **fora das sessões medidas**
   - **Critério:** addon e asserções SQL verdes contra o backend; todo cenário do `C-018`/`C-019`/`C-020` tem implementação correspondente.
 
 - [ ] `H-006` Skills de avaliação em `cerne-avaliacao/.claude/skills/`: `/avaliar-rf`, `/julgar-rf`, `/avaliar-ciclo`, `/validar-juiz`, como especificado nas seções 4.2–4.5 do documento de métricas — **Critério:** as quatro rodam de ponta a ponta sobre o repositório de calibração, gerando os CSVs com o esquema do `C-002`.
+- [ ] `H-007` Script de re-derivação dos dados de coleta a partir dos transcripts brutos (`dados/<ciclo>/brutos/`), com o `coletar_sessao.py` corrigido — **Critério:** re-derivadas, sem duplicar linhas, a fase do `SETUP` do Ciclo A (D-014) e a sessão `391601bd` da F000 (D-015, `n_processo`, tempo); o resultado bate com a contagem de `PROCESSO:` que o pesquisador anotou. Fazer **antes** da Parte IV, sem olhar os valores (regra 8).
 
 - [ ] 🔴 **[MANUAL] `GATE-H01`** — Data de corte da suíte hold-out (06/11)
   - **O quê:** se o `H-005` não estiver completo, ativar o fallback do `GATE-C02` (item 3): escrever o checklist manual roteirizado a partir do `C-018`/`C-019` e registrar o desvio. Na mesma data, se o módulo da M8b não encontrar o mutante plantado no repositório de calibração, a M8b sai e a ameaça de validação circular é declarada (`GATE-C02` item 8).

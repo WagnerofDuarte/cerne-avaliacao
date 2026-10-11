@@ -244,6 +244,39 @@ def is_human_user_record(rec: dict[str, Any]) -> bool:
     return origin.get("kind") == "human"
 
 
+def ask_user_answers(rec: dict[str, Any]) -> list[str] | None:
+    """Respostas do pesquisador dadas pelo painel de perguntas do agente
+    (ferramenta `AskUserQuestion`). O transcript as grava como registro
+    `user` sem `origin.kind: human`, com `toolUseResult` = {questions,
+    answers} (confirmado em sessão real, 11/10/2026, desvio D-015). Devolve
+    a lista de textos respondidos, ou None se o registro não é uma resposta
+    desse painel. Opção clicada vem como o rótulo da opção (sem prefixo);
+    resposta escrita em *Other* vem como o texto digitado."""
+    if rec.get("type") != "user" or is_human_user_record(rec):
+        return None
+    tur = rec.get("toolUseResult")
+    if not isinstance(tur, dict) or "questions" not in tur or "answers" not in tur:
+        return None
+    answers = tur["answers"]
+    if isinstance(answers, dict):
+        vals = list(answers.values())
+    elif isinstance(answers, list):
+        vals = answers
+    else:
+        return None
+    out: list[str] = []
+    for v in vals:
+        if isinstance(v, list):
+            v = ", ".join(str(x) for x in v)
+        out.append(str(v))
+    return out
+
+
+def is_researcher_record(rec: dict[str, Any]) -> bool:
+    """Mensagem humana ou resposta do pesquisador pelo painel do agente."""
+    return is_human_user_record(rec) or ask_user_answers(rec) is not None
+
+
 def is_assistant_record(rec: dict[str, Any]) -> bool:
     return rec.get("type") == "assistant"
 
@@ -453,8 +486,9 @@ def compute_tempos(records: list[dict[str, Any]]) -> Tempos:
         if is_assistant_record(cur):
             # intervalo termina em ação do agente -> conta inteiro
             duracao_s += delta
-        elif is_human_user_record(cur):
-            # intervalo termina em mensagem do pesquisador -> cap de 30 min
+        elif is_researcher_record(cur):
+            # intervalo termina em mensagem (ou resposta de painel) do
+            # pesquisador -> cap de 30 min
             counted = min(delta, PAUSE_CAP_S)
             duracao_s += counted
             pausa_s += max(0, delta - PAUSE_CAP_S)
@@ -586,10 +620,16 @@ def extract_intervencoes_e_processo(
     processos: list[RevisaoProcesso] = []
     avisos: list[Aviso] = []
 
+    itens: list[tuple[dict[str, Any], str, str, str]] = []
     for rec, fase, marcador in segmented:
-        if not is_human_user_record(rec):
-            continue
-        text = human_message_text(rec)
+        if is_human_user_record(rec):
+            textos = [human_message_text(rec)]
+        else:
+            textos = ask_user_answers(rec) or []
+        for t in textos:
+            itens.append((rec, fase, marcador, t.strip()))
+
+    for rec, fase, marcador, text in itens:
         if not text:
             continue
         ts = rec.get("timestamp", "")

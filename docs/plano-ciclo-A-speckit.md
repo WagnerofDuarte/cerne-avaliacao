@@ -19,7 +19,8 @@
 > | Coletor OTel e plano Pro (P13) | ✅ (11/10) | `dados/evidencias/plano-pro-pagina-de-planos-2026-10-11.png` |
 > | `A1` `A-002` sessão `SETUP` + coleta + tag `cicloA/setup-done` | ✅ (11/10) | Commit `e1f8057`, tag `cicloA/setup-done`; 0 intervenções, 0 `PROCESSO:`. **D-014:** invocação (comando digitado + argumento colado) e detecção de fase do coletor corrigidas; dados commitados em `cerne-avaliacao` (`3caeb1a`); falta repetir o check 8.5 depois do primeiro `/speckit-specify` (A2) |
 > | A2 F000 — sessão 1 (`specify`) + check 8.5 | ✅ (11/10) | `ESPEC,speckit-specify` reconhecido; sem perguntas; 0/0 |
-> | **Próximo:** A2 F000 — sessão 2 (`/speckit-clarify`) | — | — |
+> | A2 F000 — sessão 2 (`clarify`) | ✅ (11/10) | 1 pergunta, resposta padrão por *Other*; **D-015:** o coletor não lia respostas do painel (`n_processo=0`); corrigido, sessão re-derivada na Parte IV |
+> | **Próximo:** A2 F000 — sessão 3 (`/speckit-checklist`) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -341,7 +342,7 @@ Esta é a rotina de **toda** sessão 🧑🤖🧪 do ciclo, inclusive as de corr
 
 6. 🧑 Primeira mensagem = o comando da etapa, com o argumento indicado (seções 8–10). **Um comando por sessão** (P4). Nada antes do comando, nem "olá". ⚠️ **Forma (D-014):** **digite** `/speckit-<comando> ` à mão (com o espaço) e **depois cole** só o argumento (`cat prompts/P-….md | pbcopy`, Cmd+V). Nunca cole a mensagem inteira com o comando dentro: a extensão envolve a colagem em `<pasted_content>`, o comando não é expandido como slash command e o agente chama a skill por conta própria. Comandos sem argumento (`/speckit-tasks`) são só digitados.
 7. 🤖 O agente trabalha. A cada pedido de permissão: 🧑 **Yes** ("só desta vez"). Nunca "Yes, and don't ask again". Se você precisar negar, a mensagem seguinte é `INTERVENÇÃO [permissão negada]: <o que foi negado e por quê>`.
-8. 🧑 Quando o agente pausar: responder pelas regras da seção 5.
+8. 🧑 Quando o agente pausar: responder pelas regras da seção 5. ⚠️ **Se a pergunta vier no painel de opções (D-015):** **não clique** numa opção. Clique em **Other** e **digite** a resposta com `PROCESSO:` no início (ou `INTERVENÇÃO […]:` se for o caso). Opção clicada não tem prefixo e não conta como `PROCESSO:` nem como intervenção.
 9. 🚫 Proibido na sessão: `/clear`, `/compact`, `/model`, `/effort`, `ultrathink`, Option+T, editar qualquer arquivo no editor, colar trechos deste documento, citar métricas, "o outro ciclo" ou `cerne-avaliacao`.
 10. Compactação **automática** é permitida (o coletor registra). Não interfira.
 
@@ -462,6 +463,7 @@ Conferidas no texto dos comandos instalados:
 3. Se o pacote não cobre: procurar uma pergunta equivalente em `$AVAL/docs/rdr.md`. Abra o RDR **no terminal ou noutro editor**, nunca no VS Code do ciclo. Se houver uma, usar **o mesmo texto**.
 4. Se nem o pacote nem o RDR cobrem: decidir na hora, responder com uma frase curta, e **logo depois da sessão** acrescentar uma linha ao RDR (data, ciclo, unidade, comando, pergunta, fonte, resposta exata).
 5. Pergunta de preferência ("A or B?"): `PROCESSO: Use your technical judgment, following the input package.`
+7. **Painel de perguntas (D-015).** O Spec Kit pergunta, quase sempre, por um painel com opções e *Other*. Responda **sempre** por *Other*, digitando à mão `PROCESSO: …` (nunca clicando numa opção, nunca colando). O coletor lê essas respostas do campo `toolUseResult.answers` do transcript. Nas perguntas de preferência, a frase padrão pode levar o agente a encerrar o Q&A (visto no `clarify` da F000): isso é do método, não é intervenção.
 6. As respostas sugeridas na 5.3 marcadas como "sugestão de RDR" só viram regra quando você as grava no RDR na primeira ocorrência. Depois disso, o mesmo texto vale para o resto do Ciclo A **e** para perguntas equivalentes do Ciclo B.
 
 ### 5.5 Se o agente começar algo fora do escopo
