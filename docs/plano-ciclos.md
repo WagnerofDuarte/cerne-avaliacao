@@ -660,7 +660,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 6 `/speckit-tasks` (11/10): sessão `417664ff`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` de novo (2ª vez; sessões 3 e 6 até agora; sem investigar números).
   - [x] Sessão 7 `/speckit-analyze` (11/10): sessão `75fccd4c`; 0 intervenções, 1 `PROCESSO:` (`PROCESSO: Yes.` à oferta de remediação, bate com o digitado). **RDR nº 1** gravado (resposta ao `analyze`). Sem alerta `div_otel`.
   - [x] Sessão 8 `/speckit-implement` (11/10): 0 intervenções, 1 `PROCESSO:` (`PROCESSO: yes`, checklists incompletos; **RDR nº 2**). O agente declarou as 65 tarefas feitas e rodou o app **num simulador iOS** por conta própria (o protocolo, P11, usa só o iPhone físico na P6; o pesquisador não o instruiu a usar simulador; anotado, sem ação). A P6 continua a ser verificada por mim, não pelo relato do agente.
-  - [ ] Sessões seguintes, na nova ordem: `/speckit-converge` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
+  - [x] Sessão 9 `/speckit-converge` (11/10): 0 intervenções, 0 `PROCESSO:`; **não convergiu** (trabalho restante anexado ao `tasks.md`); alerta `div_otel` (3ª vez: sessões 3, 6 e 9; sem investigar números).
+  - [ ] Laço: sessão 10 `/speckit-implement` → sessão 11 `/speckit-converge` (repetir até *Converged* ou timebox) → P6 → `concluir-rf a F000` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
 - **Notas de encerramento:** *(preencher)*
 
 ## A3 — RF03 Cofre de autenticação biométrica
