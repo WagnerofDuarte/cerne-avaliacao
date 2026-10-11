@@ -15,8 +15,8 @@
 > | `GATE-A01` Spec Kit | ✅ (5 s, M1) | `cicloA/instalado` em `28ef31d` |
 > | `GATE-A02` largada | ✅ | `dados/evidencias/gate-a02-ciclo-a.png` |
 > | `GATE-A02b` reconferência pós-D-012 (7.3b) | ✅ (08/10; disco conferido em 11/10) | `dados/evidencias/gate-a02b-pos-d012-ciclo-a.png` |
-> | `GATE-A02c` reconferência pós-D-013 (7.3c) | ⬜ | `dados/evidencias/gate-a02c-ciclo-a.png` |
-> | **Próximo:** A1 (seção 8), depois do `GATE-A02c` | — | — |
+> | `GATE-A02c` reconferência pós-D-013 (7.3c) | ✅ (11/10) | `dados/evidencias/gate-a02c-ciclo-a.png` |
+> | **Próximo:** A1 (seção 8). Antes: coletor OTel no ar (3.9) e registro dos limites do plano Pro (P13) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -587,6 +587,8 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
    shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json   # 0112786e…f393 nos dois
    git -C "$CERNE_CICLO_A_DIR" status --short                      # vazio
    ```
+
+✅ Executado em 11/10/2026: `/context` sem a linha `MCP tools` (antes 634 tokens), `Skills` ~2,8k, modelo `claude-sonnet-5`, sem memória/`CLAUDE.md`; depois de 2 min e do Cmd+Q, sem `synced` em `skills` e `plugins`, hash `0112786e…f393` nos dois, ciclo limpo. Evidência: `dados/evidencias/gate-a02c-ciclo-a.png`.
 
 ---
 

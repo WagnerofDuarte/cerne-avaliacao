@@ -609,9 +609,10 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - **O quê:** repetir o `GATE-A02` com a sincronização de skills/plugins da conta desligada nos dois `settings.json` (D-012): `abrir-ciclo a`, só `/context`, esperar, fechar sem coletar; depois, `ls` em `skills` e `plugins`: sem `synced`. Detalhe na seção 7.3b do plano A.
   - **Registro (08/10 e 11/10/2026):** sessão de 08/10 (`/context`, modelo `claude-sonnet-5`, sem `CLAUDE.md`; o painel não lista nomes de skills); disco conferido em 11/10: sem `synced` em `skills` e `plugins`, hash `3904700b…5922` nos dois. O mesmo `/context` mostrou `MCP tools` com 634 tokens (conectores do claude.ai), que levou à D-013. Evidência: `dados/evidencias/gate-a02b-pos-d012-ciclo-a.png`.
 
-- [ ] 🔴 **[MANUAL] `GATE-A02c`** — Reconferência de largada pós-D-013
+- [x] 🔴 **[MANUAL] `GATE-A02c`** — Reconferência de largada pós-D-013
   - **O quê:** `abrir-ciclo a`, só `/context`, esperar 2 min, fechar sem coletar. A linha `MCP tools` deve zerar; `ls` sem `synced`. Detalhe na seção 7.3c do plano A.
   - **Como confirmo:** screenshot em `dados/evidencias/gate-a02c-ciclo-a.png`; hash dos `settings.json` igual nos dois (`0112786e…f393`).
+  - **Registro (11/10/2026):** `/context` sem a linha `MCP tools` (antes 634 tokens), `Skills` ~2,8k, `claude-sonnet-5`, sem memória/`CLAUDE.md`; depois de 2 min e do Cmd+Q: sem `synced`, hash `0112786e…f393` nos dois, ciclo limpo.
 
 ## A1 — Setup (constitution)
 **Prazo proposto: 01 a 02/10/2026**
