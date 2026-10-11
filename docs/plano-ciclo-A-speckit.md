@@ -312,7 +312,7 @@ Conferir se está ligado: `lsof -nP -iTCP:4317 -sTCP:LISTEN` → uma linha `otel
 
 ### 3.10 Registro da assinatura (P13)
 
-Anote em `plano-ciclos.md`, na A0: o plano da assinatura do Claude e os limites vigentes hoje (texto da página de uso/planos). Só o plano e os limites, nunca o consumo. ✅ 07/10/2026: plano **Pro** (falta anotar os tipos de limite — só os rótulos da página de uso — na primeira consulta).
+Anote em `plano-ciclos.md`, na A0: o plano da assinatura do Claude e os limites vigentes hoje (texto da página de uso/planos). Só o plano e os limites, nunca o consumo. ✅ 07/10/2026: plano **Pro**. ✅ 11/10/2026: a página de planos traz só "More usage*" (sem tipos de limite); registrado em `plano-ciclos.md` com o print em `dados/evidencias/`. Os limites que cortarem sessões entram nas notas das unidades.
 
 ### 3.11 Decisões da seção 2 registradas
 
