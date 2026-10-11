@@ -23,7 +23,8 @@
 > | A2 F000 — sessão 3 aberta como `/speckit-checklist` (11/10) | ⚠️ interrompida | O script exige `plan.md`; **D-016:** ordem passa a `plan` → `checklist`; 1 intervenção `esclarecimento não solicitado` ("Stop here"); coletada como `F000` (1 intervenção reconhecida; alerta `div_otel` anotado, sem investigar) |
 > | A2 F000 — sessão 4 (`plan`) | ✅ (11/10) | 0 intervenções, 0 `PROCESSO:` |
 > | A2 F000 — sessão 5 (`checklist`) | ✅ (11/10) | 3 `PROCESSO:` reconhecidos (painel de 3 abas), 0 intervenções |
-> | **Próximo:** A2 F000 — `/speckit-tasks` | — | — |
+> | A2 F000 — sessão 6 (`tasks`) | ✅ (11/10) | 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado |
+> | **Próximo:** A2 F000 — `/speckit-analyze` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
