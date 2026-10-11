@@ -589,7 +589,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 01/10/2026**
 
 - **Preparação (07/10/2026, `docs/plano-ciclo-A-speckit.md` §3):** concluída. Achados registrados como D-009 (tema no `settings.json`; skills da conta sincronizadas só em `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446` adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone). `abrir-ciclo` substituído (a versão antiga abriria o diretório corrente quando não achava o repositório). Calendário revisado: início em 07/10, datas finais mantidas.
-- **Pré-voo (08/10/2026):** ambiente igual após reinício. Achados: **D-011** (`.DS_Store` do Finder; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; sincronização desligada nos dois `settings.json`, hash vigente `3904700b…5922`; o painel do `/context` do `GATE-A02` não lista nomes de skills e não prova ausência, por isso o `GATE-A02b`).
+- **Pré-voo (08/10/2026):** ambiente igual após reinício. Achados: **D-011** (`.DS_Store` do Finder; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; sincronização desligada nos dois `settings.json`, hash vigente `3904700b…5922`; o painel do `/context` do `GATE-A02` não lista nomes de skills e não prova ausência, por isso o `GATE-A02b`). **D-013 (11/10):** os conectores do claude.ai (`MCP tools`, 634 tokens) também chegavam ao contexto do agente; desligados nos dois `settings.json` (hash vigente `0112786e…f393`; reconferência `GATE-A02c`).
 - **Assinatura (P13), 07/10/2026:** plano **Pro** do Claude. Limites vigentes: os da página de uso do plano Pro nesta data (tipos de limite a anotar aqui na primeira consulta à página).
 
 - [x] `A-001` Rodar `iniciar-ciclo a` — **Critério:** tag `cicloA/baseline` criada; hash do `docs/input/` igual ao do congelamento.
@@ -605,9 +605,13 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - **Como confirmo:** screenshot em `dados/evidencias/`. Essa sessão não é medida — nenhuma mensagem foi enviada, logo não há `/coletar-sessao`.
   - **Registro (07/10/2026):** `abrir-ciclo a` (versão nova, seção 3.3 do plano A) abriu o repositório real; `/context`: modelo `claude-sonnet-5`, só skills `speckit-*`, nenhuma skill da conta (confirma a remoção do D-009), `coletar-sessao` ausente. Sessão fechada sem mensagem e sem coleta. Evidência: `dados/evidencias/gate-a02-ciclo-a.png`.
 
-- [ ] 🔴 **[MANUAL] `GATE-A02b`** — Reconferência de largada (D-012)
-  - **O quê:** repetir o `GATE-A02` com a sincronização de skills/plugins da conta desligada nos dois `settings.json` (D-012): `abrir-ciclo a`, só `/context`, esperar 2 min com a sessão aberta, fechar sem coletar. Depois, `ls` em `~/cerne/cfg-ciclo-a/skills` e `plugins`: sem `synced`. Detalhe na seção 7.3b do plano A.
-  - **Como confirmo:** screenshot em `dados/evidencias/gate-a02b-ciclo-a.png`; pastas `synced` ausentes depois dos 2 min; hash dos `settings.json` igual nos dois (`3904700b…5922`).
+- [x] 🔴 **[MANUAL] `GATE-A02b`** — Reconferência de largada pós-D-012
+  - **O quê:** repetir o `GATE-A02` com a sincronização de skills/plugins da conta desligada nos dois `settings.json` (D-012): `abrir-ciclo a`, só `/context`, esperar, fechar sem coletar; depois, `ls` em `skills` e `plugins`: sem `synced`. Detalhe na seção 7.3b do plano A.
+  - **Registro (08/10 e 11/10/2026):** sessão de 08/10 (`/context`, modelo `claude-sonnet-5`, sem `CLAUDE.md`; o painel não lista nomes de skills); disco conferido em 11/10: sem `synced` em `skills` e `plugins`, hash `3904700b…5922` nos dois. O mesmo `/context` mostrou `MCP tools` com 634 tokens (conectores do claude.ai), que levou à D-013. Evidência: `dados/evidencias/gate-a02b-pos-d012-ciclo-a.png`.
+
+- [ ] 🔴 **[MANUAL] `GATE-A02c`** — Reconferência de largada pós-D-013
+  - **O quê:** `abrir-ciclo a`, só `/context`, esperar 2 min, fechar sem coletar. A linha `MCP tools` deve zerar; `ls` sem `synced`. Detalhe na seção 7.3c do plano A.
+  - **Como confirmo:** screenshot em `dados/evidencias/gate-a02c-ciclo-a.png`; hash dos `settings.json` igual nos dois (`0112786e…f393`).
 
 ## A1 — Setup (constitution)
 **Prazo proposto: 01 a 02/10/2026**

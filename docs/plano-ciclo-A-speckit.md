@@ -10,12 +10,13 @@
 > | Etapa | Situação | Evidência |
 > |---|---|---|
 > | Seção 3 — preparação única | ✅ concluída | Achados viraram D-009 (tema no `settings.json`; skills da conta só no `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446`; atualizações automáticas desligadas). `abrir-ciclo` substituído. Assinatura: plano **Pro** |
-> | Pré-voo de 08/10 | ✅ ambiente igual após reinício; **D-011** (gitignore global para `.DS_Store`) e **D-012** (sincronização de skills/plugins da conta desligada nos dois `settings.json`; hash vigente `3904700b…5922`) | `desvios.md` |
+> | Pré-voo de 08/10 | ✅ ambiente igual após reinício; **D-011** (gitignore global para `.DS_Store`) e **D-012** (sincronização de skills/plugins da conta desligada nos dois `settings.json`) e, em 11/10, **D-013** (conectores do claude.ai desligados; hash vigente `0112786e…f393`) | `desvios.md` |
 > | `A-001` baseline | ✅ | `cicloA/baseline` em `1cd770a` |
 > | `GATE-A01` Spec Kit | ✅ (5 s, M1) | `cicloA/instalado` em `28ef31d` |
 > | `GATE-A02` largada | ✅ | `dados/evidencias/gate-a02-ciclo-a.png` |
-> | `GATE-A02b` reconferência de largada (7.3b) | ⬜ | `dados/evidencias/gate-a02b-ciclo-a.png` |
-> | **Próximo:** A1 (seção 8), depois do `GATE-A02b` | — | — |
+> | `GATE-A02b` reconferência pós-D-012 (7.3b) | ✅ (08/10; disco conferido em 11/10) | `dados/evidencias/gate-a02b-pos-d012-ciclo-a.png` |
+> | `GATE-A02c` reconferência pós-D-013 (7.3c) | ⬜ | `dados/evidencias/gate-a02c-ciclo-a.png` |
+> | **Próximo:** A1 (seção 8), depois do `GATE-A02c` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -114,6 +115,8 @@ A conferência deste plano contra as ferramentas e os repositórios reais encont
 Na execução da seção 3 (07/10/2026) apareceram mais dois achados, também decididos e registrados: **D-009** (o Claude Code gravou `"theme": "dark"` nos dois `settings.json` — hash novo `db5d321b…91e2`; skills da conta do claude.ai sincronizadas só no `cfg-ciclo-a`, removidas) e **D-010** (macOS e iOS 27.0.1 adotados; atualizações automáticas desligadas no Mac, na App Store e no iPhone).
 
 No pré-voo de 08/10/2026 apareceram mais dois: **D-011** (`.DS_Store` criados pelo Finder sujavam o `git status` e entrariam nos commits de fechamento; gitignore global da máquina) e **D-012** (as pastas `synced` de skills e plugins da conta voltaram ao `cfg-ciclo-a` durante o `GATE-A02`; a sincronização é desligada nos dois `settings.json`, novo hash `3904700b…5922`; reconferência `GATE-A02b`, seção 7.3b).
+
+Em 11/10/2026: **D-013** (os conectores do claude.ai — linha `MCP tools` do `/context`, 634 tokens: Claude Docs, Gmail, Google Calendar — também chegam ao contexto do agente medido; `"disableClaudeAiConnectors": true` nos dois `settings.json`, hash vigente `0112786e…f393`; reconferência `GATE-A02c`, seção 7.3c).
 
 ### 2.1 🔴 BLOQUEANTE — `P-SETUP` contradiz o contrato da API (autenticação) — ✅ decidido
 
@@ -254,7 +257,7 @@ Se aparecer `synced`, **pare**. A pasta já voltou uma vez sozinha (criada duran
 ```bash
 shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json
 ```
-**Critério:** os dois `3904700bc5637f05675b73788a72c1bf4a934b1b763ab4ac0aa227bf10405922` (hash vigente desde o D-012, 08/10/2026: o hash anterior `db5d321b…91e2`, do D-009, mais as chaves `syncClaudeAiSkills` e `syncClaudeAiPlugins` = `false`; o original congelado era `fdb46287…5369`).
+**Critério:** os dois `0112786e12fbe0917221c8d09f17f9f4b9c022d5ef811b9123b9fb9b0a62f393` (hash vigente desde o D-013, 11/10/2026: o de 08/10, `3904700b…5922` (D-012), mais `"disableClaudeAiConnectors": true`; antes disso `db5d321b…91e2` (D-009); o original congelado era `fdb46287…5369`).
 
 ### 3.6 Versões travadas (P8, §6 do protocolo)
 
@@ -569,6 +572,21 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
    shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json   # 3904700b…5922 nos dois
    ```
 6. Sessão só com `/context` não grava transcript: nada a registrar no `A-003`. Nunca reabrir essa conversa.
+
+✅ Executado em 08/10/2026 (`/context` sem nomes de skills; evidência `dados/evidencias/gate-a02b-pos-d012-ciclo-a.png`). Disco conferido em 11/10: sem `synced` em `skills` e `plugins`; `skills/.trash` só com pastas de 30/09; hash `3904700b…5922`. O mesmo `/context` mostrou a linha `MCP tools` (634 tokens), que levou à D-013.
+
+### 7.3c 🔴 `GATE-A02c` 🧑 Reconferência de largada (D-013; sessão **não** medida)
+
+1. VS Code fechado (Cmd+Q). `abrir-ciclo a` → painel do Claude Code → conversa nova.
+2. Digitar só `/context` e conferir: modelo `claude-sonnet-5`; linha `MCP tools` **zerada ou ausente** (antes: 634 tokens); linha `Skills` no mesmo patamar de 08/10 (~2,8k: embutidas do Claude Code + `speckit-*`); `coletar-sessao` fora da lista do modelo (continua invocável por você com `/`); nenhum `CLAUDE.md`/memória.
+3. Screenshot do painel (Cmd+Shift+4). Depois mova pelo nome real do arquivo: `ls -t ~/Desktop | head -3` e `mv ~/Desktop/"<nome do arquivo>" "$AVAL/dados/evidencias/gate-a02c-ciclo-a.png"`.
+4. **Esperar 2 minutos** com a sessão aberta e fechar com Cmd+Q, **sem** `/coletar-sessao`.
+5. Conferir no Terminal:
+   ```bash
+   ls -a ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-a/plugins     # sem synced
+   shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json   # 0112786e…f393 nos dois
+   git -C "$CERNE_CICLO_A_DIR" status --short                      # vazio
+   ```
 
 ---
 

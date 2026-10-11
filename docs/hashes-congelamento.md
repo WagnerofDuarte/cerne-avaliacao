@@ -137,4 +137,10 @@ db5d321b34ad3a400fcc57bfd219191a3f364cdee9b85ef1a1115e1be62391e2
 3904700bc5637f05675b73788a72c1bf4a934b1b763ab4ac0aa227bf10405922
 ```
 
+**Atualizado em 11/10/2026 (desvio D-013):** acrescentada aos dois arquivos a chave `"disableClaudeAiConnectors": true` (única diferença, conferida por `diff` nos dois). Hash vigente, idêntico nos dois:
+
+```
+0112786e12fbe0917221c8d09f17f9f4b9c022d5ef811b9123b9fb9b0a62f393
+```
+
 Se esse hash mudar numa reconferência futura (ex.: X-002 antes do Ciclo B), é desvio — registrar em `desvios.md`.

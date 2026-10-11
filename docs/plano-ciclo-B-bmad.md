@@ -171,7 +171,7 @@ git diff --stat protocolo-v1.0 -- docs/protocolo.md docs/Metricas_e_Skills_Ciclo
 
 ```bash
 sw_vers -productVersion; xcodebuild -version; fvm flutter --version; claude --version; code --version | head -1; uv --version; node -v
-shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # 3904700bc5637f05675b73788a72c1bf4a934b1b763ab4ac0aa227bf10405922 (D-012; antes: db5d321b…91e2, D-009)
+shasum -a 256 ~/cerne/cfg-ciclo-b/settings.json      # 0112786e12fbe0917221c8d09f17f9f4b9c022d5ef811b9123b9fb9b0a62f393 (D-013; antes: 3904700b…5922, D-012; db5d321b…91e2, D-009)
 diff "$AVAL/skills/coletar-sessao/SKILL.md" ~/cerne/cfg-ciclo-b/skills/coletar-sessao/SKILL.md && echo OK-b
 ls ~/cerne/cfg-ciclo-b/skills ~/cerne/cfg-ciclo-b/plugins      # só coletar-sessao; sem pasta synced (D-009, D-012)
 ```
@@ -373,7 +373,7 @@ Se não houver `CLAUDE.md`, o Claude Code lê o `AGENTS.md` (≥ v2.1.277), cond
 - skills: as 49 `bmad-*` (mais a skill pessoal da conta registrada no `C-011`, se aparecer);
 - `coletar-sessao` ausente.
 
-Screenshot → `$AVAL/dados/evidencias/gate-b02-ciclo-b.png`. **Deixar a sessão aberta por 2 minutos**, fechar **sem** coletar e conferir que `~/cerne/cfg-ciclo-b/skills` e `plugins` continuam **sem `synced`** (D-012: o `/context` sozinho não prova ausência, porque a sincronização da conta roda em segundo plano; o `settings.json` do B já tem `syncClaudeAiSkills` e `syncClaudeAiPlugins` = `false`).
+Screenshot → `$AVAL/dados/evidencias/gate-b02-ciclo-b.png`. **Deixar a sessão aberta por 2 minutos**, fechar **sem** coletar e conferir que `~/cerne/cfg-ciclo-b/skills` e `plugins` continuam **sem `synced`** (D-012: o `/context` sozinho não prova ausência, porque a sincronização da conta roda em segundo plano; o `settings.json` do B já tem `syncClaudeAiSkills` e `syncClaudeAiPlugins` = `false` e `disableClaudeAiConnectors` = `true`; a linha `MCP tools` do `/context` deve vir zerada, D-013).
 
 ---
 
