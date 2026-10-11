@@ -617,9 +617,12 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 ## A1 — Setup (constitution)
 **Prazo proposto: 01 a 02/10/2026**
 
-- [ ] 🧪 **[SESSÃO] `A-002`** — Nova sessão; `/speckit.constitution` com o conteúdo de `P-SETUP`. Responder às perguntas conforme o `GATE-C11`.
-- [ ] 📏 **[COLETA]** `/coletar-sessao SETUP` e encerrar a sessão.
-- [ ] 📏 **[COLETA]** Tag `cicloA/setup-done` (via `concluir-rf a SETUP`).
+- [x] 🧪 **[SESSÃO] `A-002`** — Nova sessão; `/speckit.constitution` com o conteúdo de `P-SETUP`. Responder às perguntas conforme o `GATE-C11`.
+  - **Registro (11/10/2026):** sessão `f2b3d499` executada pelo Wagner; o agente gravou `.specify/memory/constitution.md` sem nenhuma pausa prevista (0 intervenções, 0 `PROCESSO:`, nenhuma entrada nova no RDR). A mensagem foi colada **inteira**, com o comando dentro; a extensão a envolveu em `<pasted_content>`, o comando não foi expandido e o agente chamou a skill por conta própria. Achado e correção: **D-014** (forma nova: comando digitado + argumento colado; detecção de fase do coletor corrigida). `SETUP` mantido como está; fase re-derivada na Parte IV.
+- [x] 📏 **[COLETA]** `/coletar-sessao SETUP` e encerrar a sessão.
+  - **Registro (11/10/2026):** saída `Registrado. Intervenções reconhecidas: 0. Respostas PROCESSO reconhecidas: 0. Timebox: abaixo de 50%.` Aviso esperado: diretório de subagentes inexistente (a sessão não usou subagente; o caminho real segue pendente do `GATE-C21`).
+- [x] 📏 **[COLETA]** Tag `cicloA/setup-done` (via `concluir-rf a SETUP`).
+  - **Registro (11/10/2026):** feita à mão (contorno do D-002): commit `e1f8057` "SETUP: closing snapshot (constitution)" e tag `cicloA/setup-done` enviados a `cerne-ciclo-a`; `registrar_tag.py` rodou. Falta o commit de `dados/` em `cerne-avaliacao`.
 
 ---
 

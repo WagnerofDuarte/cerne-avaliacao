@@ -220,7 +220,7 @@ Idêntica à do Ciclo A. Vale para **toda** sessão.
 
 1. 🧑 Coletor OTel rodando. VS Code **fechado** (Cmd+Q). Terminal: `abrir-ciclo b`.
 2. 🧑 Painel do Claude Code → **conversa nova**. Fechar todos os editores (Cmd+K W) e **desligar o anexo de contexto** (olho), antes de **cada** mensagem.
-3. 🧑 **Primeira mensagem:** a skill da etapa, como comando de barra (`/bmad-<skill>`), com o argumento indicado (seções 8–13). **Uma skill por sessão** (P4).
+3. 🧑 **Primeira mensagem:** a skill da etapa, como comando de barra (`/bmad-<skill>`), com o argumento indicado (seções 8–13). **Uma skill por sessão** (P4). ⚠️ **Forma (D-014):** **digite** `/bmad-<skill> ` à mão (com o espaço) e **depois cole** só o argumento (`cat prompts/P-….md | pbcopy`, Cmd+V). Nunca cole a mensagem inteira com o comando dentro: a extensão a envolve em `<pasted_content>`, o comando não é expandido e o agente chama a skill por conta própria (visto no `SETUP` do Ciclo A).
 4. 🤖 O agente executa a skill. Pedidos de permissão: 🧑 **Yes** só desta vez. Negar → `INTERVENÇÃO [permissão negada]: …`.
 5. 🧑 Pausas: seção 5.
 6. 🚫 Proibido: `/clear`, `/compact`, `/model`, `/effort`, `ultrathink`, Option+T, editar arquivos, chamar outra skill do BMAD na mesma sessão (inclusive `bmad-help`), colar este documento, citar `cerne-avaliacao` ou o outro ciclo.
@@ -385,7 +385,7 @@ Screenshot → `$AVAL/dados/evidencias/gate-b02-ciclo-b.png`. **Deixar a sessão
 
 Gere a mensagem a partir do arquivo. É o **mesmo** `P-SETUP` usado na A1 (com ou sem a correção D-001).
 ```bash
-{ printf '/bmad-project-context '; cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy        # Cmd+V no Claude Code
+{ cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy   # só o argumento: digite `/bmad-project-context ` à mão (com o espaço) e cole depois (D-014); Cmd+V no Claude Code
 ```
 O texto (com o D-001) é o mesmo transcrito na seção 8.1 de `docs/plano-ciclo-A-speckit.md`.
 
@@ -437,7 +437,7 @@ cut -d, -f4,5 "$AVAL/dados/cicloB/segmentos.csv" | sort -u
 ### 9.1 🧪 Brainstorming com o `P-GLOBAL`
 
 ```bash
-{ printf '/bmad-brainstorming '; cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy
+{ cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy   # só o argumento: digite `/bmad-brainstorming ` à mão (com o espaço) e cole depois (D-014)
 ```
 ```text
 /bmad-brainstorming # P-GLOBAL — Product vision
@@ -504,7 +504,7 @@ PROCESSO: Start from the product input in docs/input/ (requirements.md, prototyp
 
 Os 11 prompts na ordem **F000 → RF03 → RF01 → RF02 → RF07 → RF06 → RF04 → RF10 → RF08 → RF05 → RF09**, separados por uma linha `---`. O `P-GLOBAL` **não** vai aqui (ele foi para o brainstorming). Gere com:
 ```bash
-{ printf '/bmad-prd '; for p in F000 RF03 RF01 RF02 RF07 RF06 RF04 RF10 RF08 RF05 RF09; do cat "$AVAL/prompts/P-$p.md"; printf '\n---\n\n'; done; } | pbcopy
+{ for p in F000 RF03 RF01 RF02 RF07 RF06 RF04 RF10 RF08 RF05 RF09; do cat "$AVAL/prompts/P-$p.md"; printf '\n---\n\n'; done; } | pbcopy   # só o argumento: digite `/bmad-prd ` à mão (com o espaço) e cole depois (D-014)
 ```
 A mensagem fica assim (início e fim):
 ```text
@@ -553,7 +553,7 @@ Primeira mensagem: `/bmad-ux`. Fonte → `PROCESSO: The UX source is the frozen 
 ### 11.1 🧪 Arquitetura com o `P-TECH`
 
 ```bash
-{ printf '/bmad-architecture '; cat "$AVAL/prompts/P-TECH.md"; } | pbcopy
+{ cat "$AVAL/prompts/P-TECH.md"; } | pbcopy   # só o argumento: digite `/bmad-architecture ` à mão (com o espaço) e cole depois (D-014)
 ```
 ```text
 /bmad-architecture # P-TECH — Technical instruction
@@ -996,15 +996,15 @@ Em `plano-ciclos.md`, sem números. A partir daqui, a Parte IV (14 a 20/11) pode
 abrir-ciclo b
 
 # B1
-{ printf '/bmad-project-context '; cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy
+{ cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy   # só o argumento: digite `/bmad-project-context ` à mão (com o espaço) e cole depois (D-014)
 # B2
-{ printf '/bmad-brainstorming '; cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy
+{ cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy   # só o argumento: digite `/bmad-brainstorming ` à mão (com o espaço) e cole depois (D-014)
 #   sem argumento: /bmad-forge-idea  /bmad-deep-recon  /bmad-prfaq  /bmad-product-brief
 # B3
-{ printf '/bmad-prd '; for p in F000 RF03 RF01 RF02 RF07 RF06 RF04 RF10 RF08 RF05 RF09; do cat "$AVAL/prompts/P-$p.md"; printf '\n---\n\n'; done; } | pbcopy
+{ for p in F000 RF03 RF01 RF02 RF07 RF06 RF04 RF10 RF08 RF05 RF09; do cat "$AVAL/prompts/P-$p.md"; printf '\n---\n\n'; done; } | pbcopy   # só o argumento: digite `/bmad-prd ` à mão (com o espaço) e cole depois (D-014)
 #   sem argumento: /bmad-prd (validar)  /bmad-ux
 # B4
-{ printf '/bmad-architecture '; cat "$AVAL/prompts/P-TECH.md"; } | pbcopy
+{ cat "$AVAL/prompts/P-TECH.md"; } | pbcopy   # só o argumento: digite `/bmad-architecture ` à mão (com o espaço) e cole depois (D-014)
 #   sem argumento: /bmad-create-epics-and-stories  /bmad-sprint-planning
 # B5 (por story)
 /bmad-build <story_key>

@@ -292,11 +292,31 @@ class Segmento:
     excluido_rate_limit: bool = False
 
 
+COMMAND_NAME_RE = re.compile(r"<command-name>\s*/?([^<\s]+?)\s*</command-name>", re.UNICODE)
+
+
 def extract_slash_command(rec: dict[str, Any]) -> str | None:
-    """Extrai o nome do comando/skill de uma entrada `local_command`."""
+    """Extrai o nome do comando/skill invocado.
+
+    Forma real (confirmada em ensaio de 11/10/2026, desvio D-014): um slash
+    command expandido pela extensão aparece como mensagem humana cujo
+    conteúdo traz `<command-name>/nome</command-name>`. A forma
+    `system/local_command` (protocolo.md §11.1) nunca apareceu em sessão
+    real; fica como reserva. Mensagem inteira colada (`<pasted_content>`)
+    não é expandida e não é reconhecida aqui, de propósito."""
     if rec.get("type") == "system" and rec.get("subtype") == "local_command":
-        cmd = (rec.get("commandRun") or {}).get("command")
-        return cmd
+        return (rec.get("commandRun") or {}).get("command")
+    if is_human_user_record(rec):
+        content = (rec.get("message") or {}).get("content")
+        texts: list[str] = []
+        if isinstance(content, str):
+            texts = [content]
+        elif isinstance(content, list):
+            texts = [b.get("text", "") for b in content if isinstance(b, dict) and b.get("type") == "text"]
+        for t in texts:
+            m = COMMAND_NAME_RE.search(t)
+            if m:
+                return m.group(1)
     return None
 
 

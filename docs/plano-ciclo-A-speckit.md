@@ -6,7 +6,7 @@
 **Conferido contra:** Spec Kit v1.0.10 reinstalado em pasta descartável (texto real de cada comando); `cerne-backend` (commit `5a0f809`); `cerne-backend-handoff` (commit `fa998d9`); `cerne-ciclo-a` no GitHub (vazio em 01/10/2026).
 **Precedência:** protocolo congelado > comportamento real das ferramentas > este documento > `plano-ciclos.md` Parte II. Onde este documento corrige a Parte II, a correção está listada no Apêndice B.
 
-> **Situação da execução (08/10/2026):**
+> **Situação da execução (11/10/2026):**
 > | Etapa | Situação | Evidência |
 > |---|---|---|
 > | Seção 3 — preparação única | ✅ concluída | Achados viraram D-009 (tema no `settings.json`; skills da conta só no `cfg-ciclo-a`, removidas) e D-010 (macOS 27.0.1 `26A434` e iOS 27.0.1 `24A446`; atualizações automáticas desligadas). `abrir-ciclo` substituído. Assinatura: plano **Pro** |
@@ -16,7 +16,9 @@
 > | `GATE-A02` largada | ✅ | `dados/evidencias/gate-a02-ciclo-a.png` |
 > | `GATE-A02b` reconferência pós-D-012 (7.3b) | ✅ (08/10; disco conferido em 11/10) | `dados/evidencias/gate-a02b-pos-d012-ciclo-a.png` |
 > | `GATE-A02c` reconferência pós-D-013 (7.3c) | ✅ (11/10) | `dados/evidencias/gate-a02c-ciclo-a.png` |
-> | **Próximo:** A1 (seção 8). Antes: coletor OTel no ar (3.9) e registro dos limites do plano Pro (P13) | — | — |
+> | Coletor OTel e plano Pro (P13) | ✅ (11/10) | `dados/evidencias/plano-pro-pagina-de-planos-2026-10-11.png` |
+> | `A1` `A-002` sessão `SETUP` + coleta + tag `cicloA/setup-done` | ✅ (11/10) | Commit `e1f8057`, tag `cicloA/setup-done`; 0 intervenções, 0 `PROCESSO:`. **D-014:** invocação (comando digitado + argumento colado) e detecção de fase do coletor corrigidas; falta o check 8.5 da A2 e o commit de `dados/` |
+> | **Próximo:** commit de `dados/` (12.4), depois A2 (F000, seção 9–10) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -336,7 +338,7 @@ Esta é a rotina de **toda** sessão 🧑🤖🧪 do ciclo, inclusive as de corr
 
 ### 4.2 Durante
 
-6. 🧑 Primeira mensagem = o comando da etapa, com o argumento indicado (seções 8–10). **Um comando por sessão** (P4). Nada antes do comando, nem "olá".
+6. 🧑 Primeira mensagem = o comando da etapa, com o argumento indicado (seções 8–10). **Um comando por sessão** (P4). Nada antes do comando, nem "olá". ⚠️ **Forma (D-014):** **digite** `/speckit-<comando> ` à mão (com o espaço) e **depois cole** só o argumento (`cat prompts/P-….md | pbcopy`, Cmd+V). Nunca cole a mensagem inteira com o comando dentro: a extensão envolve a colagem em `<pasted_content>`, o comando não é expandido como slash command e o agente chama a skill por conta própria. Comandos sem argumento (`/speckit-tasks`) são só digitados.
 7. 🤖 O agente trabalha. A cada pedido de permissão: 🧑 **Yes** ("só desta vez"). Nunca "Yes, and don't ask again". Se você precisar negar, a mensagem seguinte é `INTERVENÇÃO [permissão negada]: <o que foi negado e por quê>`.
 8. 🧑 Quando o agente pausar: responder pelas regras da seção 5.
 9. 🚫 Proibido na sessão: `/clear`, `/compact`, `/model`, `/effort`, `ultrathink`, Option+T, editar qualquer arquivo no editor, colar trechos deste documento, citar métricas, "o outro ciclo" ou `cerne-avaliacao`.
@@ -394,7 +396,7 @@ Toda mensagem sua numa sessão cai em **exatamente uma** destas categorias:
 
 | Categoria | Quando | Forma | Conta como |
 |---|---|---|---|
-| **Comando** | Primeira mensagem da sessão | `/speckit-<comando> [argumento]` | Marca a fase |
+| **Comando** | Primeira mensagem da sessão | `/speckit-<comando> [argumento]`: comando **digitado**, argumento **colado** (D-014) | Marca a fase |
 | **Neutra** (P5b) | Confirmar uma pausa **espontânea** do agente; colar um erro que ele pediu | Sem prefixo: `Yes, proceed.` / saída do erro | Nada |
 | **PROCESSO** | Responder a uma pausa **prevista** pelo comando (lista 5.3) | `PROCESSO: <resposta em inglês>` | M5b (`revisoes_processo.csv`) |
 | **INTERVENÇÃO** | Qualquer outra coisa | `INTERVENÇÃO [tipo\|campos]: <corpo em inglês>` | M5 (`intervencoes.csv`) |
@@ -598,7 +600,7 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
 
 ### 8.1 🧪 `A-002` Sessão `/speckit-constitution` com o `P-SETUP`
 
-Primeira (e única) mensagem de comando. Cole exatamente o bloco abaixo: o comando, um espaço e o texto inteiro de `prompts/P-SETUP.md`. O texto abaixo já é o do arquivo corrigido pelo D-001 (hash `6c040ea1…ca65`); gere sempre a partir do arquivo, nunca reescreva à mão.
+Primeira (e única) mensagem de comando: o comando **digitado** (`/speckit-constitution`, um espaço) e, logo depois, o texto inteiro de `prompts/P-SETUP.md` **colado** (D-014; o bloco abaixo mostra como a mensagem completa fica). O texto abaixo já é o do arquivo corrigido pelo D-001 (hash `6c040ea1…ca65`); gere sempre a partir do arquivo, nunca reescreva à mão.
 
 ````text
 /speckit-constitution # P-SETUP — Project principles
@@ -665,18 +667,22 @@ lib/
 - Edit the files in `docs/input/`.
 ````
 
-⚠️ Acima está o texto atual do arquivo (com o D-001). Ainda assim, **não digite à mão**: gere a mensagem a partir do arquivo e cole:
+⚠️ Acima está o texto atual do arquivo (com o D-001). O argumento **não se digita à mão**: gere-o a partir do arquivo e cole depois de digitar o comando. Não cole o comando junto (D-014):
 ```bash
-{ printf '/speckit-constitution '; cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy     # depois Cmd+V no campo do Claude Code
+{ cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy   # só o argumento: digite `/speckit-constitution ` à mão (com o espaço) e cole depois (D-014); depois Cmd+V no campo do Claude Code
 ```
 
 🤖 O agente resolve o template, preenche os princípios e grava `.specify/memory/constitution.md`, com o "Sync Impact Report" num comentário HTML no topo. Esse comentário **não** é removido por você.
 
 Pausas possíveis: valores ausentes (5.3), por exemplo a data de ratificação.
 
+> ✅ **Execução (11/10/2026):** sessão `f2b3d499`. O agente não pausou (0 `PROCESSO:`, 0 intervenções); a data de ratificação não foi pedida, e o RDR continua vazio. A mensagem foi colada inteira, com o comando dentro: a extensão a envolveu em `<pasted_content>` e o agente chamou a skill sozinho. **D-014** corrige a forma para as próximas sessões (comando digitado + argumento colado).
+
 ### 8.2 📏 Coleta
 
 `/coletar-sessao SETUP` → aprovar a permissão → conferir a saída → fechar a sessão.
+
+> ✅ **Execução (11/10/2026):** `Registrado. Intervenções reconhecidas: 0. Respostas PROCESSO reconhecidas: 0. Timebox da unidade: abaixo de 50%.` Mais um aviso do coletor: diretório de subagentes não encontrado, esperado (a sessão não usou subagente). Contagens batem com o que foi digitado (nada).
 
 ### 8.3 🧑 Conferência rápida (fora da sessão, sem editar)
 
@@ -684,6 +690,8 @@ Pausas possíveis: valores ausentes (5.3), por exemplo a data de ratificação.
 cd "$CERNE_CICLO_A_DIR" && git status --short
 ```
 Deve aparecer `.specify/memory/constitution.md` modificado (e, possivelmente, outros arquivos). Você não abre o arquivo para revisar conteúdo: não há P6 para o setup.
+
+> ✅ **Execução (11/10/2026):** `git status --short` mostrou só `M .specify/memory/constitution.md`.
 
 ### 8.4 📏 Commit de fechamento + tag `cicloA/setup-done` (contorno documentado, seção 2.3)
 
@@ -698,6 +706,8 @@ git push origin main --tags
 ```
 O M1 (calendário) vai do início da instalação até esta tag.
 
+> ✅ **Execução (11/10/2026):** commit `e1f8057` (1 arquivo, +163/−35), tag `cicloA/setup-done`, push de `main` e da tag para `cerne-ciclo-a`; `registrar_tag.py` sem saída (esperado).
+
 ### 8.5 🔴 Checagem única de parse (cega a números)
 
 Só depois da **primeira** sessão real, para confirmar que o coletor reconheceu o comando do Spec Kit. O comando mostra **apenas** as colunas `fase` e `marcador_origem`, sem nenhum número:
@@ -708,6 +718,8 @@ cut -d, -f4,5 "$AVAL/dados/cicloA/segmentos.csv" | sort -u
 - **Se só aparecer `SETUP,(nenhum)`:** o nome do comando no transcript não bate com a tabela de fases. **Não corrija nada.** Os brutos estão preservados e a fase é re-derivada na Parte IV. Anote o achado e me avise numa sessão de `cerne-avaliacao` (fora do ciclo).
 
 Repita a mesma checagem uma vez depois do primeiro `/speckit-specify` (A2).
+
+> ⚠️ **Resultado (11/10/2026):** só apareceu `SETUP,(nenhum)`, o caso previsto acima. Causa (ensaio `/tmp/ensaio-invocacao`, 3 sessões não medidas): o transcript não grava `system/local_command`; grava, na mensagem humana, `<command-name>/nome</command-name>`, e uma mensagem inteira colada nem chega a ser expandida (o agente chama a skill). **D-014** corrige o coletor (lê `<command-name>`) e a forma de invocação. As linhas do `SETUP` são re-derivadas dos brutos na Parte IV. **Depois do primeiro `/speckit-specify` (A2) o resultado esperado passa a ser `ESPEC,speckit-specify`**; se não aparecer, **não corrija nada** e me avise.
 
 ---
 
@@ -742,9 +754,9 @@ Notas:
 
 Follow the technical constraints in `docs/input/requirements.md` and the architecture already in place in the project.
 ```
-Atalho: `{ printf '/speckit-plan '; cat "$AVAL/prompts/P-TECH.md"; } | pbcopy`
+Atalho: `{ cat "$AVAL/prompts/P-TECH.md"; } | pbcopy` — antes disso, digite `/speckit-plan ` à mão; depois cole o argumento (D-014)
 
-**`P-RFxx`** (passo 1): `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF03.md"; } | pbcopy` (troque o número). Os textos completos estão em cada ficha (seção 10).
+**`P-RFxx`** (passo 1): `{ cat "$AVAL/prompts/P-RF03.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014) (troque o número). Os textos completos estão em cada ficha (seção 10).
 
 ### 9.3 🔴 Verificação de "concluído" (P6) — 🧑 fora de sessão
 
@@ -807,7 +819,7 @@ Ordem congelada (P9): **F000 → RF03 → RF01 → RF02 → RF07 → RF06 → RF
 
 **Mensagem do passo 1** (`P-F000` + `P-GLOBAL`, nessa ordem; tabela de entrega, §5). Gere com:
 ```bash
-{ printf '/speckit-specify '; cat "$AVAL/prompts/P-F000.md"; printf '\n\n'; cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy
+{ cat "$AVAL/prompts/P-F000.md"; printf '\n\n'; cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy   # só o argumento: digite `/speckit-specify ` à mão (com o espaço) e cole depois (D-014)
 ```
 Conteúdo resultante:
 ```text
@@ -885,7 +897,7 @@ The extension features of section 2 (manual tags, action plans, persona): no fun
 
 **Datas:** 04 a 05/10 · **Timebox:** 8 h · **ID:** `RF03` · **Depende de:** F000
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF03.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF03.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF03 — Biometric authentication vault
 
@@ -919,7 +931,7 @@ Protect access to the user's data with a Face ID / Touch ID / PIN barrier, valid
 
 **Datas:** 05 a 07/10 · **Timebox:** 8 h · **ID:** `RF01` · **Depende de:** F000, RF03
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF01.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF01.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF01 — Multimodal capture
 
@@ -954,7 +966,7 @@ Let the user create a journal entry by text, audio recording or photo, from the 
 
 **Datas:** 07 a 08/10 · **Timebox:** 8 h · **ID:** `RF02` · **Depende de:** RF01
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF02.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF02.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF02 — Speech-to-text / OCR processing
 
@@ -986,7 +998,7 @@ Turn captured audio into text on the device, and photos into text through the ba
 
 **Datas:** 08 a 10/10 · **Timebox:** 8 h · **ID:** `RF07` · **Depende de:** F000, RF01
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF07.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF07.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF07 — Multi-source history (timeline)
 
@@ -1031,7 +1043,7 @@ Show all the user's entries in a timeline, whatever their origin, with a per-ent
 
 **Datas:** 10 a 11/10 · **Timebox:** 8 h · **ID:** `RF06` · **Depende de:** RF07
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF06.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF06.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF06 — Semantic search / filter
 
@@ -1066,7 +1078,7 @@ Let the user find entries by meaning and narrow them with filters, on the My Rec
 
 **Datas:** 11 a 13/10 · **Timebox:** 8 h · **ID:** `RF04` · **Depende de:** F000, RF03 (do prompt)
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF04.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF04.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF04 — Interactive chat with memory (RAG)
 
@@ -1099,7 +1111,7 @@ Build the conversation with the AI agent, which answers with context from the us
 
 **Datas:** 13 a 14/10 · **Timebox:** 8 h · **ID:** `RF10` · **Depende de:** RF01, RF04
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF10.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF10.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF10 — Save a chat message as an entry
 
@@ -1130,7 +1142,7 @@ Let the user turn one of their own chat messages into a journal entry.
 
 **Datas:** 14 a 16/10 · **Timebox:** 8 h · **ID:** `RF08` · **Depende de:** RF04
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF08.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF08.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF08 — Proactive insights (mechanism)
 
@@ -1162,7 +1174,7 @@ A espera real de 2 min é obrigatória.
 
 **Datas:** 16 a 18/10 · **Timebox:** 8 h · **ID:** `RF05` · **Depende de:** RF07
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF05.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF05.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF05 — Personal summary export
 
@@ -1195,7 +1207,7 @@ Let the user export a narrative summary of their entries as PDF, and always be a
 
 **Datas:** 18 a 20/10 · **Timebox:** 8 h · **ID:** `RF09` · **Depende de:** F000, RF01 (do prompt)
 
-**Mensagem do passo 1:** `{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF09.md"; } | pbcopy`
+**Mensagem do passo 1:** `{ cat "$AVAL/prompts/P-RF09.md"; } | pbcopy` — antes disso, digite `/speckit-specify ` à mão; depois cole o argumento (D-014)
 ```text
 /speckit-specify # P-RF09 — Temporal summaries / dashboard
 
@@ -1398,11 +1410,11 @@ Em paralelo (fora das sessões, em `cerne-avaliacao`): a trilha do harness (`H-0
 # Abrir sessão
 abrir-ciclo a
 
-# Gerar a primeira mensagem de cada passo (cola com Cmd+V)
-{ printf '/speckit-constitution '; cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy
-{ printf '/speckit-specify '; cat "$AVAL/prompts/P-F000.md"; printf '\n\n'; cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy
-{ printf '/speckit-specify '; cat "$AVAL/prompts/P-RF03.md"; } | pbcopy     # troque RF03
-{ printf '/speckit-plan '; cat "$AVAL/prompts/P-TECH.md"; } | pbcopy
+# Gerar o argumento da primeira mensagem de cada passo (digite o comando à mão, depois Cmd+V; D-014)
+{ cat "$AVAL/prompts/P-SETUP.md"; } | pbcopy   # só o argumento: digite `/speckit-constitution ` à mão (com o espaço) e cole depois (D-014)
+{ cat "$AVAL/prompts/P-F000.md"; printf '\n\n'; cat "$AVAL/prompts/P-GLOBAL.md"; } | pbcopy   # só o argumento: digite `/speckit-specify ` à mão (com o espaço) e cole depois (D-014)
+{ cat "$AVAL/prompts/P-RF03.md"; } | pbcopy   # só o argumento: digite `/speckit-specify ` à mão (com o espaço) e cole depois (D-014); troque RF03
+{ cat "$AVAL/prompts/P-TECH.md"; } | pbcopy   # só o argumento: digite `/speckit-plan ` à mão (com o espaço) e cole depois (D-014)
 # Sem argumento: /speckit-clarify, /speckit-checklist, /speckit-tasks, /speckit-analyze, /speckit-implement, /speckit-converge
 
 # Última mensagem de toda sessão

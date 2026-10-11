@@ -193,6 +193,57 @@ def test_processo_reconhecido(tmp_path: Path, dados_dir: Path):
     assert rows[0]["fase"] == "ESPEC"
 
 
+def _slash_str(i: int, nome: str, args: str = "") -> dict:
+    """Slash command expandido, forma real confirmada em ensaio (D-014):
+    mensagem humana com `content` em string e `<command-name>`."""
+    return {
+        "type": "user",
+        "timestamp": _ts(i),
+        "uuid": f"u{i}",
+        "message": {
+            "role": "user",
+            "content": f"<command-message>{nome}</command-message>\n<command-name>/{nome}</command-name>"
+            + (f"\n<command-args>{args}</command-args>" if args else ""),
+        },
+        "origin": {"kind": "human"},
+    }
+
+
+def test_fase_detectada_por_command_name_na_mensagem_humana(tmp_path: Path, dados_dir: Path):
+    main = tmp_path / "proj" / "sess_cmd.jsonl"
+    records = [
+        _slash_str(0, "speckit-implement", "# argumento colado"),
+        _assistant(1, "msg_1"),
+        _user(2, "PROCESSO: yes"),
+        _assistant(3, "msg_2"),
+        _user(4, "/coletar-sessao RF03"),
+    ]
+    _write_jsonl(main, records)
+
+    resultado = cs.coletar(ciclo="a", id_rf="RF03", mode="skill", transcript_path=main, dados_dir=dados_dir)
+    assert resultado.n_processo == 1
+
+    import csv
+
+    with (dados_dir / "segmentos.csv").open() as f:
+        segs = list(csv.DictReader(f))
+    assert {(r["fase"], r["marcador_origem"]) for r in segs} == {("IMPL", "speckit-implement")}
+    with (dados_dir / "revisoes_processo.csv").open() as f:
+        rows = list(csv.DictReader(f))
+    assert rows[0]["gatilho"] == "speckit-implement"
+
+
+def test_extract_slash_command_formas():
+    assert cs.extract_slash_command(_slash_str(0, "speckit-plan")) == "speckit-plan"
+    em_bloco = _user(0, "<command-message>x</command-message>\n<command-name>/speckit-tasks</command-name>")
+    assert cs.extract_slash_command(em_bloco) == "speckit-tasks"
+    # mensagem inteira colada nao e expandida pela extensao: nao reconhece
+    colada = _user(0, '\n\n<pasted_content id="4057">\n/speckit-constitution # P-SETUP')
+    assert cs.extract_slash_command(colada) is None
+    # texto do agente (origin != human) que cita um comando nao conta
+    assert cs.extract_slash_command(_user(0, "<command-name>/speckit-plan</command-name>", human=False)) is None
+
+
 # ---------------------------------------------------------------------------
 # 3. Compactação no meio
 # ---------------------------------------------------------------------------
