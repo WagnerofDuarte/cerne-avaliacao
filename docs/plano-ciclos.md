@@ -649,6 +649,10 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Escopo:** scaffold com a convenção de pastas (P8); `design_tokens.dart`; cliente HTTP com `Either<Failure, T>` e a taxonomia de 13 códigos; Tela 0 (splash); Tela 0.1a (login/cadastro); casca de navegação e Tela 3 (menu lateral, só navegação); tratamento de sessão expirada.
 - **Backend:** §6.1 (autenticação e sessão).
 - **Atenção:** o cadastro cria a conta de desenvolvimento do ciclo — nunca usar as contas do seed.
+- **Andamento (11/10/2026):**
+  - [x] Sessão 1 `/speckit-specify` (`P-F000` + `P-GLOBAL`): sessão `fe43912c`; o agente criou `specs/001-foundation/` (spec e checklist de qualidade próprio) sem perguntas Q1–Q3; 0 intervenções, 0 `PROCESSO:`; `/coletar-sessao F000` registrou normalmente (mesmo aviso de subagentes da `SETUP`: não usou subagente).
+  - [x] Check 8.5 depois do primeiro `/speckit-specify`: `ESPEC,speckit-specify` presente em `segmentos.csv` (confirma a correção do D-014).
+  - [ ] Sessões 2–9 (clarify, checklist, plan, tasks, analyze, implement, converge) → P6 → `concluir-rf a F000`.
 - **Notas de encerramento:** *(preencher)*
 
 ## A3 — RF03 Cofre de autenticação biométrica

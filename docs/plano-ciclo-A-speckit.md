@@ -18,7 +18,8 @@
 > | `GATE-A02c` reconferência pós-D-013 (7.3c) | ✅ (11/10) | `dados/evidencias/gate-a02c-ciclo-a.png` |
 > | Coletor OTel e plano Pro (P13) | ✅ (11/10) | `dados/evidencias/plano-pro-pagina-de-planos-2026-10-11.png` |
 > | `A1` `A-002` sessão `SETUP` + coleta + tag `cicloA/setup-done` | ✅ (11/10) | Commit `e1f8057`, tag `cicloA/setup-done`; 0 intervenções, 0 `PROCESSO:`. **D-014:** invocação (comando digitado + argumento colado) e detecção de fase do coletor corrigidas; dados commitados em `cerne-avaliacao` (`3caeb1a`); falta repetir o check 8.5 depois do primeiro `/speckit-specify` (A2) |
-> | **Próximo:** A2 — unidade F000 (seções 9–10) | — | — |
+> | A2 F000 — sessão 1 (`specify`) + check 8.5 | ✅ (11/10) | `ESPEC,speckit-specify` reconhecido; sem perguntas; 0/0 |
+> | **Próximo:** A2 F000 — sessão 2 (`/speckit-clarify`) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
