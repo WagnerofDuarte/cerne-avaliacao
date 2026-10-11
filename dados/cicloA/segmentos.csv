@@ -1,2 +1,6 @@
 ciclo,id_rf,sessao_id,fase,marcador_origem,inicio,fim,duracao_s,tokens_input,tokens_output,cache_read,cache_write,sub_tokens_input,sub_tokens_output,sub_cache_read,sub_cache_write,excluido_rate_limit
 a,SETUP,f2b3d499-e974-4a3c-a63f-bf0e116128a1,SETUP,(nenhum),2026-10-11T18:38:18.775Z,2026-10-11T18:45:03.072Z,404,14,9015,310247,67381,0,0,0,0,False
+a,F000,fe43912c-9d15-4bff-a8df-d7e15785d764,SETUP,(nenhum),2026-10-11T19:14:17.659Z,2026-10-11T19:14:17.660Z,0,0,0,0,0,0,0,0,0,False
+a,F000,fe43912c-9d15-4bff-a8df-d7e15785d764,ESPEC,speckit-specify,2026-10-11T19:14:17.680Z,2026-10-11T19:21:29.791Z,432,22,15573,739074,59311,0,0,0,0,False
+a,F000,391601bd-622a-4a54-83c0-b6dcf33d7587,SETUP,(nenhum),2026-10-11T19:26:13.254Z,2026-10-11T19:26:13.255Z,0,0,0,0,0,0,0,0,0,False
+a,F000,391601bd-622a-4a54-83c0-b6dcf33d7587,ESPEC,speckit-clarify,2026-10-11T19:26:13.271Z,2026-10-11T19:34:02.151Z,468,28,12725,836446,43029,0,0,0,0,False
