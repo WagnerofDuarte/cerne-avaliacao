@@ -622,7 +622,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - [x] 📏 **[COLETA]** `/coletar-sessao SETUP` e encerrar a sessão.
   - **Registro (11/10/2026):** saída `Registrado. Intervenções reconhecidas: 0. Respostas PROCESSO reconhecidas: 0. Timebox: abaixo de 50%.` Aviso esperado: diretório de subagentes inexistente (a sessão não usou subagente; o caminho real segue pendente do `GATE-C21`).
 - [x] 📏 **[COLETA]** Tag `cicloA/setup-done` (via `concluir-rf a SETUP`).
-  - **Registro (11/10/2026):** feita à mão (contorno do D-002): commit `e1f8057` "SETUP: closing snapshot (constitution)" e tag `cicloA/setup-done` enviados a `cerne-ciclo-a`; `registrar_tag.py` rodou. Falta o commit de `dados/` em `cerne-avaliacao`.
+  - **Registro (11/10/2026):** feita à mão (contorno do D-002): commit `e1f8057` "SETUP: closing snapshot (constitution)" e tag `cicloA/setup-done` enviados a `cerne-ciclo-a`; `registrar_tag.py` rodou. Dados commitados em `cerne-avaliacao` (`3caeb1a`: CSVs e transcript bruto, sem abrir nenhum arquivo).
 
 ---
 
