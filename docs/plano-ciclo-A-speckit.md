@@ -20,7 +20,8 @@
 > | `A1` `A-002` sessão `SETUP` + coleta + tag `cicloA/setup-done` | ✅ (11/10) | Commit `e1f8057`, tag `cicloA/setup-done`; 0 intervenções, 0 `PROCESSO:`. **D-014:** invocação (comando digitado + argumento colado) e detecção de fase do coletor corrigidas; dados commitados em `cerne-avaliacao` (`3caeb1a`); falta repetir o check 8.5 depois do primeiro `/speckit-specify` (A2) |
 > | A2 F000 — sessão 1 (`specify`) + check 8.5 | ✅ (11/10) | `ESPEC,speckit-specify` reconhecido; sem perguntas; 0/0 |
 > | A2 F000 — sessão 2 (`clarify`) | ✅ (11/10) | 1 pergunta, resposta padrão por *Other*; **D-015:** o coletor não lia respostas do painel (`n_processo=0`); corrigido, sessão re-derivada na Parte IV |
-> | **Próximo:** A2 F000 — sessão 3 (`/speckit-checklist`) | — | — |
+> | A2 F000 — sessão 3 aberta como `/speckit-checklist` (11/10) | ⚠️ interrompida | O script exige `plan.md`; **D-016:** ordem passa a `plan` → `checklist`; 1 intervenção `esclarecimento não solicitado` ("Stop here"); coletar como `F000` |
+> | **Próximo:** A2 F000 — `/speckit-plan` (`P-TECH`), depois `/speckit-checklist` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -450,7 +451,7 @@ Conferidas no texto dos comandos instalados:
 | `constitution` | Pode pedir valores que o `P-SETUP` não trouxe (ex.: data de ratificação: *"if unknown ask or mark TODO"*) | Pacote → RDR → decidir. Sugestão de RDR para a data: `PROCESSO: Use today's date.` |
 | `specify` | Até 3 perguntas `[NEEDS CLARIFICATION]`, apresentadas juntas: *"Q1: A, Q2: Custom - …"* | Responder todas numa mensagem: `PROCESSO: Q1: A (requirements.md §1, RF04). Q2: …`. Se for preferência: `PROCESSO: Q1: Use your technical judgment, following the input package.` |
 | `clarify` | **Uma pergunta por vez**, até 5. Múltipla escolha com `**Recommended:** Option X`, ou resposta curta (≤ 5 palavras) com `**Suggested:**` | Uma mensagem `PROCESSO:` por pergunta. Pacote cobre → a letra ou a resposta, citando a seção. Preferência → `PROCESSO: Use your technical judgment, following the input package.` (se o agente pedir para desambiguar, a próxima resposta é neutra: `recommended`). Para encerrar cedo, não diga "done" por conta própria: deixe o comando decidir |
-| `checklist` | Até 3 perguntas iniciais (Q1–Q3) sobre foco, profundidade e público, mais até 2 extras (Q4/Q5) | `PROCESSO:` com as respostas. Foco e profundidade são preferência → frase padrão |
+| `checklist` (roda **depois** do `plan`, D-016) | Até 3 perguntas iniciais (Q1–Q3) sobre foco, profundidade e público, mais até 2 extras (Q4/Q5) | `PROCESSO:` com as respostas. Foco e profundidade são preferência → frase padrão |
 | `analyze` | Fim do relatório: *"Would you like me to suggest concrete remediation edits for the top N issues?"* | ⭐ Sugestão de RDR: `PROCESSO: Yes.` Se o agente então perguntar **espontaneamente** se aplica as sugestões: neutra `Yes, proceed.` |
 | `implement` | Se algum checklist tiver itens não marcados: *"Some checklists have unchecked items. Do you want to proceed with implementation anyway? (yes/no)"*. **Acontecerá em toda unidade**: os checklists do `/speckit-checklist` nascem desmarcados e você não pode editá-los | ⭐ Sugestão de RDR: `PROCESSO: yes` |
 | `plan`, `tasks` | Nenhuma pausa prevista | Pausa espontânea → seção 2.4 |
@@ -736,8 +737,8 @@ Vale para **todas** as unidades A2–A12. As fichas da seção 10 só acrescenta
 |---|---|---|---|---|---|---|
 | 1 | `/speckit-specify <prompt>` | `P-RFxx` da unidade (na F000: `P-F000` + `P-GLOBAL`, seção 10.1) | `ESPEC` | Até 3 perguntas Q1–Q3 → `PROCESSO:` (5.3) | `/coletar-sessao <ID>` | `specs/NNN-<nome>/spec.md`, `.specify/feature.json` apontando para ele |
 | 2 | `/speckit-clarify` | nenhum | `ESPEC` | Até 5 perguntas, uma por vez → um `PROCESSO:` por pergunta | idem | Seção `## Clarifications` no `spec.md` |
-| 3 | `/speckit-checklist` | nenhum | `VALID` | Q1–Q3 (+ Q4/Q5) → `PROCESSO:` | idem | `specs/NNN-*/checklists/*.md` (itens desmarcados) |
-| 4 | `/speckit-plan <P-TECH>` | `P-TECH` (seção 9.2) | `ESPEC` | nenhuma prevista | idem | `plan.md`, `research.md`, `data-model.md`, `contracts/`, `quickstart.md` |
+| 3 | `/speckit-plan <P-TECH>` | `P-TECH` (seção 9.2) | `ESPEC` | nenhuma prevista | idem | `plan.md`, `research.md`, `data-model.md`, `contracts/`, `quickstart.md` |
+| 4 | `/speckit-checklist` | nenhum | `VALID` | Q1–Q3 (+ Q4/Q5) → `PROCESSO:` | idem | `specs/NNN-*/checklists/*.md` (itens desmarcados), agora com `plan.md` disponível (D-016) |
 | 5 | `/speckit-tasks` | nenhum | `ESPEC` | nenhuma prevista | idem | `tasks.md` com itens `- [ ] T001 …` |
 | 6 | `/speckit-analyze` | nenhum | `VALID` | Oferta de remediação → `PROCESSO: Yes.` (sugestão de RDR) | idem | Relatório no chat; ajustes nos artefatos, se aceitos |
 | 7 | `/speckit-implement` | nenhum | `IMPL` | Checklists incompletos → `PROCESSO: yes` (sugestão de RDR) | idem | Código em `lib/`, testes; tarefas marcadas `[X]` em `tasks.md` |
@@ -745,13 +746,13 @@ Vale para **todas** as unidades A2–A12. As fichas da seção 10 só acrescenta
 | 9 | Se o passo 8 **não** reportou *Converged*: nova sessão `/speckit-implement`, depois nova sessão `/speckit-converge` | — | `IMPL` / `VALID` | idem 7 e 8 | idem | Repetir 7 → 8 até *Converged* ou até a timebox |
 
 Notas:
-- **Ordem fixa.** O `checklist` vem **depois do `clarify` e antes do `plan`**, por decisão congelada (R22). O próprio CLI do Spec Kit sugere "after `/speckit-plan`", mas vale o protocolo.
+- **Ordem fixa (D-016, 11/10/2026).** O `checklist` vem **depois do `plan` e antes do `tasks`**. A decisão original (R22) o punha antes do `plan`, mas o script do `speckit-checklist` exige `plan.md` e o agente para (visto na F000); o CLI também o sugere depois do `plan`. Se uma sessão `/speckit-checklist` for aberta **antes** do `plan` por engano, o agente vai parar e perguntar: responda por *Other* `INTERVENÇÃO [esclarecimento não solicitado]: Stop here. Do not generate the checklist in this session.`, colete e siga com o `plan`.
 - No passo 6, se o relatório trouxer problemas **CRITICAL** e sugerir rodar de novo um comando anterior ("Run /speckit-specify with refinement"), **não** volte na sequência. Siga para o passo 7. A remediação aceita na própria sessão do `analyze` é o caminho do método.
 - O `implement` pode parar sozinho se uma tarefa falhar (*"Halt execution if any non-parallel task fails"*). Colete e abra nova sessão com `/speckit-implement` (4.5).
 
 ### 9.2 Textos literais dos argumentos
 
-**`P-TECH`** (passo 4, em toda unidade):
+**`P-TECH`** (passo 3, em toda unidade; D-016):
 ```text
 /speckit-plan # P-TECH — Technical instruction
 
@@ -1454,7 +1455,7 @@ cd "$AVAL" && git add dados docs/rdr.md docs/plano-ciclos.md docs/desvios.md && 
 | 8 | Dependências: A8 RF04 "F000"; A12 RF09 "F000" | Pelos prompts congelados: RF04 depende de F000 e RF03; RF09 de F000 e RF01 | `prompts/P-RF04.md`, `P-RF09.md` |
 | 9 | Sessão de correção sem detalhar a fase | O protocolo diz `IMPL`, mas o script grava `SETUP`: re-segmentar na Parte IV | §4.4; `coletar_sessao.py` |
 | 10 | `GATE-A02` "nenhuma skill além das do Spec Kit" | Idem, mais a skill pessoal da conta já registrada como ameaça (`C-011`) | `protocolo.md` §6.4 |
-| 11 | Ordem `clarify` → `checklist` → `plan` | Mantida (R22), apesar de o CLI sugerir `checklist` depois do `plan` | `GATE-C09` |
+| 11 | Ordem `clarify` → `checklist` → `plan` | **Alterada (D-016, 11/10):** `clarify` → `plan` → `checklist` → `tasks`; o script do `checklist` exige `plan.md` | `GATE-C09`, `desvios.md` |
 
 ---
 
