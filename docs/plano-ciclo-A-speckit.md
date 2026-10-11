@@ -21,7 +21,8 @@
 > | A2 F000 — sessão 1 (`specify`) + check 8.5 | ✅ (11/10) | `ESPEC,speckit-specify` reconhecido; sem perguntas; 0/0 |
 > | A2 F000 — sessão 2 (`clarify`) | ✅ (11/10) | 1 pergunta, resposta padrão por *Other*; **D-015:** o coletor não lia respostas do painel (`n_processo=0`); corrigido, sessão re-derivada na Parte IV |
 > | A2 F000 — sessão 3 aberta como `/speckit-checklist` (11/10) | ⚠️ interrompida | O script exige `plan.md`; **D-016:** ordem passa a `plan` → `checklist`; 1 intervenção `esclarecimento não solicitado` ("Stop here"); coletada como `F000` (1 intervenção reconhecida; alerta `div_otel` anotado, sem investigar) |
-> | **Próximo:** A2 F000 — `/speckit-plan` (`P-TECH`), depois `/speckit-checklist` | — | — |
+> | A2 F000 — sessão 4 (`plan`) | ✅ (11/10) | 0 intervenções, 0 `PROCESSO:` |
+> | **Próximo:** A2 F000 — `/speckit-checklist` (já com `plan.md`), depois `tasks` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
