@@ -656,7 +656,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 3 aberta como `/speckit-checklist` (11/10): o script exige `plan.md` e o agente parou (opções: rodar `plan` na sessão, contornar o script, parar). **D-016:** a ordem passa a `plan` → `checklist`. Respondido "Stop here" por *Other* (`INTERVENÇÃO [esclarecimento não solicitado]`, 1 em M5); nenhum checklist gerado; coletada como `F000`.
     - **Coleta (11/10):** sessão `8280248f`; `Intervenções reconhecidas: 1`, `PROCESSO: 0` — a intervenção dada por *Other* foi reconhecida, **confirmando a correção do D-015**. Mesmo aviso de subagentes. **Novo:** o script imprimiu "divergência com o OpenTelemetry acima da tolerância" (primeira vez; só um alerta, sem valores). Não investigar nos números (cegamento); `div_otel` é conferência, reportado e nunca corrigido; sessão curta, denominador pequeno (tolerância de 2%). Anotado para a Parte IV.
   - [x] Sessão 4 `/speckit-plan` (`P-TECH`, 11/10): sessão `a5ac1558`; 0 intervenções, 0 `PROCESSO:`; coleta normal (só o aviso de subagentes; sem alerta `div_otel`).
-  - [ ] Sessões seguintes, na nova ordem: `/speckit-checklist` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
+  - [x] Sessão 5 `/speckit-checklist` (11/10): sessão `69ec7a29`; painel com 3 abas (foco, profundidade, público), as 3 respondidas por *Other* com a frase padrão; o agente gerou `checklists/foundation.md` (25 itens, desmarcados); 0 intervenções, 3 `PROCESSO:` reconhecidos (bate com o digitado).
+  - [ ] Sessões seguintes, na nova ordem: `/speckit-tasks` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
 - **Notas de encerramento:** *(preencher)*
 
 ## A3 — RF03 Cofre de autenticação biométrica
