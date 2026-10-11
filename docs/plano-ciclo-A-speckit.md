@@ -28,7 +28,8 @@
 > | A2 F000 — sessão 8 (`implement`) | ✅ (11/10) | 1 `PROCESSO:` (**RDR nº 2**); agente usou simulador por conta própria (anotado) |
 > | A2 F000 — sessão 9 (`converge`) | ✅ (11/10) | Não convergiu; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado |
 > | A2 F000 — sessão 10 (`implement`, 2º) | ✅ (11/10) | 1 `PROCESSO: yes` (texto do RDR nº 2) |
-> | **Próximo:** A2 F000 — `/speckit-converge` (sessão 11) | — | — |
+> | A2 F000 — sessão 11 (`converge`) ✅ *Converged*; P6 (b)(c) ok; (d) falhou em 2 itens | ⚠️ | splash branca (S2); criar conta "sem conexão" (S3); ambiente descartado |
+> | **Próximo:** A2 F000 — sessão de correção (9.4), depois nova P6 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 

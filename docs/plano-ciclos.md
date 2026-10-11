@@ -662,7 +662,9 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 8 `/speckit-implement` (11/10): 0 intervenções, 1 `PROCESSO:` (`PROCESSO: yes`, checklists incompletos; **RDR nº 2**). O agente declarou as 65 tarefas feitas e rodou o app **num simulador iOS** por conta própria (o protocolo, P11, usa só o iPhone físico na P6; o pesquisador não o instruiu a usar simulador; anotado, sem ação). A P6 continua a ser verificada por mim, não pelo relato do agente.
   - [x] Sessão 9 `/speckit-converge` (11/10): 0 intervenções, 0 `PROCESSO:`; **não convergiu** (trabalho restante anexado ao `tasks.md`); alerta `div_otel` (3ª vez: sessões 3, 6 e 9; sem investigar números).
   - [x] Sessão 10 `/speckit-implement` (11/10, 2º): 0 intervenções, 1 `PROCESSO: yes` (mesmo texto do RDR nº 2).
-  - [ ] Laço: sessão 11 `/speckit-converge` (repetir até *Converged* ou timebox) → P6 → `concluir-rf a F000` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
+  - [x] Sessão 11 `/speckit-converge` (11/10): *Converged*.
+  - **P6 (11/10):** (a) ok; (b) `flutter analyze` sem problemas; (c) `flutter test` passou; (d) iPhone: o app só abre pelo `flutter run` (modo debug, regra do iOS 14+, ambiente). **Falhas no roteiro:** (1) splash totalmente branca (esperado: wordmark "Cerne" sobre verde escuro com 3 pontos, ~1,8 s) → S2; (2) criar conta mostra "sem conexão - toque para tentar novamente", com o iPhone com internet (Safari), proxy desligado e o backend respondendo do Mac → S3. Ambiente descartado; **sessão de correção** (9.4), uma intervenção por sintoma. Os logs `TUIPredictionViewCell` do terminal são do teclado do iOS (ignorados).
+  - [ ] Sessão de correção → nova P6 → `concluir-rf a F000` (repetir até *Converged* ou timebox) → P6 → `concluir-rf a F000` → `/speckit-tasks` → `/speckit-analyze` → `/speckit-implement` → `/speckit-converge` → P6 → `concluir-rf a F000`.
 - **Notas de encerramento:** *(preencher)*
 
 ## A3 — RF03 Cofre de autenticação biométrica
