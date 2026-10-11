@@ -12,3 +12,4 @@
 | # | Data | Ciclo | Unidade | Comando/skill | Pergunta (resumo) | Fonte (seção do pacote ou "decisão") | Resposta (texto exato, em inglês) |
 |---|---|---|---|---|---|---|---|
 | 1 | 11/10/2026 | A | F000 | `speckit-analyze` | Fim do relatório: oferta de sugerir edições concretas de remediação para os N problemas principais | decisão (sugestão de RDR do plano A, 5.3) | `PROCESSO: Yes.` |
+| 2 | 11/10/2026 | A | F000 | `speckit-implement` | Algum checklist tem itens desmarcados: seguir com a implementação mesmo assim? (yes/no) | decisão (sugestão de RDR do plano A, 5.3) | `PROCESSO: yes` |

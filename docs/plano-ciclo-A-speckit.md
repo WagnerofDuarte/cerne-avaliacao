@@ -25,7 +25,8 @@
 > | A2 F000 — sessão 5 (`checklist`) | ✅ (11/10) | 3 `PROCESSO:` reconhecidos (painel de 3 abas), 0 intervenções |
 > | A2 F000 — sessão 6 (`tasks`) | ✅ (11/10) | 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado |
 > | A2 F000 — sessão 7 (`analyze`) | ✅ (11/10) | 1 `PROCESSO:` reconhecido; **RDR nº 1** gravado |
-> | **Próximo:** A2 F000 — `/speckit-implement` (sessão 8) | — | — |
+> | A2 F000 — sessão 8 (`implement`) | ✅ (11/10) | 1 `PROCESSO:` (**RDR nº 2**); agente usou simulador por conta própria (anotado) |
+> | **Próximo:** A2 F000 — `/speckit-converge` (sessão 9) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
