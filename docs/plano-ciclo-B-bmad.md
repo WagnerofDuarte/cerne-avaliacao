@@ -941,7 +941,7 @@ cd "$AVAL" && git add dados docs/rdr.md docs/plano-ciclos.md docs/desvios.md && 
 
 ```bash
 cd "$AVAL/dados/cicloB"
-ls ~/cerne/cfg-ciclo-b/projects/*/*.jsonl | wc -l
+ls ~/cerne/cfg-ciclo-b/projects/-Users-wagnerduarte-Documents-Faculdade-2026-2-TCC-cerne-ciclo-b/*.jsonl | wc -l     # só a pasta do repositório do ciclo (D-012)
 tail -n +2 sessoes.csv | grep -vc ",instalacao,"
 ls brutos/*.jsonl | grep -vc '^brutos/agent-'
 cut -d, -f2,3 tags.csv
@@ -949,7 +949,7 @@ tail -n +2 mapa-stories.csv | wc -l                       # = número de stories
 grep -cE "^\s+[0-9]+-[0-9]+-" "$CERNE_CICLO_B_DIR/_bmad-output/implementation-artifacts/sprint-status.yaml"
 ```
 **Critério:**
-- toda sessão tem linha (exceto a do `GATE-B02`);
+- toda sessão tem linha (o `GATE-B02` só roda `/context` e não gera transcript);
 - as 11 unidades têm tag;
 - `setup-done` e `plan-done` existem;
 - o mapa cobre todas as stories;

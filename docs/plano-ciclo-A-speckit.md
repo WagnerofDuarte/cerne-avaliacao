@@ -552,7 +552,7 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
    cd "$AVAL" && git add dados/evidencias/gate-a02-ciclo-a.png && git commit -m "Ciclo A: evidência do GATE-A02" && git push origin main
    ```
    (O nome do arquivo depende do idioma do macOS: `Screenshot…` em inglês, `Captura de Tela…` em português.)
-5. **Fechar** = encerrar essa conversa: fechar a aba do painel ou Cmd+Q no VS Code. **Sem** `/coletar-sessao` — só houve `/context` (comando local, não é mensagem ao agente), então não há o que medir. O transcript dela fica em `~/cerne/cfg-ciclo-a/projects/` e é a única sessão que o `A-003` aceita sem linha em `sessoes.csv`. Nunca reabrir essa conversa; a A1 começa numa conversa nova.
+5. **Fechar** = encerrar essa conversa: fechar a aba do painel ou Cmd+Q no VS Code. **Sem** `/coletar-sessao` — só houve `/context` (comando local, não é mensagem ao agente), então não há o que medir. Uma sessão só com `/context` **não grava transcript** (confirmado em 11/10/2026: a pasta do projeto do ciclo não tem `.jsonl`), então não há o que coletar nem o que justificar no `A-003`. Nunca reabrir essa conversa; a A1 começa numa conversa nova.
 6. Registrar no `plano-ciclos.md`: `A-001`, `GATE-A01`, `GATE-A02` com data.
 
 ✅ Executado em 07/10/2026: modelo `claude-sonnet-5`, só `speckit-*`, `coletar-sessao` ausente. ⚠️ **Limite desta evidência (achado de 08/10, D-012):** o painel do `/context` mostra só categorias e tokens, sem nomes de skills; a pasta `skills/synced` foi criada durante essa sessão. Por isso o `GATE-A02b` repete a conferência com a sincronização desligada.
@@ -568,7 +568,7 @@ O primeiro push cria `main`, `cicloA/baseline` e `cicloA/instalado` no GitHub (�
    ls ~/cerne/cfg-ciclo-a/skills ~/cerne/cfg-ciclo-a/plugins     # skills: só coletar-sessao; plugins: sem synced
    shasum -a 256 ~/cerne/cfg-ciclo-a/settings.json ~/cerne/cfg-ciclo-b/settings.json   # 3904700b…5922 nos dois
    ```
-6. Esta sessão deixa **mais um transcript** sem linha em `sessoes.csv`: o `A-003` passa a aceitar dois (`GATE-A02` e `GATE-A02b`). Nunca reabrir essa conversa.
+6. Sessão só com `/context` não grava transcript: nada a registrar no `A-003`. Nunca reabrir essa conversa.
 
 ---
 
@@ -1307,13 +1307,13 @@ O Spec Kit sem a extensão `git` não cria branches: tudo fica em `main`. Se o a
 Os comandos abaixo só **contam** linhas e arquivos:
 ```bash
 cd "$AVAL/dados/cicloA"
-ls ~/cerne/cfg-ciclo-a/projects/*/*.jsonl | wc -l          # sessões no Claude Code (inclui as do GATE-A02 e do GATE-A02b)
-tail -n +2 sessoes.csv | grep -vc ",instalacao,"            # sessões coletadas (deve ser o total acima menos 2)
+ls ~/cerne/cfg-ciclo-a/projects/-Users-wagnerduarte-Documents-Faculdade-2026-2-TCC-cerne-ciclo-a/*.jsonl | wc -l   # sessões do ciclo no Claude Code (só a pasta do repositório; os ensaios de /tmp ficam de fora)
+tail -n +2 sessoes.csv | grep -vc ",instalacao,"            # sessões coletadas (deve ser igual ao total acima)
 ls brutos/*.jsonl | grep -vc '^brutos/agent-'               # transcripts principais copiados
 cut -d, -f2,3 tags.csv                                      # tags registradas: baseline, instalado, setup-done, 11 unidades
 git -C "$CERNE_CICLO_A_DIR" tag | sort                      # mesmas tags no repositório
 ```
-**Critério:** toda sessão tem linha (exceto as do `GATE-A02` e do `GATE-A02b`, D-012); as 11 unidades têm `-done` ou `-incompleto`; os brutos estão copiados.
+**Critério:** toda sessão tem linha (`GATE-A02` e `GATE-A02b` só rodam `/context` e não geram transcript); as 11 unidades têm `-done` ou `-incompleto`; os brutos estão copiados.
 
 ### 14.2 📏 Tag `cicloA/final`
 

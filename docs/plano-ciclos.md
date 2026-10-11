@@ -710,7 +710,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 ## Encerramento do Ciclo A
 **Prazo proposto: 21/10/2026**
 
-- [ ] `A-003` Conferir a completude dos dados do ciclo: toda sessão do transcript tem linha em `sessoes.csv`, exceto as sessões de conferência do `GATE-A02` e do `GATE-A02b` (D-012), registradas em `dados/evidencias/`; toda unidade tem tag `-done` ou `-incompleto`; todos os JSONL copiados — **Critério:** script de conferência sem pendências. (Conferir completude não é olhar métrica: o script só conta linhas e arquivos.)
+- [ ] `A-003` Conferir a completude dos dados do ciclo: toda sessão do transcript tem linha em `sessoes.csv`, (as conferências do `GATE-A02` e do `GATE-A02b` só rodam `/context` e não geram transcript; evidências em `dados/evidencias/`); toda unidade tem tag `-done` ou `-incompleto`; todos os JSONL copiados — **Critério:** script de conferência sem pendências. (Conferir completude não é olhar métrica: o script só conta linhas e arquivos.)
 - [ ] 📏 **[COLETA]** Tag `cicloA/final`.
 - [ ] 🔴 **[MANUAL] `GATE-A03`** — Nota de encerramento do Ciclo A: o que aconteceu de inesperado, desvios registrados, decisões novas no RDR.
 
