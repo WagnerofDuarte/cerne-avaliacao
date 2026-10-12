@@ -687,6 +687,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 6 `/speckit-analyze` (12/10): sessão `697c3db0`; 0 intervenções, 0 `PROCESSO:` (nenhuma resposta registrada à oferta de remediação; sem novo RDR); sem alerta `div_otel`; timebox abaixo de 50%.
   - [x] Sessão 7 `/speckit-implement` (12/10): sessão `9b85d456`; 1 `PROCESSO: yes` (pausa dos checklists incompletos; mesmo texto do RDR nº 2, por isso sem linha nova), 0 intervenções; sem alerta `div_otel`; timebox abaixo de 50%.
   - [x] Sessão 8 `/speckit-converge` (12/10): sessão `423f1e59`; reportou *Converged* na 1ª rodada do laço `implement`/`converge`; 0 intervenções, 0 `PROCESSO:`; timebox abaixo de 50%. Segue a P6.
+  - [ ] P6 (12/10): (a) *Converged*; (b) `flutter analyze` sem problemas; (c) `flutter test` com 130 testes passando; (d) roteiro do iPhone percorrido (Tela 0.1/0.1b, falha do Face ID com PIN na 0.1c, 5 min 15 s em segundo plano exigindo autenticação) — todos os itens passaram. O pesquisador notou **diferenças de tela em relação ao protótipo**; decidiu abrir sessão de correção (9.4) antes de fechar a unidade. Aguardando a lista de diferenças para redigir as intervenções.
 - **Notas de encerramento:** *(preencher)*
 
 ## A4 — RF01 Captura multimodal

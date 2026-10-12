@@ -40,7 +40,8 @@
 > | A3 RF03 — sessão 6 (`analyze`, 12/10) | ✅ | Sessão `697c3db0`; 0 intervenções, 0 `PROCESSO:` (sem resposta registrada à oferta de remediação); sem alerta `div_otel` |
 > | A3 RF03 — sessão 7 (`implement`, 12/10) | ✅ | Sessão `9b85d456`; 1 `PROCESSO: yes` (texto do RDR nº 2, sem linha nova); 0 intervenções |
 > | A3 RF03 — sessão 8 (`converge`, 12/10) | ✅ *Converged* | Sessão `423f1e59`; convergiu na 1ª rodada do laço; 0 intervenções, 0 `PROCESSO:` |
-> | **Próximo:** A3 — RF03, P6 (`analyze`, `test`, iPhone com Face ID real e espera de 5 min 15 s) | — | — |
+> | A3 RF03 — P6 (12/10) | ⚠️ em andamento | (a) *Converged*; (b) `analyze` sem problemas; (c) 130 testes passam; (d) itens do roteiro (PIN, falha do Face ID, 5 min 15 s em segundo plano) ok no iPhone; o pesquisador anotou diferenças de tela em relação ao protótipo → sessão de correção (9.4) |
+> | **Próximo:** A3 — RF03, sessão 9 (correção, `INTERVENÇÃO [correção|S1 ou S2|prd]`, um sintoma por mensagem) e nova P6 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
