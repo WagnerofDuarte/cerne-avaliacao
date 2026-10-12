@@ -683,6 +683,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 2 `/speckit-clarify` (12/10): sessão `1e1d1d9b`; 1 `PROCESSO:` reconhecido (resposta do painel, confirma D-015), 0 intervenções; mesmo aviso de subagentes; timebox abaixo de 50%.
   - [x] Sessão 3 `/speckit-plan` (`P-TECH`, 12/10): sessão `5500fd78`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` (anotado, sem investigar números; cegamento); timebox abaixo de 50%.
   - [x] Sessão 4 `/speckit-checklist` (12/10): sessão `a2816ab4`; 2 `PROCESSO:` reconhecidos (respostas do painel por *Other*), 0 intervenções; alerta `div_otel` (anotado, sem investigar números; já visto nas sessões 3 e 4 da RF03); timebox abaixo de 50%.
+  - [x] Sessão 5 `/speckit-tasks` (12/10): sessão `678c334f`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` (anotado, sem investigar números); timebox abaixo de 50%.
 - **Notas de encerramento:** *(preencher)*
 
 ## A4 — RF01 Captura multimodal
