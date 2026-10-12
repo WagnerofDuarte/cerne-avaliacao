@@ -696,7 +696,10 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 05 a 07/10/2026 · Timebox: 8 h**
 - **Prompt:** `P-RF01`. **Depende de:** F000, RF03.
 - **Tela:** 2 (Modal de Inserção). **Backend:** §6.2.
-- **Atenção:** sem câmera no simulador; foto testada pela galeria (arrastar imagem para o simulador); microfone do Mac.
+- **Atenção:** sem câmera no simulador; foto testada pela galeria (arrastar imagem para o simulador); microfone do Mac. *(Substituído na ficha 10.3: câmera e microfone reais do iPhone.)*
+- **Andamento (13/10/2026):**
+  - [x] Sessão 1 `/speckit-specify` (`P-RF01`): coletada (`/coletar-sessao RF01`); contagens de intervenções e `PROCESSO:` a conferir no `sessoes.csv` no fechamento (o pesquisador não colou a saída).
+  - [x] Sessão 2 `/speckit-clarify`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
 - **Notas de encerramento:** *(preencher)*
 
 ## A5 — RF02 Processamento STT/OCR
