@@ -1,0 +1,8 @@
+ciclo,id_rf,sessao_id,fase,timestamp,gatilho,texto
+a,F000,69ec7a29-1b07-4409-83bb-ca18e20591e6,VALID,2026-10-11T20:01:50.288Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,F000,69ec7a29-1b07-4409-83bb-ca18e20591e6,VALID,2026-10-11T20:01:50.288Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,F000,69ec7a29-1b07-4409-83bb-ca18e20591e6,VALID,2026-10-11T20:01:50.288Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,F000,75fccd4c-061d-4bd3-961b-da2fd9a13f4e,VALID,2026-10-11T20:16:21.822Z,speckit-analyze,Yes.
+a,F000,ce18b287-5e92-4754-88ab-41b4a7fb1677,IMPL,2026-10-11T20:27:18.662Z,speckit-implement,yes
+a,F000,b868ae51-81c2-46b6-aada-791e6682d548,IMPL,2026-10-11T21:10:19.765Z,speckit-implement,yes
+a,F000,70d9233a-e141-41bb-bac9-efc00b0b44ed,IMPL,2026-10-11T21:24:56.935Z,speckit-implement,yes
