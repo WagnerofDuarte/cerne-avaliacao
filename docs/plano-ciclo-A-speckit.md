@@ -38,7 +38,8 @@
 > | A3 RF03 — sessão 4 (`checklist`, 12/10) | ✅ | Sessão `a2816ab4`; 2 `PROCESSO:` reconhecidos (painel de 2 perguntas), 0 intervenções; alerta `div_otel` anotado (sem investigar) |
 > | A3 RF03 — sessão 5 (`tasks`, 12/10) | ✅ | Sessão `678c334f`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
 > | A3 RF03 — sessão 6 (`analyze`, 12/10) | ✅ | Sessão `697c3db0`; 0 intervenções, 0 `PROCESSO:` (sem resposta registrada à oferta de remediação); sem alerta `div_otel` |
-> | **Próximo:** A3 — RF03, sessão 7 (`/speckit-implement`) | — | — |
+> | A3 RF03 — sessão 7 (`implement`, 12/10) | ✅ | Sessão `9b85d456`; 1 `PROCESSO: yes` (texto do RDR nº 2, sem linha nova); 0 intervenções |
+> | **Próximo:** A3 — RF03, sessão 8 (`/speckit-converge`) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
