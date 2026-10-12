@@ -675,6 +675,8 @@ INTERVENÇÃO [correção|S<n>|<causa>]: Expected: … Actual: … Where: … Er
 ```
 `/coletar-sessao <ID>` ao fim. Repetir a P6. A timebox soma todas as sessões da unidade.
 
+**Diferenças de tela em relação ao protótipo (D-019, igual ao Ciclo A):** uma intervenção **por tela**, listando as diferenças da tela, com a severidade da mais grave (`S2` se falta ou difere texto, estado ou elemento do protótipo; `S1` se só o estilo difere). Descreva em termos qualitativos citando o estado do protótipo; sem valores numéricos de estilo nem código. Diferença vista em tela de unidade já fechada entra na correção da unidade atual.
+
 ### 13.5 📏 Fechamento da unidade
 
 ```bash

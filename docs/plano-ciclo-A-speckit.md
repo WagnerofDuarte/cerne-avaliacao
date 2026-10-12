@@ -41,7 +41,7 @@
 > | A3 RF03 — sessão 7 (`implement`, 12/10) | ✅ | Sessão `9b85d456`; 1 `PROCESSO: yes` (texto do RDR nº 2, sem linha nova); 0 intervenções |
 > | A3 RF03 — sessão 8 (`converge`, 12/10) | ✅ *Converged* | Sessão `423f1e59`; convergiu na 1ª rodada do laço; 0 intervenções, 0 `PROCESSO:` |
 > | A3 RF03 — P6 (12/10) | ⚠️ em andamento | (a) *Converged*; (b) `analyze` sem problemas; (c) 130 testes passam; (d) itens do roteiro (PIN, falha do Face ID, 5 min 15 s em segundo plano) ok no iPhone; o pesquisador anotou diferenças de tela em relação ao protótipo → sessão de correção (9.4) |
-> | **Próximo:** A3 — RF03, sessão 9 (correção, `INTERVENÇÃO [correção|S1 ou S2|prd]`, um sintoma por mensagem) e nova P6 | — | — |
+> | **Próximo:** A3 — RF03, sessão 9 (correção: 4 intervenções, uma por tela — splash S1, login S2, biometria S2, PIN S1; **D-019**) e nova P6 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -802,6 +802,7 @@ O que **não** entra na P6: a suíte hold-out (nunca durante o ciclo), cobertura
    INTERVENÇÃO [correção|S<n>|<causa>]: Expected: … Actual: … Where: … Error: …
    ```
    Um sintoma por mensagem. Se houver vários, mande-os na mesma sessão, um de cada vez, cada um com seu prefixo.
+   **Diferenças de tela em relação ao protótipo (D-019):** uma intervenção **por tela**, listando as diferenças da tela, com a severidade da mais grave (`S2` se falta ou difere texto, estado ou elemento do protótipo; `S1` se só o estilo difere). Descreva em termos qualitativos citando o estado do protótipo; sem valores numéricos de estilo nem código. Diferença vista em tela de unidade já fechada entra na correção da unidade atual (a unidade fechada não é reaberta).
 2. 🤖 O agente corrige (fase `IMPL` pelo protocolo; ver Apêndice C sobre a segmentação).
 3. `/coletar-sessao <ID>`.
 4. Repetir a P6. Repetir 9.4 até passar ou até a timebox, que soma todas as sessões da unidade.
