@@ -6,3 +6,7 @@ a,F000,75fccd4c-061d-4bd3-961b-da2fd9a13f4e,VALID,2026-10-11T20:16:21.822Z,speck
 a,F000,ce18b287-5e92-4754-88ab-41b4a7fb1677,IMPL,2026-10-11T20:27:18.662Z,speckit-implement,yes
 a,F000,b868ae51-81c2-46b6-aada-791e6682d548,IMPL,2026-10-11T21:10:19.765Z,speckit-implement,yes
 a,F000,70d9233a-e141-41bb-bac9-efc00b0b44ed,IMPL,2026-10-11T21:24:56.935Z,speckit-implement,yes
+a,RF03,1e1d1d9b-2ddd-447b-be94-c8d0b2260fa3,ESPEC,2026-10-12T00:40:00.953Z,speckit-clarify,"Use your technical judgment, following the input package."
+a,RF03,a2816ab4-89b0-4b56-949d-7621c63136ee,VALID,2026-10-12T00:58:00.322Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,RF03,a2816ab4-89b0-4b56-949d-7621c63136ee,VALID,2026-10-12T00:58:00.322Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,RF03,9b85d456-770e-4c35-be11-70b237def8f6,IMPL,2026-10-12T01:15:47.393Z,speckit-implement,yes
