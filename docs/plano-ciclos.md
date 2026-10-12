@@ -678,6 +678,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Prompt:** `P-RF03`. **Depende de:** F000.
 - **Tela:** 0.1 (Cofre). **Backend:** nenhum endpoint próprio (biometria 100% local, D2).
 - **Atenção:** Face ID pelo menu Features do simulador; o critério de 5 minutos em background exige espera real na verificação.
+- **Andamento (12/10/2026):**
+  - [x] Sessão 1 `/speckit-specify` (`P-RF03`, 12/10): sessão `b17926dd`; `/coletar-sessao RF03` registrou normalmente (mesmo aviso de subagentes); 0 intervenções, 0 `PROCESSO:`; timebox abaixo de 50%.
 - **Notas de encerramento:** *(preencher)*
 
 ## A4 — RF01 Captura multimodal

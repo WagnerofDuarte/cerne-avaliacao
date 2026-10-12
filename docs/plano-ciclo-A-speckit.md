@@ -32,7 +32,8 @@
 > | A2 F000 — sessão 12 (correção) | ✅ (11/10) | 2 intervenções; **D-017:** cadastro por e-mail desligado no Supabase (ambiente, 3.7.1), corrigido nos dois projetos; só a splash mudou código |
 > | A2 F000 — sessão 13 (correção) e P6 | ⚠️ (11/10) | **D-018:** chave anon mascarada nos `.env` (ambiente), corrigida; cadastro e splash OK; item 5 revelou defeito: sessão inválida (401 `AUTH_INVALID`) deixa o app preso na splash |
 > | **A2 F000 concluída (12/10)** | ✅ | Commit `2c5d84b`, tag `cicloA/f000-done`; dados em `2520e9e`; P6 ok (item 6 n/a) |
-> | **Próximo:** A3 — RF03 (seção 10.2) | — | — |
+> | A3 RF03 — sessão 1 (`specify`, 12/10) | ✅ | Sessão `b17926dd`; coletada como `RF03`; 0 intervenções, 0 `PROCESSO:`; aviso de subagentes (esperado) |
+> | **Próximo:** A3 — RF03, sessão 2 (`/speckit-clarify`) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
