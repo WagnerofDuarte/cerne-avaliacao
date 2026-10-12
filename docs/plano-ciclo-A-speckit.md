@@ -37,7 +37,8 @@
 > | A3 RF03 — sessão 3 (`plan`, 12/10) | ✅ | Sessão `5500fd78`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
 > | A3 RF03 — sessão 4 (`checklist`, 12/10) | ✅ | Sessão `a2816ab4`; 2 `PROCESSO:` reconhecidos (painel de 2 perguntas), 0 intervenções; alerta `div_otel` anotado (sem investigar) |
 > | A3 RF03 — sessão 5 (`tasks`, 12/10) | ✅ | Sessão `678c334f`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
-> | **Próximo:** A3 — RF03, sessão 6 (`/speckit-analyze`) | — | — |
+> | A3 RF03 — sessão 6 (`analyze`, 12/10) | ✅ | Sessão `697c3db0`; 0 intervenções, 0 `PROCESSO:` (sem resposta registrada à oferta de remediação); sem alerta `div_otel` |
+> | **Próximo:** A3 — RF03, sessão 7 (`/speckit-implement`) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
