@@ -725,6 +725,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Tela:** 2 (indicador de transcrição, 4 estados). **Backend:** §6.2 (OCR). STT on-device (`whisper_ggml`).
 - **Atenção:** ver resultado do spike do `GATE-C16`.
 - **Nota vinda da RF01 (14/10):** o agente já implementou STT (Whisper no aparelho) e OCR na RF01, e o áudio gravado é transcrito e enviado na hora, sem a tela de revisão. O pesquisador **não** pediu a revisão editável da transcrição (estado "Áudio — Transcrito", com a duração do áudio original acima do Salvar) na RF01; ela é escopo da RF02 pelo prompt. Conferir na RF02 o que já existe e o que falta.
+- **Andamento:**
+  - [x] Sessão 1 (`specify`): coletada (sessão `c2f7765f`); intervenções 0, respostas `PROCESSO:` 0; aviso de subagentes (esperado); timebox abaixo de 50%.
 - **Notas de encerramento:** *(preencher)*
 
 ## A6 — RF07 Histórico multi-fonte (timeline)
