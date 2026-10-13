@@ -47,7 +47,8 @@
 > | A4 RF01 — sessões 1 a 7 (`specify`, `clarify`, `plan`, `checklist`, `tasks`, `analyze`, `implement`) (13/10) | ✅ coletadas | `implement` terminou com 70 de 71 tarefas (a T071 é manual, da P6(d)); contagens a conferir no `sessoes.csv` no fechamento |
 > | A4 RF01 — sessão 8 (`converge`, 13/10) | ✅ *Converged* | 1ª rodada, sem lacunas; achado de escopo (STT e OCR já na RF01): decidido não intervir, só anotar |
 > | A4 RF01 — P6 (13/10) | ⚠️ (d) falhou | (b) e (c) ok; no iPhone o teclado cobre o modal de inserção e o botão de salvar fica inalcançável |
-> | **Próximo:** A4 — RF01, sessão de correção (todas as mensagens na mesma sessão) e nova P6 | — | — |
+> | A4 RF01 — sessão 9 (correção, 13/10) | ✅ coletada | 2 intervenções `correção|S2|prd` na mesma sessão (Texto/teclado; Áudio sem estado inicial); contagens a conferir no fechamento |
+> | **Próximo:** A4 — RF01, nova P6 (`analyze`, `test`, iPhone, consulta no Supabase) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
