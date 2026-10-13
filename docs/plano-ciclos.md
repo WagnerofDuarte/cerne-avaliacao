@@ -730,6 +730,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 2 (`clarify`): coletada (sessão `bb9d25a9`); intervenções 0, respostas `PROCESSO:` 1; aviso de subagentes (esperado); timebox abaixo de 50%.
   - [x] Sessão 3 (`plan`, argumento `P-TECH`): coletada (sessão `f0a25f96`); intervenções 0, respostas `PROCESSO:` 0 (nenhuma pausa prevista); aviso de subagentes (esperado); alerta `div_otel` (anotado, sem investigar, conferência para a Parte IV); timebox abaixo de 50%.
   - [x] Sessão 4 (`checklist`): coletada (sessão `65939ab6`); intervenções 0, respostas `PROCESSO:` 3; aviso de subagentes (esperado); timebox abaixo de 50%.
+  - [x] Sessão 5 (`tasks`): coletada (sessão `7a17e350`); `tasks.md` com 46 tarefas (T001–T046) em 5 histórias + fundação + polimento, `specs/004-stt-ocr-processing/`; intervenções 0, respostas `PROCESSO:` 0 (nenhuma pausa prevista); aviso de subagentes (esperado); alerta `div_otel` (anotado, sem investigar); timebox abaixo de 50%.
 - **Notas de encerramento:** *(preencher)*
 
 ## A6 — RF07 Histórico multi-fonte (timeline)
