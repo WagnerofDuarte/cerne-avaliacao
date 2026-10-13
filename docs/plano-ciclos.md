@@ -704,7 +704,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 4 `/speckit-checklist`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
   - [x] Sessão 5 `/speckit-tasks`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
   - [x] Sessão 6 `/speckit-analyze`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
-  - [ ] Sessão 7 `/speckit-implement` (13/10): o agente encerrou com **70 de 71 tarefas**; a que sobrou (T071) é a verificação manual com câmera e microfone reais, que cabe à P6(d). Relatório com dois avisos ao pesquisador, não respondidos (sem intervenção): `ios/Podfile` e `Podfile.lock` novos e um modelo Whisper de 32 MB em `assets/models/` sem commit — ambos entram no commit de fechamento (D-002); sem Git LFS. O agente usou o simulador e alterou `Podfile`/`project.pbxproj` para excluir `arm64` do simulador (achado de ambiente do agente, sem sintoma no iPhone). Aguardando coleta.
+  - [x] Sessão 7 `/speckit-implement` (13/10): o agente encerrou com **70 de 71 tarefas**; a que sobrou (T071) é a verificação manual com câmera e microfone reais, que cabe à P6(d). Relatório com dois avisos ao pesquisador, não respondidos (sem intervenção): `ios/Podfile` e `Podfile.lock` novos e um modelo Whisper de 32 MB em `assets/models/` sem commit — ambos entram no commit de fechamento (D-002); sem Git LFS. O agente usou o simulador e alterou `Podfile`/`project.pbxproj` para excluir `arm64` do simulador (achado de ambiente do agente, sem sintoma no iPhone). Coletada (contagens a conferir no `sessoes.csv` no fechamento).
 - **Notas de encerramento:** *(preencher)*
 
 ## A5 — RF02 Processamento STT/OCR
