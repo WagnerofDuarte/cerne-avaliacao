@@ -51,7 +51,8 @@
 > | A4 RF01 — nova P6 após a correção (13/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone passaram, segundo o pesquisador |
 > | A4 RF01 — sessão 10 (correção de design do modal, 13/10) | ✅ coletada | 1 intervenção enviada colada e não reconhecida pelo coletor (**D-020**); P6: `analyze` e 196 testes ok, mais discrepâncias de design no iPhone |
 > | A4 RF01 — sessão 11 (correção do Áudio, 14/10) e nova P6 | ✅ | 1 intervenção `S1|prd` colada, não reconhecida pelo coletor (**D-020**, 2ª ocorrência); P6 aprovada, segundo o pesquisador; a revisão da transcrição fica para a RF02 |
-> | **Próximo:** A4 — fechamento da RF01 (9.5): commit, `concluir-rf a RF01`, push, dados | — | — |
+> | **A4 RF01 fechada (14/10), push pendente** | ⚠️ | Commit `80486e5`, tag `cicloA/rf01-done`, dados em `64f9f0a`; 13 sessões (8 do fluxo, 2º laço de `implement`/`converge`, 3 de correção; D-019, D-020); o push do `cerne-ciclo-a` falhou (HTTP 408) e deve ser repetido |
+> | **Próximo:** repetir o push; depois A5 — RF02 (seção 10.4) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
