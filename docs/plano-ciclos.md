@@ -701,6 +701,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 1 `/speckit-specify` (`P-RF01`): coletada (`/coletar-sessao RF01`); contagens de intervenções e `PROCESSO:` a conferir no `sessoes.csv` no fechamento (o pesquisador não colou a saída).
   - [x] Sessão 2 `/speckit-clarify`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
   - [x] Sessão 3 `/speckit-plan` (`P-TECH`): coletada; contagens a conferir no `sessoes.csv` no fechamento.
+  - [x] Sessão 4 `/speckit-checklist`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
 - **Notas de encerramento:** *(preencher)*
 
 ## A5 — RF02 Processamento STT/OCR
