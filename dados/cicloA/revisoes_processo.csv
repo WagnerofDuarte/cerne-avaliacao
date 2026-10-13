@@ -10,3 +10,10 @@ a,RF03,1e1d1d9b-2ddd-447b-be94-c8d0b2260fa3,ESPEC,2026-10-12T00:40:00.953Z,speck
 a,RF03,a2816ab4-89b0-4b56-949d-7621c63136ee,VALID,2026-10-12T00:58:00.322Z,speckit-checklist,"Use your technical judgment, following the input package."
 a,RF03,a2816ab4-89b0-4b56-949d-7621c63136ee,VALID,2026-10-12T00:58:00.322Z,speckit-checklist,"Use your technical judgment, following the input package."
 a,RF03,9b85d456-770e-4c35-be11-70b237def8f6,IMPL,2026-10-12T01:15:47.393Z,speckit-implement,yes
+a,RF01,28671614-88ee-478e-8b15-4bf5037cb185,ESPEC,2026-10-12T23:40:01.479Z,speckit-specify,"Use your technical judgment, following the input package."
+a,RF01,56e051bf-747e-4a1c-973e-d9ee70eb0342,ESPEC,2026-10-12T23:49:59.861Z,speckit-clarify,"Use your technical judgment, following the input package."
+a,RF01,f85151da-01a3-4429-8b10-f42bee514e32,VALID,2026-10-13T00:14:04.932Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,RF01,f85151da-01a3-4429-8b10-f42bee514e32,VALID,2026-10-13T00:14:04.932Z,speckit-checklist,"Use your technical judgment, following the input package."
+a,RF01,af4e2b24-d2fc-4ef8-9f5b-b2f2ba53cb7e,VALID,2026-10-13T00:32:46.959Z,speckit-analyze,Yes.
+a,RF01,7252c781-e9e7-42e3-bfce-e52034a46c76,IMPL,2026-10-13T00:41:37.488Z,speckit-implement,yes
+a,RF01,9b94ee96-f063-4141-b1cc-40a8c691437b,IMPL,2026-10-13T02:00:17.284Z,speckit-implement,yes
