@@ -48,7 +48,8 @@
 > | A4 RF01 — sessão 8 (`converge`, 13/10) | ✅ *Converged* | 1ª rodada, sem lacunas; achado de escopo (STT e OCR já na RF01): decidido não intervir, só anotar |
 > | A4 RF01 — P6 (13/10) | ⚠️ (d) falhou | (b) e (c) ok; no iPhone o teclado cobre o modal de inserção e o botão de salvar fica inalcançável |
 > | A4 RF01 — sessão 9 (correção, 13/10) | ✅ coletada | 2 intervenções `correção|S2|prd` na mesma sessão (Texto/teclado; Áudio sem estado inicial); contagens a conferir no fechamento |
-> | **Próximo:** A4 — RF01, nova P6 (`analyze`, `test`, iPhone, consulta no Supabase) | — | — |
+> | A4 RF01 — nova P6 após a correção (13/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone passaram, segundo o pesquisador |
+> | **Próximo:** A4 — fechamento da RF01 (9.5): commit, `concluir-rf a RF01`, push, dados | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
