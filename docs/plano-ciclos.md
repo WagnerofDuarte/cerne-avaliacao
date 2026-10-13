@@ -703,6 +703,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
   - [x] Sessão 3 `/speckit-plan` (`P-TECH`): coletada; contagens a conferir no `sessoes.csv` no fechamento.
   - [x] Sessão 4 `/speckit-checklist`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
   - [x] Sessão 5 `/speckit-tasks`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
+  - [x] Sessão 6 `/speckit-analyze`: coletada; contagens a conferir no `sessoes.csv` no fechamento.
 - **Notas de encerramento:** *(preencher)*
 
 ## A5 — RF02 Processamento STT/OCR
