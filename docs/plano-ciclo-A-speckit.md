@@ -49,7 +49,7 @@
 > | A4 RF01 — P6 (13/10) | ⚠️ (d) falhou | (b) e (c) ok; no iPhone o teclado cobre o modal de inserção e o botão de salvar fica inalcançável |
 > | A4 RF01 — sessão 9 (correção, 13/10) | ✅ coletada | 2 intervenções `correção|S2|prd` na mesma sessão (Texto/teclado; Áudio sem estado inicial); contagens a conferir no fechamento |
 > | A4 RF01 — nova P6 após a correção (13/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone passaram, segundo o pesquisador |
-> | **Próximo:** A4 — RF01: o pesquisador tem discrepâncias de design a reportar (nenhum passo do fechamento rodado); depois, sessão de correção (D-019) e nova P6, ou o fechamento (9.5) | — | — |
+> | **Próximo:** A4 — RF01: sessão de correção de design do modal de inserção (1 intervenção `S2|prd`, D-019; nenhum passo do fechamento rodado) e nova P6 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
