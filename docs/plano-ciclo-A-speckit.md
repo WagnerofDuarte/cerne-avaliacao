@@ -45,7 +45,8 @@
 > | A3 RF03 — nova P6 após a correção (13/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone (4 telas corrigidas, Face ID/PIN, 5 min 15 s em segundo plano, login e senha errada) passaram, segundo o pesquisador |
 > | **A3 RF03 concluída (13/10)** | ✅ | Commit `98f1bea`, tag `cicloA/rf03-done`; dados em `3180308`; 12 sessões (8 do fluxo + 4 de correção, uma por tela — D-019); P6 ok |
 > | A4 RF01 — sessões 1 a 7 (`specify`, `clarify`, `plan`, `checklist`, `tasks`, `analyze`, `implement`) (13/10) | ✅ coletadas | `implement` terminou com 70 de 71 tarefas (a T071 é manual, da P6(d)); contagens a conferir no `sessoes.csv` no fechamento |
-> | **Próximo:** A4 — RF01, sessão 8 (`/speckit-converge`) | — | — |
+> | A4 RF01 — sessão 8 (`converge`, 13/10) | ✅ *Converged* | 1ª rodada, sem lacunas; achado de escopo (STT e OCR já na RF01) a decidir |
+> | **Próximo:** A4 — RF01, P6 (`analyze`, `test`, iPhone com microfone e câmera reais + consulta no Supabase) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
