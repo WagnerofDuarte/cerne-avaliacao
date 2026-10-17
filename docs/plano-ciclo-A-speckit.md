@@ -1078,7 +1078,7 @@ Show all the user's entries in a timeline, whatever their origin, with a per-ent
      -d '{"email":"dev-cicloa@cerne.test","password":"<sua senha>"}' | python3 -c 'import sys,json;print(json.load(sys.stdin)["data"]["session"]["accessToken"])')
    curl -s -X POST "$FUNCTIONS_BASE_URL/auth-logout" -H "Authorization: Bearer $TOKEN" -H "apikey: $SUPABASE_ANON_KEY"
    ```
-3. Deixar o app aberto na timeline até passar **60 min** do login do passo 1. Depois, fazer qualquer ação que chame o backend (puxar para atualizar, abrir uma entrada). Deve aparecer o overlay "Sessão expirada" sobre a tela, com a rolagem preservada e sem crash.
+3. Deixar o app aberto na timeline até passar **60 min** do login do passo 1. Depois, fazer qualquer ação que chame o backend (reabrir Meus Registros, rolar até carregar mais ou voltar do modal de inserção; o protótipo não tem gesto de "puxar para atualizar", D-023). Deve aparecer o overlay "Sessão expirada" sobre a tela, com a rolagem preservada e sem crash.
 4. Se não for possível reproduzir, registre nas notas "critério verificado em parte — limitação do ambiente de desenvolvimento" e faça o mesmo nas duas pontas (Ciclo B igual). A hold-out cobre isso na Parte IV com 401 forjado.
 
 ### 10.6 A7 — RF06 Busca semântica e filtros

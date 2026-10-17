@@ -783,8 +783,8 @@ No B, os `P-RFxx` **já foram** entregues no PRD (10.1). Aqui eles servem só pa
      TOKEN=$(curl -s -X POST "$FUNCTIONS_BASE_URL/auth-login" -H "Authorization: Bearer $SUPABASE_ANON_KEY" -H "apikey: $SUPABASE_ANON_KEY" -H "Content-Type: application/json" -d '{"email":"dev-ciclob@cerne.test","password":"<sua senha>"}' | python3 -c 'import sys,json;print(json.load(sys.stdin)["data"]["session"]["accessToken"])')
      curl -s -X POST "$FUNCTIONS_BASE_URL/auth-logout" -H "Authorization: Bearer $TOKEN" -H "apikey: $SUPABASE_ANON_KEY"
      ```
-  3. Depois de **60 min** do login no iPhone, puxar para atualizar → overlay "Sessão expirada", rolagem preservada, sem crash.
-  4. Se não reproduzir: "verificado em parte", exatamente como no A.
+  3. Depois de **60 min** do login no iPhone, reabrir Meus Registros, rolar até carregar mais ou voltar do modal de inserção → overlay "Sessão expirada", rolagem preservada, sem crash (o protótipo não tem "puxar para atualizar", D-023).
+  4. Se não reproduzir: "verificado em parte", exatamente como no A. **No A o pesquisador decidiu não esperar os 60 min (D-023); aqui também não esperar**: registrar "verificado em parte — limitação do ambiente de desenvolvimento".
 - "Nenhum BLoC importa outro BLoC" é estrutural: não verificar à mão.
 
 ### 14.6 B5.6 — RF06 Busca e filtros
