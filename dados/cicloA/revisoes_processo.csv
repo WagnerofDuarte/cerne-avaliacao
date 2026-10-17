@@ -24,3 +24,8 @@ a,RF02,65939ab6-afb3-4b38-888e-ba7302389b83,VALID,2026-10-13T22:52:28.712Z,speck
 a,RF02,0d8895c8-776b-4ffa-9db6-ed705169232c,VALID,2026-10-13T23:07:39.014Z,speckit-analyze,Yes.
 a,RF02,0d8895c8-776b-4ffa-9db6-ed705169232c,VALID,2026-10-13T23:08:18.202Z,speckit-analyze,Yes.
 a,RF02,3505d832-75d4-4f2f-b7e9-da3d3968a090,IMPL,2026-10-13T23:15:16.921Z,speckit-implement,yes
+a,RF07,ca81445d-925e-42dd-8a1d-bb1438eda7ce,VALID,2026-10-17T20:48:52.480Z,speckit-checklist,"Use your technical judgment, following the input package"
+a,RF07,ca81445d-925e-42dd-8a1d-bb1438eda7ce,VALID,2026-10-17T20:48:52.480Z,speckit-checklist,"Use your technical judgment, following the input package"
+a,RF07,ca81445d-925e-42dd-8a1d-bb1438eda7ce,VALID,2026-10-17T20:48:52.480Z,speckit-checklist,"Use your technical judgment, following the input package"
+a,RF07,73b80939-a131-4560-be9d-dde7faa25ee4,VALID,2026-10-17T21:04:09.196Z,speckit-analyze,Yes.
+a,RF07,4fa71454-4625-4a53-86e3-e60d975c642b,IMPL,2026-10-17T21:09:07.170Z,speckit-implement,yes
