@@ -758,7 +758,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 10 a 11/10/2026 · Timebox: 8 h**
 - **Prompt:** `P-RF06`. **Depende de:** RF07.
 - **Tela:** 4 (busca e filtros); Tela 0 (sincronização de cache na splash). **Backend:** §6.4.
-- **Andamento (17/10/2026):** início da RF06. Sessão 1 `specify` (`9b70755d`): 0 intervenções, 0 `PROCESSO:`, timebox da unidade abaixo de 50%; só o aviso de subagentes (sem `div_otel`).
+- **Andamento (17/10/2026):** início da RF06. Sessão 1 `specify` (`9b70755d`): 0 intervenções, 0 `PROCESSO:`, timebox da unidade abaixo de 50%; só o aviso de subagentes (sem `div_otel`). Sessão 2 `clarify` (`5422a1a2`): 0 intervenções, **1** `PROCESSO:` reconhecido (frase-padrão, sem linha nova no RDR), timebox abaixo de 50%; só o aviso de subagentes.
 - **Notas de encerramento:** *(preencher)*
 
 ## A8 — RF04 Chat interativo com memória (RAG)
