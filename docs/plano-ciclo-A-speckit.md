@@ -56,7 +56,8 @@
 > | A5 RF02 — P6 e 2 sessões de correção de design (17/10) | ✅ | 2 intervenções `correção|S2|prd` digitadas e reconhecidas; P6 aprovada na 3ª rodada, segundo o pesquisador |
 > | **A5 RF02 concluída (17/10)** | ✅ | Commit `dfdac64`, tag `cicloA/rf02-done`, dados em `50dab1f`; 10 sessões (8 do fluxo, 1 laço, 2 de correção); push do ciclo na 1ª tentativa |
 > | A6 RF07 — sessões 1 `specify`, 2 `clarify`, 3 `plan`, 4 `checklist`, 5 `tasks` e 6 `analyze` (17/10) | ✅ coletadas | 0 intervenções; `PROCESSO:` 0/0/0/3/0/1 (`checklist` e `analyze`); timebox < 50%; `div_otel` nas sessões 1, 2, 4 e 6 (anotado); `analyze` sem CRITICAL (1 HIGH, 1 MEDIUM) |
-> | **Próximo:** A6 — RF07, sessão 7 `/speckit-implement` (seção 9.1) | — | — |
+> | A6 RF07 — sessão 7 `implement` (17/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); 39 de 41 tarefas (T037 e T041 são manuais, do pesquisador); 264 testes passam, `analyze` limpo; timebox < 50% |
+> | **Próximo:** A6 — RF07, sessão 8 `/speckit-converge` (seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
