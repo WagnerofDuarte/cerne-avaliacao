@@ -793,6 +793,29 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - [ ] 📏 **[COLETA]** Tag `cicloA/final`.
 - [ ] 🔴 **[MANUAL] `GATE-A03`** — Nota de encerramento do Ciclo A: o que aconteceu de inesperado, desvios registrados, decisões novas no RDR.
 
+### Checklist de acompanhamento do fechamento do Ciclo A (17/10/2026)
+*Lista de controle; os itens `A-003`, `cicloA/final`, `GATE-A03` e `X-001` a `X-002` acima e abaixo continuam sendo os critérios formais.*
+
+**1. Unidades que faltam** (7 × 8 h de tempo ativo; ordem congelada; cada uma segue o bloco-padrão: `specify`, `clarify`, `plan` com `P-TECH`, `checklist`, `tasks`, `analyze`, laço `implement`/`converge` até *Converged*, P6, correções se houver [D-019], commit de fechamento, `concluir-rf a <ID>`, push do ciclo com tags, commit de `dados/`, notas de encerramento)
+- [ ] A6 RF07 · [ ] A7 RF06 · [ ] A8 RF04 · [ ] A9 RF10 · [ ] A10 RF08 · [ ] A11 RF05 · [ ] A12 RF09
+
+**2. Decisões e registros pendentes** (rodam em paralelo; não bloqueiam sessões, salvo o calendário no ritmo)
+- [ ] **D-021, calendário:** o fim de 21/10 não comporta 56 h (restam 4 dias); decidir horas por dia, nova data final do Ciclo A e se o Ciclo B ou a monografia limitam; registrar em `desvios.md` e atualizar o §16 do plano A e as datas do Ciclo B. Nunca encurtar timebox.
+- [ ] **`segredos/` versionado no GitHub** (string de conexão do Postgres, chave do Voyage, arquivos `.env.*`): rotacionar as duas credenciais e rodar `git rm --cached` no Mac, nunca por commit do assistente.
+- [ ] **`H-007` e a regra do `<pasted_content>`:** registrar a decisão (igual nos dois ciclos) de reconhecer o prefixo `INTERVENÇÃO`/`PROCESSO:` também dentro do bloco colado; re-derivar `sessoes.csv`/`intervencoes.csv` das sessões `391601bd`, `8963c779`, `76a55d2d` (D-020) e da fase `SETUP`, antes da Parte IV.
+- [ ] **Auditoria de datas:** acertar nas notas de F000, RF03 e RF01 as datas que divergem em até 1 dia de `sessoes.csv`/`tags.csv` (horário de Brasília).
+- [ ] **`div_otel` e subagentes:** alertas só registrados, sem correção nem investigação nos números; o caminho dos transcripts de subagentes segue sem confirmação (GATE-C21).
+- [ ] **Mac `AVAL`:** conferir que `segredos/.env.*` não têm modificação local pronta para commit por engano.
+
+**3. Encerramento** (depois da RF09)
+- [ ] `A-003` completude dos dados (§14.1) · [ ] tag `cicloA/final` (§14.2) · [ ] `GATE-A03` nota de encerramento (§14.3)
+
+**4. Transição A → B** (dia seguinte ao encerramento)
+- [ ] `X-001` hashes · [ ] `X-002` versões e modelo (se o modelo sumir, parar e falar com a orientadora) · [ ] `GATE-X01` backend `ciclo-b` · [ ] `GATE-X02` `dados/cicloB/aprendizado-previo.md` (depois dele, não abrir mais `cerne-ciclo-a`)
+
+**5. Em paralelo, no `cerne-avaliacao`**
+- [ ] Trilha do harness `H-001` a `H-006`, com corte da hold-out e da M8b em **06/11** (`GATE-H01`); se o Ciclo A for estendido, conferir se isso aperta esse prazo.
+
 ---
 
 # TRANSIÇÃO A → B
