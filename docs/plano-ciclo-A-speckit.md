@@ -58,7 +58,9 @@
 > | A6 RF07 — sessões 1 `specify`, 2 `clarify`, 3 `plan`, 4 `checklist`, 5 `tasks` e 6 `analyze` (17/10) | ✅ coletadas | 0 intervenções; `PROCESSO:` 0/0/0/3/0/1 (`checklist` e `analyze`); timebox < 50%; `div_otel` nas sessões 1, 2, 4 e 6 (anotado); `analyze` sem CRITICAL (1 HIGH, 1 MEDIUM) |
 > | A6 RF07 — sessão 7 `implement` (17/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); 39 de 41 tarefas (T037 e T041 são manuais, do pesquisador); 264 testes passam, `analyze` limpo; timebox < 50% |
 > | A6 RF07 — sessão 8 `converge` (17/10) | ✅ coletada | **Converged na 1ª rodada**; 0 intervenções, 0 `PROCESSO:`; timebox < 50% |
-> | **Próximo:** A6 — RF07, P6 (seção 9.3 e roteiro da 10.5) | — | — |
+> | A6 RF07 — P6 rodada 1 (17/10) | ⚠️ funcional passou; design com 6 diferenças na Tela 4 | Sessão expirada "verificada em parte" e sem gesto de "puxar para atualizar" (**D-023**); Vazio (opcional) não testado |
+> | A6 RF07 — sessão 9, correção de design da Tela 4 (17/10) | ✅ coletada | Intervenção `correção|S2|prd` **colada**, coletor com 0 (esperado 1): 3ª ocorrência do **D-020**, conta como 1 |
+> | **Próximo:** A6 — RF07, P6 rodada 2 (seção 9.3 e roteiro da 10.5) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
