@@ -747,7 +747,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 08 a 10/10/2026 · Timebox: 8 h**
 - **Prompt:** `P-RF07`. **Depende de:** F000, RF01.
 - **Tela:** 4 (Meus Registros — timeline; tags manuais **não**, P10). **Backend:** §6.2.
-- **Andamento (17/10/2026):** início da RF07. Sessão 1 `specify` (`013d14ac`): 0 intervenções, 0 `PROCESSO:` (nenhuma pergunta Q1–Q3 do agente), timebox da unidade abaixo de 50%; avisos de coleta: diretório de subagentes não encontrado (recorrente) e divergência com o OpenTelemetry (`div_otel`, só anotado).
+- **Andamento (17/10/2026):** início da RF07. Sessão 1 `specify` (`013d14ac`): 0 intervenções, 0 `PROCESSO:` (nenhuma pergunta Q1–Q3 do agente), timebox da unidade abaixo de 50%; avisos de coleta: diretório de subagentes não encontrado (recorrente) e divergência com o OpenTelemetry (`div_otel`, só anotado). Sessão 2 `clarify` (`ec2dffc7`): 0 intervenções, 0 `PROCESSO:` reconhecidos, timebox abaixo de 50%; mesmos dois avisos.
 - **Notas de encerramento:** *(preencher)*
 
 ## A7 — RF06 Busca semântica e filtros
