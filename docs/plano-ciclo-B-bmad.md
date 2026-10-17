@@ -786,6 +786,7 @@ No B, os `P-RFxx` **já foram** entregues no PRD (10.1). Aqui eles servem só pa
   3. Depois de **60 min** do login no iPhone, reabrir Meus Registros, rolar até carregar mais ou voltar do modal de inserção → overlay "Sessão expirada", rolagem preservada, sem crash (o protótipo não tem "puxar para atualizar", D-023).
   4. Se não reproduzir: "verificado em parte", exatamente como no A. **No A o pesquisador decidiu não esperar os 60 min (D-023); aqui também não esperar**: registrar "verificado em parte — limitação do ambiente de desenvolvimento".
 - "Nenhum BLoC importa outro BLoC" é estrutural: não verificar à mão.
+- **Design da Tela 4 (decisão do A, 17/10):** o card mostrar o **texto completo** da entrada não é diferença contra o protótipo ("text excerpt" do resumo) e não vai para a sessão de correção; igual no B. Gesto de "puxar para atualizar" não existe no protótipo e não é cobrado (D-023).
 
 ### 14.6 B5.6 — RF06 Busca e filtros
 
