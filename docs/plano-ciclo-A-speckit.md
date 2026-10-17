@@ -62,7 +62,8 @@
 > | A6 RF07 — sessão 9, correção de design da Tela 4 (17/10) | ✅ coletada | Intervenção `correção|S2|prd` **colada**, coletor com 0 (esperado 1): 3ª ocorrência do **D-020**, conta como 1 |
 > | A6 RF07 — P6 rodada 2 (17/10) | ✅ | Aprovada, segundo o pesquisador; sessão expirada "verificada em parte" (D-023) |
 > | **A6 RF07 concluída (17/10)** | ✅ | Commit `72847f9`, tag `cicloA/rf07-done`, dados em `ddf09fb`; 9 sessões (8 do fluxo, 1 laço, 1 de correção; D-020 3ª ocorrência, D-023); push do ciclo na 1ª tentativa |
-> | **Próximo:** A7 — RF06 (seção 10.6) | — | — |
+> | A7 RF06 — sessão 1 `specify` (17/10) | ✅ coletada | 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | **Próximo:** A7 — RF06, sessão 2 `/speckit-clarify` (seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
