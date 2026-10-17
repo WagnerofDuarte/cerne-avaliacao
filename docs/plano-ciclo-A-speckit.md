@@ -60,7 +60,8 @@
 > | A6 RF07 — sessão 8 `converge` (17/10) | ✅ coletada | **Converged na 1ª rodada**; 0 intervenções, 0 `PROCESSO:`; timebox < 50% |
 > | A6 RF07 — P6 rodada 1 (17/10) | ⚠️ funcional passou; design com 6 diferenças na Tela 4 | Sessão expirada "verificada em parte" e sem gesto de "puxar para atualizar" (**D-023**); Vazio (opcional) não testado |
 > | A6 RF07 — sessão 9, correção de design da Tela 4 (17/10) | ✅ coletada | Intervenção `correção|S2|prd` **colada**, coletor com 0 (esperado 1): 3ª ocorrência do **D-020**, conta como 1 |
-> | **Próximo:** A6 — RF07, P6 rodada 2 (seção 9.3 e roteiro da 10.5) | — | — |
+> | A6 RF07 — P6 rodada 2 (17/10) | ✅ | Aprovada, segundo o pesquisador; sessão expirada "verificada em parte" (D-023) |
+> | **Próximo:** A6 — RF07, fechamento (seção 9.5): commit de fechamento, `concluir-rf a RF07`, push e dados | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
