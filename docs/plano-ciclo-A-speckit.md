@@ -67,7 +67,8 @@
 > | A7 RF06 — sessão 4 `checklist` (18/10) | ✅ coletada | 0 intervenções, 3 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A7 RF06 — sessão 5 `tasks` (18/10) | ✅ coletada | 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A7 RF06 — sessão 6 `analyze` (18/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 1); timebox < 50%; `div_otel` anotado |
-> | **Próximo:** A7 — RF06, sessão 7 `/speckit-implement` (seção 9.1) | — | — |
+> | A7 RF06 — sessão 7 `implement` (18/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); timebox < 50%; sem `div_otel` |
+> | **Próximo:** A7 — RF06, sessão 8 `/speckit-converge` (seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
