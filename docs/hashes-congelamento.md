@@ -98,13 +98,13 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 |---|---|
 | `skills/coletar-sessao/SKILL.md` | `87c63d60ef9c48ec958f241e496d109ef872031a45f0ad8cf0c3f510e7407fc5` |
 
-**Scripts (skill + auxiliares) — hash combinado:** `86e48501abc18c300709aa783197c8b70b6aa369017d2b6ba469e15adc83d31e` — atualizado em 11/10/2026 pelo desvio D-015 (respostas do painel `AskUserQuestion`); antes era `3da293809bd9a8c872f64cc7a1338c68a9db9c803a3a4929db252a1697028222` — atualizado em 11/10/2026 pelo desvio D-014 (`coletar_sessao.py` e seu teste: detecção de fase por `<command-name>`); antes era `caaf01702bc56ab4fb6ae81494157cf1a995d58f76f68090483fa090fbc00e7d` (atualizado em 01/10/2026 pelo desvio D-004 (arquivo novo `faixa-plan`; nenhum script existente alterado); no congelamento era `137b234a1be868be5cf32ecb462b4694cf021822e3cb8ecc5e0d42593b1448df`)
+**Scripts (skill + auxiliares) — hash combinado:** `e11ed378dd460357d71a65adc45d698e7f14288ed8e841cb8da8777ec91c2eb2` — atualizado em 18/10/2026 pelo desvio D-024 (`compute_tempos`: espera do pesquisador depois do fim do turno do agente; subcomando `retempos`); antes era `86e48501abc18c300709aa783197c8b70b6aa369017d2b6ba469e15adc83d31e` — atualizado em 11/10/2026 pelo desvio D-015 (respostas do painel `AskUserQuestion`); antes era `3da293809bd9a8c872f64cc7a1338c68a9db9c803a3a4929db252a1697028222` — atualizado em 11/10/2026 pelo desvio D-014 (`coletar_sessao.py` e seu teste: detecção de fase por `<command-name>`); antes era `caaf01702bc56ab4fb6ae81494157cf1a995d58f76f68090483fa090fbc00e7d` (atualizado em 01/10/2026 pelo desvio D-004 (arquivo novo `faixa-plan`; nenhum script existente alterado); no congelamento era `137b234a1be868be5cf32ecb462b4694cf021822e3cb8ecc5e0d42593b1448df`)
 
 | Arquivo | SHA-256 |
 |---|---|
 | `_ciclo_common.sh` | `96151ff1a7f58d23193838ef4320b250c2c86bac5dd118f5ba7f0ec48b4af469` |
 | `_concluir_unidade.sh` | `036f8b138ec8f17a2e2019ae2da21a2688405620233c6b58745316bd689da697` |
-| `coletar_sessao.py` | `7ac497d939f795219424705337d287bfaa7b2adece43f7e6253a81e9bb75efd0` (D-015; antes `63ccce8eb422506066813919dd8b80bc9825083aeac875ed0e94ade377959e3a` pelo D-014; no congelamento `5e2e8e09c30829aa2671cb68a754e0ed8e7925c8886fe4b8fa154a84a7f0b195`) |
+| `coletar_sessao.py` | `c71d2052a9ded3866b33566be197a4b3c79be4f54ceb04330d69994df6bc84c7` (D-024; antes `7ac497d939f795219424705337d287bfaa7b2adece43f7e6253a81e9bb75efd0` pelo D-015; antes `63ccce8eb422506066813919dd8b80bc9825083aeac875ed0e94ade377959e3a` pelo D-014; no congelamento `5e2e8e09c30829aa2671cb68a754e0ed8e7925c8886fe4b8fa154a84a7f0b195`) |
 | `concluir-rf` | `3c63882c4f57ad360ebe84cebd3d759f2634f585e33931ed6deeaca1966ec845` |
 | `db-truncate-and-seed.ts` | `a9fea32f2cbc9f02bf4688410bac2419bfd006d9181df01124b36a53fb8159e6` |
 | `faixa-plan` | `2424ebb6538c8ae22651bb6d6aefe52d72b20b888726d4a39b87953a53e84637` (novo, D-004) |
@@ -115,7 +115,7 @@ Confere exatamente com os 15 hashes por arquivo já registrados no `GATE-C13` (`
 | `replay-mode` | `c843a96417cf318fcdc428b31554b28d79139dd383cdae1279ec11884b22742e` |
 | `reset-ambiente` | `64c9d39e25150ab9f15d68d2f781c5c96ee2e78c1c5c832ee46b91da538f14f4` |
 | `rf-incompleto` | `25d6d5e8aae8b9f919a62bf4c41e9a04b659d9ee6c5d7e0a9440d9234fcbf2a1` |
-| `tests/test_coletar_sessao.py` | `085c352fc38ecc2d7d942b4891d9e1bce2709a918436cf6fc8c5f2f911c4e2d3` (D-015; antes `cc9fca1235728d0431b85db28929c543acca90c20ead1a4bc8592c6598587af8` pelo D-014; no congelamento `8f271bddcf9cf6ffe05f00dec9c91448ecb5ef2be47d6f9ce94dfca18acd5c77`) |
+| `tests/test_coletar_sessao.py` | `2b8b5afd56255b6e73fe1c6b3d59bd414238d2e73dac93f7abebeca9446d91e6` (D-024; antes `085c352fc38ecc2d7d942b4891d9e1bce2709a918436cf6fc8c5f2f911c4e2d3` pelo D-015; antes `cc9fca1235728d0431b85db28929c543acca90c20ead1a4bc8592c6598587af8` pelo D-014; no congelamento `8f271bddcf9cf6ffe05f00dec9c91448ecb5ef2be47d6f9ce94dfca18acd5c77`) |
 
 ## `settings.json` (Claude Code, `cfg-ciclo-a`/`cfg-ciclo-b`)
 

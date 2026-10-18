@@ -317,6 +317,69 @@ def test_espera_pela_resposta_do_painel_tem_teto_de_pausa(tmp_path: Path):
     assert tempos.duracao_s == 30 * 60
 
 
+def _at(rec: dict, ts: str) -> dict:
+    rec["timestamp"] = ts
+    return rec
+
+
+def _fim_de_turno(ts: str) -> dict:
+    r = _at(_assistant(0, "mfim"), ts)
+    r["message"]["stop_reason"] = "end_turn"
+    return r
+
+
+def test_espera_longa_depois_do_fim_do_turno_com_registro_de_sistema_tem_teto(tmp_path: Path):
+    # D-024: o agente termina o turno; a conversa fica aberta horas; ao voltar o
+    # pesquisador, o primeiro registro gravado é de sistema (`queue-operation`),
+    # não uma mensagem humana. A espera é do pesquisador: conta 30 min, o resto é pausa_s.
+    fim = _fim_de_turno("2026-10-17T20:00:00.000Z")
+    fila = {"type": "queue-operation", "operation": "enqueue", "timestamp": "2026-10-18T08:00:00.000Z"}
+    fila2 = {"type": "queue-operation", "operation": "dequeue", "timestamp": "2026-10-18T08:00:01.000Z"}
+    tempos = cs.compute_tempos([fim, fila, fila2])
+    assert tempos.duracao_s == 30 * 60 + 1
+    assert tempos.pausa_s == 12 * 3600 - 30 * 60
+
+
+def test_resultado_de_ferramenta_demorado_conta_inteiro(tmp_path: Path):
+    # o agente espera uma ferramenta (testes, build) por 40 min: é trabalho dele, conta inteiro
+    uso = _at(_assistant(0, "m1"), "2026-10-17T20:00:00.000Z")
+    uso["message"]["stop_reason"] = "tool_use"
+    resultado = {"type": "user", "timestamp": "2026-10-17T20:40:00.000Z", "message": {"role": "user", "content": [{"type": "tool_result", "tool_use_id": "t1", "content": "ok"}]}}
+    tempos = cs.compute_tempos([uso, resultado])
+    assert tempos.duracao_s == 40 * 60
+    assert tempos.pausa_s == 0
+
+
+def test_retempos_so_altera_duracao_e_pausa(tmp_path: Path, dados_dir: Path):
+    # sessão antiga coletada com a regra anterior: duracao_s inflado pela espera
+    main = tmp_path / "proj" / "sessX.jsonl"
+    fim = _fim_de_turno("2026-10-17T20:00:00.000Z")
+    inicio = _at(_user(0, "/speckit-plan"), "2026-10-17T19:50:00.000Z")
+    fila = {"type": "queue-operation", "operation": "enqueue", "timestamp": "2026-10-18T08:00:00.000Z"}
+    coleta = _at(_user(1, "/coletar-sessao RF06"), "2026-10-18T08:00:02.000Z")
+    _write_jsonl(main, [inicio, fim, fila, coleta])
+    bruto = dados_dir / "brutos" / "sessX.jsonl"
+    bruto.parent.mkdir(parents=True, exist_ok=True)
+    bruto.write_text(main.read_text(encoding="utf-8"), encoding="utf-8")
+    campos = cs.CSV_FIELDS["sessoes.csv"]
+    linha = {c: "" for c in campos}
+    linha.update({"ciclo": "a", "id_rf": "RF06", "sessao_id": "sessX", "tipo_sessao": "desenvolvimento",
+                  "modo_coleta": "skill", "motivo_fim": "normal", "duracao_s": 12 * 3600, "pausa_s": 0, "n_processo": 2})
+    cs.append_csv(dados_dir / "sessoes.csv", campos, linha)
+
+    situacao, faixas = cs.retempos(ciclo="a", dados_dir=dados_dir)
+    assert situacao == [("sessX", "RF06", "tempo corrigido")]
+    assert faixas["RF06"] == "abaixo de 50%"
+    import csv as _csv
+    with (dados_dir / "sessoes.csv").open(newline="", encoding="utf-8") as f:
+        row = next(_csv.DictReader(f))
+    assert int(row["duracao_s"]) == 10 * 60 + 30 * 60  # 10 min de trabalho + teto de 30 min da espera
+    assert int(row["pausa_s"]) == 12 * 3600 - 30 * 60
+    assert row["n_processo"] == "2"
+    # 2ª rodada: nada muda
+    assert cs.retempos(ciclo="a", dados_dir=dados_dir)[0] == [("sessX", "RF06", "inalterada")]
+
+
 # ---------------------------------------------------------------------------
 # 3. Compactação no meio
 # ---------------------------------------------------------------------------

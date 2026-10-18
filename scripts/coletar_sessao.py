@@ -281,6 +281,13 @@ def is_assistant_record(rec: dict[str, Any]) -> bool:
     return rec.get("type") == "assistant"
 
 
+def agent_turn_ended(rec: dict[str, Any]) -> bool:
+    """O agente terminou o turno (`stop_reason: end_turn`): daí em diante o
+    transcript espera pelo pesquisador, até a próxima ação do agente ou
+    mensagem humana (D-024)."""
+    return is_assistant_record(rec) and (rec.get("message") or {}).get("stop_reason") == "end_turn"
+
+
 def cut_records(records: list[dict[str, Any]], mode: str) -> tuple[list[dict[str, Any]], str | None]:
     """Corta a lista de registros conforme o modo.
 
@@ -468,8 +475,9 @@ class Tempos:
 
 def compute_tempos(records: list[dict[str, Any]]) -> Tempos:
     """P5c: intervalos que terminam em ação do agente contam inteiros;
-    esperas pelo pesquisador (terminam em mensagem humana) contam até 30 min
-    cada, excedente em pausa_s."""
+    esperas pelo pesquisador (terminam em mensagem humana, ou em registro de
+    sistema depois que o agente terminou o turno) contam até 30 min cada,
+    excedente em pausa_s."""
     timestamped = [r for r in records if r.get("timestamp")]
     if len(timestamped) < 2:
         return Tempos()
@@ -479,24 +487,29 @@ def compute_tempos(records: list[dict[str, Any]]) -> Tempos:
 
     duracao_s = 0
     pausa_s = 0
+    aguardando_pesquisador = agent_turn_ended(timestamped[0])  # agente terminou o turno e ainda não houve nova ação
     for prev, cur in zip(timestamped, timestamped[1:]):
         delta = (parse_ts(cur["timestamp"]) - parse_ts(prev["timestamp"])).total_seconds()
-        if delta <= 0:
-            continue
+        if delta > 0:
+            if is_assistant_record(cur):
+                # intervalo termina em ação do agente -> conta inteiro
+                duracao_s += delta
+            elif is_researcher_record(cur) or aguardando_pesquisador:
+                # intervalo termina em mensagem (ou resposta de painel) do
+                # pesquisador -> cap de 30 min. Também vale para o registro de
+                # sistema (`queue-operation`, `attachment`...) gravado quando o
+                # pesquisador volta de uma espera: a espera segue sendo dele (D-024)
+                counted = min(delta, PAUSE_CAP_S)
+                duracao_s += counted
+                pausa_s += max(0, delta - PAUSE_CAP_S)
+            else:
+                # eventos de sistema/attachment no meio de um trabalho do agente
+                # (resultado de ferramenta etc.): conta no tempo ativo
+                duracao_s += delta
         if is_assistant_record(cur):
-            # intervalo termina em ação do agente -> conta inteiro
-            duracao_s += delta
-        elif is_researcher_record(cur):
-            # intervalo termina em mensagem (ou resposta de painel) do
-            # pesquisador -> cap de 30 min
-            counted = min(delta, PAUSE_CAP_S)
-            duracao_s += counted
-            pausa_s += max(0, delta - PAUSE_CAP_S)
-        else:
-            # eventos de sistema/attachment no meio: conta no tempo ativo
-            # (não é nem fim de turno do agente nem espera do pesquisador;
-            # são instantâneos na prática, delta aqui costuma ser ~0)
-            duracao_s += delta
+            aguardando_pesquisador = agent_turn_ended(cur)
+        elif cur.get("type") == "user":
+            aguardando_pesquisador = False
 
     return Tempos(
         duracao_s=int(duracao_s),
@@ -1016,6 +1029,50 @@ def coletar(
 # ---------------------------------------------------------------------------
 
 
+def retempos(*, ciclo: str, dados_dir: Path | None = None, aplicar: bool = True) -> tuple[list[tuple[str, str, str]], dict[str, str]]:
+    """D-024: recalcula `duracao_s` e `pausa_s` de cada sessão de `sessoes.csv`
+    a partir do transcript bruto guardado em `brutos/`, com a regra vigente de
+    `compute_tempos`. Só essas duas colunas mudam, e só nas linhas em que o
+    valor muda. Devolve (sessões com situação, faixa de timebox por unidade),
+    sem expor tempos."""
+    dados_dir = dados_dir or dados_dir_default(ciclo)
+    sessoes_csv = dados_dir / "sessoes.csv"
+    with sessoes_csv.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = list(reader.fieldnames or [])
+        rows = list(reader)
+
+    situacao: list[tuple[str, str, str]] = []
+    for row in rows:
+        if row.get("ciclo") != ciclo:
+            continue
+        sessao_id, id_rf, modo = row["sessao_id"], row["id_rf"], row.get("modo_coleta", "")
+        bruto = dados_dir / "brutos" / f"{sessao_id}.jsonl"
+        if modo not in {"skill", "hook", "manual"} or not bruto.exists():
+            situacao.append((sessao_id, id_rf, "sem transcript bruto ou não recalculável"))
+            continue
+        records, _ = cut_records(load_jsonl(bruto), modo)
+        t = compute_tempos(records)
+        if t.duracao_s == int(row["duracao_s"] or 0) and t.pausa_s == int(row["pausa_s"] or 0):
+            situacao.append((sessao_id, id_rf, "inalterada"))
+            continue
+        row["duracao_s"], row["pausa_s"] = t.duracao_s, t.pausa_s
+        situacao.append((sessao_id, id_rf, "tempo corrigido"))
+
+    if aplicar and any(sit == "tempo corrigido" for _, _, sit in situacao):
+        with sessoes_csv.open("w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
+    acumulado: dict[str, int] = {}
+    for row in rows:
+        if row.get("ciclo") == ciclo:
+            acumulado[row["id_rf"]] = acumulado.get(row["id_rf"], 0) + int(row.get("duracao_s") or 0)
+    faixas = {id_rf: timebox_faixa(id_rf, seg) for id_rf, seg in acumulado.items()}
+    return situacao, faixas
+
+
 def ids_rf_validos() -> set[str]:
     return {"SETUP", "PLAN", "F000"} | {f"RF{i:02d}" for i in range(1, 11)}
 
@@ -1038,12 +1095,26 @@ def main(argv: list[str] | None = None) -> int:
     p_manual.add_argument("--session-id", required=True)
     p_manual.add_argument("--motivo-fim", required=True, choices=["limite_uso", "falha"])
 
+    p_retempos = sub.add_parser("retempos", help="recalcula duracao_s/pausa_s de sessoes.csv a partir de brutos/ (D-024)")
+    p_retempos.add_argument("--ciclo", required=True, choices=["a", "b"])
+    p_retempos.add_argument("--dry-run", action="store_true", help="só mostra quais sessões mudariam")
+
     for p in (p_skill, p_hook, p_manual):
         p.add_argument("--versao-claude-code", default=None)
         p.add_argument("--config-raciocinio", default=None)
         p.add_argument("--otel-output", default=None, type=Path)
 
     args = parser.parse_args(argv)
+
+    if args.mode == "retempos":
+        situacao, faixas = retempos(ciclo=args.ciclo, aplicar=not args.dry_run)
+        for sessao_id, id_rf, sit in situacao:
+            print(f"{id_rf} {sessao_id[:8]}: {sit}")
+        for id_rf, faixa in sorted(faixas.items()):
+            print(f"Timebox {id_rf}: {faixa}.")
+        if args.dry_run:
+            print("(dry-run: nada foi gravado)")
+        return 0
 
     transcript_path = None
     motivo_fim = "normal"
