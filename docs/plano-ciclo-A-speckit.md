@@ -64,7 +64,8 @@
 > | **A6 RF07 concluída (17/10)** | ✅ | Commit `72847f9`, tag `cicloA/rf07-done`, dados em `ddf09fb`; 9 sessões (8 do fluxo, 1 laço, 1 de correção; D-020 3ª ocorrência, D-023); push do ciclo na 1ª tentativa |
 > | A7 RF06 — sessões 1 `specify` e 2 `clarify` (17/10) | ✅ coletadas | 0 intervenções; `PROCESSO:` 0 e 1; timebox < 50%; sem `div_otel` |
 > | A7 RF06 — sessão 3 `plan` (17/10, coletada em 18/10) | ✅ coletada | 0 intervenções, 0 `PROCESSO:`; faixa `atingido` indevida por coleta tardia (**D-024**): coletor corrigido, `retempos` aplicado (dados `bba6080`), faixa da RF06 `abaixo de 50%` |
-> | **Próximo:** A7 — RF06, sessão 4 `/speckit-checklist` (seção 9.1) | — | — |
+> | A7 RF06 — sessão 4 `checklist` (18/10) | ✅ coletada | 0 intervenções, 3 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
+> | **Próximo:** A7 — RF06, sessão 5 `/speckit-tasks` (seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
