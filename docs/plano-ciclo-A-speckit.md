@@ -74,7 +74,8 @@
 > | A7 RF06 — P6 rodada 2 (19/10) | ⚠️ cache offline passou; sheet com novas diferenças | Regra nova: elemento só do resumo e que o app oferece é diferença (S2) |
 > | A7 RF06 — sessão 10, 2ª correção (19/10) | ✅ coletada | 3 intervenções (2 `correção|S2|prd` + 1 `esclarecimento não solicitado`); o agente manteve "Salvar só a foto" por conflito com o pacote |
 > | A7 RF06 — P6 rodada 3 (19/10) | ✅ | Aprovada, segundo o pesquisador |
-> | **Próximo:** A7 — RF06, fechamento (seção 9.5): commit de fechamento, `concluir-rf a RF06`, push e dados | — | — |
+> | **A7 RF06 concluída (19/10)** | ✅ | Commit `0d5c0f2`, tag `cicloA/rf06-done`, dados em `cf9d730`; 10 sessões (8 do fluxo, 1 laço, 2 de correção; 4 `correção|S2|prd` + 1 `esclarecimento não solicitado`; D-024); push do ciclo na 1ª tentativa |
+> | **Próximo:** A8 — RF04 (seção 10.7) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
