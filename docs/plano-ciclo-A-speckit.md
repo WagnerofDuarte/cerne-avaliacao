@@ -76,7 +76,8 @@
 > | A7 RF06 — P6 rodada 3 (19/10) | ✅ | Aprovada, segundo o pesquisador |
 > | **A7 RF06 concluída (19/10)** | ✅ | Commit `0d5c0f2`, tag `cicloA/rf06-done`, dados em `cf9d730`; 10 sessões (8 do fluxo, 1 laço, 2 de correção; 4 `correção|S2|prd` + 1 `esclarecimento não solicitado`; D-024); push do ciclo na 1ª tentativa |
 > | A8 RF04 — sessões 1 `specify`, 2 `clarify`, 3 `plan`, 4 `checklist` e 5 `tasks` | ✅ coletadas | 0 intervenções; `PROCESSO:` 0/1/0/3/0; timebox < 50%; sem `div_otel` |
-> | **Próximo:** A8 — RF04, sessão 6 `/speckit-analyze` (seção 9.1) | — | — |
+> | A8 RF04 — sessão 6 `analyze` | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 1); relatório com 1 CRITICAL e 1 HIGH, remediados na sessão (54 tarefas); timebox < 50% |
+> | **Próximo:** A8 — RF04, sessão 7 `/speckit-implement` (seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
