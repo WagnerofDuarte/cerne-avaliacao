@@ -71,7 +71,9 @@
 > | A7 RF06 — sessão 8 `converge` (19/10) | ✅ coletada | **Converged na 1ª rodada**; 0 intervenções, 0 `PROCESSO:`; timebox < 50% |
 > | A7 RF06 — P6 rodada 1 (19/10) | ⚠️ 3 critérios passaram; cache offline falhou; design com 5 grupos de diferenças | C1, C4, C5 passaram; C2 e categorias só anotados; C3 falhou em parte (S2) |
 > | A7 RF06 — sessão 9, correção (19/10) | ✅ coletada | 2 intervenções `correção|S2|prd` digitadas e reconhecidas |
-> | **Próximo:** A7 — RF06, P6 rodada 2 (seção 9.3 e roteiro da 10.6) | — | — |
+> | A7 RF06 — P6 rodada 2 (19/10) | ⚠️ cache offline passou; sheet com novas diferenças | Regra nova: elemento só do resumo e que o app oferece é diferença (S2) |
+> | A7 RF06 — sessão 10, 2ª correção (19/10) | ✅ coletada | 3 intervenções (2 `correção|S2|prd` + 1 `esclarecimento não solicitado`); o agente manteve "Salvar só a foto" por conflito com o pacote |
+> | **Próximo:** A7 — RF06, P6 rodada 3 (seção 9.3 e roteiro da 10.6) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
