@@ -801,6 +801,8 @@ No B, os `P-RFxx` **já foram** entregues no PRD (10.1). Aqui eles servem só pa
 
 **Armadilha:** filtro por tag ou categoria é extensão → redirecionamento `prd`.
 
+**Decisões do A (19/10), valem igual no B:** (1) a busca devolve todas as entradas por similaridade, sem corte, e a ordem vem do backend (conferir com a consulta direta a `entries-search` antes de culpar o app); (2) indicador de carregamento enquanto se digita, estado "Nenhum resultado para esta busca/filtro" no lugar do estado vazio do protótipo, rótulo de data repetido na lista por relevância e chips de categoria sem efeito: **só anotar**; (3) o que o HTML do protótipo tem e falta no app, ou o texto/estilo que difere do HTML, é diferença de design (uma intervenção `correção|S2|prd` para a Tela 4), e o que só o resumo do protótipo tem (grupo "CATEGORIA", botão "Limpar", funil preenchido) e o app oferece é mantido e anotado; (4) offline: a lista do cache deve aparecer ao abrir a tela e o texto técnico da exceção não deve ser exibido.
+
 ### 14.7 B5.7 — RF04 Chat (RAG)
 
 **Escopo (`P-RF04`):** "Tela 1 — Home/Chat", "Streaming", "Falha ao gerar resposta", "Offline"; "Tela 3 — Menu lateral" com sessões e nova conversa; `chat-sessions-*`, `chat-messages-*` (SSE), `retry`.
