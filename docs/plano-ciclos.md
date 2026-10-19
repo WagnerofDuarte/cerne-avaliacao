@@ -771,6 +771,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 11 a 13/10/2026 · Timebox: 8 h**
 - **Prompt:** `P-RF04`. **Depende de:** F000.
 - **Tela:** 1 (Home/Chat); Tela 3 (histórico de sessões e botão "Novo Chat"). **Backend:** §6.3 (inclui o streaming).
+- **Andamento (20/10/2026):** início da RF04. Sessão 1 `specify` (`051a6709`): 0 intervenções, 0 `PROCESSO:`, timebox da unidade abaixo de 50%; só o aviso de subagentes (sem `div_otel`).
 - **Notas de encerramento:** *(preencher)*
 
 ## A9 — RF10 Salvar mensagem do chat como entrada
