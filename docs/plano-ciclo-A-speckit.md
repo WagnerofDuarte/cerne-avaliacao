@@ -78,7 +78,8 @@
 > | A8 RF04 — sessões 1 `specify`, 2 `clarify`, 3 `plan`, 4 `checklist` e 5 `tasks` | ✅ coletadas | 0 intervenções; `PROCESSO:` 0/1/0/3/0; timebox < 50%; sem `div_otel` |
 > | A8 RF04 — sessão 6 `analyze` | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 1); relatório com 1 CRITICAL e 1 HIGH, remediados na sessão (54 tarefas); timebox < 50% |
 > | A8 RF04 — sessão 7 `implement` | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); timebox < 50%; sem `div_otel` |
-> | **Próximo:** A8 — RF04, sessão 8 `/speckit-converge` (seção 9.1) | — | — |
+> | A8 RF04 — sessão 8 `converge` | ✅ coletada | **Sem *Converged***: 2 lacunas (1 HIGH, 1 MEDIUM), T055 e T056 anexadas; 0 intervenções, 0 `PROCESSO:`; timebox < 50% |
+> | **Próximo:** A8 — RF04, sessão 9 `/speckit-implement` (2ª rodada do laço, seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
