@@ -84,7 +84,8 @@
 > | A8 RF04 — sessão 11 `implement` (3ª rodada) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); 58 de 59 tarefas (T054 é manual, do pesquisador); 401 testes passam; timebox < 50%; `div_otel` anotado |
 > | A8 RF04 — sessão 12 `converge` (3ª rodada) | ✅ coletada | **Sem *Converged***: 1 lacuna (MEDIUM, falta um teste), T060 anexada; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A8 RF04 — sessão 13 `implement` (4ª rodada) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); 59 de 60 tarefas (T054 é manual, do pesquisador); 402 testes passam; timebox < 50%; `div_otel` anotado |
-> | **Próximo:** A8 — RF04, sessão 14 `/speckit-converge` (4ª rodada, seção 9.1) | — | — |
+> | A8 RF04 — sessão 14 `converge` (4ª rodada) | ✅ coletada | **Sem *Converged***: 1 lacuna (HIGH, quadro SSE malformado sem tratamento), T061 anexada; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
+> | **Próximo:** A8 — RF04, sessão 15 `/speckit-implement` (5ª rodada do laço, seção 9.1) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
