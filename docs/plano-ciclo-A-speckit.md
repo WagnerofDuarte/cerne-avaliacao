@@ -91,7 +91,9 @@
 > | A8 RF04 — sessão 18 `converge` (6ª rodada) | ✅ coletada | **Sem *Converged***: 1 lacuna (MEDIUM, só falta teste de widget da `HomeChatShellPage`), T063 anexada; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A8 RF04 — sessão 19 `implement` (7ª rodada) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); 62 de 63 tarefas (T054 é manual, do pesquisador); 413 testes passam; timebox < 50%; sem `div_otel` |
 > | A8 RF04 — sessão 20 `converge` (7ª rodada) | ✅ coletada | **Converged na 7ª rodada** (7 rodadas `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
-> | **Próximo:** A8 — RF04, P6 (seção 9.3 e roteiro da 10.7) | — | — |
+> | A8 RF04 — P6 rodada 1 (20/10) | ⚠️ falhou | (a)–(c) ok; (d): resposta nova do chat falha ao vivo (S3, D16: backend ok), horário do histórico em UTC e diferenças de design das Telas 1 e 3 → sessão de correção (9.4) |
+> | A8 RF04 — sessão 21 (correção, 20/10) | ✅ coletada | Sessão `4b6255e3`; 5 intervenções reconhecidas (4 mensagens + 1 esclarecimento não solicitado, §2.4), 0 `PROCESSO:`; timebox < 50%; aviso de subagentes (esperado). Nova P6 pendente |
+> | **Próximo:** A8 — RF04, nova P6 (seção 9.3 e roteiro da 10.7) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
