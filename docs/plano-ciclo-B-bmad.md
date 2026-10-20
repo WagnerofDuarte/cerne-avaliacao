@@ -677,6 +677,8 @@ INTERVENÇÃO [correção|S<n>|<causa>]: Expected: … Actual: … Where: … Er
 
 **Diferenças de tela em relação ao protótipo (D-019, igual ao Ciclo A):** uma intervenção **por tela**, listando as diferenças da tela, com a severidade da mais grave (`S2` se falta ou difere texto, estado ou elemento do protótipo; `S1` se só o estilo difere). Descreva em termos qualitativos citando o estado do protótipo; sem valores numéricos de estilo nem código. Diferença vista em tela de unidade já fechada entra na correção da unidade atual.
 
+**Repetição de sintoma (D-025, igual ao Ciclo A):** se a mensagem repete um sintoma que a sessão de correção anterior não resolveu, diga isso ("same symptom as a previous correction session, which did not change the behavior") e termine a mensagem com a frase fixa: `Investigate the root cause first, explain what you found, and only then fix it; confirm the fix end to end with a new question, not only with unit tests.` Só nesse caso; sem nomear arquivo, classe, pacote, método ou abordagem.
+
 ### 13.5 📏 Fechamento da unidade
 
 ```bash

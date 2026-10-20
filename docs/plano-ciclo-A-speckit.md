@@ -93,7 +93,8 @@
 > | A8 RF04 — sessão 20 `converge` (7ª rodada) | ✅ coletada | **Converged na 7ª rodada** (7 rodadas `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A8 RF04 — P6 rodada 1 (20/10) | ⚠️ falhou | (a)–(c) ok; (d): resposta nova do chat falha ao vivo (S3, D16: backend ok), horário do histórico em UTC e diferenças de design das Telas 1 e 3 → sessão de correção (9.4) |
 > | A8 RF04 — sessão 21 (correção, 20/10) | ✅ coletada | Sessão `4b6255e3`; 5 intervenções reconhecidas (4 mensagens + 1 esclarecimento não solicitado, §2.4), 0 `PROCESSO:`; timebox < 50%; aviso de subagentes (esperado). Nova P6 pendente |
-> | **Próximo:** A8 — RF04, nova P6 (seção 9.3 e roteiro da 10.7) | — | — |
+> | A8 RF04 — P6 rodada 2 (20/10) | ⚠️ falhou | Resposta nova do chat ainda falha ao vivo (celular e Wi-Fi); resíduos de design da Tela 1; D-025 (frase de investigação) → sessão de correção 22 |
+> | **Próximo:** A8 — RF04, sessão de correção 22 (9.4), depois nova P6 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -855,6 +856,7 @@ O que **não** entra na P6: a suíte hold-out (nunca durante o ciclo), cobertura
    ```
    Um sintoma por mensagem. Se houver vários, mande-os na mesma sessão, um de cada vez, cada um com seu prefixo.
    **Diferenças de tela em relação ao protótipo (D-019):** uma intervenção **por tela**, listando as diferenças da tela, com a severidade da mais grave (`S2` se falta ou difere texto, estado ou elemento do protótipo; `S1` se só o estilo difere). Descreva em termos qualitativos citando o estado do protótipo; sem valores numéricos de estilo nem código. Diferença vista em tela de unidade já fechada entra na correção da unidade atual (a unidade fechada não é reaberta).
+   **Repetição de sintoma (D-025):** se a mensagem repete um sintoma que a sessão de correção anterior não resolveu, diga isso ("same symptom as a previous correction session, which did not change the behavior") e termine a mensagem com a frase fixa: `Investigate the root cause first, explain what you found, and only then fix it; confirm the fix end to end with a new question, not only with unit tests.` Só nesse caso; sem nomear arquivo, classe, pacote, método ou abordagem.
 2. 🤖 O agente corrige (fase `IMPL` pelo protocolo; ver Apêndice C sobre a segmentação).
 3. `/coletar-sessao <ID>`.
 4. Repetir a P6. Repetir 9.4 até passar ou até a timebox, que soma todas as sessões da unidade.
