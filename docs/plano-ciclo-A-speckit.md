@@ -98,7 +98,8 @@
 > | A8 RF04 — P6 rodada 3 (20/10 à noite) | ⚠️ falhou em 1 critério | Item A (pergunta nova) passou; critério 2 (stream interrompido, Modo Avião): loading sem fim, sem falha nem retry; resíduos de design da Tela 3 → sessão 23 |
 > | A8 RF04 — sessão 23 (correção) | ✅ coletada | Sessão `8c4394a3`; 2 intervenções reconhecidas (Modo Avião `S2` + Tela 3 design `S2`), 0 `PROCESSO:`; timebox 50–80%; `div_otel` anotado. Nova P6 pendente |
 > | A8 RF04 — P6 rodada 4 | ⚠️ falhou | Modo Avião ainda deixa o chat em carregamento sem falha nem retry (repetição, D-025); menu quase conforme; resíduos de design → sessão 24 |
-> | **Próximo:** A8 — RF04, sessão de correção 24 (frase do D-025), depois nova P6 | — | — |
+> | A8 RF04 — encerramento antecipado (D-026) | ⚠️ por decisão do pesquisador | Critério 2 (Modo Avião) abandonado após as sessões 23 e 24; fecha como `rf-incompleto` |
+> | **Próximo:** A8 — RF04, coletar a sessão 24 e fechar a unidade (9.5, `rf-incompleto`) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -879,6 +880,7 @@ cd "$AVAL" && scripts/concluir-rf a <ID>
 # 3) backup
 git -C "$CERNE_CICLO_A_DIR" push origin main --tags
 ```
+**Encerramento antecipado (D-026):** se o pesquisador decidir parar de corrigir um critério que continua falhando, depois de **pelo menos duas sessões de correção seguidas para o mesmo critério** (a segunda com a frase do D-025), a unidade fecha como a da timebox, com `scripts/rf-incompleto a <ID>`, e o motivo vai para o `desvios.md` e para as notas da unidade. `concluir-rf` fica reservado ao caso em que a P6 passou inteira.
 **Timebox atingido:** igual, trocando o passo 2 por `scripts/rf-incompleto a <ID>`. Se o `git commit` disser `nothing to commit`, siga normalmente: o agente já tinha commitado.
 
 ### 9.6 🧑 Notas de encerramento da unidade

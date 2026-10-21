@@ -681,6 +681,8 @@ INTERVENÇÃO [correção|S<n>|<causa>]: Expected: … Actual: … Where: … Er
 
 ### 13.5 📏 Fechamento da unidade
 
+**Encerramento antecipado (D-026, igual ao Ciclo A):** se o pesquisador decidir parar de corrigir um critério que continua falhando, depois de **pelo menos duas sessões de correção seguidas para o mesmo critério** (a segunda com a frase do D-025), a unidade fecha com `scripts/rf-incompleto b <ID>`, e o motivo vai para o `desvios.md` e para as notas da unidade. `concluir-rf` fica reservado ao caso em que a P6 passou inteira.
+
 ```bash
 cd "$CERNE_CICLO_B_DIR"
 git status --short | head -40
