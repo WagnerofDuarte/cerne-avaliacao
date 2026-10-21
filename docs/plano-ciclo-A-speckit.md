@@ -880,7 +880,7 @@ cd "$AVAL" && scripts/concluir-rf a <ID>
 # 3) backup
 git -C "$CERNE_CICLO_A_DIR" push origin main --tags
 ```
-**Encerramento antecipado (D-026):** se o pesquisador decidir parar de corrigir um critério que continua falhando, depois de **pelo menos duas sessões de correção seguidas para o mesmo critério** (a segunda com a frase do D-025), a unidade fecha como a da timebox, com `scripts/rf-incompleto a <ID>`, e o motivo vai para o `desvios.md` e para as notas da unidade. `concluir-rf` fica reservado ao caso em que a P6 passou inteira.
+**Encerramento antecipado (D-026):** se o pesquisador decidir parar de corrigir um critério que continua falhando, antes de a timebox acabar, a unidade fecha como a da timebox, com `scripts/rf-incompleto a <ID>`. Não há número mínimo de sessões de correção: a decisão é discricionária e vai sempre registrada no `desvios.md` (critério, número de sessões de correção desse critério e faixa da timebox), igual nos dois ciclos. `concluir-rf` fica reservado ao caso em que a P6 passou inteira.
 **Timebox atingido:** igual, trocando o passo 2 por `scripts/rf-incompleto a <ID>`. Se o `git commit` disser `nothing to commit`, siga normalmente: o agente já tinha commitado.
 
 ### 9.6 🧑 Notas de encerramento da unidade
