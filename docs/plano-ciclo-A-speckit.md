@@ -95,7 +95,9 @@
 > | A8 RF04 — sessão 21 (correção, 20/10) | ✅ coletada | Sessão `4b6255e3`; 5 intervenções reconhecidas (4 mensagens + 1 esclarecimento não solicitado, §2.4), 0 `PROCESSO:`; timebox < 50%; aviso de subagentes (esperado). Nova P6 pendente |
 > | A8 RF04 — P6 rodada 2 (20/10) | ⚠️ falhou | Resposta nova do chat ainda falha ao vivo (celular e Wi-Fi); resíduos de design da Tela 1; D-025 (frase de investigação) → sessão de correção 22 |
 > | A8 RF04 — sessão 22 (correção, 20/10) | ✅ coletada | Sessão `812c5b61`; 2 intervenções reconhecidas (funcional repetida com D-025 + design da Tela 1), 0 `PROCESSO:`; **timebox 50–80%**; aviso de subagentes (esperado). Nova P6 pendente |
-> | **Próximo:** A8 — RF04, nova P6 (3ª rodada): item A primeiro | — | — |
+> | A8 RF04 — P6 rodada 3 (20/10 à noite) | ⚠️ falhou em 1 critério | Item A (pergunta nova) passou; critério 2 (stream interrompido, Modo Avião): loading sem fim, sem falha nem retry; resíduos de design da Tela 3 → sessão 23 |
+> | A8 RF04 — sessão 23 (correção) | ✅ coletada | Sessão `8c4394a3`; 2 intervenções reconhecidas (Modo Avião `S2` + Tela 3 design `S2`), 0 `PROCESSO:`; timebox 50–80%; `div_otel` anotado. Nova P6 pendente |
+> | **Próximo:** A8 — RF04, nova P6 (4ª rodada) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
