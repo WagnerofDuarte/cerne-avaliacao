@@ -94,12 +94,12 @@
 > | A8 RF04 — P6 rodada 1 (20/10) | ⚠️ falhou | (a)–(c) ok; (d): resposta nova do chat falha ao vivo (S3, D16: backend ok), horário do histórico em UTC e diferenças de design das Telas 1 e 3 → sessão de correção (9.4) |
 > | A8 RF04 — sessão 21 (correção, 20/10) | ✅ coletada | Sessão `4b6255e3`; 5 intervenções reconhecidas (4 mensagens + 1 esclarecimento não solicitado, §2.4), 0 `PROCESSO:`; timebox < 50%; aviso de subagentes (esperado). Nova P6 pendente |
 > | A8 RF04 — P6 rodada 2 (20/10) | ⚠️ falhou | Resposta nova do chat ainda falha ao vivo (celular e Wi-Fi); resíduos de design da Tela 1; D-025 (frase de investigação) → sessão de correção 22 |
-> | A8 RF04 — sessão 22 (correção, 20/10) | ✅ coletada | Sessão `812c5b61`; 2 intervenções reconhecidas (funcional repetida com D-025 + design da Tela 1), 0 `PROCESSO:`; **timebox 50–80%**; aviso de subagentes (esperado). Nova P6 pendente |
-> | A8 RF04 — P6 rodada 3 (20/10 à noite) | ⚠️ falhou em 1 critério | Item A (pergunta nova) passou; critério 2 (stream interrompido, Modo Avião): loading sem fim, sem falha nem retry; resíduos de design da Tela 3 → sessão 23 |
-> | A8 RF04 — sessão 23 (correção) | ✅ coletada | Sessão `8c4394a3`; 2 intervenções reconhecidas (Modo Avião `S2` + Tela 3 design `S2`), 0 `PROCESSO:`; timebox 50–80%; `div_otel` anotado. Nova P6 pendente |
-> | A8 RF04 — P6 rodada 4 | ⚠️ falhou | Modo Avião ainda deixa o chat em carregamento sem falha nem retry (repetição, D-025); menu quase conforme; resíduos de design → sessão 24 |
-> | A8 RF04 — encerramento antecipado (D-026) | ⚠️ por decisão do pesquisador | Critério 2 (Modo Avião) abandonado após as sessões 23 e 24; fecha como `rf-incompleto` |
-> | **Próximo:** A8 — RF04, coletar a sessão 24 e fechar a unidade (9.5, `rf-incompleto`) | — | — |
+> | A8 RF04 — sessão 22 (correção, 20/10) | ✅ coletada | Sessão `812c5b61`; 2 intervenções (a resposta nova do chat ao vivo, S3, com a frase do D-025, e design da Tela 1); 0 `PROCESSO:`; timebox 50–80%; o defeito S3 foi resolvido |
+> | A8 RF04 — sessão 23 (correção) | ✅ coletada | Sessão `8c4394a3`; 2 intervenções (Tela 3 design `S2` e esclarecimento); **a mensagem do Modo Avião não foi enviada** (D-027); 0 `PROCESSO:`; `div_otel` anotado |
+> | A8 RF04 — sessão 24 (correção) | ✅ coletada | Sessão `ed8c084a`; Modo Avião `S2` com a frase do D-025; a falha passou a aparecer, mas "tentar novamente" não funciona; 1 aviso de prefixo (D-027: valem 3 intervenções); 1 `PROCESSO:` |
+> | A8 RF04 — sessões 25 e 26 (correção) | ✅ coletadas | `63691097` (Tela 1, cursor do carregamento, `S2`) e `39a9982a` (Tela 3, ícone, `S1`); 1 intervenção cada; enviadas em sessões separadas (D-028) |
+> | A8 RF04 — fechamento (20/10) | ⚠️ `rf-incompleto` | Por decisão do pesquisador (D-026): critério 2 (nova tentativa depois da falha) não atendido. Commit `564dd97`, tag `cicloA/rf04-incompleto` |
+> | **Próximo:** A9 — RF10 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
