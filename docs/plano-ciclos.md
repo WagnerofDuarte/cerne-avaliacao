@@ -791,6 +791,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 13 a 14/10/2026 · Timebox: 8 h**
 - **Prompt:** `P-RF10`. **Depende de:** RF01, RF04.
 - **Tela:** 1 (botão em mensagens do usuário). **Backend:** §6.2 (`POST /entries` com origem `chat`).
+- **Andamento (22/10/2026, a confirmar pelos dados no fechamento):** pré-voo ok (repositório do ciclo limpo em `564dd97`, tag `cicloA/rf04-incompleto`). Sessão 1 `specify` (`38f3d474`): 0 intervenções, 0 `PROCESSO:`, timebox da unidade abaixo de 50%; só o aviso de subagentes (sem `div_otel`).
 - **Notas de encerramento:** *(preencher)*
 
 ## A10 — RF08 Insights proativos

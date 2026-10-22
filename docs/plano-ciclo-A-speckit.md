@@ -99,7 +99,8 @@
 > | A8 RF04 — sessão 24 (correção) | ✅ coletada | Sessão `ed8c084a`; Modo Avião `S2` com a frase do D-025; a falha passou a aparecer, mas "tentar novamente" não funciona; 1 aviso de prefixo (D-027: valem 3 intervenções); 1 `PROCESSO:` |
 > | A8 RF04 — sessões 25 e 26 (correção) | ✅ coletadas | `63691097` (Tela 1, cursor do carregamento, `S2`) e `39a9982a` (Tela 3, ícone, `S1`); 1 intervenção cada; enviadas em sessões separadas (D-028) |
 > | A8 RF04 — fechamento (20/10) | ⚠️ `rf-incompleto` | Por decisão do pesquisador (D-026): critério 2 (nova tentativa depois da falha) não atendido. Commit `564dd97`, tag `cicloA/rf04-incompleto` |
-> | **Próximo:** A9 — RF10 | — | — |
+> | A9 RF10 — sessão 1 `specify` (22/10) | ✅ coletada | Sessão `38f3d474`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | **Próximo:** A9 — RF10, sessão 2 `clarify` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
