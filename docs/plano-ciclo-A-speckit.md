@@ -101,7 +101,8 @@
 > | A8 RF04 — fechamento (20/10) | ⚠️ `rf-incompleto` | Por decisão do pesquisador (D-026): critério 2 (nova tentativa depois da falha) não atendido. Commit `564dd97`, tag `cicloA/rf04-incompleto` |
 > | A9 RF10 — sessão 1 `specify` (22/10) | ✅ coletada | Sessão `38f3d474`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A9 RF10 — sessão 2 `clarify` (22/10) | ✅ coletada | Sessão `afa2a73b`; 1 intervenção (`esclarecimento não solicitado`, pergunta de preferência sobre o toque no botão já salvo), 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
-> | **Próximo:** A9 — RF10, sessão 3 `plan` com `P-TECH` | — | — |
+> | A9 RF10 — sessão 3 `plan` (22/10) | ✅ coletada | Sessão `55aaefc3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | **Próximo:** A9 — RF10, sessão 4 `checklist` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
