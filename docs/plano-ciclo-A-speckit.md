@@ -105,7 +105,8 @@
 > | A9 RF10 — sessão 4 `checklist` (22/10) | ✅ coletada | Sessão `ee379333`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 22 itens (CHK001–CHK022) |
 > | A9 RF10 — sessão 5 `tasks` (22/10) | ✅ coletada | Sessão `13d3f6b3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 46 tarefas em 7 fases |
 > | A9 RF10 — sessão 6 `analyze` (22/10) | ✅ coletada | Sessão `f244d4d2`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1); timebox < 50%; `div_otel` anotado. Relatório: 10 FR, 5 SC, 46 tarefas, **0 CRITICAL, 1 HIGH, 1 MEDIUM, 1 LOW**; C1 e I1 remediados na sessão (T024a–T024d e novo teste de arquitetura), E1 sem remediação |
-> | **Próximo:** A9 — RF10, sessão 7 `implement` | — | — |
+> | A9 RF10 — sessão 7 `implement` (1ª rodada, 22/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); timebox < 50%; sem `div_otel`; 468 testes passam; abertas as tarefas manuais T027, T031, T037, T040 e T045 (do pesquisador, P6(d)) |
+> | **Próximo:** A9 — RF10, sessão 8 `converge` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
