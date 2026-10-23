@@ -118,7 +118,8 @@
 > | A10 RF08 — sessão 5 `tasks` (22/10) | ✅ coletada | Sessão `3b6b3789`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 42 tarefas em 7 fases (T001–T042) |
 > | A10 RF08 — sessão 6 `analyze` (22/10) | ✅ coletada | Sessão `e1a34582`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1; texto exato e resposta à pergunta seguinte a confirmar); timebox < 50%; `div_otel` anotado. Relatório: 17 requisitos, 42 tarefas, **1 CRITICAL, 1 MEDIUM, 1 LOW**; D1 (desvio documentado do RNF01: sem indicador de carregamento no insight) e F1 remediados na sessão, E1 (checklist desmarcado, 28 itens) sem remediação |
 > | A10 RF08 — sessão 7 `implement` (1ª rodada, 22/10) | ✅ coletada (⚠️ D-031) | Sessão `2ddfbaf0`; 0 intervenções, 1 `PROCESSO:` (RDR nº 2; texto exato a conferir no fechamento); timebox < 50%; 517 testes passam; aberta a tarefa manual T042 (6 cenários no aparelho, do pesquisador, P6(d)); coleta chamada duas vezes por engano (D-031) |
-> | **Próximo:** A10 — RF08, sessão 8 `converge` | — | — |
+> | A10 RF08 — sessão 8 `converge` (1ª rodada, 22/10) | ✅ coletada | Sessão `412b8a9f`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50% (faixa possivelmente superestimada: D-031); sem `div_otel` |
+> | **Próximo:** A10 — RF08, P6 (a)–(d) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
