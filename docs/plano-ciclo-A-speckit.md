@@ -109,7 +109,8 @@
 > | A9 RF10 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `778aacfa`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A9 RF10 — P6 rodada 1 | ⚠️ (b), (c) e (d) 1–4 OK; design com diferença | Botão de salvar encostado na borda da tela (spinner cortado) e rente à base do balão; estado salvo e mensagem longa conferidos: balão do usuário com a mesma largura do balão da IA → 1 sessão de correção, 1 intervenção (D-019) |
 > | A9 RF10 — sessão 9 (correção) | ✅ coletada | 1 intervenção (`correção|S2|prd`, Tela 1: posição do botão e largura do balão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
-> | **Próximo:** A9 — RF10, P6 rodada 2 | — | — |
+> | A9 RF10 — P6 rodada 2 | ✅ passou tudo | Segundo o pesquisador; prints da conferência de design dispensados por ele |
+> | **Próximo:** A9 — RF10, fechamento da unidade | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
