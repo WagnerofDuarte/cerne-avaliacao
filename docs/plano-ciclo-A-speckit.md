@@ -115,7 +115,8 @@
 > | A10 RF08 — sessão 2 `clarify` | ✅ coletada | Sessão `37b48e43`; 0 perguntas, `spec.md` sem alteração; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A10 RF08 — sessão 3 `plan` | ✅ coletada | Sessão `d88818e5`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 13 decisões de pesquisa, 2 contratos, 6 cenários manuais |
 > | A10 RF08 — sessão 4 `checklist` (22/10) | ✅ coletada (⚠️ D-030) | Sessão `323de508`; 2 intervenções `esclarecimento não solicitado` (perguntas de preferência do painel; esperado `PROCESSO:` com a frase padrão, §5.3), 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
-> | **Próximo:** A10 — RF08, sessão 5 `tasks` | — | — |
+> | A10 RF08 — sessão 5 `tasks` (22/10) | ✅ coletada | Sessão `3b6b3789`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 42 tarefas em 7 fases (T001–T042) |
+> | **Próximo:** A10 — RF08, sessão 6 `analyze` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
