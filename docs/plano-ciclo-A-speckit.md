@@ -99,18 +99,19 @@
 > | A8 RF04 — sessão 24 (correção) | ✅ coletada | Sessão `ed8c084a`; Modo Avião `S2` com a frase do D-025; a falha passou a aparecer, mas "tentar novamente" não funciona; 1 aviso de prefixo (D-027: valem 3 intervenções); 1 `PROCESSO:` |
 > | A8 RF04 — sessões 25 e 26 (correção) | ✅ coletadas | `63691097` (Tela 1, cursor do carregamento, `S2`) e `39a9982a` (Tela 3, ícone, `S1`); 1 intervenção cada; enviadas em sessões separadas (D-028) |
 > | A8 RF04 — fechamento (20/10) | ⚠️ `rf-incompleto` | Por decisão do pesquisador (D-026): critério 2 (nova tentativa depois da falha) não atendido. Commit `564dd97`, tag `cicloA/rf04-incompleto` |
-> | A9 RF10 — sessão 1 `specify` (22/10) | ✅ coletada | Sessão `38f3d474`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
-> | A9 RF10 — sessão 2 `clarify` (22/10) | ✅ coletada | Sessão `afa2a73b`; 1 intervenção (`esclarecimento não solicitado`, pergunta de preferência sobre o toque no botão já salvo), 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
-> | A9 RF10 — sessão 3 `plan` (22/10) | ✅ coletada | Sessão `55aaefc3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
-> | A9 RF10 — sessão 4 `checklist` (22/10) | ✅ coletada | Sessão `ee379333`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 22 itens (CHK001–CHK022) |
-> | A9 RF10 — sessão 5 `tasks` (22/10) | ✅ coletada | Sessão `13d3f6b3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 46 tarefas em 7 fases |
-> | A9 RF10 — sessão 6 `analyze` (22/10) | ✅ coletada | Sessão `f244d4d2`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1); timebox < 50%; `div_otel` anotado. Relatório: 10 FR, 5 SC, 46 tarefas, **0 CRITICAL, 1 HIGH, 1 MEDIUM, 1 LOW**; C1 e I1 remediados na sessão (T024a–T024d e novo teste de arquitetura), E1 sem remediação |
-> | A9 RF10 — sessão 7 `implement` (1ª rodada, 22/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); timebox < 50%; sem `div_otel`; 468 testes passam; abertas as tarefas manuais T027, T031, T037, T040 e T045 (do pesquisador, P6(d)) |
-> | A9 RF10 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `778aacfa`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | A9 RF10 — sessão 1 `specify` (21/10) | ✅ coletada | Sessão `38f3d474`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | A9 RF10 — sessão 2 `clarify` (21/10) | ✅ coletada | Sessão `afa2a73b`; 1 intervenção (`esclarecimento não solicitado`, pergunta de preferência sobre o toque no botão já salvo), 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
+> | A9 RF10 — sessão 3 `plan` (21/10) | ✅ coletada | Sessão `55aaefc3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | A9 RF10 — sessão 4 `checklist` (21/10) | ✅ coletada | Sessão `ee379333`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 22 itens (CHK001–CHK022) |
+> | A9 RF10 — sessão 5 `tasks` (21/10) | ✅ coletada | Sessão `13d3f6b3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 46 tarefas em 7 fases |
+> | A9 RF10 — sessão 6 `analyze` (21/10) | ✅ coletada | Sessão `f244d4d2`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, resposta `Yes, proceed` em vez do texto do RDR nº 1: D-029); timebox < 50%; `div_otel` anotado. Relatório: 10 FR, 5 SC, 46 tarefas, **0 CRITICAL, 1 HIGH, 1 MEDIUM, 1 LOW**; C1 e I1 remediados na sessão (T024a–T024d e novo teste de arquitetura), E1 sem remediação |
+> | A9 RF10 — sessão 7 `implement` (1ª rodada, 21/10) | ✅ coletada | Sessão `f88b5459`; 0 intervenções, 1 `PROCESSO:` (RDR nº 2); timebox < 50%; sem `div_otel`; 468 testes passam; abertas as tarefas manuais T027, T031, T037, T040 e T045 (do pesquisador, P6(d)) |
+> | A9 RF10 — sessão 8 `converge` (1ª rodada, 22/10) | ✅ coletada | Sessão `778aacfa`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A9 RF10 — P6 rodada 1 | ⚠️ (b), (c) e (d) 1–4 OK; design com diferença | Botão de salvar encostado na borda da tela (spinner cortado) e rente à base do balão; estado salvo e mensagem longa conferidos: balão do usuário com a mesma largura do balão da IA → 1 sessão de correção, 1 intervenção (D-019) |
-> | A9 RF10 — sessão 9 (correção) | ✅ coletada | 1 intervenção (`correção|S2|prd`, Tela 1: posição do botão e largura do balão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
+> | A9 RF10 — sessão 9 (correção, 22/10) | ✅ coletada | Sessão `51413b81`; 1 intervenção (`correção|S2|prd`, Tela 1: posição do botão e largura do balão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
 > | A9 RF10 — P6 rodada 2 | ✅ passou tudo | Segundo o pesquisador; prints da conferência de design dispensados por ele |
-> | **Próximo:** A9 — RF10, fechamento da unidade | — | — |
+> | **A9 RF10 concluída (22/10)** | ✅ | HEAD do ciclo `6ac66b8`, tag `cicloA/rf10-done` (já existia quando o `concluir-rf` rodou de novo; registro único), dados em `c7b4cb5`; 9 sessões (6 do fluxo, 1 laço de 1 rodada, 1 de correção; 1 `esclarecimento não solicitado` + 1 `correção|S2|prd`; D-029) |
+> | **Próximo:** A10 — RF08 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
