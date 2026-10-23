@@ -100,7 +100,7 @@
 > | A8 RF04 — sessões 25 e 26 (correção) | ✅ coletadas | `63691097` (Tela 1, cursor do carregamento, `S2`) e `39a9982a` (Tela 3, ícone, `S1`); 1 intervenção cada; enviadas em sessões separadas (D-028) |
 > | A8 RF04 — fechamento (20/10) | ⚠️ `rf-incompleto` | Por decisão do pesquisador (D-026): critério 2 (nova tentativa depois da falha) não atendido. Commit `564dd97`, tag `cicloA/rf04-incompleto` |
 > | A9 RF10 — sessão 1 `specify` (21/10) | ✅ coletada | Sessão `38f3d474`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
-> | A9 RF10 — sessão 2 `clarify` (21/10) | ✅ coletada | Sessão `afa2a73b`; 1 intervenção (`esclarecimento não solicitado`, pergunta de preferência sobre o toque no botão já salvo), 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
+> | A9 RF10 — sessão 2 `clarify` (21/10) | ✅ coletada | Sessão `afa2a73b`; 1 intervenção (`esclarecimento não solicitado`, pergunta de preferência sobre o toque no botão já salvo; esperado `PROCESSO:` com a frase padrão, §5.3: D-030), 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A9 RF10 — sessão 3 `plan` (21/10) | ✅ coletada | Sessão `55aaefc3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A9 RF10 — sessão 4 `checklist` (21/10) | ✅ coletada | Sessão `ee379333`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 22 itens (CHK001–CHK022) |
 > | A9 RF10 — sessão 5 `tasks` (21/10) | ✅ coletada | Sessão `13d3f6b3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 46 tarefas em 7 fases |
@@ -114,7 +114,8 @@
 > | A10 RF08 — sessão 1 `specify` | ✅ coletada | Sessão `eb886618`; 0 intervenções, 0 `PROCESSO:` (o agente não fez perguntas Q1–Q3: resolveu 3 ambiguidades por conta própria e as documentou no `spec.md`); timebox < 50%; `div_otel` anotado. `specs/009-chat-proactive-insight` |
 > | A10 RF08 — sessão 2 `clarify` | ✅ coletada | Sessão `37b48e43`; 0 perguntas, `spec.md` sem alteração; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A10 RF08 — sessão 3 `plan` | ✅ coletada | Sessão `d88818e5`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 13 decisões de pesquisa, 2 contratos, 6 cenários manuais |
-> | **Próximo:** A10 — RF08, sessão 4 `checklist` | — | — |
+> | A10 RF08 — sessão 4 `checklist` (22/10) | ✅ coletada (⚠️ D-030) | Sessão `323de508`; 2 intervenções `esclarecimento não solicitado` (perguntas de preferência do painel; esperado `PROCESSO:` com a frase padrão, §5.3), 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
+> | **Próximo:** A10 — RF08, sessão 5 `tasks` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -245,6 +246,7 @@ Em 11/10/2026: **D-013** (os conectores do claude.ai — linha `MCP tools` do `/
   1. Se a pergunta admite confirmação ("Shall I proceed with X?"): resposta neutra, sem prefixo: `Yes, proceed.`
   2. Se pede escolha de preferência: `INTERVENÇÃO [esclarecimento não solicitado]: Use your technical judgment, following the input package.`
   3. Se pede informação: responder pelo pacote/RDR (seção 5.4), com o mesmo prefixo do item 2, e acrescentar ao RDR.
+  4. **Não vale para as pausas previstas da tabela do §5.3** (perguntas do `specify`, `clarify` e `checklist`): lá a preferência é `PROCESSO: Use your technical judgment, following the input package.` (D-030).
 
 ### 2.5 Modo de permissão do Claude Code
 
