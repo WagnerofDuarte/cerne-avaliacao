@@ -803,6 +803,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Prompt:** `P-RF08`. **Depende de:** RF04.
 - **Tela:** 1. **Backend:** §6.3 (insight).
 - **Atenção:** o gatilho de 2 minutos de inatividade exige espera real na verificação.
+- **Andamento (datas em horário de Brasília, a conferir nos dados no fechamento; o relógio do ambiente do guia está em UTC):** Sessão 1 `specify` (`eb886618`): o agente criou `specs/009-chat-proactive-insight` e **não fez perguntas** (Q1–Q3 não apareceram): resolveu por conta própria 3 ambiguidades (insight efêmero ou persistido, rearmar/sobreposição, tratamento visual da falha), documentou-as em "Clarifications" no `spec.md` e declarou o `clarify` opcional; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; alerta `div_otel` anotado, sem investigar; aviso de subagentes (esperado).
 - **Notas de encerramento:** *(preencher)*
 
 ## A11 — RF05 Exportação de resumo pessoal

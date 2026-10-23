@@ -111,7 +111,8 @@
 > | A9 RF10 — sessão 9 (correção, 22/10) | ✅ coletada | Sessão `51413b81`; 1 intervenção (`correção|S2|prd`, Tela 1: posição do botão e largura do balão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
 > | A9 RF10 — P6 rodada 2 | ✅ passou tudo | Segundo o pesquisador; prints da conferência de design dispensados por ele |
 > | **A9 RF10 concluída (22/10)** | ✅ | HEAD do ciclo `6ac66b8`, tag `cicloA/rf10-done` (já existia quando o `concluir-rf` rodou de novo; registro único), dados em `c7b4cb5`; 9 sessões (6 do fluxo, 1 laço de 1 rodada, 1 de correção; 1 `esclarecimento não solicitado` + 1 `correção|S2|prd`; D-029) |
-> | **Próximo:** A10 — RF08 | — | — |
+> | A10 RF08 — sessão 1 `specify` | ✅ coletada | Sessão `eb886618`; 0 intervenções, 0 `PROCESSO:` (o agente não fez perguntas Q1–Q3: resolveu 3 ambiguidades por conta própria e as documentou no `spec.md`); timebox < 50%; `div_otel` anotado. `specs/009-chat-proactive-insight` |
+> | **Próximo:** A10 — RF08, sessão 2 `clarify` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
