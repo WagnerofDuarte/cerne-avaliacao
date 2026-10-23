@@ -107,8 +107,8 @@
 > | A9 RF10 — sessão 6 `analyze` (22/10) | ✅ coletada | Sessão `f244d4d2`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1); timebox < 50%; `div_otel` anotado. Relatório: 10 FR, 5 SC, 46 tarefas, **0 CRITICAL, 1 HIGH, 1 MEDIUM, 1 LOW**; C1 e I1 remediados na sessão (T024a–T024d e novo teste de arquitetura), E1 sem remediação |
 > | A9 RF10 — sessão 7 `implement` (1ª rodada, 22/10) | ✅ coletada | 0 intervenções, 1 `PROCESSO:` (RDR nº 2); timebox < 50%; sem `div_otel`; 468 testes passam; abertas as tarefas manuais T027, T031, T037, T040 e T045 (do pesquisador, P6(d)) |
 > | A9 RF10 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `778aacfa`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
-> | A9 RF10 — P6 rodada 1 | ⚠️ (b), (c) e (d) 1–4 OK; design com diferença | Botão de salvar encostado na borda da tela (spinner cortado) e rente à base do balão; prints do estado salvo e de mensagem longa pendentes → 1 sessão de correção (D-019) |
-> | **Próximo:** A9 — RF10, prints pendentes e sessão de correção | — | — |
+> | A9 RF10 — P6 rodada 1 | ⚠️ (b), (c) e (d) 1–4 OK; design com diferença | Botão de salvar encostado na borda da tela (spinner cortado) e rente à base do balão; estado salvo e mensagem longa conferidos: balão do usuário com a mesma largura do balão da IA → 1 sessão de correção, 1 intervenção (D-019) |
+> | **Próximo:** A9 — RF10, sessão 9 (correção) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
