@@ -822,6 +822,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 **Prazo proposto: 16 a 18/10/2026 · Timebox: 8 h**
 - **Prompt:** `P-RF05`. **Depende de:** RF07 (a exportação é acessada por Meus Registros).
 - **Tela:** 4 (exportação, 5 estados). **Backend:** §6.5.
+- **Andamento (horário de Brasília; datas a conferir nos dados no fechamento, o relógio do ambiente do guia está em UTC):** Sessão 1 `specify` (`4890c50d`): o agente criou `specs/010-personal-summary-export` e **não fez perguntas** (Q1–Q3 não apareceram): 3 histórias (PDF narrativo, download dos dados brutos nunca bloqueado por falha da IA, período vazio) e 13 requisitos funcionais mapeados nos 5 estados da folha de exportação; resolveu sozinho uma ambiguidade (se o download dos dados brutos aparece antes de o job chegar a um estado terminal), escolhendo o catálogo de 5 estados do protótipo, e a deixou nas premissas; checklist de qualidade todo aprovado; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem alerta `div_otel`; aviso de subagentes (esperado).
 - **Notas de encerramento:** *(preencher)*
 
 ## A12 — RF09 Resumos temporais / dashboard
