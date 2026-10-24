@@ -132,7 +132,8 @@
 > | A11 RF05 — sessão 6 `analyze` | ✅ coletada | Sessão `2b706648`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1; texto exato a conferir); timebox < 50%; sem `div_otel`. Relatório: 13 FR, 5 SC, 48 tarefas, **1 CRITICAL, 1 HIGH, 1 MEDIUM**; os três remediados na sessão (agora 50 tarefas); sem pergunta espontânea depois |
 > | A11 RF05 — sessão 7 `implement` (1ª rodada) | ✅ coletada | Identificador a conferir; 0 intervenções, 1 `PROCESSO:` (RDR nº 2; texto exato a conferir); timebox < 50%; 586 testes passam; dependência nova `share_plus`; abertas as tarefas manuais T032, T041, T044 e T048 (do pesquisador, P6(d)) |
 > | A11 RF05 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `d6c75ef4`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
-> | **Próximo:** A11 — RF05, P6 (a)–(d) | — | — |
+> | A11 RF05 — P6 rodada 1 (24/10) | ⚠️ design com diferenças | (a)–(c) OK; (d) exportação normal e dados brutos OK; "Período vazio" verificado em parte (D-034); Processando e falha não vistos; design da folha com diferenças (largura em Pendente, indicador ocre, ícone, título, botões empilhados, "Fechar") → 1 sessão de correção, 1 intervenção (D-019), `S1` |
+> | **Próximo:** A11 — RF05, sessão de correção | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
@@ -1317,7 +1318,7 @@ Let the user export a narrative summary of their entries as PDF, and always be a
 
 | Critério | Como verificar |
 |---|---|
-| Job com zero entradas no período → estado de erro tratado ("Período vazio"), nem PDF vazio nem crash | Escolher um período sem entradas |
+| Job com zero entradas no período → estado de erro tratado ("Período vazio"), nem PDF vazio nem crash | O filtro de data só tem Todo o período / Esta semana / Este mês e a conta do ciclo tem entradas em todos; o filtro de tipo não vai ao backend. **Não há como alcançar o caso pela tela; anotar "verificado em parte — limitação do ambiente" (D-034)**; a hold-out cobre. Se a conta ainda não tiver entradas na semana, vale |
 | Falha da narrativa (timeout do modelo) ainda permite baixar os dados brutos | Sem proxy não dá para forçar o `ai_timeout`. Verificar que a opção de dados brutos existe e funciona num job normal; o caso de falha é coberto pela hold-out. Anotar como verificação parcial |
 | Estados Pendente → Processando → Concluído | Exportar um período com entradas e acompanhar; baixar o PDF |
 

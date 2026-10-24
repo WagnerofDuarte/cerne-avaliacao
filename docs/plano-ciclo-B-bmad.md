@@ -842,7 +842,7 @@ No B, os `P-RFxx` **já foram** entregues no PRD (10.1). Aqui eles servem só pa
 **Escopo (`P-RF05`):** sheet de exportação ("Pendente", "Processando", "Concluído", "Erro", "Período vazio"), aberta pelo ícone de download de Meus Registros; `export-screen-states.md`; `export-summary-create`, `export-status-get`, `export-download-get`.
 
 **P6(d):**
-- Período vazio → estado tratado.
+- Período vazio → estado tratado: **não alcançável pela tela com a conta do ciclo** (o filtro de data só tem Todo o período / Esta semana / Este mês); registrar "verificado em parte — limitação do ambiente", como no A (D-034), sem criar conta nova.
 - Período com entradas → Pendente → Processando → Concluído → baixar o PDF.
 - Opção de dados brutos funcional.
 - Falha da narrativa: verificação parcial (coberta pela hold-out).
