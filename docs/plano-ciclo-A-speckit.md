@@ -126,7 +126,8 @@
 > | **A10 RF08 concluída (24/10)** | ✅ | HEAD do ciclo `deb8c00`, tag `cicloA/rf08-done`, dados em `ca65282`; 9 sessões medidas (6 do fluxo, 1 laço de 1 rodada, 1 de correção) + 1 sessão de correção não medida (D-032); 4 intervenções (2 `esclarecimento não solicitado` no `checklist` e 2 `correção`); D-030, D-031, D-032, D-033 |
 > | A11 RF05 — sessão 1 `specify` | ✅ coletada | Sessão `4890c50d`; 0 intervenções, 0 `PROCESSO:` (o agente não fez perguntas Q1–Q3: resolveu 1 ambiguidade por conta própria e a deixou nas premissas); timebox < 50%; sem `div_otel`. `specs/010-personal-summary-export` |
 > | A11 RF05 — sessão 2 `clarify` | ✅ coletada | Identificador a conferir nos dados; 1 pergunta (estado de falha definitiva da folha de exportação), 1 `PROCESSO:` (texto exato a conferir), 0 intervenções; o agente encerrou o laço depois da frase padrão (método); timebox < 50%; `div_otel` anotado |
-> | **Próximo:** A11 — RF05, sessão 3 `plan` | — | — |
+> | A11 RF05 — sessão 3 `plan` | ✅ coletada | Sessão `bd697138`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 8 decisões de pesquisa, 4 contratos, dependência nova `share_plus`, sexto estado da folha |
+> | **Próximo:** A11 — RF05, sessão 4 `checklist` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
