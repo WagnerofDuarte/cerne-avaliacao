@@ -859,6 +859,7 @@ No B, os `P-RFxx` **já foram** entregues no PRD (10.1). Aqui eles servem só pa
 - Narrativa não quebra a UI.
 - Sair.
 - **Apagar conta só na conta descartável.**
+- **Aproveite a conta vazia (D-034):** com `dev-ciclob-vazia@cerne.test` aberta, abrir a exportação de Meus Registros com "Todo o período" e conferir "Período vazio" (sem botão de download, com "Fechar"; print); fecha o critério "verificado em parte" da RF05, como no A.
 
 **Armadilhas:**
 - Seletor de persona é extensão.

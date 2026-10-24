@@ -1360,6 +1360,8 @@ Build the Settings screen with the evolution dashboard, and the profile and acco
 | Texto da narrativa não quebra a UI em casos extremos | Só checar que não quebra; conteúdo nunca é avaliado |
 | "Sair" e "Apagar conta" (RNF05) | Sair → volta ao login. **Apagar conta só numa conta descartável** (ex.: a conta "vazia"), nunca na principal |
 
+**Aproveite a conta vazia (D-034):** com `dev-cicloa-vazia@cerne.test` aberta, vá a Meus Registros, toque no ícone de download com "Todo o período" e confira o estado "Período vazio" da exportação da RF05 (sem botão de download, com "Fechar"; print). Isso fecha o critério que ficou "verificado em parte" na RF05, sem criar conta além das do roteiro. Defeito visto aí entra na correção da unidade atual (a RF05 não é reaberta).
+
 **Armadilhas:**
 - O seletor de persona é extensão (P10): no máximo um toggle cosmético. Se for construído com lógica → `INTERVENÇÃO [redirecionamento|prd]`.
 - ⚠️ Achado do `C-014` (28/09): `dashboard-aggregate-get` devolveu `404 NOT_FOUND "perfil do usuário autenticado não encontrado"` para uma conta do **seed**. Contas criadas pelo cadastro do app têm perfil (trigger `on_auth_user_created`), então isso não deve ocorrer na sua conta. Se ocorrer, é defeito de backend → seção 13 (D16), não do app.
