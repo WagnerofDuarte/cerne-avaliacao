@@ -120,7 +120,8 @@
 > | A10 RF08 — sessão 7 `implement` (1ª rodada, data a conferir) | ✅ coletada (⚠️ D-031) | Sessão `2ddfbaf0`; 0 intervenções, 1 `PROCESSO:` (RDR nº 2; texto exato a conferir no fechamento); timebox < 50%; 517 testes passam; aberta a tarefa manual T042 (6 cenários no aparelho, do pesquisador, P6(d)); coleta chamada duas vezes por engano (D-031) |
 > | A10 RF08 — sessão 8 `converge` (1ª rodada, data a conferir) | ✅ coletada | Sessão `412b8a9f`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50% (faixa possivelmente superestimada: D-031); sem `div_otel` |
 > | A10 RF08 — P6 rodada 1 (24/10) | ⚠️ (a)–(c) OK; (d) 1, 3 e 4 OK, **2 falhou** | O cartão do insight não apareceu na espera de 2 min (critério falha em parte; o item 3 fica inconclusivo até o disparo por inatividade funcionar); design: lombada ocre reta fora dos cantos arredondados do cartão (S1) |
-> | **Próximo:** A10 — RF08, sessão de correção | — | — |
+> | A10 RF08 — sessão de correção `f6f50aaf` (24/10) | ❌ não medida (D-032) | Aberta fora do `CLAUDE_CONFIG_DIR` do ciclo; não coletada; código desfeito pelo *rewind* (conferido: 517 testes, mesmas 20 entradas no `git status`); correção refeita em sessão válida |
+> | **Próximo:** A10 — RF08, sessão de correção (válida) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
