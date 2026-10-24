@@ -852,6 +852,7 @@ Vale para **todas** as unidades A2–A12. As fichas da seção 10 só acrescenta
 Notas:
 - **Ordem fixa (D-016, 11/10/2026).** O `checklist` vem **depois do `plan` e antes do `tasks`**. A decisão original (R22) o punha antes do `plan`, mas o script do `speckit-checklist` exige `plan.md` e o agente para (visto na F000); o CLI também o sugere depois do `plan`. Se uma sessão `/speckit-checklist` for aberta **antes** do `plan` por engano, o agente vai parar e perguntar: responda por *Other* `INTERVENÇÃO [esclarecimento não solicitado]: Stop here. Do not generate the checklist in this session.`, colete e siga com o `plan`.
 - No passo 6, se o relatório trouxer problemas **CRITICAL** e sugerir rodar de novo um comando anterior ("Run /speckit-specify with refinement"), **não** volte na sequência. Siga para o passo 7. A remediação aceita na própria sessão do `analyze` é o caminho do método.
+- **Memória do agente (D-033).** Depois de cada `/coletar-sessao`, rode `ls ~/cerne/cfg-ciclo-a/projects/*/memory/`. Tem que estar vazio ou inexistente. Se houver arquivo (o agente grava memória por conta própria), cole a listagem no chat antes da próxima sessão: o guia registra o conteúdo e a sessão de origem, você remove os arquivos e abre-se um desvio.
 - O `implement` pode parar sozinho se uma tarefa falhar (*"Halt execution if any non-parallel task fails"*). Colete e abra nova sessão com `/speckit-implement` (4.5).
 
 ### 9.2 Textos literais dos argumentos
