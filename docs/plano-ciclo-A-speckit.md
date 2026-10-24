@@ -127,7 +127,8 @@
 > | A11 RF05 — sessão 1 `specify` | ✅ coletada | Sessão `4890c50d`; 0 intervenções, 0 `PROCESSO:` (o agente não fez perguntas Q1–Q3: resolveu 1 ambiguidade por conta própria e a deixou nas premissas); timebox < 50%; sem `div_otel`. `specs/010-personal-summary-export` |
 > | A11 RF05 — sessão 2 `clarify` | ✅ coletada | Identificador a conferir nos dados; 1 pergunta (estado de falha definitiva da folha de exportação), 1 `PROCESSO:` (texto exato a conferir), 0 intervenções; o agente encerrou o laço depois da frase padrão (método); timebox < 50%; `div_otel` anotado |
 > | A11 RF05 — sessão 3 `plan` | ✅ coletada | Sessão `bd697138`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 8 decisões de pesquisa, 4 contratos, dependência nova `share_plus`, sexto estado da folha |
-> | **Próximo:** A11 — RF05, sessão 4 `checklist` | — | — |
+> | A11 RF05 — sessão 4 `checklist` | ✅ coletada | Sessão `a2d891ce`; 0 intervenções, 2 `PROCESSO:` (preferência, frase padrão; texto exato a conferir); timebox < 50%; sem `div_otel`; 27 itens (CHK001–CHK027); 2 achados do agente no `spec.md` ("cinco estados" contra o sexto estado; toque repetido com dois comportamentos) |
+> | **Próximo:** A11 — RF05, sessão 5 `tasks` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
