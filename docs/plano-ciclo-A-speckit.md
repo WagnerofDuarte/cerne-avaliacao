@@ -133,7 +133,8 @@
 > | A11 RF05 — sessão 7 `implement` (1ª rodada) | ✅ coletada | Identificador a conferir; 0 intervenções, 1 `PROCESSO:` (RDR nº 2; texto exato a conferir); timebox < 50%; 586 testes passam; dependência nova `share_plus`; abertas as tarefas manuais T032, T041, T044 e T048 (do pesquisador, P6(d)) |
 > | A11 RF05 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `d6c75ef4`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A11 RF05 — P6 rodada 1 (24/10) | ⚠️ design com diferenças | (a)–(c) OK; (d) exportação normal e dados brutos OK; "Período vazio" verificado em parte (D-034); Processando e falha não vistos; design da folha com diferenças (largura em Pendente, indicador ocre, ícone, título, botões empilhados, "Fechar") → 1 sessão de correção, 1 intervenção (D-019), `S1` |
-> | **Próximo:** A11 — RF05, sessão de correção | — | — |
+> | A11 RF05 — sessão 9 (correção, 24/10) | ✅ coletada | Sessão `5ec867af`; 1 intervenção (`correção|S1|prd`, folha de exportação), 0 `PROCESSO:`; timebox < 50%. O agente apontou o mesmo "Fechar" nos outros 3 estados e perguntou se alinhava; não respondido (resíduo `S1` anotado). Nova P6 pendente |
+> | **Próximo:** A11 — RF05, P6 rodada 2 | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
