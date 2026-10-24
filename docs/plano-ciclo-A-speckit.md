@@ -136,7 +136,8 @@
 > | A11 RF05 — sessão 9 (correção, 24/10) | ✅ coletada | Sessão `5ec867af`; 1 intervenção (`correção|S1|prd`, folha de exportação), 0 `PROCESSO:`; timebox < 50%. O agente apontou o mesmo "Fechar" nos outros 3 estados e perguntou se alinhava; não respondido (resíduo `S1` anotado). Nova P6 pendente |
 > | A11 RF05 — P6 rodada 2 (24/10) | ⚠️ design com 3 resíduos | Corrigidos largura, ícone, título do Concluído, botões e "Fechar" (Pendente e Concluído). Restam (`S1`): "Fechar" em Processando; peso do texto de status em Pendente e Processando; indicador de Pendente maior que o do protótipo. Inconsistência do pacote: extrato diz barra de progresso em Processando, HTML diz indicador giratório (sem correção). Saídas de `analyze`/`test` e PDF/dados brutos não coladas → 2ª sessão de correção |
 > | A11 RF05 — sessão 10 (2ª correção, 24/10) | ✅ coletada (⚠️ D-035) | Identificador a conferir; 1 intervenção (`correção|S1|prd`, 3 resíduos da folha, com a frase do D-025), 0 `PROCESSO:`; timebox < 50%; coletada duas vezes (a 1ª antes do fim da sessão): vale a 2ª. Nova P6 pendente |
-> | **Próximo:** A11 — RF05, P6 rodada 3 | — | — |
+> | A11 RF05 — P6 rodada 3 (24/10) | ✅ passou, com resíduo | "Fechar", peso do texto de status, largura, ícone e botões corrigidos; resíduo `S1` aceito pelo pesquisador (indicador de Pendente ~1,3× o ícone do Concluído); `analyze`/`test` a colar antes do fechamento |
+> | **Próximo:** A11 — RF05, fechamento da unidade | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
