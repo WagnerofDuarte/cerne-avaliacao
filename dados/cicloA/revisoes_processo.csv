@@ -53,3 +53,8 @@ a,RF10,f88b5459-6155-4ebe-a0f7-ea696971ade9,IMPL,2026-10-22T02:00:48.865Z,specki
 a,RF08,e1a34582-197c-4fee-a92e-5bf724d12d39,VALID,2026-10-23T02:38:43.755Z,speckit-analyze,Yes
 a,RF08,2ddfbaf0-ab9e-466e-b4eb-8c337f9b6435,IMPL,2026-10-23T02:44:17.516Z,speckit-implement,yes.
 a,RF08,2ddfbaf0-ab9e-466e-b4eb-8c337f9b6435,IMPL,2026-10-23T02:44:17.516Z,speckit-implement,yes.
+a,RF05,c7dbe91c-7301-439a-b334-8ba535285e08,ESPEC,2026-10-24T19:53:02.167Z,speckit-clarify,"Use your technical judgment, following the input package"
+a,RF05,a2d891ce-a326-493d-b4a4-56498c0b7239,VALID,2026-10-24T20:12:46.118Z,speckit-checklist,"Use your technical judgment, following the input package"
+a,RF05,a2d891ce-a326-493d-b4a4-56498c0b7239,VALID,2026-10-24T20:12:46.118Z,speckit-checklist,"Use your technical judgment, following the input package"
+a,RF05,2b706648-78d0-4de7-b503-4d4658db47dd,VALID,2026-10-24T20:28:54.780Z,speckit-analyze,Yes
+a,RF05,940d64dc-3901-42aa-9fc6-4b8bd859b5be,IMPL,2026-10-24T20:38:39.549Z,speckit-implement,yes.
