@@ -129,7 +129,8 @@
 > | A11 RF05 — sessão 3 `plan` | ✅ coletada | Sessão `bd697138`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 8 decisões de pesquisa, 4 contratos, dependência nova `share_plus`, sexto estado da folha |
 > | A11 RF05 — sessão 4 `checklist` | ✅ coletada | Sessão `a2d891ce`; 0 intervenções, 2 `PROCESSO:` (preferência, frase padrão; texto exato a conferir); timebox < 50%; sem `div_otel`; 27 itens (CHK001–CHK027); 2 achados do agente no `spec.md` ("cinco estados" contra o sexto estado; toque repetido com dois comportamentos) |
 > | A11 RF05 — sessão 5 `tasks` | ✅ coletada | Sessão `339c17a6`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 48 tarefas em 6 fases (T001–T048) |
-> | **Próximo:** A11 — RF05, sessão 6 `analyze` | — | — |
+> | A11 RF05 — sessão 6 `analyze` | ✅ coletada | Sessão `2b706648`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1; texto exato a conferir); timebox < 50%; sem `div_otel`. Relatório: 13 FR, 5 SC, 48 tarefas, **1 CRITICAL, 1 HIGH, 1 MEDIUM**; os três remediados na sessão (agora 50 tarefas); sem pergunta espontânea depois |
+> | **Próximo:** A11 — RF05, sessão 7 `implement` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
