@@ -128,7 +128,8 @@
 > | A11 RF05 — sessão 2 `clarify` | ✅ coletada | Identificador a conferir nos dados; 1 pergunta (estado de falha definitiva da folha de exportação), 1 `PROCESSO:` (texto exato a conferir), 0 intervenções; o agente encerrou o laço depois da frase padrão (método); timebox < 50%; `div_otel` anotado |
 > | A11 RF05 — sessão 3 `plan` | ✅ coletada | Sessão `bd697138`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado; 8 decisões de pesquisa, 4 contratos, dependência nova `share_plus`, sexto estado da folha |
 > | A11 RF05 — sessão 4 `checklist` | ✅ coletada | Sessão `a2d891ce`; 0 intervenções, 2 `PROCESSO:` (preferência, frase padrão; texto exato a conferir); timebox < 50%; sem `div_otel`; 27 itens (CHK001–CHK027); 2 achados do agente no `spec.md` ("cinco estados" contra o sexto estado; toque repetido com dois comportamentos) |
-> | **Próximo:** A11 — RF05, sessão 5 `tasks` | — | — |
+> | A11 RF05 — sessão 5 `tasks` | ✅ coletada | Sessão `339c17a6`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel`; 48 tarefas em 6 fases (T001–T048) |
+> | **Próximo:** A11 — RF05, sessão 6 `analyze` | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
