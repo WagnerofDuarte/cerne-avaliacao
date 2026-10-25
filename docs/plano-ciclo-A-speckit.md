@@ -150,7 +150,9 @@
 > | A12 RF09 — sessão 9 (correção) | ✅ coletada | Sessão `55866150`; 4 intervenções (3 `correção|S2|prd` + 1 `esclarecimento não solicitado`, pergunta espontânea "Visual check" respondida pelo Other com a frase padrão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
 > | A12 RF09 — P6 rodada 2 | ⚠️ 2 defeitos novos | (a)–(c) OK (662 testes); vazamento entre contas corrigido; design da Tela 6 e do "Período vazio" corrigidos (resíduo `S1` aceito: barra única mais baixa que a do protótipo); itens 7–9 OK; **"Sair" cai na biometria e abre a Home sem conta (`S2`)**; **"Apagar conta" trava com `ProviderNotFoundException` (`S3`)** → 2ª sessão de correção, 2 intervenções |
 > | A12 RF09 — sessão 10 (2ª correção) | ✅ coletada | Sessão `af9dac90`; 2 intervenções (`correção|S3|prd`, "Apagar conta"; `correção|S2|prd`, "Sair"), 0 `PROCESSO:`; timebox < 50%. Causas: diálogo fora do `BlocProvider` da rota; "Sair"/"Apagar conta" levavam ao cofre de biometria (decisão do plano) que abre a Home sem checar sessão. O agente estendeu a correção à exclusão de conta e ofereceu um teste de widget (não respondido). Nova P6 pendente |
-> | **Próximo:** A12 — RF09, nova P6 (rodada 3) (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — P6 rodada 3 | ⚠️ design do diálogo de exclusão | "Sair", vazamento, biometria e exclusão OK segundo o pesquisador; diálogo "Apagar sua conta?" com título serifado, texto curto sem LGPD, botões lado a lado e mais estreito (`S2`) → 3ª sessão de correção, 1 intervenção |
+> | A12 RF09 — sessão 11 (3ª correção) | ✅ coletada | Sessão `07ff43d0`; 1 intervenção (`correção|S2|prd`, diálogo de exclusão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
+> | **Próximo:** A12 — RF09, nova P6 (rodada 4) (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
