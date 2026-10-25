@@ -142,7 +142,8 @@
 > | A12 RF09 — sessão 2 `clarify` | ✅ coletada | Sessão `50f54e37`; 3 perguntas, 3 `PROCESSO:` (texto exato a conferir), 0 intervenções; timebox < 50%. Resolvidos: contagens intermediárias de entradas (FR-005 "duas ou mais"), algoritmo de agrupamento das barras, biometria oculta (não desabilitada) sem hardware; checklist 16/16 |
 > | A12 RF09 — sessão 3 `plan` | ✅ coletada | Sessão `cff55122`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%. 16 decisões de pesquisa, 7 contratos, **nenhuma dependência nova**, 5 tokens de design novos |
 > | A12 RF09 — sessão 4 `checklist` | ✅ coletada | Sessão `b28ce9fa`; 0 intervenções, 3 `PROCESSO:` (foco, profundidade, público; texto exato a conferir); timebox < 50%. 25 itens (CHK001–CHK025); 3 lacunas apontadas no `spec.md` (regra de agrupamento das barras, envio duplo só em dois botões, mapa de erros do backend) |
-> | **Próximo:** A12 — RF09, sessão 5 `tasks` (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — sessão 5 `tasks` | ✅ coletada | Sessão `442d47dc`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; 64 tarefas (T001–T064) em 6 fases |
+> | **Próximo:** A12 — RF09, sessão 6 `analyze` (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
