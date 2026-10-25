@@ -13,3 +13,5 @@
 |---|---|---|---|---|---|---|---|
 | 1 | 11/10/2026 | A | F000 | `speckit-analyze` | Fim do relatório: oferta de sugerir edições concretas de remediação para os N problemas principais | decisão (sugestão de RDR do plano A, 5.3) | `PROCESSO: Yes.` |
 | 2 | 11/10/2026 | A | F000 | `speckit-implement` | Algum checklist tem itens desmarcados: seguir com a implementação mesmo assim? (yes/no) | decisão (sugestão de RDR do plano A, 5.3) | `PROCESSO: yes` |
+| 3 | 25/10/2026 | B | PLAN | `bmad-brainstorming` | Pergunta de descoberta: o que brainstormar e qual o objetivo (além do `P-GLOBAL`) | decisão (plano B, 5.5 regra 5: preferência) | `PROCESSO: Use your technical judgment, following the input package.` |
+| 4 | 25/10/2026 | B | PLAN | `bmad-brainstorming` | O agente abriu o seletor de modo e técnicas no navegador e pediu o prompt colado de volta (ou "let's do it in chat") | decisão (plano B, 5.3: menu de conduzir; o seletor foi fechado sem uso) | `PROCESSO: Use your technical judgment, following the input package.` |

@@ -945,6 +945,9 @@ Tudo aqui acontece em `cerne-ciclo-b`, aberto sempre com `abrir-ciclo b`. Unidad
 
 *Sem equivalente no Ciclo A. Todas as sessões desta etapa usam o ID `PLAN`. Uma sessão nova por workflow (P4).*
 
+**Registros das sessões `PLAN` (a sequência vigente é a de `plano-ciclo-B-bmad.md`, §9–§11; as tarefas `B-003` a `B-007` abaixo estão desatualizadas):**
+- [x] 25/10 — B2 1/5, `bmad-brainstorming` com o `P-GLOBAL`, sessão `PLAN`. Duas respostas `PROCESSO` (linhas 3 e 4 do RDR, ambas a frase de preferência); nenhuma intervenção. O agente escolheu sozinho o tema ("F000 foundation: as escolhas técnicas livres e o andaime compartilhado") e conduziu as técnicas sem outras perguntas; abriu o seletor de técnicas no navegador (fechado sem uso) e, no fim, gerou o `brainstorm.html` e o `.memlog.md` em `_bmad-output/brainstorming/`, abrindo o primeiro no navegador. Ofertas finais (passe de `converge`, `brainstorm-intent.md`) sem resposta. Coletor: `PROCESSO` 2, intervenções 0, timebox da unidade abaixo de 50%; `faixa-plan` abaixo de 50%; memória vazia. Sem a linha de aviso de subagentes (o diretório existe, então a sessão usou subagentes; os tokens entram nas colunas `sub_*`).
+
 - [ ] 🧪 **[SESSÃO] `B-003`** — Product brief (agente Analyst), com `P-GLOBAL`. → `/coletar-sessao PLAN`.
 - [ ] 🧪 **[SESSÃO] `B-004`** — PRD (agente PM), com `P-F000` e `P-RF01`…`P-RF10`, **na ordem de entrega**. → `/coletar-sessao PLAN`.
 - [ ] 🧪 **[SESSÃO] `B-005`** — Arquitetura (agente Architect); `P-SETUP` como primeira mensagem, **se** não entrou no B1. → `/coletar-sessao PLAN`.
