@@ -1512,7 +1512,7 @@ Em `plano-ciclos.md`: o que aconteceu de inesperado, desvios registrados e decis
 
 ## 15. Transição A → B
 
-**Data:** 22/10/2026. Detalhada em `docs/plano-ciclo-B-bmad.md`, seção 3. Resumo:
+**Data:** 26/10/2026 (revisada em 25/10, D-021; a proposta original era 22/10). Detalhada em `docs/plano-ciclo-B-bmad.md`, seção 3. Resumo:
 - `X-001`: `git diff --stat protocolo-v1.0 -- …` (3.1) só com as diferenças documentadas em `desvios.md`.
 - `X-002`: repetir 3.6 (versões) e confirmar que `claude-sonnet-5` continua disponível. Se não estiver, **parar** e decidir com a orientadora.
 - `GATE-X01`: backend `ciclo-b` (Confirm email OFF, `replay-mode b replay`, chamada autenticada 200).
@@ -1543,6 +1543,8 @@ Em `plano-ciclos.md`: o que aconteceu de inesperado, desvios registrados e decis
 | 22/10 | Transição | `GATE-X02` |
 
 Se o ritmo não couber até 21/10, a decisão de estender (ou não) é tomada de novo, registrada nas notas e em `desvios.md` — nunca encurtando timebox.
+
+**Revisão de 25/10/2026 (D-021):** o Ciclo A terminou em 25/10 (RF09 concluída às 11h28), 4 dias depois do fim previsto; o encerramento (`A-003`, `cicloA/final`, `GATE-A03`) é feito em 25/10 e a transição A → B passa a 26/10. O Ciclo B deve terminar até 04/11/2026 (decisão do pesquisador; ver `desvios.md`).
 
 Em paralelo (fora das sessões, em `cerne-avaliacao`): a trilha do harness (`H-001`–`H-006`), com corte da hold-out e da M8b em **06/11** (`GATE-H01`). Ela nunca toca `cerne-ciclo-a`.
 

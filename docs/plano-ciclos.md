@@ -860,7 +860,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - **Notas de encerramento (RF09, sem números de métrica):** início em 24/10 às 22h44 e fim em 25/10 às 11h28 (horário de Brasília). **11 sessões medidas:** `specify`, `clarify`, `plan` com `P-TECH`, `checklist`, `tasks`, `analyze`, 1 `implement` e 1 `converge` (**1 rodada**, *Converged* sem achados) e 3 de correção. **Intervenções reconhecidas: 7**, todas digitadas à mão: **6 `correção|…|prd`** (5 `S2` e 1 `S3`) e 1 `esclarecimento não solicitado`. Sessão de correção 1: vazamento entre contas (`S2`), design da Tela 6 nos estados de zero e uma entrada (`S2`), a pergunta espontânea "Visual check" do agente (`esclarecimento não solicitado`) e o design do "Período vazio" da exportação da RF05 (`S2`, tela de unidade já fechada, tratada pelo D-034); sessão 2: "Apagar conta" travando com `ProviderNotFoundException` (`S3`) e "Sair" caindo na tela de biometria e abrindo a Home sem conta (`S2`); sessão 3: texto e arranjo do diálogo de exclusão (`S2`). **`PROCESSO:` reconhecidos: 8**, todos em pausas previstas e sem intervenção nelas: 3 no `clarify` e 3 no `checklist` (frase padrão, sem o ponto final), 1 no `analyze` (`Yes`, sem o ponto do RDR nº 1) e 1 no `implement` (`yes.`, com o ponto que o RDR nº 2 não tem); variações de grafia só anotadas, sem linha nova no RDR; a resposta neutra à pergunta espontânea do `analyze` foi `Yes, proceed.`. **Desvios da unidade:** nenhum novo; o D-034 fica **resolvido** (o "Período vazio" foi visto no aparelho, com comportamento certo, e o design foi corrigido). **Avisos e ambiente:** sem corte por limite de uso; nenhuma coleta duplicada nem prematura (uma linha por sessão); sem alerta `div_otel` em nenhuma sessão da unidade; aviso de subagentes em todas (esperado); nenhuma linha nova em `avisos_coleta.csv`; a fase das 3 sessões de correção gravada como `SETUP` (re-segmentação na Parte IV, Apêndice C); sem mensagens sem prefixo. **Achados do `analyze`:** 0 CRITICAL, 2 HIGH (faltava teste do `SettingsBloc` para o tratamento do dashboard e para o sinal `reauthRequired`), 2 LOW (campo `biometricSaving` sem uso; nome trocado num contrato); os 2 HIGH remediados na sessão; os 2 LOW sem remediação; o checklist `quality.md` (25 itens) ficou desmarcado, como o método exige. **Entregas e escolhas do agente:** feature `settings` nova (domínio, dados, um só `SettingsBloc` para as 3 histórias e widgets), sem dependência nova; estende `auth`, `entries` e `chat` com um método cada; e-mail somente leitura; período do dashboard fixo (`all`); alternância de biometria incluída (sem referência no protótipo); seletor de persona de fora (extensão); a decisão de plano de levar "Sair" e "Apagar conta" ao cofre de biometria foi desfeita na correção 2, e a correção foi estendida pelo agente também à exclusão de conta, sem pedido; o agente sugeriu um teste de widget do `SettingsPage`/`DeleteAccountDialog`, **não respondido**. **Critérios da P6:** (a) *Converged* na 1ª rodada; (b) e (c) sem problemas nas quatro rodadas (659, 662, 660 testes); (d) 4 rodadas: na 1ª, **a conta nova mostrou dados de outra conta** (caches locais sem escopo por conta; os testes passavam porque nenhum cobria a troca de conta) e a Tela 6 e o "Período vazio" tinham diferenças de design; na 2ª, o `ProviderNotFoundException` do diálogo de exclusão e o "Sair" para a biometria (os testes não cobriam o diálogo aberto por `showDialog` nem a tela do cofre depois da saída); na 3ª, o diálogo de exclusão com título, texto, botões e largura diferentes; a 4ª passou, segundo o pesquisador, e conferi o design nos prints (Tela 6, "Período vazio", diálogo de exclusão). **Resíduos `S1` aceitos pelo pesquisador:** a barra única do estado de uma entrada está mais baixa e um pouco mais larga que a do protótipo; no diálogo de exclusão os botões estão cerca de 10% mais altos e com menos espaço entre eles. **Anotado sem correção:** o resumo gerado pela IA traz um `#` literal de título Markdown (conteúdo gerado, fora do escopo); o estado de narrativa indisponível não é alcançável pela tela (só cobertura automática); janelas de tempo sem entradas aparecem sem barra (o protótipo só desenha barras não vazias); inconsistência do pacote: os textos dos estados vazio e de uma entrada diferem entre o extrato e o HTML do protótipo (o agente seguiu o extrato), e o extrato diz "nome/e-mail editáveis" enquanto o HTML mostra o e-mail só como texto; o agente perguntou se atualizava o R9 do `research.md` depois de mudar o comportamento dos caches e a pergunta ficou sem resposta; as saídas de `analyze` e `test` da rodada 3 não foram coladas (a P6 foi repetida na 4ª rodada, com as saídas). O defeito de vazamento entre contas vinha de `F000`/`RF01` (caches de `entries` e `chat`) e entrou na correção da RF09 pela regra do D-034.
 
 ## Encerramento do Ciclo A
-**Prazo proposto: 21/10/2026**
+**Prazo proposto: 21/10/2026** (feito a partir de 25/10, depois da RF09; D-021)
 
 - [ ] `A-003` Conferir a completude dos dados do ciclo: toda sessão do transcript tem linha em `sessoes.csv`, (as conferências do `GATE-A02` e do `GATE-A02b` só rodam `/context` e não geram transcript; evidências em `dados/evidencias/`); toda unidade tem tag `-done` ou `-incompleto`; todos os JSONL copiados — **Critério:** script de conferência sem pendências. (Conferir completude não é olhar métrica: o script só conta linhas e arquivos.)
 - [ ] 📏 **[COLETA]** Tag `cicloA/final`.
@@ -873,8 +873,8 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - [x] A6 RF07 (17/10) · [x] A7 RF06 (19/10) · [x] A8 RF04 (20/10, incompleta, D-026) · [x] A9 RF10 (22/10) · [x] A10 RF08 (24/10) · [x] A11 RF05 (24/10) · [x] A12 RF09 (25/10)
 
 **2. Decisões e registros pendentes** (rodam em paralelo; não bloqueiam sessões, salvo o calendário no ritmo)
-- [ ] **D-021, calendário:** o fim de 21/10 não comporta 56 h (restam 4 dias); decidir horas por dia, nova data final do Ciclo A e se o Ciclo B ou a monografia limitam; registrar em `desvios.md` e atualizar o §16 do plano A e as datas do Ciclo B. Nunca encurtar timebox.
-- [ ] **`segredos/` versionado no GitHub** (string de conexão do Postgres, chave do Voyage, arquivos `.env.*`): rotacionar as duas credenciais e rodar `git rm --cached` no Mac, nunca por commit do assistente.
+- [x] **D-021, calendário (decidido em 25/10):** o Ciclo A terminou em 25/10 (4 dias depois do fim mantido em 07/10); **o Ciclo B deve terminar até 04/11/2026**, e antes, se der (decisão do pesquisador); a transição A → B passa a 26/10; pontos de controle de ritmo e efeito nas métricas em `desvios.md` (D-021); nunca encurtar timebox.
+- [ ] **`segredos/` versionado no GitHub** (string de conexão do Postgres, chave do Voyage, arquivos `.env.*`): rotacionar as duas credenciais e rodar `git rm --cached` no Mac, nunca por commit do assistente. **Adiado pelo pesquisador (25/10):** será tratado depois, sem instrução por enquanto.
 - [ ] **`H-007` e a regra do `<pasted_content>`:** registrar a decisão (igual nos dois ciclos) de reconhecer o prefixo `INTERVENÇÃO`/`PROCESSO:` também dentro do bloco colado; re-derivar `sessoes.csv`/`intervencoes.csv` das sessões `391601bd`, `8963c779`, `76a55d2d` (D-020) e da fase `SETUP`, antes da Parte IV.
 - [ ] **Auditoria de datas:** acertar nas notas de F000, RF03 e RF01 as datas que divergem em até 1 dia de `sessoes.csv`/`tags.csv` (horário de Brasília).
 - [ ] **`div_otel` e subagentes:** alertas só registrados, sem correção nem investigação nos números; o caminho dos transcripts de subagentes segue sem confirmação (GATE-C21).
@@ -906,7 +906,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 ---
 
 # PARTE III — CICLO B (BMAD-METHOD)
-**Prazo proposto: 23/10 a 13/11/2026**
+**Prazo: até 04/11/2026** (revisado em 25/10, decisão do pesquisador, D-021; a proposta original era 23/10 a 13/11; datas por unidade abaixo são só guia de ritmo, e a regra de parada segue sendo a timebox)
 
 > **Nota (01/10/2026): o texto de B0–B3 e do bloco-padrão abaixo está desatualizado e não deve ser seguido.** Vale a sequência do `protocolo.md` §4.3 (`GATE-C10`): instalação por flags; B1 `bmad-project-context` com `P-SETUP`; B2 brainstorming → forge-idea → deep-recon → prfaq → product-brief; B3 prd (criar) → prd (validar) → ux; B4 architecture → create-epics-and-stories → sprint-planning, tag `plan-done`, timebox 32 h (medida pelo `scripts/faixa-plan`); por story build → code-review → qa-generate-e2e-tests; retrospectiva por épico. Mais os desvios D-002 e D-004 a D-007. O passo a passo detalhado está em `docs/plano-ciclo-B-bmad.md`.
 
@@ -965,17 +965,17 @@ Tudo aqui acontece em `cerne-ciclo-b`, aberto sempre com `abrir-ciclo b`. Unidad
 
 | Bloco | Unidade | Prazo proposto | Timebox | Espelha |
 |---|---|---|---|---|
-| B4 | F000 Fundação | 29 a 30/10 | 12 h | A2 |
-| B5 | RF03 Cofre | 30 a 31/10 | 8 h | A3 |
-| B6 | RF01 Captura | 31/10 a 02/11 | 8 h | A4 |
-| B7 | RF02 STT/OCR | 02 a 03/11 | 8 h | A5 |
-| B8 | RF07 Timeline | 03 a 04/11 | 8 h | A6 |
-| B9 | RF06 Busca | 04 a 05/11 | 8 h | A7 |
-| B10 | RF04 Chat | 05 a 07/11 | 8 h | A8 |
-| B11 | RF10 Salvar do chat | 07 a 08/11 | 8 h | A9 |
-| B12 | RF08 Insights | 08 a 09/11 | 8 h | A10 |
-| B13 | RF05 Exportação | 09 a 11/11 | 8 h | A11 |
-| B14 | RF09 Dashboard | 11 a 12/11 | 8 h | A12 |
+| B4 | F000 Fundação | 28 a 29/10 | 12 h | A2 |
+| B5 | RF03 Cofre | 30/10 | 8 h | A3 |
+| B6 | RF01 Captura | 30 a 31/10 | 8 h | A4 |
+| B7 | RF02 STT/OCR | 31/10 a 01/11 | 8 h | A5 |
+| B8 | RF07 Timeline | 01/11 | 8 h | A6 |
+| B9 | RF06 Busca | 02/11 | 8 h | A7 |
+| B10 | RF04 Chat | 02 a 03/11 | 8 h | A8 |
+| B11 | RF10 Salvar do chat | 03/11 | 8 h | A9 |
+| B12 | RF08 Insights | 03 a 04/11 | 8 h | A10 |
+| B13 | RF05 Exportação | 04/11 | 8 h | A11 |
+| B14 | RF09 Dashboard | 04/11 | 8 h | A12 |
 
 **Notas de encerramento por unidade:**
 - **B4 — F000:** *(preencher)*

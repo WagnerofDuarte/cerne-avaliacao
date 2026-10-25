@@ -15,7 +15,7 @@
 0. Como usar este documento
 1. Mapa dos repositórios e ambientes
 2. Antes de começar — decisões e correções necessárias
-3. Transição A → B e preparação do Ciclo B (22/10)
+3. Transição A → B e preparação do Ciclo B (26/10, revisado: D-021)
 4. Anatomia de uma sessão medida
 5. Como escrever ao agente
 6. Tempo, timebox e pausas (incluindo as 32 h do planejamento)
@@ -155,7 +155,7 @@ A **definição** de gatilho é congelada: toda pausa em que a skill, pelo próp
 
 ---
 
-## 3. Transição A → B e preparação do Ciclo B (22/10/2026)
+## 3. Transição A → B e preparação do Ciclo B (26/10/2026, revisado em 25/10: D-021)
 
 Tudo 🧑 [MANUAL], no terminal. Nenhuma sessão.
 
@@ -329,7 +329,7 @@ Igual ao A:
 - **Tempo ativo:** esperas por você contam até 30 min cada (P5c).
 - **Faixas:** `abaixo de 50%` · `50-80%` · `acima de 80%` · `atingido`.
 - **Limite de uso da assinatura:** coleta `manual` (`limite_uso`), com a data e a hora nas notas.
-- **Ritmo do calendário:** o B tem cerca de 15 dias de implementação contra 19 do A, compensados pelo planejamento antecipado. A timebox é por tempo ativo, não por calendário.
+- **Ritmo do calendário:** o B tem cerca de 15 dias de implementação contra 19 do A, compensados pelo planejamento antecipado. A timebox é por tempo ativo, não por calendário. **Revisão de 25/10 (D-021):** o prazo final passou para 04/11/2026; as datas das seções 14 e 19 são guia de ritmo.
 
 ---
 
@@ -713,17 +713,17 @@ No B, os `P-RFxx` **já foram** entregues no PRD (10.1). Aqui eles servem só pa
 
 | Bloco | Unidade | Datas propostas | Timebox | Depende de (prompt) |
 |---|---|---|---|---|
-| B5.1 | F000 Fundação | 29 a 30/10 | 12 h | — |
-| B5.2 | RF03 Cofre | 30 a 31/10 | 8 h | F000 |
-| B5.3 | RF01 Captura | 31/10 a 02/11 | 8 h | F000, RF03 |
-| B5.4 | RF02 STT/OCR | 02 a 03/11 | 8 h | RF01 |
-| B5.5 | RF07 Timeline | 03 a 04/11 | 8 h | F000, RF01 |
-| B5.6 | RF06 Busca | 04 a 05/11 | 8 h | RF07 |
-| B5.7 | RF04 Chat | 05 a 07/11 | 8 h | F000, RF03 |
-| B5.8 | RF10 Salvar do chat | 07 a 08/11 | 8 h | RF01, RF04 |
-| B5.9 | RF08 Insights | 08 a 09/11 | 8 h | RF04 |
-| B5.10 | RF05 Exportação | 09 a 11/11 | 8 h | RF07 |
-| B5.11 | RF09 Dashboard | 11 a 12/11 | 8 h | F000, RF01 |
+| B5.1 | F000 Fundação | 28 a 29/10 | 12 h | — |
+| B5.2 | RF03 Cofre | 30/10 | 8 h | F000 |
+| B5.3 | RF01 Captura | 30 a 31/10 | 8 h | F000, RF03 |
+| B5.4 | RF02 STT/OCR | 31/10 a 01/11 | 8 h | RF01 |
+| B5.5 | RF07 Timeline | 01/11 | 8 h | F000, RF01 |
+| B5.6 | RF06 Busca | 02/11 | 8 h | RF07 |
+| B5.7 | RF04 Chat | 02 a 03/11 | 8 h | F000, RF03 |
+| B5.8 | RF10 Salvar do chat | 03/11 | 8 h | RF01, RF04 |
+| B5.9 | RF08 Insights | 03 a 04/11 | 8 h | RF04 |
+| B5.10 | RF05 Exportação | 04/11 | 8 h | RF07 |
+| B5.11 | RF09 Dashboard | 04/11 | 8 h | F000, RF01 |
 
 ### 14.1 B5.1 — F000 Fundação
 
@@ -945,7 +945,7 @@ cd "$AVAL" && git add dados docs/rdr.md docs/plano-ciclos.md docs/desvios.md && 
 
 ## 18. Encerramento do Ciclo B
 
-**Data proposta:** 13/11/2026.
+**Data proposta:** 04/11/2026 (revisada em 25/10, D-021; a proposta original era 13/11).
 
 ### 18.1 `B-009` Completude (sem números)
 
@@ -985,16 +985,16 @@ Em `plano-ciclos.md`, sem números. A partir daqui, a Parte IV (14 a 20/11) pode
 
 ## 19. Calendário
 
+**Revisado em 25/10/2026 (D-021, decisão do pesquisador):** o Ciclo A terminou em 25/10; o Ciclo B deve terminar **até 04/11/2026**, e antes, se der. As datas abaixo são só guia de ritmo; a regra de parada continua sendo a timebox por tempo ativo, e nenhuma timebox é encurtada. Pontos de controle: `cicloB/plan-done` até 28/10; F000, RF03 e RF01 até 31/10; RF02, RF07 e RF06 até 02/11; RF04 e RF10 até 03/11; RF08, RF05, RF09 e o encerramento até 04/11. Se o ritmo não couber, avisar cedo e decidir de novo, sem encurtar timebox.
+
 | Data | Etapa | Saída |
 |---|---|---|
-| 22/10 | Transição (seção 3) | `GATE-X01`, `GATE-X02`, D-004 a D-007 |
-| 23/10 | B0 | `cicloB/baseline`, `cicloB/instalado`, `GATE-B02` |
-| 23–24/10 | B1 SETUP | `cicloB/setup-done` |
-| 24–25/10 | B2 Análise (5 sessões `PLAN`) | — |
-| 26–27/10 | B3 Planejamento (3 sessões `PLAN`) | — |
-| 27–28/10 | B4 Solução (3 sessões `PLAN`) | `cicloB/plan-done`, `GATE-B03`, `GATE-B04` |
-| 29/10–12/11 | B5.1–B5.11 (unidades + retrospectivas) | `cicloB/<id>-done` |
-| 13/11 | Encerramento | `cicloB/final`, `GATE-B05` |
+| 25/10 | Encerramento do Ciclo A (`A-003`, `cicloA/final`, `GATE-A03`) | `cicloA/final` |
+| 26/10 | Transição (seção 3) + B0 + B1 SETUP | `GATE-X01`, `GATE-X02`, `cicloB/baseline`, `cicloB/instalado`, `GATE-B02`, `cicloB/setup-done` |
+| 27/10 | B2 Análise (5 sessões `PLAN`) e B3 Planejamento (3 sessões `PLAN`) | — |
+| 28/10 | B4 Solução (3 sessões `PLAN`) | `cicloB/plan-done`, `GATE-B03`, `GATE-B04` |
+| 28/10–04/11 | B5.1–B5.11 (unidades + retrospectivas), nos prazos da seção 14 | `cicloB/<id>-done` |
+| 04/11 | Encerramento | `cicloB/final`, `GATE-B05` |
 
 **Trilha paralela:** corte da hold-out e da M8b em **06/11** (`GATE-H01`), no meio do B5, sem tocar o `cerne-ciclo-b`.
 
