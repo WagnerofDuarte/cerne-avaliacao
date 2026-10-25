@@ -895,7 +895,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 - [ ] **Mac `AVAL`:** conferir que `segredos/.env.*` não têm modificação local pronta para commit por engano.
 
 **3. Encerramento** (depois da RF09)
-- [ ] `A-003` completude dos dados (§14.1) · [ ] tag `cicloA/final` (§14.2) · [ ] `GATE-A03` nota de encerramento (§14.3)
+- [x] `A-003` completude dos dados (§14.1, 25/10) · [x] tag `cicloA/final` (§14.2, 25/10) · [ ] `GATE-A03` nota de encerramento (§14.3; rascunho escrito, falta a confirmação do pesquisador)
 
 **4. Transição A → B** (dia seguinte ao encerramento)
 - [ ] `X-001` hashes · [ ] `X-002` versões e modelo (se o modelo sumir, parar e falar com a orientadora) · [ ] `GATE-X01` backend `ciclo-b` · [ ] `GATE-X02` `dados/cicloB/aprendizado-previo.md` (depois dele, não abrir mais `cerne-ciclo-a`)
