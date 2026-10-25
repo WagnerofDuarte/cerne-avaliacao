@@ -1,0 +1,2 @@
+ciclo,id_rf,sessao_id,fase,timestamp,tipo,severidade,nivel,causa,texto
+b,SETUP,7b4377c5-e63f-459e-9747-bb520596981f,ESPEC,2026-10-25T18:37:53.037Z,esclarecimento não solicitado,,,,"Use your technical judgment, following the input package"
