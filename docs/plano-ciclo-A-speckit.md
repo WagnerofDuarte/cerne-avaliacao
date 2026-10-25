@@ -152,7 +152,9 @@
 > | A12 RF09 — sessão 10 (2ª correção) | ✅ coletada | Sessão `af9dac90`; 2 intervenções (`correção|S3|prd`, "Apagar conta"; `correção|S2|prd`, "Sair"), 0 `PROCESSO:`; timebox < 50%. Causas: diálogo fora do `BlocProvider` da rota; "Sair"/"Apagar conta" levavam ao cofre de biometria (decisão do plano) que abre a Home sem checar sessão. O agente estendeu a correção à exclusão de conta e ofereceu um teste de widget (não respondido). Nova P6 pendente |
 > | A12 RF09 — P6 rodada 3 | ⚠️ design do diálogo de exclusão | "Sair", vazamento, biometria e exclusão OK segundo o pesquisador; diálogo "Apagar sua conta?" com título serifado, texto curto sem LGPD, botões lado a lado e mais estreito (`S2`) → 3ª sessão de correção, 1 intervenção |
 > | A12 RF09 — sessão 11 (3ª correção) | ✅ coletada | Sessão `07ff43d0`; 1 intervenção (`correção|S2|prd`, diálogo de exclusão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
-> | **Próximo:** A12 — RF09, nova P6 (rodada 4) (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — P6 rodada 4 | ✅ passou, com resíduos | Diálogo de exclusão conferido por mim no print (título, texto com LGPD, botões empilhados, largura); `analyze` limpo e 660 testes passando; "Sair", vazamento, biometria e exclusão OK segundo o pesquisador; resíduos `S1` aceitos (barra única mais baixa; botões do diálogo um pouco mais altos) |
+> | **A12 RF09 concluída (25/10)** | ✅ | HEAD do ciclo `d79ff62`, tag `cicloA/rf09-done`, dados em `81e5438`; 11 sessões medidas (6 do fluxo, 1 laço de 1 rodada, 3 de correção); 7 intervenções (6 `correção|…|prd`, 5 `S2` e 1 `S3`, mais 1 `esclarecimento não solicitado`); 8 `PROCESSO:`; sem desvio novo; D-034 resolvido; resíduos `S1` aceitos |
+> | **Próximo:** encerramento do Ciclo A (`A-003`, tag `cicloA/final`, `GATE-A03`) e transição A → B | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
