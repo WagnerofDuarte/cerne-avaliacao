@@ -141,7 +141,8 @@
 > | A12 RF09 — sessão 1 `specify` | ✅ coletada | Sessão `c6da4acf`; 0 intervenções, 0 `PROCESSO:` (o agente não fez perguntas Q1–Q3: resolveu 6 lacunas de contrato por conta própria e as deixou nas premissas); timebox < 50%. `specs/011-settings-dashboard` (3 histórias, 24 FR); e-mail somente leitura, alternância de biometria incluída (sem referência no protótipo), persona fora, período fixo `all` |
 > | A12 RF09 — sessão 2 `clarify` | ✅ coletada | Sessão `50f54e37`; 3 perguntas, 3 `PROCESSO:` (texto exato a conferir), 0 intervenções; timebox < 50%. Resolvidos: contagens intermediárias de entradas (FR-005 "duas ou mais"), algoritmo de agrupamento das barras, biometria oculta (não desabilitada) sem hardware; checklist 16/16 |
 > | A12 RF09 — sessão 3 `plan` | ✅ coletada | Sessão `cff55122`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%. 16 decisões de pesquisa, 7 contratos, **nenhuma dependência nova**, 5 tokens de design novos |
-> | **Próximo:** A12 — RF09, sessão 4 `checklist` (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — sessão 4 `checklist` | ✅ coletada | Sessão `b28ce9fa`; 0 intervenções, 3 `PROCESSO:` (foco, profundidade, público; texto exato a conferir); timebox < 50%. 25 itens (CHK001–CHK025); 3 lacunas apontadas no `spec.md` (regra de agrupamento das barras, envio duplo só em dois botões, mapa de erros do backend) |
+> | **Próximo:** A12 — RF09, sessão 5 `tasks` (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
