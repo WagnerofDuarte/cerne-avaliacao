@@ -1,7 +1,7 @@
 # Aprendizado prévio do Ciclo A (GATE-X02)
 
 **Autor:** Wagner (pesquisador). **Data:** 25/10/2026.
-**Redação:** rascunho escrito pelo assistente, em primeira pessoa e a pedido do pesquisador, **somente com o que está registrado** nas notas e nos desvios do Ciclo A (`plano-ciclos.md`, `desvios.md`); o pesquisador revisa e confirma antes do `GATE-X02` ser marcado.
+**Redação:** rascunho escrito pelo assistente, em primeira pessoa e a pedido do pesquisador, **somente com o que está registrado** nas notas e nos desvios do Ciclo A (`plano-ciclos.md`, `desvios.md`); **revisado e confirmado pelo pesquisador em 25/10/2026** ("tudo ok", sem alterações no texto).
 **Para que serve:** registrar o que o pesquisador aprendeu no Ciclo A e que pode influenciar o Ciclo B. Vira uma subseção de ameaças à validade (ordem fixa A → B, D18). Sem números de métrica.
 
 A partir daqui: **não abrir `cerne-ciclo-a`** (nem `git log`, nem VS Code) até o `cicloB/final`.
