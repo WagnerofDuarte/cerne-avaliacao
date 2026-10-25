@@ -148,7 +148,8 @@
 > | A12 RF09 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `89f8fb46`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50% |
 > | A12 RF09 — P6 rodada 1 (parcial) | ⚠️ defeito de dados e design com diferenças | (a)–(c) OK (659 testes); (d) itens 1–3 na conta vazia: **dados de outra conta apareciam na conta nova** (`S2`); Tela 6 e "Período vazio" da RF05 com diferenças de design (D-034, fecha em parte); itens 4–10 não percorridos → 1 sessão de correção, 3 intervenções |
 > | A12 RF09 — sessão 9 (correção) | ✅ coletada | Sessão `55866150`; 4 intervenções (3 `correção|S2|prd` + 1 `esclarecimento não solicitado`, pergunta espontânea "Visual check" respondida pelo Other com a frase padrão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
-> | **Próximo:** A12 — RF09, nova P6 (rodada 2) (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — P6 rodada 2 | ⚠️ 2 defeitos novos | (a)–(c) OK (662 testes); vazamento entre contas corrigido; design da Tela 6 e do "Período vazio" corrigidos (resíduo `S1` aceito: barra única mais baixa que a do protótipo); itens 7–9 OK; **"Sair" cai na biometria e abre a Home sem conta (`S2`)**; **"Apagar conta" trava com `ProviderNotFoundException` (`S3`)** → 2ª sessão de correção, 2 intervenções |
+> | **Próximo:** A12 — RF09, sessão 10 (2ª correção) (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
