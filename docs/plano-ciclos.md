@@ -928,8 +928,8 @@ Tudo aqui acontece em `cerne-ciclo-b`, aberto sempre com `abrir-ciclo b`. Unidad
 ## B0 — Instalação e baseline
 **Prazo proposto: 23/10/2026**
 
-- [ ] `B-001` Rodar `iniciar-ciclo b` — **Critério:** tag `cicloB/baseline`; hash do `docs/input/` igual ao do congelamento.
-- [ ] 🔴 **[MANUAL] `GATE-B01`** — Instalar o BMAD
+- [x] `B-001` Rodar `iniciar-ciclo b` — **Critério:** tag `cicloB/baseline`; hash do `docs/input/` igual ao do congelamento. **Registro (25/10):** `Hashes conferidos: 15 arquivos, todos idênticos.`; commit `73e89cb`, tag `cicloB/baseline`; 15 arquivos em `docs/input/` e 0 ocorrências de `service_role` no `.env`.
+- [x] 🔴 **[MANUAL] `GATE-B01`** — Instalar o BMAD **Registro (25/10):** `scripts/instalar-metodologia b` rodou de ponta a ponta na 1ª tentativa (o ramo do B nunca tinha rodado inteiro); `npx` pediu confirmação para baixar o pacote (`y`) e o instalador avisou que existe a versão 6.12.4, ignorada (versão travada 6.11.0); commit `6bbc585` (268 arquivos), tag `cicloB/instalado`; critério: 49 skills em `.claude/skills`, `_bmad` e `_bmad-output` existem, `communication_language` e `document_output_language` em English, `planning_artifacts` e `implementation_artifacts` em `_bmad-output/`, sem `CLAUDE.md` (correto), tags `cicloB/baseline` e `cicloB/instalado`. Observação: o commit da instalação inclui alguns `.pyc` gerados pelo próprio instalador (em `bmad-retrospective` e `bmad-sprint-planning`); sem efeito.
   - **O quê:** `scripts/instalar-metodologia b` (instalador via `npx` na versão travada). As respostas ao instalador interativo são as registradas no `GATE-C10` (módulos, ferramenta, idiomas). Commit do resultado.
   - **Como confirmo:** estrutura do BMAD presente; tag `cicloB/instalado`.
 - [ ] 🔴 **[MANUAL] `GATE-B02`** — Conferência de largada, igual ao `GATE-A02`.
