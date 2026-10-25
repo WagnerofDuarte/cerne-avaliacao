@@ -239,6 +239,13 @@ CLAUDE_CONFIG_DIR=~/cerne/cfg-ciclo-b python3 "$AVAL/scripts/coletar_sessao.py" 
 ```
 A sessão seguinte repete a **mesma** skill (P4/P13).
 
+**Regras de execução trazidas do Ciclo A (decididas em 25/10; nenhuma muda arquivo congelado):**
+- **Memória do agente (D-033).** A memória automática continua **ligada**, como no A (decisão de 25/10, para manter a simetria). Depois de cada `/coletar-sessao`, rode `ls -A ~/cerne/cfg-ciclo-b/projects/*/memory/`. Tem que estar vazio ou inexistente. Se houver arquivo, **não apague**: cole a listagem no chat antes da próxima sessão; o guia registra o conteúdo e a sessão de origem, você remove os arquivos e abre-se um desvio.
+- **Toda sessão com mensagem ao agente é sessão medida (D-037).** Se você interromper e descartar uma sessão, **colete mesmo assim** (`/coletar-sessao <ID>`) ou avise antes de abrir a próxima.
+- **Uma coleta só, no fim (D-031, D-035).** Só mande `/coletar-sessao <ID>` quando o agente terminou e nada roda em segundo plano. Se o agente disser que a sessão acabou depois da coleta, **não digite nada** e avise o guia (D-036).
+- **Respostas às pausas previstas** (preferência do `clarify`/`checklist` etc.) são `PROCESSO:`, nunca `INTERVENÇÃO` (D-030); pergunta espontânea de escolha é `INTERVENÇÃO [esclarecimento não solicitado]`; confirmação espontânea é neutra (`Yes, proceed.`).
+- **Mensagens de intervenção e de processo são digitadas à mão, nunca coladas** (D-020); a decisão de contagem na re-derivação reconhece o prefixo também dentro de bloco colado, igual nos dois ciclos.
+
 ---
 
 ## 5. Como escrever ao agente

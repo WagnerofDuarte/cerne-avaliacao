@@ -31,27 +31,27 @@
 > | A2 F000 — sessão 11 (`converge`) ✅ *Converged*; P6 (b)(c) ok; (d) falhou em 2 itens | ⚠️ | splash branca (S2); criar conta "sem conexão" (S3); ambiente descartado |
 > | A2 F000 — sessão 12 (correção) | ✅ (11/10) | 2 intervenções; **D-017:** cadastro por e-mail desligado no Supabase (ambiente, 3.7.1), corrigido nos dois projetos; só a splash mudou código |
 > | A2 F000 — sessão 13 (correção) e P6 | ⚠️ (11/10) | **D-018:** chave anon mascarada nos `.env` (ambiente), corrigida; cadastro e splash OK; item 5 revelou defeito: sessão inválida (401 `AUTH_INVALID`) deixa o app preso na splash |
-> | **A2 F000 concluída (12/10)** | ✅ | Commit `2c5d84b`, tag `cicloA/f000-done`; dados em `2520e9e`; P6 ok (item 6 n/a) |
-> | A3 RF03 — sessão 1 (`specify`, 12/10) | ✅ | Sessão `b17926dd`; coletada como `RF03`; 0 intervenções, 0 `PROCESSO:`; aviso de subagentes (esperado) |
-> | A3 RF03 — sessão 2 (`clarify`, 12/10) | ✅ | Sessão `1e1d1d9b`; 1 `PROCESSO:` reconhecido; 0 intervenções |
-> | A3 RF03 — sessão 3 (`plan`, 12/10) | ✅ | Sessão `5500fd78`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
-> | A3 RF03 — sessão 4 (`checklist`, 12/10) | ✅ | Sessão `a2816ab4`; 2 `PROCESSO:` reconhecidos (painel de 2 perguntas), 0 intervenções; alerta `div_otel` anotado (sem investigar) |
-> | A3 RF03 — sessão 5 (`tasks`, 12/10) | ✅ | Sessão `678c334f`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
-> | A3 RF03 — sessão 6 (`analyze`, 12/10) | ✅ | Sessão `697c3db0`; 0 intervenções, 0 `PROCESSO:` (sem resposta registrada à oferta de remediação); sem alerta `div_otel` |
-> | A3 RF03 — sessão 7 (`implement`, 12/10) | ✅ | Sessão `9b85d456`; 1 `PROCESSO: yes` (texto do RDR nº 2, sem linha nova); 0 intervenções |
-> | A3 RF03 — sessão 8 (`converge`, 12/10) | ✅ *Converged* | Sessão `423f1e59`; convergiu na 1ª rodada do laço; 0 intervenções, 0 `PROCESSO:` |
+> | **A2 F000 concluída (11/10)** | ✅ | Commit `2c5d84b`, tag `cicloA/f000-done`; dados em `2520e9e`; P6 ok (item 6 n/a) |
+> | A3 RF03 — sessão 1 (`specify`, 11/10) | ✅ | Sessão `b17926dd`; coletada como `RF03`; 0 intervenções, 0 `PROCESSO:`; aviso de subagentes (esperado) |
+> | A3 RF03 — sessão 2 (`clarify`, 11/10) | ✅ | Sessão `1e1d1d9b`; 1 `PROCESSO:` reconhecido; 0 intervenções |
+> | A3 RF03 — sessão 3 (`plan`, 11/10) | ✅ | Sessão `5500fd78`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
+> | A3 RF03 — sessão 4 (`checklist`, 11/10) | ✅ | Sessão `a2816ab4`; 2 `PROCESSO:` reconhecidos (painel de 2 perguntas), 0 intervenções; alerta `div_otel` anotado (sem investigar) |
+> | A3 RF03 — sessão 5 (`tasks`, 11/10) | ✅ | Sessão `678c334f`; 0 intervenções, 0 `PROCESSO:`; alerta `div_otel` anotado (sem investigar) |
+> | A3 RF03 — sessão 6 (`analyze`, 11/10) | ✅ | Sessão `697c3db0`; 0 intervenções, 0 `PROCESSO:` (sem resposta registrada à oferta de remediação); sem alerta `div_otel` |
+> | A3 RF03 — sessão 7 (`implement`, 11/10) | ✅ | Sessão `9b85d456`; 1 `PROCESSO: yes` (texto do RDR nº 2, sem linha nova); 0 intervenções |
+> | A3 RF03 — sessão 8 (`converge`, 11/10) | ✅ *Converged* | Sessão `423f1e59`; convergiu na 1ª rodada do laço; 0 intervenções, 0 `PROCESSO:` |
 > | A3 RF03 — P6 (12/10) | ⚠️ em andamento | (a) *Converged*; (b) `analyze` sem problemas; (c) 130 testes passam; (d) itens do roteiro (PIN, falha do Face ID, 5 min 15 s em segundo plano) ok no iPhone; o pesquisador anotou diferenças de tela em relação ao protótipo → sessão de correção (9.4) |
-> | A3 RF03 — sessões 9 a 12 (correção, 12 a 13/10) | ✅ coletadas | 4 sessões de correção, uma por tela, com 1 intervenção `correção` cada (splash `S1`, login `S2`, biometria `S2`, PIN `S1`; **D-019**) |
-> | A3 RF03 — nova P6 após a correção (13/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone (4 telas corrigidas, Face ID/PIN, 5 min 15 s em segundo plano, login e senha errada) passaram, segundo o pesquisador |
-> | **A3 RF03 concluída (13/10)** | ✅ | Commit `98f1bea`, tag `cicloA/rf03-done`; dados em `3180308`; 12 sessões (8 do fluxo + 4 de correção, uma por tela — D-019); P6 ok |
-> | A4 RF01 — sessões 1 a 7 (`specify`, `clarify`, `plan`, `checklist`, `tasks`, `analyze`, `implement`) (13/10) | ✅ coletadas | `implement` terminou com 70 de 71 tarefas (a T071 é manual, da P6(d)); contagens a conferir no `sessoes.csv` no fechamento |
-> | A4 RF01 — sessão 8 (`converge`, 13/10) | ✅ *Converged* | 1ª rodada, sem lacunas; achado de escopo (STT e OCR já na RF01): decidido não intervir, só anotar |
-> | A4 RF01 — P6 (13/10) | ⚠️ (d) falhou | (b) e (c) ok; no iPhone o teclado cobre o modal de inserção e o botão de salvar fica inalcançável |
-> | A4 RF01 — sessão 9 (correção, 13/10) | ✅ coletada | 2 intervenções `correção|S2|prd` na mesma sessão (Texto/teclado; Áudio sem estado inicial); contagens a conferir no fechamento |
+> | A3 RF03 — sessões 9 a 12 (correção, 12/10) | ✅ coletadas | 4 sessões de correção, uma por tela, com 1 intervenção `correção` cada (splash `S1`, login `S2`, biometria `S2`, PIN `S1`; **D-019**) |
+> | A3 RF03 — nova P6 após a correção (12/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone (4 telas corrigidas, Face ID/PIN, 5 min 15 s em segundo plano, login e senha errada) passaram, segundo o pesquisador |
+> | **A3 RF03 concluída (12/10)** | ✅ | Commit `98f1bea`, tag `cicloA/rf03-done`; dados em `3180308`; 12 sessões (8 do fluxo + 4 de correção, uma por tela — D-019); P6 ok |
+> | A4 RF01 — sessões 1 a 7 (`specify`, `clarify`, `plan`, `checklist`, `tasks`, `analyze`, `implement`) (12/10) | ✅ coletadas | `implement` terminou com 70 de 71 tarefas (a T071 é manual, da P6(d)); contagens a conferir no `sessoes.csv` no fechamento |
+> | A4 RF01 — sessão 8 (`converge`, 12/10) | ✅ *Converged* | 1ª rodada, sem lacunas; achado de escopo (STT e OCR já na RF01): decidido não intervir, só anotar |
+> | A4 RF01 — P6 (12/10) | ⚠️ (d) falhou | (b) e (c) ok; no iPhone o teclado cobre o modal de inserção e o botão de salvar fica inalcançável |
+> | A4 RF01 — sessão 9 (correção, 12/10) | ✅ coletada | 2 intervenções `correção|S2|prd` na mesma sessão (Texto/teclado; Áudio sem estado inicial); contagens a conferir no fechamento |
 > | A4 RF01 — nova P6 após a correção (13/10) | ✅ | `analyze`, `test` e roteiro completo no iPhone passaram, segundo o pesquisador |
 > | A4 RF01 — sessão 10 (correção de design do modal, 13/10) | ✅ coletada | 1 intervenção enviada colada e não reconhecida pelo coletor (**D-020**); P6: `analyze` e 196 testes ok, mais discrepâncias de design no iPhone |
-> | A4 RF01 — sessão 11 (correção do Áudio, 14/10) e nova P6 | ✅ | 1 intervenção `S1|prd` colada, não reconhecida pelo coletor (**D-020**, 2ª ocorrência); P6 aprovada, segundo o pesquisador; a revisão da transcrição fica para a RF02 |
-> | **A4 RF01 concluída (14/10)** | ✅ | Commit `80486e5`, tag `cicloA/rf01-done`, dados em `64f9f0a`; 13 sessões (8 do fluxo, 2º laço de `implement`/`converge`, 3 de correção; D-019, D-020); push do ciclo na 2ª tentativa |
+> | A4 RF01 — sessão 11 (correção do Áudio, 13/10) e nova P6 | ✅ | 1 intervenção `S1|prd` colada, não reconhecida pelo coletor (**D-020**, 2ª ocorrência); P6 aprovada, segundo o pesquisador; a revisão da transcrição fica para a RF02 |
+> | **A4 RF01 concluída (13/10)** | ✅ | Commit `80486e5`, tag `cicloA/rf01-done`, dados em `64f9f0a`; 13 sessões (8 do fluxo, 2º laço de `implement`/`converge`, 3 de correção; D-019, D-020); push do ciclo na 2ª tentativa |
 > | A5 RF02 — sessões 1 a 8 (`specify` a `converge`, 13 a 14/10) | ✅ coletadas | *Converged* na 1ª rodada; `analyze` com 2 `PROCESSO:` (**D-022**: a 2ª devia ser neutra) |
 > | A5 RF02 — P6 e 2 sessões de correção de design (17/10) | ✅ | 2 intervenções `correção|S2|prd` digitadas e reconhecidas; P6 aprovada na 3ª rodada, segundo o pesquisador |
 > | **A5 RF02 concluída (17/10)** | ✅ | Commit `dfdac64`, tag `cicloA/rf02-done`, dados em `50dab1f`; 10 sessões (8 do fluxo, 1 laço, 2 de correção); push do ciclo na 1ª tentativa |
