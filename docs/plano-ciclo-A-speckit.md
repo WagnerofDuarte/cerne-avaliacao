@@ -99,6 +99,7 @@
 > | A8 RF04 — sessão 24 (correção) | ✅ coletada | Sessão `ed8c084a`; Modo Avião `S2` com a frase do D-025; a falha passou a aparecer, mas "tentar novamente" não funciona; 1 aviso de prefixo (D-027: valem 3 intervenções); 1 `PROCESSO:` |
 > | A8 RF04 — sessões 25 e 26 (correção) | ✅ coletadas | `63691097` (Tela 1, cursor do carregamento, `S2`) e `39a9982a` (Tela 3, ícone, `S1`); 1 intervenção cada; enviadas em sessões separadas (D-028) |
 > | A8 RF04 — fechamento (20/10) | ⚠️ `rf-incompleto` | Por decisão do pesquisador (D-026): critério 2 (nova tentativa depois da falha) não atendido. Commit `564dd97`, tag `cicloA/rf04-incompleto` |
+> | A8 RF04 — 2 tentativas de correção interrompidas (20/10) | ⚠️ não coletadas (D-038) | `5256ebbb` (18h08) e `a18e05bf` (21h50): 1 `INTERVENÇÃO` cada, interrupções e 1 `continue`, só leitura de código; achadas no `A-003` (25/10); brutos preservados, sem linhas nos CSVs |
 > | A9 RF10 — sessão 1 `specify` (21/10) | ✅ coletada | Sessão `38f3d474`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
 > | A9 RF10 — sessão 2 `clarify` (21/10) | ✅ coletada | Sessão `afa2a73b`; 1 intervenção (`esclarecimento não solicitado`, pergunta de preferência sobre o toque no botão já salvo; esperado `PROCESSO:` com a frase padrão, §5.3: D-030), 0 `PROCESSO:`; timebox < 50%; `div_otel` anotado |
 > | A9 RF10 — sessão 3 `plan` (21/10) | ✅ coletada | Sessão `55aaefc3`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; sem `div_otel` |
