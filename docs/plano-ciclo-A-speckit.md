@@ -146,7 +146,9 @@
 > | A12 RF09 — sessão 6 `analyze` | ✅ coletada | Sessão `a902bd41`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1; digitado sem o ponto final); timebox < 50%. Relatório: 24 FR, 6 SC, 64 tarefas, **0 CRITICAL, 2 HIGH, 2 LOW**; C1 e C2 remediados na sessão (T024a nova, T037 e T048 ampliadas; agora 65 tarefas); U1 e I1 sem remediação; `Yes, proceed.` neutra à pergunta espontânea |
 > | A12 RF09 — sessão 7 `implement` (1ª rodada) | ✅ coletada | Sessão `b5a1fbb3`; 0 intervenções, 1 `PROCESSO:` (RDR nº 2; texto exato a conferir); timebox < 50%; 659 testes passam, `analyze` limpo; sem dependência nova; T064 (roteiro manual) aberta para a P6(d) |
 > | A12 RF09 — sessão 8 `converge` (1ª rodada) | ✅ coletada | Sessão `89f8fb46`; **Converged na 1ª rodada** (1 rodada `implement`/`converge`); 0 intervenções, 0 `PROCESSO:`; timebox < 50% |
-> | **Próximo:** A12 — RF09, P6 (a)–(d) (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — P6 rodada 1 (parcial) | ⚠️ defeito de dados e design com diferenças | (a)–(c) OK (659 testes); (d) itens 1–3 na conta vazia: **dados de outra conta apareciam na conta nova** (`S2`); Tela 6 e "Período vazio" da RF05 com diferenças de design (D-034, fecha em parte); itens 4–10 não percorridos → 1 sessão de correção, 3 intervenções |
+> | A12 RF09 — sessão 9 (correção) | ✅ coletada | Sessão `55866150`; 4 intervenções (3 `correção|S2|prd` + 1 `esclarecimento não solicitado`, pergunta espontânea "Visual check" respondida pelo Other com a frase padrão), 0 `PROCESSO:`; timebox < 50%. Nova P6 pendente |
+> | **Próximo:** A12 — RF09, nova P6 (rodada 2) (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
