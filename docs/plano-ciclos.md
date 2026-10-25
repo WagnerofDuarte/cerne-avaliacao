@@ -907,7 +907,7 @@ Tudo aqui acontece em `cerne-ciclo-a`, aberto sempre com `abrir-ciclo a`.
 # TRANSIÇÃO A → B
 **Prazo proposto: 22/10/2026**
 
-- [ ] `X-001` Conferir que nada do instrumento mudou: recalcular os hashes de `hashes-congelamento.md` e comparar — **Critério:** todos idênticos, ou cada diferença com entrada correspondente em `desvios.md`.
+- [x] `X-001` Conferir que nada do instrumento mudou: recalcular os hashes de `hashes-congelamento.md` e comparar — **Critério:** todos idênticos, ou cada diferença com entrada correspondente em `desvios.md`. **Registro (25/10):** `git diff --stat protocolo-v1.0` nos caminhos do instrumento (`docs/protocolo.md`, `docs/Metricas_e_Skills_Ciclos.md`, `entrada`, `prompts`, `holdout`, `harness`, `scripts`, `skills`) mostrou exatamente 4 arquivos, todos com desvio: `prompts/P-SETUP.md` (D-001), `scripts/faixa-plan` (D-004), `scripts/coletar_sessao.py` e `scripts/tests/test_coletar_sessao.py` (D-014, D-015 e D-024; hashes novos já em `hashes-congelamento.md`). Nada em `holdout/`, `harness/`, `entrada/`, `skills/` nem nos dois documentos do instrumento. Saída conferida pelo pesquisador no Mac e pelo guia na cópia do repositório.
 - [ ] `X-002` Conferir que o ambiente não mudou: versões de macOS, Xcode, Flutter, Claude Code e o ID do modelo ainda disponível na API — **Critério:** versões iguais às do `protocolo.md`. Se o modelo tiver sido descontinuado, **parar** e decidir com a orientadora antes de seguir.
 - [ ] 🔴 **[MANUAL] `GATE-X01`** — Conferir o backend do Ciclo B
   - **O quê:** hash de schema do `ciclo-b` idêntico ao do congelamento (o `GATE-12` do backend); seed carregado; `REPLAY_MODE=replay` para o desenvolvimento (`GATE-C19`).
