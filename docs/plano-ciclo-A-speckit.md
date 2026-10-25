@@ -144,7 +144,8 @@
 > | A12 RF09 — sessão 4 `checklist` | ✅ coletada | Sessão `b28ce9fa`; 0 intervenções, 3 `PROCESSO:` (foco, profundidade, público; texto exato a conferir); timebox < 50%. 25 itens (CHK001–CHK025); 3 lacunas apontadas no `spec.md` (regra de agrupamento das barras, envio duplo só em dois botões, mapa de erros do backend) |
 > | A12 RF09 — sessão 5 `tasks` | ✅ coletada | Sessão `442d47dc`; 0 intervenções, 0 `PROCESSO:`; timebox < 50%; 64 tarefas (T001–T064) em 6 fases |
 > | A12 RF09 — sessão 6 `analyze` | ✅ coletada | Sessão `a902bd41`; 0 intervenções, 1 `PROCESSO:` (oferta de remediação, RDR nº 1; digitado sem o ponto final); timebox < 50%. Relatório: 24 FR, 6 SC, 64 tarefas, **0 CRITICAL, 2 HIGH, 2 LOW**; C1 e C2 remediados na sessão (T024a nova, T037 e T048 ampliadas; agora 65 tarefas); U1 e I1 sem remediação; `Yes, proceed.` neutra à pergunta espontânea |
-> | **Próximo:** A12 — RF09, sessão 7 `implement` (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — sessão 7 `implement` (1ª rodada) | ✅ coletada | Sessão `b5a1fbb3`; 0 intervenções, 1 `PROCESSO:` (RDR nº 2; texto exato a conferir); timebox < 50%; 659 testes passam, `analyze` limpo; sem dependência nova; T064 (roteiro manual) aberta para a P6(d) |
+> | **Próximo:** A12 — RF09, sessão 8 `converge` (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
