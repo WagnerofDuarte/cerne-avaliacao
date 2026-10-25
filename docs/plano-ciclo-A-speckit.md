@@ -138,7 +138,8 @@
 > | A11 RF05 — sessão 10 (2ª correção, 24/10) | ✅ coletada (⚠️ D-035, D-036) | Sessão `205997bf`; 1 intervenção (`correção|S1|prd`, 3 resíduos da folha, com a frase do D-025), 0 `PROCESSO:`; timebox < 50%; coletada duas vezes (a 1ª antes do fim da sessão): vale a 2ª. Nova P6 pendente |
 > | A11 RF05 — P6 rodada 3 (24/10) | ✅ passou, com resíduo | "Fechar", peso do texto de status, largura, ícone e botões corrigidos; resíduo `S1` aceito pelo pesquisador (indicador de Pendente ~1,3× o ícone do Concluído); `analyze` limpo e 586 testes passando (colados antes do fechamento) |
 > | **A11 RF05 concluída (24/10)** | ✅ | HEAD do ciclo `e8ce729`, tag `cicloA/rf05-done`, dados em `6f75ef8`; 10 sessões medidas (6 do fluxo, 1 laço de 1 rodada, 2 de correção); 2 intervenções (`correção|S1|prd`); 5 `PROCESSO:`; D-034, D-035, D-036; resíduo `S1` aceito |
-> | **Próximo:** A12 — RF09 (última unidade do Ciclo A) | — | — |
+> | A12 RF09 — sessão 1 `specify` | ✅ coletada | Sessão `c6da4acf`; 0 intervenções, 0 `PROCESSO:` (o agente não fez perguntas Q1–Q3: resolveu 6 lacunas de contrato por conta própria e as deixou nas premissas); timebox < 50%. `specs/011-settings-dashboard` (3 histórias, 24 FR); e-mail somente leitura, alternância de biometria incluída (sem referência no protótipo), persona fora, período fixo `all` |
+> | **Próximo:** A12 — RF09, sessão 2 `clarify` (última unidade do Ciclo A) | — | — |
 
 > **Onde este documento mora:** fora do VS Code do ciclo (celular, navegador ou outro editor). Ele descreve métricas e protocolo — **nunca** pode ser aberto, colado ou citado dentro de uma sessão medida.
 
