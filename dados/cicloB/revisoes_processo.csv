@@ -7,3 +7,5 @@ b,PLAN,96d046e3-c486-47b0-9388-2c729732a35b,ESPEC,2026-10-25T19:15:11.856Z,bmad-
 b,PLAN,96d046e3-c486-47b0-9388-2c729732a35b,ESPEC,2026-10-25T19:19:06.718Z,bmad-forge-idea,"Use your technical judgment, following the input package"
 b,PLAN,1a7ceb6a-e5a9-44f1-a1ab-0bb078319c7b,ESPEC,2026-10-25T19:32:04.028Z,bmad-deep-recon,"Use your technical judgment, following the input package"
 b,PLAN,1a7ceb6a-e5a9-44f1-a1ab-0bb078319c7b,ESPEC,2026-10-25T19:33:52.228Z,bmad-deep-recon,"Use your technical judgment, following the input package"
+b,PLAN,17066ef5-9630-47ee-8860-3f01031ae0bf,ESPEC,2026-10-25T19:58:20.652Z,bmad-prfaq,"Start from the product input in docs/input/ (requirements.md, prototype/, backend/) and the earlier outputs in _bmad-output/"
+b,PLAN,17066ef5-9630-47ee-8860-3f01031ae0bf,ESPEC,2026-10-25T20:04:10.225Z,bmad-prfaq,"Use your technical judgment, following the input package"
