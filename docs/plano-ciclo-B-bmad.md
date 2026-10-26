@@ -245,6 +245,8 @@ A sessão seguinte repete a **mesma** skill (P4/P13).
 - **Uma coleta só, no fim (D-031, D-035).** Só mande `/coletar-sessao <ID>` quando o agente terminou e nada roda em segundo plano. Se o agente disser que a sessão acabou depois da coleta, **não digite nada** e avise o guia (D-036).
 - **Respostas às pausas previstas** (preferência do `clarify`/`checklist` etc.) são `PROCESSO:`, nunca `INTERVENÇÃO` (D-030); pergunta espontânea de escolha é `INTERVENÇÃO [esclarecimento não solicitado]`; confirmação espontânea é neutra (`Yes, proceed.`).
 - **Mensagens de intervenção e de processo são digitadas à mão, nunca coladas** (D-020); a decisão de contagem na re-derivação reconhece o prefixo também dentro de bloco colado, igual nos dois ciclos.
+- **Um VS Code, uma configuração (D-040).** Não use o Claude Code em outra pasta dentro do VS Code aberto pelo `abrir-ciclo b`: uma janela nova herda o `CLAUDE_CONFIG_DIR` do ciclo. Para outras matérias, use um terminal do macOS fora do VS Code ou o app do Claude. Se isso acontecer, avise antes da próxima sessão medida.
+- **Painel que pergunta algo com texto fixado no plano (D-041).** Mostre o painel ao guia antes de responder; use o texto fixado (por exemplo, a intenção `Validate the existing PRD.`), e não a frase de preferência.
 
 ---
 
