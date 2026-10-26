@@ -16,3 +16,8 @@ b,PLAN,209aefd4-42f6-4088-9ae1-2d76d2885d96,ESPEC,2026-10-25T21:02:43.406Z,bmad-
 b,PLAN,209aefd4-42f6-4088-9ae1-2d76d2885d96,ESPEC,2026-10-25T21:33:19.340Z,bmad-prd,"Use your technical judgment, following the input package."
 b,PLAN,61a2dc09-2a4b-4f84-a123-e6847f88532e,ESPEC,2026-10-26T20:09:27.775Z,bmad-prd,"Use your technical judgment, following the input package"
 b,PLAN,61a2dc09-2a4b-4f84-a123-e6847f88532e,ESPEC,2026-10-26T20:24:52.783Z,bmad-prd,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:38:07.248Z,bmad-ux,The UX source is the frozen prototype in docs/input/prototype/ (cerne-prototype.html and prototype-extract.md). Do not change the prototype
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:44:44.799Z,bmad-ux,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:44:44.799Z,bmad-ux,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:44:44.799Z,bmad-ux,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:54:00.774Z,bmad-ux,"Use your technical judgment, following the input package"
