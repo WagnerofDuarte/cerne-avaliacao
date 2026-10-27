@@ -420,6 +420,11 @@ def test_limite_de_uso_e_reconhecido_e_o_reinicio_lido_no_fuso_do_texto():
     assert cs.limit_reset_ts(_limite("2026-10-27T15:21:41.000Z", "You've hit your session limit")) is None
 
 
+def test_sem_zoneinfo_o_reinicio_nao_e_lido(monkeypatch):
+    monkeypatch.setattr(cs, "ZoneInfo", None)
+    assert cs.limit_reset_ts(_limite("2026-10-27T15:21:41.000Z")) is None
+
+
 def test_espera_pelo_reinicio_do_limite_sai_do_tempo_ativo():
     # limite às 12h21 locais (15:21Z), reinício às 12h30; o pesquisador volta às 13h20 (16:20Z):
     # 8 min 19 s de limite; dos 50 min 40 s restantes, 30 contam e 20 min 40 s vão para pausa_s

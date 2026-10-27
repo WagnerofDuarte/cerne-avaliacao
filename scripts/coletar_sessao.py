@@ -38,7 +38,14 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable
-from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+try:  # D-049: horário de reinício do limite de uso; sem zoneinfo/tzdata, a espera inteira vai para rate_limit_s
+    from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+except ImportError:  # Python < 3.9
+    ZoneInfo = None  # type: ignore[assignment,misc]
+
+    class ZoneInfoNotFoundError(Exception):  # type: ignore[no-redef]
+        pass
 
 # ---------------------------------------------------------------------------
 # Constantes congeladas (protocolo.md / Metricas_e_Skills_Ciclos.md)
@@ -312,7 +319,7 @@ def limit_reset_ts(rec: dict[str, Any]) -> datetime | None:
     """Horário de reinício do limite, lido de "resets <hora> (<fuso>)", na
     primeira ocorrência depois do registro. None se o texto não puder ser lido."""
     m = _RESET_RE.search(_record_text(rec))
-    if not m or not rec.get("timestamp"):
+    if not m or not rec.get("timestamp") or ZoneInfo is None:
         return None
     hora, minuto, ampm, nome_fuso = int(m.group(1)), int(m.group(2) or 0), m.group(3).lower(), m.group(4)
     if not 1 <= hora <= 12 or minuto > 59:
