@@ -381,6 +381,119 @@ def test_retempos_so_altera_duracao_e_pausa(tmp_path: Path, dados_dir: Path):
 
 
 # ---------------------------------------------------------------------------
+# D-049: registro sintético de limite de uso
+# ---------------------------------------------------------------------------
+
+_TEXTO_LIMITE = "You've hit your session limit \u00b7 resets 12:30pm (America/Sao_Paulo)"
+
+
+def _limite(ts: str, texto: str = _TEXTO_LIMITE) -> dict:
+    return {
+        "type": "assistant",
+        "timestamp": ts,
+        "isApiErrorMessage": True,
+        "message": {
+            "id": "synth1",
+            "model": "<synthetic>",
+            "role": "assistant",
+            "content": [{"type": "text", "text": texto}],
+            "usage": {"input_tokens": 0, "output_tokens": 0},
+        },
+    }
+
+
+def test_registro_sintetico_nao_entra_nos_modelos():
+    uso = cs.accumulate_usage([_assistant(0, "m1"), _limite("2026-10-01T10:05:00.000Z")])
+    assert uso.modelos == {"claude-sonnet-5"}
+
+
+def test_limite_de_uso_e_reconhecido_e_o_reinicio_lido_no_fuso_do_texto():
+    rec = _limite("2026-10-27T15:21:41.000Z")
+    assert cs.is_limit_message(rec)
+    assert cs.agent_turn_ended(rec)
+    assert cs.limit_reset_ts(rec).isoformat() == "2026-10-27T15:30:00+00:00"  # 12:30 em Sao Paulo
+    # reinício "no dia seguinte": 23h50 locais, reinício à 1:00am
+    noite = _limite("2026-10-28T02:50:00.000Z", "You've hit your session limit \u00b7 resets 1am (America/Sao_Paulo)")
+    assert cs.limit_reset_ts(noite).isoformat() == "2026-10-28T04:00:00+00:00"
+    # mensagem sintética que não fala de limite, ou texto sem horário legível
+    assert not cs.is_limit_message(_limite("2026-10-27T15:21:41.000Z", "Request timed out"))
+    assert cs.limit_reset_ts(_limite("2026-10-27T15:21:41.000Z", "You've hit your session limit")) is None
+
+
+def test_espera_pelo_reinicio_do_limite_sai_do_tempo_ativo():
+    # limite às 12h21 locais (15:21Z), reinício às 12h30; o pesquisador volta às 13h20 (16:20Z):
+    # 8 min 19 s de limite; dos 50 min 40 s restantes, 30 contam e 20 min 40 s vão para pausa_s
+    antes = _at(_assistant(0, "m1"), "2026-10-27T15:20:41.000Z")
+    limite = _limite("2026-10-27T15:21:41.000Z")
+    fila = {"type": "queue-operation", "operation": "enqueue", "timestamp": "2026-10-27T16:20:40.000Z"}
+    tempos = cs.compute_tempos([antes, limite, fila])
+    assert tempos.rate_limit_s == 8 * 60 + 19
+    assert tempos.duracao_s == 60 + 30 * 60
+    assert tempos.pausa_s == 50 * 60 + 40 - 30 * 60
+    assert tempos.duracao_bruta_s == 3599
+
+
+def test_limite_sem_horario_legivel_tira_a_espera_inteira():
+    antes = _at(_assistant(0, "m1"), "2026-10-27T15:20:41.000Z")
+    limite = _limite("2026-10-27T15:21:41.000Z", "You've hit your session limit")
+    fila = {"type": "queue-operation", "operation": "enqueue", "timestamp": "2026-10-27T16:21:41.000Z"}
+    tempos = cs.compute_tempos([antes, limite, fila])
+    assert tempos.rate_limit_s == 3600
+    assert tempos.duracao_s == 60
+    assert tempos.pausa_s == 0
+
+
+def test_sem_limite_de_uso_rate_limit_s_e_zero_mesmo_com_texto_parecido():
+    # D-044: código do app com "RATE_LIMITED" não é espera por limite de uso
+    antes = _at(_assistant(0, "m1", text="retry on RATE_LIMITED and rate limit codes"), "2026-10-27T10:00:00.000Z")
+    depois = _at(_assistant(1, "m2", text="done"), "2026-10-27T10:30:00.000Z")
+    tempos = cs.compute_tempos([antes, depois])
+    assert tempos.rate_limit_s == 0
+    assert tempos.duracao_s == 30 * 60
+
+
+def test_retempos_corrige_custo_e_modelo_de_linha_synthetic(tmp_path: Path, dados_dir: Path):
+    sid = "sessS"
+    inicio = _at(_user(0, "/bmad-code-review"), "2026-10-27T15:06:51.000Z")
+    ag = _at(_assistant(1, "m1", tokens_in=100, tokens_out=50), "2026-10-27T15:20:41.000Z")
+    limite = _limite("2026-10-27T15:21:41.000Z")
+    fila = {"type": "queue-operation", "operation": "enqueue", "timestamp": "2026-10-27T16:20:40.000Z"}
+    coleta = _at(_user(2, "/coletar-sessao F000"), "2026-10-27T16:43:54.000Z")
+    bruto = dados_dir / "brutos" / f"{sid}.jsonl"
+    _write_jsonl(bruto, [inicio, ag, limite, fila, coleta])
+    sub = _assistant(3, "s1", tokens_in=10, tokens_out=5)
+    sub["sessionId"] = sid
+    sub_limite = _limite("2026-10-27T15:21:18.000Z")
+    sub_limite["sessionId"] = sid
+    outro = _assistant(4, "o1", tokens_in=999, tokens_out=999)
+    outro["sessionId"] = "outra-sessao"
+    _write_jsonl(dados_dir / "brutos" / "agent-aaa.jsonl", [sub, sub_limite])
+    _write_jsonl(dados_dir / "brutos" / "agent-bbb.jsonl", [outro])
+    campos = cs.CSV_FIELDS["sessoes.csv"]
+    linha = {c: "" for c in campos}
+    linha.update({"ciclo": "b", "id_rf": "F000", "sessao_id": sid, "tipo_sessao": "desenvolvimento",
+                  "modo_coleta": "skill", "motivo_fim": "normal", "duracao_s": 5400, "pausa_s": 0,
+                  "rate_limit_s": 0, "custo_usd": 0.0, "modelo": "<synthetic>"})
+    cs.append_csv(dados_dir / "sessoes.csv", campos, linha)
+
+    situacao, _ = cs.retempos(ciclo="b", dados_dir=dados_dir)
+    assert situacao == [(sid, "F000", "tempo, custo e modelo corrigidos")]
+    import csv as _csv
+    with (dados_dir / "sessoes.csv").open(newline="", encoding="utf-8") as f:
+        row = next(_csv.DictReader(f))
+    assert row["modelo"] == "claude-sonnet-5"
+    assert float(row["custo_usd"]) > 0
+    assert int(row["rate_limit_s"]) == 8 * 60 + 19
+    assert int(row["pausa_s"]) == 50 * 60 + 40 - 30 * 60
+    # só o subagente da própria sessão entra no custo
+    precos = cs.load_precos()["claude-sonnet-5"]
+    esperado = (100 + 10) * precos["input"] + (50 + 5) * precos["output"]
+    assert float(row["custo_usd"]) == pytest.approx(esperado, abs=1e-6)
+    # 2ª rodada: o modelo já não é <synthetic>, nada muda
+    assert cs.retempos(ciclo="b", dados_dir=dados_dir)[0] == [(sid, "F000", "inalterada")]
+
+
+# ---------------------------------------------------------------------------
 # 3. Compactação no meio
 # ---------------------------------------------------------------------------
 

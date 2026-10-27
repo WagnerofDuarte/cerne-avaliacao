@@ -19,8 +19,9 @@ prevê provocar um subagente de propósito para isso):
   - Caminho exato dos transcripts de subagentes (ver `find_subagent_transcripts`).
   - Formato do evento de compactação (`subtype: compact_boundary`) — baseado
     em relatos de comunidade, não em um evento real observado nesta sessão.
-  - Detecção de espera por limite de taxa (`rate_limit_s`) — heurística best
-    effort; se não achar um marcador identificável, grava 0 (nunca inventa).
+  - Espera por limite de uso (`rate_limit_s`): a partir do D-049 vem do registro
+    sintético de erro de API (`<synthetic>`) que o Claude Code grava quando o
+    limite é atingido; sem esse registro, grava 0 (nunca inventa).
 Nenhum desses pontos derruba o script: na ausência de confirmação, cada um
 degrada para 0/vazio e grava um aviso em stderr, nunca interrompe a coleta.
 """
@@ -34,9 +35,10 @@ import re
 import subprocess
 import sys
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 # ---------------------------------------------------------------------------
 # Constantes congeladas (protocolo.md / Metricas_e_Skills_Ciclos.md)
@@ -281,11 +283,58 @@ def is_assistant_record(rec: dict[str, Any]) -> bool:
     return rec.get("type") == "assistant"
 
 
+# D-049: registro sintético que o Claude Code grava quando o limite de uso do
+# plano é atingido (`model: "<synthetic>"`, `isApiErrorMessage: true`, texto
+# "You've hit your session limit · resets 12:30pm (America/Sao_Paulo)").
+SYNTHETIC_MODEL = "<synthetic>"
+_RESET_RE = re.compile(r"resets\s+(\d{1,2})(?::(\d{2}))?\s*([ap]m)\s*\(([A-Za-z_/+\-]+)\)", re.IGNORECASE)
+
+
+def is_synthetic_record(rec: dict[str, Any]) -> bool:
+    return is_assistant_record(rec) and (rec.get("message") or {}).get("model") == SYNTHETIC_MODEL
+
+
+def _record_text(rec: dict[str, Any]) -> str:
+    content = (rec.get("message") or {}).get("content")
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        return " ".join(b.get("text", "") for b in content if isinstance(b, dict) and b.get("type") == "text")
+    return ""
+
+
+def is_limit_message(rec: dict[str, Any]) -> bool:
+    """D-049: mensagem sintética de erro de API que fala de limite de uso."""
+    return is_synthetic_record(rec) and bool(rec.get("isApiErrorMessage")) and "limit" in _record_text(rec).lower()
+
+
+def limit_reset_ts(rec: dict[str, Any]) -> datetime | None:
+    """Horário de reinício do limite, lido de "resets <hora> (<fuso>)", na
+    primeira ocorrência depois do registro. None se o texto não puder ser lido."""
+    m = _RESET_RE.search(_record_text(rec))
+    if not m or not rec.get("timestamp"):
+        return None
+    hora, minuto, ampm, nome_fuso = int(m.group(1)), int(m.group(2) or 0), m.group(3).lower(), m.group(4)
+    if not 1 <= hora <= 12 or minuto > 59:
+        return None
+    try:
+        fuso = ZoneInfo(nome_fuso)
+    except (ZoneInfoNotFoundError, ValueError):
+        return None
+    ref = parse_ts(rec["timestamp"]).astimezone(fuso)
+    candidato = ref.replace(hour=hora % 12 + (12 if ampm == "pm" else 0), minute=minuto, second=0, microsecond=0)
+    if candidato < ref:
+        candidato += timedelta(days=1)
+    return candidato.astimezone(timezone.utc)
+
+
 def agent_turn_ended(rec: dict[str, Any]) -> bool:
-    """O agente terminou o turno (`stop_reason: end_turn`): daí em diante o
-    transcript espera pelo pesquisador, até a próxima ação do agente ou
-    mensagem humana (D-024)."""
-    return is_assistant_record(rec) and (rec.get("message") or {}).get("stop_reason") == "end_turn"
+    """O agente terminou o turno (`stop_reason: end_turn`) ou foi cortado pelo
+    limite de uso (D-049): daí em diante o transcript espera pelo pesquisador,
+    até a próxima ação do agente ou mensagem humana (D-024)."""
+    return is_assistant_record(rec) and (
+        (rec.get("message") or {}).get("stop_reason") == "end_turn" or is_limit_message(rec)
+    )
 
 
 def cut_records(records: list[dict[str, Any]], mode: str) -> tuple[list[dict[str, Any]], str | None]:
@@ -406,7 +455,7 @@ def accumulate_usage(records: Iterable[dict[str, Any]]) -> UsoAcumulado:
     acc = UsoAcumulado()
     seen_msg_ids: set[str] = set()
     for rec in records:
-        if not is_assistant_record(rec):
+        if not is_assistant_record(rec) or is_synthetic_record(rec):
             continue
         msg = rec.get("message") or {}
         msg_id = msg.get("id")
@@ -477,7 +526,9 @@ def compute_tempos(records: list[dict[str, Any]]) -> Tempos:
     """P5c: intervalos que terminam em ação do agente contam inteiros;
     esperas pelo pesquisador (terminam em mensagem humana, ou em registro de
     sistema depois que o agente terminou o turno) contam até 30 min cada,
-    excedente em pausa_s."""
+    excedente em pausa_s. D-049: depois de uma mensagem de limite de uso, a
+    espera até o reinício informado sai do tempo ativo e da pausa e vai para
+    `rate_limit_s`; o que sobra até o pesquisador voltar segue a regra acima."""
     timestamped = [r for r in records if r.get("timestamp")]
     if len(timestamped) < 2:
         return Tempos()
@@ -487,9 +538,15 @@ def compute_tempos(records: list[dict[str, Any]]) -> Tempos:
 
     duracao_s = 0
     pausa_s = 0
+    rate_limit_s = 0
     aguardando_pesquisador = agent_turn_ended(timestamped[0])  # agente terminou o turno e ainda não houve nova ação
     for prev, cur in zip(timestamped, timestamped[1:]):
         delta = (parse_ts(cur["timestamp"]) - parse_ts(prev["timestamp"])).total_seconds()
+        if delta > 0 and is_limit_message(prev):
+            reinicio = limit_reset_ts(prev)
+            limite = delta if reinicio is None else min(delta, max(0.0, (reinicio - parse_ts(prev["timestamp"])).total_seconds()))
+            rate_limit_s += limite
+            delta -= limite
         if delta > 0:
             if is_assistant_record(cur):
                 # intervalo termina em ação do agente -> conta inteiro
@@ -515,25 +572,8 @@ def compute_tempos(records: list[dict[str, Any]]) -> Tempos:
         duracao_s=int(duracao_s),
         duracao_bruta_s=duracao_bruta_s,
         pausa_s=int(pausa_s),
-        rate_limit_s=0,  # ver detect_rate_limit
+        rate_limit_s=int(rate_limit_s),
     )
-
-
-def detect_rate_limit_s(records: list[dict[str, Any]]) -> int:
-    """Heurística best-effort (M2, "quando identificável"). Procura por
-    mensagens de sistema/erro que mencionem limite de taxa. Não achando
-    nada, devolve 0 — nunca inventa um valor. Não confirmado contra um
-    caso real (nenhuma sessão de teste bateu rate limit); revisar se/quando
-    isso ocorrer de verdade num ciclo."""
-    total = 0
-    pattern = re.compile(r"rate.?limit", re.IGNORECASE)
-    for prev, cur in zip(records, records[1:]):
-        text = json.dumps(cur, ensure_ascii=False)
-        if pattern.search(text) and prev.get("timestamp") and cur.get("timestamp"):
-            delta = (parse_ts(cur["timestamp"]) - parse_ts(prev["timestamp"])).total_seconds()
-            if delta > 0:
-                total += delta
-    return int(total)
 
 
 def count_compactacoes(records: list[dict[str, Any]]) -> int:
@@ -856,7 +896,6 @@ def coletar(
 
     principal_usage = accumulate_usage(records)
     tempos = compute_tempos(records)
-    tempos.rate_limit_s = detect_rate_limit_s(records)
     n_compactacoes = count_compactacoes(records)
     n_msgs_contexto_ide = sum(1 for r in records if has_ide_context(r))
 
@@ -1030,11 +1069,13 @@ def coletar(
 
 
 def retempos(*, ciclo: str, dados_dir: Path | None = None, aplicar: bool = True) -> tuple[list[tuple[str, str, str]], dict[str, str]]:
-    """D-024: recalcula `duracao_s` e `pausa_s` de cada sessão de `sessoes.csv`
-    a partir do transcript bruto guardado em `brutos/`, com a regra vigente de
-    `compute_tempos`. Só essas duas colunas mudam, e só nas linhas em que o
-    valor muda. Devolve (sessões com situação, faixa de timebox por unidade),
-    sem expor tempos."""
+    """D-024/D-049: recalcula `duracao_s`, `pausa_s` e `rate_limit_s` de cada
+    sessão de `sessoes.csv` a partir do transcript bruto guardado em `brutos/`,
+    com a regra vigente de `compute_tempos`. Nas linhas com `modelo`
+    `<synthetic>` (D-049) recalcula também `custo_usd` e `modelo` (subagentes
+    achados em `brutos/agent-*.jsonl` pelo `sessionId`). Só essas colunas
+    mudam, e só nas linhas em que o valor muda. Devolve (sessões com situação,
+    faixa de timebox por unidade), sem expor tempos nem custos."""
     dados_dir = dados_dir or dados_dir_default(ciclo)
     sessoes_csv = dados_dir / "sessoes.csv"
     with sessoes_csv.open(newline="", encoding="utf-8") as f:
@@ -1043,6 +1084,7 @@ def retempos(*, ciclo: str, dados_dir: Path | None = None, aplicar: bool = True)
         rows = list(reader)
 
     situacao: list[tuple[str, str, str]] = []
+    mudou_algum = False
     for row in rows:
         if row.get("ciclo") != ciclo:
             continue
@@ -1053,13 +1095,29 @@ def retempos(*, ciclo: str, dados_dir: Path | None = None, aplicar: bool = True)
             continue
         records, _ = cut_records(load_jsonl(bruto), modo)
         t = compute_tempos(records)
-        if t.duracao_s == int(row["duracao_s"] or 0) and t.pausa_s == int(row["pausa_s"] or 0):
+        novos: dict[str, Any] = {"duracao_s": t.duracao_s, "pausa_s": t.pausa_s, "rate_limit_s": t.rate_limit_s}
+        tempo_mudou = any(int(row.get(c) or 0) != v for c, v in novos.items())
+        custo_mudou = False
+        if row.get("modelo") == SYNTHETIC_MODEL:
+            principal = accumulate_usage(records)
+            sub_records = [
+                r
+                for p in sorted((dados_dir / "brutos").glob("agent-*.jsonl"))
+                for r in load_jsonl(p)
+                if r.get("sessionId") == sessao_id
+            ]
+            custo = compute_custo_usd(principal, accumulate_usage(sub_records), load_precos())
+            modelo = sorted(principal.modelos)[0] if principal.modelos else ""
+            custo_mudou = True
+            novos.update({"custo_usd": custo, "modelo": modelo})
+        if not tempo_mudou and not custo_mudou:
             situacao.append((sessao_id, id_rf, "inalterada"))
             continue
-        row["duracao_s"], row["pausa_s"] = t.duracao_s, t.pausa_s
-        situacao.append((sessao_id, id_rf, "tempo corrigido"))
+        row.update({c: v for c, v in novos.items() if c in row})
+        mudou_algum = True
+        situacao.append((sessao_id, id_rf, "tempo corrigido" if not custo_mudou else "tempo, custo e modelo corrigidos"))
 
-    if aplicar and any(sit == "tempo corrigido" for _, _, sit in situacao):
+    if aplicar and mudou_algum:
         with sessoes_csv.open("w", newline="", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
@@ -1095,7 +1153,7 @@ def main(argv: list[str] | None = None) -> int:
     p_manual.add_argument("--session-id", required=True)
     p_manual.add_argument("--motivo-fim", required=True, choices=["limite_uso", "falha"])
 
-    p_retempos = sub.add_parser("retempos", help="recalcula duracao_s/pausa_s de sessoes.csv a partir de brutos/ (D-024)")
+    p_retempos = sub.add_parser("retempos", help="recalcula duracao_s/pausa_s/rate_limit_s (e custo/modelo das linhas <synthetic>) de sessoes.csv a partir de brutos/ (D-024, D-049)")
     p_retempos.add_argument("--ciclo", required=True, choices=["a", "b"])
     p_retempos.add_argument("--dry-run", action="store_true", help="só mostra quais sessões mudariam")
 
