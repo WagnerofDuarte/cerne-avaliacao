@@ -644,3 +644,38 @@ def test_modo_manual_registra_motivo_fim(tmp_path: Path, dados_dir: Path):
         rows = list(csv.DictReader(f))
     assert rows[0]["modo_coleta"] == "manual"
     assert rows[0]["motivo_fim"] == "limite_uso"
+
+
+# ---------------------------------------------------------------------------
+# D-054: modo manual usa o --session-id; sessão já registrada não é coletada de novo
+# ---------------------------------------------------------------------------
+
+
+def test_manual_acha_a_sessao_pelo_id_mesmo_que_nao_seja_a_mais_recente(tmp_path: Path, monkeypatch):
+    import os
+
+    cfg = tmp_path / "cfg"
+    monkeypatch.setenv("CLAUDE_CONFIG_DIR", str(cfg))
+    antiga = cfg / "projects" / "-proj-a" / "sess-antiga.jsonl"
+    recente = cfg / "projects" / "-proj-b" / "sess-recente.jsonl"
+    _write_jsonl(antiga, [_user(0, "oi"), _assistant(1, "m1")])
+    _write_jsonl(recente, [_user(0, "oi"), _assistant(1, "m2")])
+    os.utime(antiga, (1_000_000, 1_000_000))
+    os.utime(recente, (2_000_000, 2_000_000))
+    assert cs.find_transcript_by_id("sess-antiga") == antiga
+    assert cs.find_transcript_by_id("sess-recente") == recente
+    with pytest.raises(FileNotFoundError):
+        cs.find_transcript_by_id("nao-existe")
+
+
+def test_sessao_ja_registrada_nao_e_coletada_de_novo(tmp_path: Path, dados_dir: Path):
+    main = tmp_path / "proj" / "sessD.jsonl"
+    _write_jsonl(main, [_user(0, "oi"), _assistant(1, "m1")])
+    cs.coletar(ciclo="b", id_rf="F000", mode="manual", motivo_fim="falha", transcript_path=main, dados_dir=dados_dir)
+    antes = {p.name: p.read_text(encoding="utf-8") for p in dados_dir.glob("*.csv")}
+    with pytest.raises(cs.SessaoJaColetada):
+        cs.coletar(ciclo="b", id_rf="F000", mode="manual", motivo_fim="falha", transcript_path=main, dados_dir=dados_dir)
+    depois = {p.name: p.read_text(encoding="utf-8") for p in dados_dir.glob("*.csv")}
+    assert antes == depois  # nada foi gravado
+    # outro ciclo com o mesmo id de sessão não é bloqueado
+    cs.coletar(ciclo="a", id_rf="F000", mode="manual", motivo_fim="falha", transcript_path=main, dados_dir=dados_dir)

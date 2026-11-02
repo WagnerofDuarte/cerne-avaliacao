@@ -197,6 +197,21 @@ def find_latest_transcript(cwd: str | None = None) -> Path:
     return candidates[-1]
 
 
+def find_transcript_by_id(session_id: str) -> Path:
+    """D-054: transcrito de uma sessão pelo id, em qualquer pasta de projeto do
+    `CLAUDE_CONFIG_DIR` (modo manual: a sessão cortada não é necessariamente a
+    mais recente)."""
+    projects = find_claude_dir() / "projects"
+    matches = sorted(projects.glob(f"*/{session_id}.jsonl"))
+    if not matches:
+        raise FileNotFoundError(f"Transcrito da sessão {session_id} não encontrado em {projects}")
+    return matches[0]
+
+
+class SessaoJaColetada(Exception):
+    """D-054: a sessão já tem linha em `sessoes.csv` (uma coleta só, D-031)."""
+
+
 def find_subagent_transcripts(main_path: Path) -> list[Path]:
     """Acha transcripts de subagentes da mesma sessão.
 
@@ -939,6 +954,11 @@ def coletar(
         div_otel_alerta = div_otel > OTEL_TOLERANCE
 
     sessao_id = main_path.stem
+    sessoes_csv_existente = dados_dir / "sessoes.csv"
+    if sessoes_csv_existente.exists():  # D-054: uma coleta só por sessão, nada é gravado
+        with sessoes_csv_existente.open(newline="", encoding="utf-8") as f:
+            if any(r.get("sessao_id") == sessao_id and r.get("ciclo") == ciclo for r in csv.DictReader(f)):
+                raise SessaoJaColetada(f"a sessão {sessao_id} já está registrada em {sessoes_csv_existente}; nada foi gravado")
     modo_coleta = "manual" if mode == "manual" else ("hook" if mode == "hook" else "skill")
     if tipo_sessao == "instalacao":
         modo_coleta = "script"
@@ -1187,19 +1207,23 @@ def main(argv: list[str] | None = None) -> int:
         hook_input = json.load(sys.stdin)
         transcript_path = Path(hook_input["transcript_path"])
     elif args.mode == "manual":
-        transcript_path = find_latest_transcript()  # ajustar se --session-id apontar outro projeto
+        transcript_path = find_transcript_by_id(args.session_id)  # D-054
         motivo_fim = args.motivo_fim
 
-    resultado = coletar(
-        ciclo=args.ciclo,
-        id_rf=args.id_rf,
-        mode=args.mode,
-        motivo_fim=motivo_fim,
-        transcript_path=transcript_path,
-        otel_output_path=args.otel_output,
-        versao_claude_code=args.versao_claude_code,
-        config_raciocinio=args.config_raciocinio,
-    )
+    try:
+        resultado = coletar(
+            ciclo=args.ciclo,
+            id_rf=args.id_rf,
+            mode=args.mode,
+            motivo_fim=motivo_fim,
+            transcript_path=transcript_path,
+            otel_output_path=args.otel_output,
+            versao_claude_code=args.versao_claude_code,
+            config_raciocinio=args.config_raciocinio,
+        )
+    except SessaoJaColetada as e:
+        print(f"[coletar_sessao] erro: {e}", file=sys.stderr)
+        return 2
 
     # protocolo.md / Metricas_e_Skills_Ciclos.md §4.1 — nunca exibir tokens/tempo/custo
     print(f"Registrado. Intervenções reconhecidas: {resultado.n_intervencoes}.")
