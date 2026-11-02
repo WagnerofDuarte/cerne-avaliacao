@@ -679,3 +679,44 @@ def test_sessao_ja_registrada_nao_e_coletada_de_novo(tmp_path: Path, dados_dir: 
     assert antes == depois  # nada foi gravado
     # outro ciclo com o mesmo id de sessão não é bloqueado
     cs.coletar(ciclo="a", id_rf="F000", mode="manual", motivo_fim="falha", transcript_path=main, dados_dir=dados_dir)
+
+
+# ---------------------------------------------------------------------------
+# D-056: contexto da IDE em bloco de texto próprio (`<ide_opened_file>`)
+# ---------------------------------------------------------------------------
+
+
+def _humana_com_contexto_ide(i: int, texto: str) -> dict:
+    rec = _user(i, texto)
+    rec["message"]["content"] = [
+        {"type": "text", "text": "<ide_opened_file>The user opened the file /x/spec.md in the IDE. This may or may not be related to the current task.</ide_opened_file>"},
+        {"type": "text", "text": texto},
+    ]
+    return rec
+
+
+def test_contexto_ide_opened_file_e_removido_do_texto_e_contado():
+    rec = _humana_com_contexto_ide(0, "PROCESSO: Use your technical judgment, following the input package.")
+    assert cs.has_ide_context(rec)
+    assert cs.human_message_text(rec) == "PROCESSO: Use your technical judgment, following the input package."
+
+
+def test_processo_com_contexto_ide_e_reconhecido(tmp_path: Path, dados_dir: Path):
+    main = tmp_path / "proj" / "sessIDE.jsonl"
+    records = [
+        _user(0, "/bmad-code-review"),
+        _assistant(1, "m1"),
+        _humana_com_contexto_ide(2, "PROCESSO: Use your technical judgment, following the input package."),
+        _assistant(3, "m2"),
+        _user(4, "/coletar-sessao F000"),
+    ]
+    _write_jsonl(main, records)
+    res = cs.coletar(ciclo="b", id_rf="F000", mode="skill", transcript_path=main, dados_dir=dados_dir)
+    assert res.n_processo == 1
+    import csv as _csv
+    with (dados_dir / "sessoes.csv").open(newline="", encoding="utf-8") as f:
+        row = next(_csv.DictReader(f))
+    assert row["n_msgs_contexto_ide"] == "1"
+    with (dados_dir / "revisoes_processo.csv").open(newline="", encoding="utf-8") as f:
+        rows = list(_csv.DictReader(f))
+    assert [r["texto"] for r in rows] == ["Use your technical judgment, following the input package."]

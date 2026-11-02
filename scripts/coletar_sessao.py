@@ -101,7 +101,8 @@ TIPOS_COM_CAUSA_OBRIGATORIA = {"redirecionamento", "correção", "edição manua
 
 INTERVENCAO_RE = re.compile(r"^INTERVEN[ÇC][ÃA]O\s*\[([^\]]*)\]:", re.UNICODE)
 PROCESSO_RE = re.compile(r"^PROCESSO:\s*(.*)", re.UNICODE | re.DOTALL)
-IDE_SELECTION_RE = re.compile(r"^\s*<ide_selection>", re.UNICODE)
+# D-056: contexto injetado pela IDE (`<ide_selection>`, `<ide_opened_file>`...), em bloco de texto próprio
+IDE_SELECTION_RE = re.compile(r"^\s*<ide_[a-z_]+>", re.UNICODE)
 
 # P7 — timebox (protocolo.md)
 TIMEBOX_SECONDS = {"F000": 12 * 3600}
@@ -624,8 +625,9 @@ def has_ide_context(rec: dict[str, Any]) -> bool:
 
 
 def human_message_text(rec: dict[str, Any]) -> str:
-    """Texto da mensagem humana, com o bloco <ide_selection> removido (ele
-    não faz parte do que o pesquisador escreveu)."""
+    """Texto da mensagem humana, com os blocos de contexto da IDE
+    (`<ide_selection>`, `<ide_opened_file>`...) removidos: eles não fazem parte
+    do que o pesquisador escreveu (D-056)."""
     content = (rec.get("message") or {}).get("content")
     parts = []
     if isinstance(content, str):
@@ -635,7 +637,7 @@ def human_message_text(rec: dict[str, Any]) -> str:
             if isinstance(block, dict) and block.get("type") == "text":
                 parts.append(block.get("text", ""))
     text = "\n".join(parts)
-    text = re.sub(r"<ide_selection>.*?</ide_selection>", "", text, flags=re.DOTALL).strip()
+    text = re.sub(r"<(ide_[a-z_]+)>.*?</\1>", "", text, flags=re.DOTALL).strip()
     return text
 
 
