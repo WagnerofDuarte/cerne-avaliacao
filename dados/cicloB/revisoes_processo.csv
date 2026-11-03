@@ -88,3 +88,6 @@ b,F000,6bcb302e-350f-4a2b-862c-08328baf1058,VALID,2026-11-03T14:04:06.542Z,bmad-
 b,F000,6bcb302e-350f-4a2b-862c-08328baf1058,VALID,2026-11-03T14:12:22.598Z,bmad-code-review,3.
 b,RF03,697a471a-31bf-4aa6-8546-dd1e287aea26,IMPL,2026-11-03T15:00:13.119Z,bmad-build,"Use your technical judgment, following the input package"
 b,RF03,697a471a-31bf-4aa6-8546-dd1e287aea26,IMPL,2026-11-03T15:02:54.186Z,bmad-build,A.
+b,RF03,82e2f38f-933c-42d7-9a91-d5323e5aeb01,VALID,2026-11-03T15:46:51.119Z,bmad-code-review,Story 2-1
+b,RF03,82e2f38f-933c-42d7-9a91-d5323e5aeb01,VALID,2026-11-03T16:04:59.417Z,bmad-code-review,1
+b,RF03,82e2f38f-933c-42d7-9a91-d5323e5aeb01,VALID,2026-11-03T16:08:28.149Z,bmad-code-review,3.
