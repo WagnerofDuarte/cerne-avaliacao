@@ -148,3 +148,7 @@ b,RF01,6f0e247a-5048-47cc-9012-d490a1c1ce79,VALID,2026-11-05T00:36:45.538Z,bmad-
 b,RF01,6f0e247a-5048-47cc-9012-d490a1c1ce79,VALID,2026-11-05T00:41:03.327Z,bmad-code-review,1.
 b,RF01,2c30f092-1bd5-4917-8840-99ec1b5c3fc3,VALID,2026-11-05T00:46:17.321Z,bmad-qa-generate-e2e-tests,The features implemented in story 3-4-cancel-safe-capture-across-all-tabs
 b,RF07,c97175aa-11bf-439b-8969-dd19687a8a34,IMPL,2026-11-05T03:05:02.294Z,bmad-build,A.
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:08:50.760Z,bmad-code-review,Story 4-1
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:09:32.361Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:24:40.713Z,bmad-code-review,1.
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:30:08.506Z,bmad-code-review,3.
