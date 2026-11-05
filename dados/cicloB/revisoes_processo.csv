@@ -197,3 +197,4 @@ b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:16:50.232Z,bmad-
 b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:19:11.674Z,bmad-code-review,"Use your technical judgment, following the input package."
 b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:35:55.489Z,bmad-code-review,1.
 b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:40:36.673Z,bmad-code-review,1.
+b,RF04,b9c686af-3132-4595-9086-ce20d5f04c76,VALID,2026-11-05T23:48:12.926Z,bmad-qa-generate-e2e-tests,The features implemented in story 6-1-send-message-receive-rag-grounded-streaming-response
