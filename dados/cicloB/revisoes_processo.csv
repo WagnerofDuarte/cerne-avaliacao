@@ -253,3 +253,5 @@ b,RF09,7d3062e3-2385-414e-b47b-804d2314cf5e,VALID,2026-11-07T19:37:33.965Z,bmad-
 b,RF09,1e77cc0c-cdda-414a-98e7-7179d58b346d,IMPL,2026-11-07T19:48:49.748Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
 b,RF09,1e77cc0c-cdda-414a-98e7-7179d58b346d,IMPL,2026-11-07T19:56:44.115Z,bmad-build,A
 b,RF09,1e77cc0c-cdda-414a-98e7-7179d58b346d,IMPL,2026-11-07T20:36:14.668Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF09,79ed7a52-07cd-408f-bb2f-5e02729ac52a,VALID,2026-11-07T20:56:08.618Z,bmad-code-review,Story 8-2.
+b,RF09,79ed7a52-07cd-408f-bb2f-5e02729ac52a,VALID,2026-11-07T21:06:50.816Z,bmad-code-review,1
