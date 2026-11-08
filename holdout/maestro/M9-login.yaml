@@ -1,0 +1,6 @@
+# estado M9 `login` (estados-m9.md, conta —)
+appId: ${APP_ID}
+---
+# primeira abertura sem sessao
+- assertVisible: "E-mail"
+- takeScreenshot: ${CICLO_ANON}-login

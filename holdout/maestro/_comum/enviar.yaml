@@ -1,0 +1,7 @@
+# Envia uma mensagem no chat. Env: TEXTO.
+appId: ${APP_ID}
+---
+- tapOn: "Escreva uma mensagem..."
+- inputText: ${TEXTO}
+- tapOn:
+    point: "94%,97%"        # icone de enviar (sem texto)

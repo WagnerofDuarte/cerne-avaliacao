@@ -1,0 +1,11 @@
+# estado M9 `config` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- assertVisible: "Sua evolução"
+- takeScreenshot: ${CICLO_ANON}-config

@@ -1,0 +1,7 @@
+# Abre uma conversa pelo menu lateral. Env: CONVERSA (nome da sessao semeada).
+appId: ${APP_ID}
+---
+- tapOn:
+    point: "7%,8%"          # ☰ (posicao medida no prototipo, frame 390x844, ±4 px)
+- tapOn: "CONVERSAS"
+- tapOn: ${CONVERSA}

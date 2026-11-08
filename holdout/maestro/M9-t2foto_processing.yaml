@@ -1,0 +1,19 @@
+# estado M9 `t2foto_processing` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "t2foto_processing"}
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Foto"
+- tapOn: "Galeria"
+# ocr_fixture_01.png
+- assertVisible: "Reconhecendo texto..."
+- takeScreenshot: ${CICLO_ANON}-t2foto_processing
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: disarm}

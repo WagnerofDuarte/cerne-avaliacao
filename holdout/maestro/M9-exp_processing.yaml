@@ -1,0 +1,17 @@
+# estado M9 `exp_processing` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "exp_processing"}
+- runFlow: _comum/registros.yaml
+- tapOn:
+    point: "93%,8%"   # download
+- assertVisible: "Gerando resumo com IA..."
+- takeScreenshot: ${CICLO_ANON}-exp_processing
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: disarm}

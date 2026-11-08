@@ -1,0 +1,10 @@
+# estado M9 `dashUma` (estados-m9.md, conta B)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-uma@cerne.test", SENHA: "${SENHA_B}"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- takeScreenshot: ${CICLO_ANON}-dashUma

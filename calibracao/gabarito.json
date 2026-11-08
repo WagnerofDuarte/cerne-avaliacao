@@ -1,0 +1,446 @@
+{
+  "_nota": "Gabarito do repositorio de calibracao. Escrito a mao (linhas conferidas com grep -n nos snapshots). v1 = unidade anterior (rf01-done); v2 = unidade medida (final). Caminhos relativos a raiz de cada snapshot.",
+  "tags": [
+    "v1",
+    "v2"
+  ],
+  "referencia_m15": {
+    "tag": "v1",
+    "feature": "entries"
+  },
+  "m4": {
+    "v1": {
+      "constitution": 1,
+      "spec": 1,
+      "plan": 0,
+      "tasks": 0,
+      "research": 0,
+      "data_model": 0,
+      "quickstart": 0,
+      "contracts": 0,
+      "checklists": 0,
+      "analysis": 0,
+      "total": 2
+    },
+    "v2": {
+      "constitution": 1,
+      "spec": 1,
+      "plan": 1,
+      "tasks": 1,
+      "research": 1,
+      "data_model": 1,
+      "quickstart": 1,
+      "contracts": 1,
+      "checklists": 1,
+      "analysis": 1,
+      "total": 10
+    }
+  },
+  "m6": {
+    "unidade": {
+      "tag": "v2",
+      "tag_anterior": "v1",
+      "unidade": "specs/001-entries"
+    },
+    "m6_tasks": 0.75,
+    "citados_nao_alterados": [
+      "lib/features/entries/domain/usecases/classify_entry.dart",
+      "lib/features/entries/domain/usecases/export_entries.dart"
+    ],
+    "alterados_nao_citados": [
+      "lib/features/entries/data/models/entry_json.dart",
+      "lib/features/entries/domain/usecases/audit_entry.dart",
+      "lib/features/timeline/presentation/pages/timeline_card.dart"
+    ],
+    "inexist_arq": [
+      "lib/features/entries/domain/usecases/export_entries.dart"
+    ],
+    "inexist_pkg": [
+      "dio"
+    ],
+    "inexist_backend": {
+      "c1": [
+        "POST /entries/search"
+      ],
+      "c2": [
+        "entries-bulk-purge"
+      ],
+      "c3": [
+        "phantomField"
+      ],
+      "c4": [
+        "ENTRY_GHOST_ERROR"
+      ]
+    },
+    "inexist_backend_total": 4
+  },
+  "m7": {
+    "v1": [
+      {
+        "arquivo": "lib/features/entries/domain/usecases/format_badge.dart",
+        "linha": 1,
+        "regra": "dominio_importa_flutter"
+      },
+      {
+        "arquivo": "lib/features/entries/domain/entities/leaky_entry.dart",
+        "linha": 1,
+        "regra": "dominio_importa_data"
+      }
+    ],
+    "v2": [
+      {
+        "arquivo": "lib/features/entries/domain/usecases/format_badge.dart",
+        "linha": 1,
+        "regra": "dominio_importa_flutter"
+      },
+      {
+        "arquivo": "lib/features/entries/domain/entities/leaky_entry.dart",
+        "linha": 1,
+        "regra": "dominio_importa_data"
+      },
+      {
+        "arquivo": "lib/features/entries/domain/usecases/audit_entry.dart",
+        "linha": 1,
+        "regra": "dominio_importa_data"
+      }
+    ],
+    "m7_novas_v2": 1
+  },
+  "estruturais": {
+    "rf07_bloc_importa_bloc": [
+      {
+        "arquivo": "lib/features/timeline/presentation/bloc/timeline_bloc.dart",
+        "linha": 3
+      }
+    ],
+    "rf10_chat_importa_entradas": [
+      {
+        "arquivo": "lib/features/chat/presentation/cubit/chat_cubit.dart",
+        "linha": 3
+      }
+    ]
+  },
+  "m9_hardcodes": {
+    "v1": [
+      {
+        "arquivo": "lib/features/entries/presentation/pages/entries_page.dart",
+        "linha": 13,
+        "tipo": "cor"
+      },
+      {
+        "arquivo": "lib/features/entries/presentation/pages/entries_page.dart",
+        "linha": 14,
+        "tipo": "espacamento"
+      },
+      {
+        "arquivo": "lib/features/entries/presentation/pages/entries_page.dart",
+        "linha": 21,
+        "tipo": "tamanho_fonte"
+      },
+      {
+        "arquivo": "lib/features/entries/presentation/pages/entries_page.dart",
+        "linha": 22,
+        "tipo": "familia_fonte"
+      }
+    ],
+    "v2": "igual a v1"
+  },
+  "m10_assinaturas": {
+    "v1": [
+      {
+        "arquivo": "lib/features/chat/domain/repositories/chat_repository.dart",
+        "linha": 9,
+        "metodo": "ChatRepository.lastDraft"
+      },
+      {
+        "arquivo": "lib/features/chat/data/repositories/chat_repo.dart",
+        "linha": 13,
+        "metodo": "ChatRepo.lastDraft"
+      }
+    ],
+    "v2": "igual a v1",
+    "total": 2
+  },
+  "m12": {
+    "_regra": "1 + if, for, for-in, while, do, case (cada rotulo; default nao conta), catch, &&, ||, ?:, ??, if de colecao. for de colecao NAO conta (nao esta na lista). Corpo de closure conta no metodo que a contem. So declaracoes com corpo (bloco ou =>); construtor sem corpo e metodo abstrato nao entram.",
+    "v1": [
+      {
+        "arquivo": "lib/features/entries/domain/entities/entry.dart",
+        "linha": 22,
+        "metodo": "Entry.isMedia",
+        "cc": 2
+      },
+      {
+        "arquivo": "lib/features/entries/domain/entities/leaky_entry.dart",
+        "linha": 8,
+        "metodo": "LeakyEntry.describe",
+        "cc": 2
+      },
+      {
+        "arquivo": "lib/features/entries/domain/usecases/classify_entry.dart",
+        "linha": 4,
+        "metodo": "ClassifyEntry.call",
+        "cc": 12
+      },
+      {
+        "arquivo": "lib/features/entries/domain/usecases/summarize_entries.dart",
+        "linha": 11,
+        "metodo": "SummarizeEntries.call",
+        "cc": 5
+      },
+      {
+        "arquivo": "lib/features/entries/domain/usecases/validate_entry.dart",
+        "linha": 4,
+        "metodo": "ValidateEntry.call",
+        "cc": 2
+      },
+      {
+        "arquivo": "lib/features/entries/domain/usecases/format_badge.dart",
+        "linha": 4,
+        "metodo": "FormatBadge.label",
+        "cc": 1
+      },
+      {
+        "arquivo": "lib/features/timeline/domain/usecases/build_timeline.dart",
+        "linha": 5,
+        "metodo": "BuildTimeline.call",
+        "cc": 3
+      },
+      {
+        "arquivo": "lib/features/chat/domain/usecases/send_message.dart",
+        "linha": 13,
+        "metodo": "SendMessage.call",
+        "cc": 2
+      },
+      {
+        "arquivo": "lib/features/chat/domain/entities/message.dart",
+        "linha": 7,
+        "metodo": "Message.fromUser",
+        "cc": 1
+      }
+    ],
+    "v1_resumo": {
+      "metodos": 9,
+      "soma": 30,
+      "media": 3.3333,
+      "acima_de_10": 1
+    },
+    "v2_adiciona": [
+      {
+        "arquivo": "lib/features/entries/domain/usecases/audit_entry.dart",
+        "linha": 4,
+        "metodo": "AuditEntry.run",
+        "cc": 1
+      }
+    ],
+    "v2_resumo": {
+      "metodos": 10,
+      "soma": 31,
+      "media": 3.1,
+      "acima_de_10": 1
+    }
+  },
+  "m13": {
+    "testes_v1_aprovados": [
+      "test/features/entries/domain/classify_entry_test.dart::ClassifyEntry empty content is empty",
+      "test/features/entries/domain/classify_entry_test.dart::ClassifyEntry audio over a minute is long-audio",
+      "test/features/entries/domain/classify_entry_test.dart::ClassifyEntry photo is image",
+      "test/features/entries/domain/classify_entry_test.dart::ClassifyEntry urgent tag wins over length",
+      "test/features/entries/domain/classify_entry_test.dart::ClassifyEntry good mood appends plus",
+      "test/features/entries/domain/summarize_entries_test.dart::SummarizeEntries empty list returns zeros",
+      "test/features/entries/domain/summarize_entries_test.dart::SummarizeEntries averages media durations to one decimal",
+      "test/features/entries/domain/validate_entry_test.dart::ValidateEntry runs on a titled entry",
+      "test/features/timeline/domain/build_timeline_test.dart::BuildTimeline newest first reverses",
+      "test/features/timeline/domain/build_timeline_test.dart::BuildTimeline oldest first keeps order"
+    ],
+    "passa_em_v1_falha_em_v2": [
+      "test/features/entries/domain/summarize_entries_test.dart::SummarizeEntries averages media durations to one decimal"
+    ],
+    "apagado_em_v2": [
+      "test/features/timeline/domain/build_timeline_test.dart::BuildTimeline oldest first keeps order"
+    ],
+    "M13": 0.2,
+    "M13_sem_apagados": 0.1,
+    "M13_apagados": 1,
+    "M13_seguranca": 0.8
+  },
+  "m14": {
+    "_fontes": [
+      "v2/.specify/memory/constitution.md",
+      "v2/specs/001-entries/plan.md"
+    ],
+    "decisoes": [
+      {
+        "ordem": 1,
+        "id_principal": "dio",
+        "estatica": true,
+        "esperado": "falha"
+      },
+      {
+        "ordem": 2,
+        "id_principal": "EntriesRepositoryImpl",
+        "estatica": true,
+        "esperado": "ok"
+      },
+      {
+        "ordem": 3,
+        "id_principal": "ChatCubit",
+        "estatica": true,
+        "esperado": "falha"
+      },
+      {
+        "ordem": 4,
+        "id_principal": "BuildTimeline",
+        "estatica": false,
+        "esperado": "juiz"
+      },
+      {
+        "ordem": 5,
+        "id_principal": "SummarizeEntries",
+        "estatica": true,
+        "esperado": "ok"
+      },
+      {
+        "ordem": 6,
+        "id_principal": "export_entries.dart",
+        "estatica": true,
+        "esperado": "falha"
+      }
+    ],
+    "total_candidatas": 6,
+    "excluidas": [
+      "flutter_bloc/Clean Architecture (repete P8)",
+      "Tests should be written first (sem identificador)",
+      "docs/decisions.md (nao e lib/)",
+      "ClassifyEntry is reused unchanged (sem verbo de prescricao)",
+      "fpdart (repete P8)"
+    ]
+  },
+  "m15": {
+    "referencia": "entries",
+    "chat": {
+      "C1": 2,
+      "C2": 1,
+      "C3": 1,
+      "C4": 3,
+      "total": 7,
+      "respeitadas": 0
+    },
+    "timeline": {
+      "C1": 0,
+      "C2": 0,
+      "C3": 0,
+      "C4": 0,
+      "total": 0,
+      "respeitadas": 4
+    },
+    "M15_divergencias": 7
+  },
+  "m8": {
+    "_nota": "Invariantes conferidos a mao: (1) classify_entry.dart:24 e a unica linha nao coberta do arquivo (ramo 'bad' sem teste); (2) arquivos de dominio sem nenhum teste ficam com 0 linhas cobertas (injecao de importa-tudo); (3) validate_entry.dart tem todas as linhas executaveis cobertas apesar de o teste nao afirmar nada (contraste com a M8b). O denominador (linhas executaveis) e o definido pela VM do Dart e NAO e derivavel a mao sem ambiguidade (ex.: construtor const com super.message conta como coberto); os totais abaixo vem da primeira execucao do modulo, apos conferencia dos invariantes.",
+    "v1": {
+      "M8": 0.711111,
+      "linhas_executaveis": 45,
+      "linhas_cobertas": 32,
+      "testes_falharam": false,
+      "nao_cobertas": {
+        "lib/features/chat/domain/entities/message.dart": [
+          2,
+          7
+        ],
+        "lib/features/chat/domain/usecases/send_message.dart": [
+          9,
+          13,
+          14,
+          15,
+          17
+        ],
+        "lib/features/entries/domain/entities/entries_failure.dart": [
+          4
+        ],
+        "lib/features/entries/domain/entities/leaky_entry.dart": [
+          4,
+          8
+        ],
+        "lib/features/entries/domain/usecases/classify_entry.dart": [
+          24
+        ],
+        "lib/features/entries/domain/usecases/format_badge.dart": [
+          4
+        ],
+        "lib/features/timeline/domain/entities/timeline_failure.dart": [
+          4
+        ]
+      }
+    },
+    "v2": {
+      "M8": 0.695652,
+      "linhas_executaveis": 46,
+      "linhas_cobertas": 32,
+      "testes_falharam": true,
+      "nao_cobertas_adicional": {
+        "lib/features/entries/domain/usecases/audit_entry.dart": [
+          4
+        ]
+      }
+    }
+  },
+  "m8b": {
+    "_nota": "Lista de mutantes e destino derivada a mao (analise de cada operador contra os testes de v1) ANTES de rodar o modulo; o modulo reproduziu exatamente. Mutante plantado: validate_entry.dart:5 (`<=` -> `<`), que sobrevive porque o teste cobre a linha sem afirmar nada (M8 cobre, M8b nao mata).",
+    "v1": {
+      "total": 17,
+      "mortos": 9,
+      "M8b_mutation": 0.529412,
+      "plantado": {
+        "arquivo": "lib/features/entries/domain/usecases/validate_entry.dart",
+        "linha": 5,
+        "de": "<=",
+        "para": "<",
+        "estado": "sobrevivente"
+      },
+      "lista_sobreviventes": [
+        [
+          "lib/features/chat/domain/entities/message.dart",
+          7,
+          "=="
+        ],
+        [
+          "lib/features/entries/domain/entities/entry.dart",
+          22,
+          "== (2o)"
+        ],
+        [
+          "lib/features/entries/domain/usecases/classify_entry.dart",
+          8,
+          "&&"
+        ],
+        [
+          "lib/features/entries/domain/usecases/classify_entry.dart",
+          8,
+          ">"
+        ],
+        [
+          "lib/features/entries/domain/usecases/classify_entry.dart",
+          14,
+          ">"
+        ],
+        [
+          "lib/features/entries/domain/usecases/summarize_entries.dart",
+          15,
+          "&&"
+        ],
+        [
+          "lib/features/entries/domain/usecases/validate_entry.dart",
+          5,
+          "&&"
+        ],
+        [
+          "lib/features/entries/domain/usecases/validate_entry.dart",
+          5,
+          "<="
+        ]
+      ],
+      "n_sobreviventes": 8
+    }
+  }
+}

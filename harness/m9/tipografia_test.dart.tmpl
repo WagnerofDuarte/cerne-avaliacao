@@ -1,0 +1,37 @@
+// Injetado pelo harness (H-003) em COPIA temporaria da tag. Nunca versionar em repositorio de app.
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+{{IMPORTS}}
+
+void _coletar(InlineSpan span, TextStyle? herdado, List<Map<String, Object?>> out) {
+  if (span is! TextSpan) return;
+  final estilo = span.style ?? herdado;
+  if (span.text != null && span.text!.trim().isNotEmpty) {
+    out.add({
+      'texto': span.text,
+      'fontFamily': estilo?.fontFamily,
+      'fontSize': estilo?.fontSize,
+    });
+  }
+  for (final c in span.children ?? const <InlineSpan>[]) {
+    _coletar(c, estilo, out);
+  }
+}
+
+void main() {
+  testWidgets('harness: introspeccao tipografica', (tester) async {
+    await tester.pumpWidget(MaterialApp(
+      theme: ThemeData(fontFamily: '{{FAMILIA_PADRAO}}'),
+      home: Scaffold(body: {{WIDGET}}),
+    ));
+    await tester.pump();
+    final out = <Map<String, Object?>>[];
+    for (final e in find.byType(RichText).evaluate()) {
+      _coletar((e.widget as RichText).text, null, out);
+    }
+    File(Platform.environment['HARNESS_OUT']!).writeAsStringSync(jsonEncode(out));
+  });
+}

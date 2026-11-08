@@ -1,0 +1,7 @@
+# estado M9 `pinInicial` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- tapOn: "Toque para desbloquear"
+- tapOn: "Usar PIN"
+- assertVisible: "Digite seu PIN"
+- takeScreenshot: ${CICLO_ANON}-pinInicial

@@ -1,0 +1,36 @@
+# Lista de anonimizacao do avaliador (README de harness/juiz, "Anonimizacao", item 3) — v1.0 (08/11/2026, trilha do harness).
+# CRIADO NA TRILHA PARALELA (excecao prevista pelo plano); entra no hash de harness/juiz/ por desvio (rascunho nas notas).
+# Formato: secoes [termos], [cabecalhos], [diretorios]; '#' comenta; uma regra por linha; regex Python, sem diferenciar caixa.
+# [diretorios] usa `regex => substituicao` e vale para caminhos e para citacoes de caminho no texto.
+# ATENCAO: nomes de persona do BMAD e cabecalhos de template foram escritos de memoria — CONFERIR contra a instalacao
+# real da versao travada (Fase 4) antes do GATE-H02. Substituicao dos termos: [REDACTED].
+
+[termos]
+spec[ -]?kit
+speckit
+\bbmad(?:-method)?\b
+\bbmm\b
+brainstorming session
+\bspecify\b
+# personas do BMAD v6 (conferir)
+\b(?:mary|john|winston|sally|bob|amelia|paige|quinn)\b(?=\s*(?:\(|,|:|-|—)?\s*(?:the\s+)?(?:analyst|pm|product manager|architect|ux|scrum master|developer|dev|tech writer|qa))
+
+[cabecalhos]
+# cabecalhos/rotulos de template que identificam a ferramenta (removidos da linha inteira)
+^#\s*implementation plan:.*$
+^#\s*feature specification:.*$
+^\*\*branch\*\*:.*$
+^\*\*input\*\*:.*$
+^##\s*constitution check.*$
+\[needs clarification[^\]]*\]
+^#\s*story\s+\d+(?:\.\d+)?:.*$
+^status:\s*(?:ready-for-dev|in-progress|review|done)\s*$
+
+[diretorios]
+\.specify/ => plan-meta/
+specs/(\d+)-[^/\s`)\]]+/ => plan-docs/unit-\1/
+specs/ => plan-docs/
+_bmad-output/(?:planning|implementation)-artifacts/ => plan-docs/
+_bmad-output/ => plan-docs/
+_bmad/ => plan-meta/
+\.claude/commands/speckit[^/\s]*\.md => plan-meta/command.md

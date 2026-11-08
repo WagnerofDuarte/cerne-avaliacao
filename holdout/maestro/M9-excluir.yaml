@@ -1,0 +1,12 @@
+# estado M9 `excluir` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- tapOn: "Apagar conta"
+- assertVisible: "Apagar sua conta?"
+- takeScreenshot: ${CICLO_ANON}-excluir

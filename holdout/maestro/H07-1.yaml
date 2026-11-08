@@ -1,0 +1,21 @@
+# H07-1 (RF07) — bloco I, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+# rolar ate o 15o cartao
+- takeScreenshot: ${CICLO_ANON}-H07-1-antes
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "H07-1"}
+- tapOn:
+    point: "7%,8%"   # menu
+- assertVisible: "Sessão expirada"
+- tapOn: "Entrar novamente"
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: disarm}
+# reautenticar
+- takeScreenshot: ${CICLO_ANON}-H07-1-depois

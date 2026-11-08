@@ -1,0 +1,9 @@
+# estado M9 `vazio` (estados-m9.md, conta C)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-vazio@cerne.test", SENHA: "${SENHA_C}"}
+- runFlow: _comum/registros.yaml
+- assertVisible: "Nenhum registro ainda"
+- takeScreenshot: ${CICLO_ANON}-vazio

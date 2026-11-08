@@ -1,0 +1,13 @@
+# H05-1 (RF05) — bloco II, conta C
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-vazio@cerne.test", SENHA: "${SENHA_C}"}
+- runFlow: _comum/registros.yaml
+- tapOn:
+    point: "93%,8%"   # download
+# pedir a exportacao
+- assertVisible: "Nenhum registro nesse período."
+- assertNotVisible: "Baixar PDF"
+- assertNotVisible: "Baixar dados brutos"
