@@ -1,0 +1,16 @@
+ciclo,id_rf,sessao_id,fase,timestamp,origem_msg,categoria,texto
+a,RF05,205997bf-e838-451a-b99c-9e485c3ac655,IMPL,2026-10-24T22:40:27.283Z,humana,retomada,continue
+a,RF05,205997bf-e838-451a-b99c-9e485c3ac655,IMPL,2026-10-24T22:41:07.631Z,humana,retomada,continue the fix
+a,RF04,3222a5e9-9155-4ab0-9fc2-47470ee8ef59,VALID,2026-10-19T20:18:01.470Z,humana,neutra,Yes
+a,RF04,5256ebbb-cd80-4c18-a2ea-c6d410ad2f13,IMPL,2026-10-20T21:13:03.776Z,humana,retomada,continue
+a,RF03,697c3db0-80f8-4685-90e6-ea1afd9e6542,VALID,2026-10-12T01:11:39.893Z,humana,neutra,"Yes, proceed."
+a,RF07,73b80939-a131-4560-be9d-dde7faa25ee4,VALID,2026-10-17T21:05:07.187Z,humana,neutra,"Yes, proceed."
+a,F000,75fccd4c-061d-4bd3-961b-da2fd9a13f4e,VALID,2026-10-11T20:17:59.526Z,humana,neutra,"Yes, proceed."
+a,RF09,a902bd41-a585-4526-a6d6-877ab7936f05,VALID,2026-10-25T02:51:38.111Z,humana,neutra,"Yes, proceed."
+a,RF01,af4e2b24-d2fc-4ef8-9f5b-b2f2ba53cb7e,VALID,2026-10-13T00:34:33.932Z,humana,neutra,"Yes, proceed."
+a,RF02,bb9d25a9-4c02-4792-b451-c4150b279839,ESPEC,2026-10-13T22:34:13.534Z,humana,retomada,continue
+a,RF08,e1a34582-197c-4fee-a92e-5bf724d12d39,VALID,2026-10-23T02:40:30.472Z,humana,neutra,yes
+a,RF07,ec2dffc7-2460-4661-bc0c-884e32f5ba24,ESPEC,2026-10-17T20:26:02.928Z,painel,painel_sem_prefixo,"Use your technical judgment, following the input package."
+a,RF04,ed8c084a-d1dd-4736-a0d1-be66ba77d158,IMPL,2026-10-21T01:10:01.031Z,humana,outra,"The button appears, but it does not work, even when back online"
+a,RF06,edb90482-ee19-42a8-8584-141ab7c5f7c4,VALID,2026-10-18T22:57:15.678Z,humana,neutra,"Yes, proceed."
+a,SETUP,f2b3d499-e974-4a3c-a63f-bf0e116128a1,SETUP,2026-10-11T18:38:18.827Z,humana,outra,/speckit-constitution # P-SETUP — Project principles  Use the principles below as the governing rules for all work in th

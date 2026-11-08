@@ -1,0 +1,280 @@
+ciclo,id_rf,sessao_id,fase,timestamp,gatilho,texto
+b,PLAN,04a9cb57-b94f-4ac9-a27f-a0dbb7ea2963,ESPEC,2026-10-25T18:50:40.077Z,bmad-brainstorming,"Use your technical judgment, following the input package"
+b,PLAN,04a9cb57-b94f-4ac9-a27f-a0dbb7ea2963,ESPEC,2026-10-25T18:53:29.523Z,bmad-brainstorming,"Use your technical judgment, following the input package"
+b,RF01,0566297a-101a-4f45-b795-8f6393b522fc,IMPL,2026-11-04T15:52:42.489Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF01,0566297a-101a-4f45-b795-8f6393b522fc,IMPL,2026-11-04T16:05:26.629Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF01,0566297a-101a-4f45-b795-8f6393b522fc,IMPL,2026-11-04T16:07:23.756Z,bmad-build,A.
+b,RF01,0566297a-101a-4f45-b795-8f6393b522fc,IMPL,2026-11-04T17:14:47.788Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF07,076bbdf0-2328-4b69-9bbf-bbaf0702480e,IMPL,2026-11-05T14:07:36.912Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF07,076bbdf0-2328-4b69-9bbf-bbaf0702480e,IMPL,2026-11-05T14:15:44.902Z,bmad-build,A.
+b,F000,0c783e3e-04ef-4f38-a2e2-2cc0373b6ad4,IMPL,2026-11-02T21:04:14.132Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,F000,0c783e3e-04ef-4f38-a2e2-2cc0373b6ad4,IMPL,2026-11-02T21:07:20.475Z,bmad-build,"Use your technical judgment, following the input package"
+b,F000,0c783e3e-04ef-4f38-a2e2-2cc0373b6ad4,IMPL,2026-11-02T21:16:51.076Z,bmad-build,"Use your technical judgment, following the input package"
+b,F000,0c783e3e-04ef-4f38-a2e2-2cc0373b6ad4,IMPL,2026-11-02T21:20:53.020Z,bmad-build,A.
+b,RF05,1471e62d-ea0d-411f-b9f4-9efd94f44312,VALID,2026-11-07T12:04:39.114Z,bmad-code-review,Story 7-2.
+b,RF05,1471e62d-ea0d-411f-b9f4-9efd94f44312,VALID,2026-11-07T12:05:57.573Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,RF05,1471e62d-ea0d-411f-b9f4-9efd94f44312,VALID,2026-11-07T12:27:55.150Z,bmad-code-review,1.
+b,RF05,1471e62d-ea0d-411f-b9f4-9efd94f44312,VALID,2026-11-07T12:42:01.663Z,bmad-code-review,Y.
+b,RF05,1471e62d-ea0d-411f-b9f4-9efd94f44312,VALID,2026-11-07T12:54:42.554Z,bmad-code-review,1.
+b,RF05,1471e62d-ea0d-411f-b9f4-9efd94f44312,VALID,2026-11-07T13:02:06.792Z,bmad-code-review,Y.
+b,PLAN,17066ef5-9630-47ee-8860-3f01031ae0bf,ESPEC,2026-10-25T19:58:20.652Z,bmad-prfaq,"Start from the product input in docs/input/ (requirements.md, prototype/, backend/) and the earlier outputs in _bmad-output/"
+b,PLAN,17066ef5-9630-47ee-8860-3f01031ae0bf,ESPEC,2026-10-25T20:04:10.225Z,bmad-prfaq,"Use your technical judgment, following the input package"
+b,RF09,19a564df-e263-4fff-bd6e-c0a2593afd27,IMPL,2026-11-07T17:52:32.173Z,bmad-build,A.
+b,RF09,19a564df-e263-4fff-bd6e-c0a2593afd27,IMPL,2026-11-07T18:36:49.950Z,bmad-build,"Use your technical judgment, following the input package"
+b,PLAN,1a7ceb6a-e5a9-44f1-a1ab-0bb078319c7b,ESPEC,2026-10-25T19:32:04.028Z,bmad-deep-recon,"Use your technical judgment, following the input package"
+b,PLAN,1a7ceb6a-e5a9-44f1-a1ab-0bb078319c7b,ESPEC,2026-10-25T19:33:52.228Z,bmad-deep-recon,"Use your technical judgment, following the input package"
+b,RF04,1d53eba4-66d9-4dd4-8e54-4682040550df,IMPL,2026-11-06T02:05:56.484Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF04,1d53eba4-66d9-4dd4-8e54-4682040550df,IMPL,2026-11-06T02:19:22.639Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF04,1d53eba4-66d9-4dd4-8e54-4682040550df,IMPL,2026-11-06T02:19:44.583Z,bmad-build,A.
+b,RF01,1e2a01a2-c784-41f4-ae66-53a289f7dd53,VALID,2026-11-04T18:29:47.364Z,bmad-code-review,Story 3-3.
+b,RF01,1e2a01a2-c784-41f4-ae66-53a289f7dd53,VALID,2026-11-04T18:46:28.505Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF01,1e2a01a2-c784-41f4-ae66-53a289f7dd53,VALID,2026-11-04T18:50:13.290Z,bmad-code-review,1.
+b,RF09,1e77cc0c-cdda-414a-98e7-7179d58b346d,IMPL,2026-11-07T19:48:49.748Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF09,1e77cc0c-cdda-414a-98e7-7179d58b346d,IMPL,2026-11-07T19:56:44.115Z,bmad-build,A
+b,RF09,1e77cc0c-cdda-414a-98e7-7179d58b346d,IMPL,2026-11-07T20:36:14.668Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T13:48:58.577Z,bmad-code-review,Story 8-3.
+b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T14:02:59.889Z,bmad-code-review,1
+b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T14:08:25.395Z,bmad-code-review,3
+b,PLAN,209aefd4-42f6-4088-9ae1-2d76d2885d96,ESPEC,2026-10-25T21:02:43.406Z,bmad-prd,"Use your technical judgment, following the input package"
+b,PLAN,209aefd4-42f6-4088-9ae1-2d76d2885d96,ESPEC,2026-10-25T21:02:43.406Z,bmad-prd,"Use your technical judgment, following the input package"
+b,PLAN,209aefd4-42f6-4088-9ae1-2d76d2885d96,ESPEC,2026-10-25T21:33:19.340Z,bmad-prd,"Use your technical judgment, following the input package."
+b,RF03,291253cc-21bd-426b-8bd7-c6d132bb0cb9,VALID,2026-11-04T02:11:49.723Z,bmad-code-review,Story 2-4.
+b,RF03,291253cc-21bd-426b-8bd7-c6d132bb0cb9,VALID,2026-11-04T02:13:08.578Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF03,291253cc-21bd-426b-8bd7-c6d132bb0cb9,VALID,2026-11-04T02:33:31.512Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF03,291253cc-21bd-426b-8bd7-c6d132bb0cb9,VALID,2026-11-04T02:39:49.459Z,bmad-code-review,1.
+b,RF03,291253cc-21bd-426b-8bd7-c6d132bb0cb9,VALID,2026-11-04T02:52:00.388Z,bmad-code-review,3.
+b,RF04,29741b9e-38ef-42b8-8cdc-4bb2889bd371,VALID,2026-11-06T01:36:28.661Z,bmad-code-review,Story 6-2.
+b,RF04,29741b9e-38ef-42b8-8cdc-4bb2889bd371,VALID,2026-11-06T01:53:48.718Z,bmad-code-review,1.
+b,RF04,29741b9e-38ef-42b8-8cdc-4bb2889bd371,VALID,2026-11-06T01:56:34.371Z,bmad-code-review,3.
+b,RF01,2a4e1a7b-2f19-4f5b-8d54-c27999bdf592,VALID,2026-11-04T14:56:45.384Z,bmad-code-review,Story 3-2
+b,RF01,2a4e1a7b-2f19-4f5b-8d54-c27999bdf592,VALID,2026-11-04T14:58:32.243Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF01,2a4e1a7b-2f19-4f5b-8d54-c27999bdf592,VALID,2026-11-04T15:15:27.922Z,bmad-code-review,1.
+b,RF01,2a4e1a7b-2f19-4f5b-8d54-c27999bdf592,VALID,2026-11-04T15:15:59.415Z,bmad-code-review,1.
+b,RF01,2c30f092-1bd5-4917-8840-99ec1b5c3fc3,VALID,2026-11-05T00:46:17.321Z,bmad-qa-generate-e2e-tests,The features implemented in story 3-4-cancel-safe-capture-across-all-tabs
+b,RF05,2efc6651-c970-49bd-8991-1c7a219df372,IMPL,2026-11-07T16:06:53.491Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF05,2efc6651-c970-49bd-8991-1c7a219df372,IMPL,2026-11-07T16:16:19.903Z,bmad-build,A.
+b,RF05,2efc6651-c970-49bd-8991-1c7a219df372,IMPL,2026-11-07T16:34:57.543Z,bmad-build,"Use your technical judgment, following the input package"
+b,F000,338cd2f7-0032-4347-ba4b-3e65ace7e22d,VALID,2026-10-27T13:19:40.459Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,F000,338cd2f7-0032-4347-ba4b-3e65ace7e22d,VALID,2026-10-27T13:57:52.593Z,bmad-code-review,1.
+b,F000,338cd2f7-0032-4347-ba4b-3e65ace7e22d,VALID,2026-10-27T14:07:52.404Z,bmad-code-review,3.
+b,PLAN,38a4055b-fd6e-41fa-9e11-001f6e0754d8,VALID,2026-11-08T17:13:01.706Z,bmad-retrospective,Yes
+b,RF04,3ba7b748-fdc7-4c79-b2d9-9847aac64cfa,IMPL,2026-11-06T00:13:11.721Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF04,3ba7b748-fdc7-4c79-b2d9-9847aac64cfa,IMPL,2026-11-06T00:22:36.390Z,bmad-build,A.
+b,RF03,3c1e628a-2928-4027-871b-959e49ff8445,IMPL,2026-11-03T16:26:39.990Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF03,3c1e628a-2928-4027-871b-959e49ff8445,IMPL,2026-11-03T16:37:34.650Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF03,3c1e628a-2928-4027-871b-959e49ff8445,IMPL,2026-11-03T16:38:11.915Z,bmad-build,A.
+b,RF09,3f300da0-ca9f-4136-95d0-f12d24b0be40,IMPL,2026-11-08T14:21:41.561Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF09,3f300da0-ca9f-4136-95d0-f12d24b0be40,IMPL,2026-11-08T14:27:55.161Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF09,3f300da0-ca9f-4136-95d0-f12d24b0be40,IMPL,2026-11-08T14:34:27.463Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF09,3f300da0-ca9f-4136-95d0-f12d24b0be40,IMPL,2026-11-08T14:34:46.647Z,bmad-build,A
+b,RF08,41182df5-5a5b-4cd2-a927-c869c6e9b186,VALID,2026-11-06T19:14:57.911Z,bmad-code-review,Story 6-5.
+b,RF08,41182df5-5a5b-4cd2-a927-c869c6e9b186,VALID,2026-11-06T19:16:01.428Z,bmad-code-review,Y.
+b,RF08,41182df5-5a5b-4cd2-a927-c869c6e9b186,VALID,2026-11-06T19:31:56.621Z,bmad-code-review,1
+b,RF05,42531af7-e672-4338-9b96-a29c1926596b,VALID,2026-11-07T02:55:01.507Z,bmad-qa-generate-e2e-tests,The features implemented in story 7-1-request-a-period-export-job-status-tracking
+b,RF07,4e274230-bba3-41b7-9d57-97a54d5a614c,VALID,2026-11-05T14:53:26.452Z,bmad-code-review,Story 4-4.
+b,RF07,4e274230-bba3-41b7-9d57-97a54d5a614c,VALID,2026-11-05T15:06:56.729Z,bmad-code-review,1.
+b,RF07,4e274230-bba3-41b7-9d57-97a54d5a614c,VALID,2026-11-05T15:07:36.271Z,bmad-code-review,A.
+b,RF07,4e9ca56b-8179-42be-a364-3cff20eaf884,IMPL,2026-11-05T04:41:15.659Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF07,4e9ca56b-8179-42be-a364-3cff20eaf884,IMPL,2026-11-05T04:46:33.310Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF07,4e9ca56b-8179-42be-a364-3cff20eaf884,IMPL,2026-11-05T04:52:37.399Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF07,4e9ca56b-8179-42be-a364-3cff20eaf884,IMPL,2026-11-05T04:53:23.950Z,bmad-build,A.
+b,RF07,4e9ca56b-8179-42be-a364-3cff20eaf884,IMPL,2026-11-05T05:32:23.282Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF07,4f524637-a745-4d69-8c4f-957f97fc71bc,VALID,2026-11-05T04:33:46.526Z,bmad-qa-generate-e2e-tests,The features implemented in story 4-1-chronological-entry-list-with-origin-marking
+b,F000,4f7d10e4-def4-4d96-bc0f-40441e57dc19,VALID,2026-10-27T15:07:48.816Z,bmad-code-review,Y.
+b,F000,4f7d10e4-def4-4d96-bc0f-40441e57dc19,VALID,2026-10-27T15:11:31.548Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,F000,4f7d10e4-def4-4d96-bc0f-40441e57dc19,VALID,2026-10-27T16:35:19.120Z,bmad-code-review,1.
+b,F000,4f7d10e4-def4-4d96-bc0f-40441e57dc19,VALID,2026-10-27T16:43:03.300Z,bmad-code-review,3.
+b,RF09,52022b8e-0c6c-4d28-bb7e-3201618dddc8,VALID,2026-11-08T14:10:22.348Z,bmad-qa-generate-e2e-tests,"Use your technical judgment, following the input package"
+b,RF09,52022b8e-0c6c-4d28-bb7e-3201618dddc8,VALID,2026-11-08T14:10:22.348Z,bmad-qa-generate-e2e-tests,8-3
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:33:50.208Z,bmad-create-epics-and-stories,"Use your technical judgment, following the input package"
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:36:49.961Z,bmad-create-epics-and-stories,C.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:41:00.897Z,bmad-create-epics-and-stories,P.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:44:44.775Z,bmad-create-epics-and-stories,"Use your technical judgment, following the input package"
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:46:44.181Z,bmad-create-epics-and-stories,"Use your technical judgment, following the input package"
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:48:32.773Z,bmad-create-epics-and-stories,C.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:58:26.597Z,bmad-create-epics-and-stories,Yes
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T01:59:43.016Z,bmad-create-epics-and-stories,Yes.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:00:47.358Z,bmad-create-epics-and-stories,Yes.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:01:43.784Z,bmad-create-epics-and-stories,Yes.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:02:24.316Z,bmad-create-epics-and-stories,Yes.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:03:28.244Z,bmad-create-epics-and-stories,Yes
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:04:20.948Z,bmad-create-epics-and-stories,Yes.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:06:11.359Z,bmad-create-epics-and-stories,Yes.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:07:19.722Z,bmad-create-epics-and-stories,P.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:09:23.564Z,bmad-create-epics-and-stories,"Use your technical judgment, following the input package."
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:10:20.722Z,bmad-create-epics-and-stories,C.
+b,PLAN,54fb33a0-7199-42cf-9e41-e21c08474b4e,ESPEC,2026-10-27T02:12:11.563Z,bmad-create-epics-and-stories,C.
+b,PLAN,5802186b-5856-4aef-91a8-a0846a3b31db,ESPEC,2026-10-27T01:08:16.227Z,bmad-architecture,"Use your technical judgment, following the input package"
+b,PLAN,5802186b-5856-4aef-91a8-a0846a3b31db,ESPEC,2026-10-27T01:08:16.227Z,bmad-architecture,"Use your technical judgment, following the input package"
+b,RF08,5809ad3b-2152-4fa6-b6ae-6c6b23435845,IMPL,2026-11-06T17:00:05.073Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF08,5809ad3b-2152-4fa6-b6ae-6c6b23435845,IMPL,2026-11-06T17:00:40.786Z,bmad-build,A.
+b,RF04,591017e6-ada1-4c05-986d-e48038400024,VALID,2026-11-06T04:07:49.938Z,bmad-qa-generate-e2e-tests,The features implemented in story 6-3-dropped-stream-resilience-offline-composer-lock
+b,RF01,5c86d6b5-68b0-4b92-bf03-3756aed536a7,IMPL,2026-11-04T13:33:21.435Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF01,5c86d6b5-68b0-4b92-bf03-3756aed536a7,IMPL,2026-11-04T13:45:43.710Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF01,5c86d6b5-68b0-4b92-bf03-3756aed536a7,IMPL,2026-11-04T13:46:06.814Z,bmad-build,A.
+b,RF04,5c9f49dc-4130-4f15-95fc-e8d8781fd2d2,IMPL,2026-11-05T22:05:10.862Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF04,5c9f49dc-4130-4f15-95fc-e8d8781fd2d2,IMPL,2026-11-05T22:05:35.586Z,bmad-build,A.
+b,RF03,5cc9e559-74ce-411d-a25f-88c23111e811,IMPL,2026-11-03T18:46:39.712Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF03,5cc9e559-74ce-411d-a25f-88c23111e811,IMPL,2026-11-03T18:52:06.090Z,bmad-build,A.
+b,PLAN,5fb261f7-fdb4-4584-b81a-a53ec40f4bc1,ESPEC,2026-10-25T20:30:29.044Z,bmad-product-brief,"Use your technical judgment, following the input package"
+b,PLAN,5fb261f7-fdb4-4584-b81a-a53ec40f4bc1,ESPEC,2026-10-25T20:36:47.505Z,bmad-product-brief,"Use your technical judgment, following the input package"
+b,PLAN,61a2dc09-2a4b-4f84-a123-e6847f88532e,ESPEC,2026-10-26T20:09:27.775Z,bmad-prd,"Use your technical judgment, following the input package"
+b,PLAN,61a2dc09-2a4b-4f84-a123-e6847f88532e,ESPEC,2026-10-26T20:24:52.783Z,bmad-prd,"Use your technical judgment, following the input package"
+b,RF03,697a471a-31bf-4aa6-8546-dd1e287aea26,IMPL,2026-11-03T15:00:13.119Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF03,697a471a-31bf-4aa6-8546-dd1e287aea26,IMPL,2026-11-03T15:02:54.186Z,bmad-build,A.
+b,RF06,69815e77-5300-4898-a30e-b768388f1677,IMPL,2026-11-05T15:58:19.095Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF06,69815e77-5300-4898-a30e-b768388f1677,IMPL,2026-11-05T15:58:19.095Z,bmad-build,A.
+b,F000,6bcb302e-350f-4a2b-862c-08328baf1058,VALID,2026-11-03T13:43:19.048Z,bmad-code-review,Y.
+b,F000,6bcb302e-350f-4a2b-862c-08328baf1058,VALID,2026-11-03T13:45:48.846Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,6bcb302e-350f-4a2b-862c-08328baf1058,VALID,2026-11-03T14:04:06.542Z,bmad-code-review,1
+b,F000,6bcb302e-350f-4a2b-862c-08328baf1058,VALID,2026-11-03T14:12:22.598Z,bmad-code-review,3.
+b,RF01,6f0e247a-5048-47cc-9012-d490a1c1ce79,VALID,2026-11-05T00:20:28.691Z,bmad-code-review,Story 3-4.
+b,RF01,6f0e247a-5048-47cc-9012-d490a1c1ce79,VALID,2026-11-05T00:34:10.121Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF01,6f0e247a-5048-47cc-9012-d490a1c1ce79,VALID,2026-11-05T00:36:45.538Z,bmad-code-review,1.
+b,RF01,6f0e247a-5048-47cc-9012-d490a1c1ce79,VALID,2026-11-05T00:41:03.327Z,bmad-code-review,1.
+b,RF09,6f49585d-d493-4dfd-be18-d90ab6a6328b,VALID,2026-11-07T21:17:51.983Z,bmad-qa-generate-e2e-tests,The features implemented in story 8-2-independent-narrative-text-narrative-unavailable-state
+b,RF06,76d48c7a-d576-448c-82b3-af8544806a9e,IMPL,2026-11-05T19:21:16.264Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF06,76d48c7a-d576-448c-82b3-af8544806a9e,IMPL,2026-11-05T19:28:38.318Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF06,76d48c7a-d576-448c-82b3-af8544806a9e,IMPL,2026-11-05T19:28:38.318Z,bmad-build,A.
+b,RF03,79cf0ec5-4697-4b1b-a109-6992e68ac127,IMPL,2026-11-04T03:29:52.515Z,(correcao),"Use your technical judgment, following the input package."
+b,RF09,79ed7a52-07cd-408f-bb2f-5e02729ac52a,VALID,2026-11-07T20:56:08.618Z,bmad-code-review,Story 8-2.
+b,RF09,79ed7a52-07cd-408f-bb2f-5e02729ac52a,VALID,2026-11-07T21:06:50.816Z,bmad-code-review,1
+b,RF01,7bece975-acf3-44b0-8ece-a20d932569f1,VALID,2026-11-04T12:22:31.464Z,bmad-code-review,Story 3-1.
+b,RF01,7bece975-acf3-44b0-8ece-a20d932569f1,VALID,2026-11-04T12:50:06.301Z,bmad-code-review,1.
+b,RF01,7bece975-acf3-44b0-8ece-a20d932569f1,VALID,2026-11-04T12:53:33.955Z,bmad-code-review,3.
+b,RF06,7c48b898-a7fe-4cc4-ba4e-251b7268947f,VALID,2026-11-05T18:36:13.854Z,bmad-code-review,Story 5-2.
+b,RF06,7c48b898-a7fe-4cc4-ba4e-251b7268947f,VALID,2026-11-05T18:38:03.477Z,bmad-code-review,A
+b,RF06,7c48b898-a7fe-4cc4-ba4e-251b7268947f,VALID,2026-11-05T18:52:18.542Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,RF06,7c48b898-a7fe-4cc4-ba4e-251b7268947f,VALID,2026-11-05T18:53:14.081Z,bmad-code-review,1.
+b,RF06,7c48b898-a7fe-4cc4-ba4e-251b7268947f,VALID,2026-11-05T19:07:30.526Z,bmad-code-review,3.
+b,PLAN,7c88848c-e176-4f2f-b73e-72ffe277b2de,VALID,2026-11-08T17:37:42.065Z,bmad-retrospective,All other epics 1 to 7
+b,RF04,7cf385ce-c425-4d7e-b961-8381d079304a,VALID,2026-11-06T03:44:29.360Z,bmad-code-review,Story 6-3.
+b,RF04,7cf385ce-c425-4d7e-b961-8381d079304a,VALID,2026-11-06T03:45:23.231Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,RF04,7cf385ce-c425-4d7e-b961-8381d079304a,VALID,2026-11-06T03:56:39.421Z,bmad-code-review,1.
+b,RF04,7cf385ce-c425-4d7e-b961-8381d079304a,VALID,2026-11-06T04:04:55.694Z,bmad-code-review,3
+b,RF09,7d3062e3-2385-414e-b47b-804d2314cf5e,VALID,2026-11-07T19:37:33.965Z,bmad-qa-generate-e2e-tests,8-1
+b,RF09,7d53d1a2-9962-43eb-b511-514f65dd1cfd,VALID,2026-11-07T19:02:30.446Z,bmad-code-review,Story 8-1.
+b,RF09,7d53d1a2-9962-43eb-b511-514f65dd1cfd,VALID,2026-11-07T19:18:45.401Z,bmad-code-review,1
+b,RF09,7d53d1a2-9962-43eb-b511-514f65dd1cfd,VALID,2026-11-07T19:30:48.703Z,bmad-code-review,Done
+b,RF03,82e2f38f-933c-42d7-9a91-d5323e5aeb01,VALID,2026-11-03T15:46:51.119Z,bmad-code-review,Story 2-1
+b,RF03,82e2f38f-933c-42d7-9a91-d5323e5aeb01,VALID,2026-11-03T16:04:59.417Z,bmad-code-review,1
+b,RF03,82e2f38f-933c-42d7-9a91-d5323e5aeb01,VALID,2026-11-03T16:08:28.149Z,bmad-code-review,3.
+b,RF07,85527bc7-1b75-498d-b39f-871f8d3b8bbb,IMPL,2026-11-05T06:31:51.141Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF07,85527bc7-1b75-498d-b39f-871f8d3b8bbb,IMPL,2026-11-05T06:37:49.640Z,bmad-build,A.
+b,RF03,873f8f9d-b6c5-4b5d-ac4a-83e3ebb5f38e,VALID,2026-11-03T18:07:46.680Z,bmad-code-review,Story 2-2.
+b,RF03,873f8f9d-b6c5-4b5d-ac4a-83e3ebb5f38e,VALID,2026-11-03T18:19:42.110Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF03,873f8f9d-b6c5-4b5d-ac4a-83e3ebb5f38e,VALID,2026-11-03T18:20:22.414Z,bmad-code-review,1.
+b,RF03,873f8f9d-b6c5-4b5d-ac4a-83e3ebb5f38e,VALID,2026-11-03T18:28:43.126Z,bmad-code-review,3.
+b,RF06,89513048-ef2b-489e-a76e-72da36eeecc0,IMPL,2026-11-05T17:17:54.571Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF06,89513048-ef2b-489e-a76e-72da36eeecc0,IMPL,2026-11-05T17:30:38.607Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF06,89513048-ef2b-489e-a76e-72da36eeecc0,IMPL,2026-11-05T17:30:59.015Z,bmad-build,A.
+b,RF07,89c7f5d0-b103-419f-8850-5a0da81d88c7,VALID,2026-11-05T05:55:56.910Z,bmad-code-review,Story 4-2.
+b,RF07,89c7f5d0-b103-419f-8850-5a0da81d88c7,VALID,2026-11-05T05:59:30.620Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF07,89c7f5d0-b103-419f-8850-5a0da81d88c7,VALID,2026-11-05T06:13:55.200Z,bmad-code-review,1.
+b,RF07,89c7f5d0-b103-419f-8850-5a0da81d88c7,VALID,2026-11-05T06:18:07.035Z,bmad-code-review,3.
+b,RF01,8bb4189b-d22f-4d1f-a536-61150bfeca57,IMPL,2026-11-04T11:23:17.061Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF01,8bb4189b-d22f-4d1f-a536-61150bfeca57,IMPL,2026-11-04T11:25:09.412Z,bmad-build,A.
+b,F000,8bb4e6a7-f09e-4ea1-a0af-8102ec8d524c,IMPL,2026-10-27T23:05:23.324Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project.
+b,F000,8bb4e6a7-f09e-4ea1-a0af-8102ec8d524c,IMPL,2026-10-27T23:13:43.152Z,bmad-build,A.
+b,RF05,8dc18c66-9d74-4177-9f4a-f7f0b83dd470,VALID,2026-11-07T01:40:57.884Z,bmad-code-review,Story 7-1.
+b,RF05,8dc18c66-9d74-4177-9f4a-f7f0b83dd470,VALID,2026-11-07T02:18:15.482Z,bmad-code-review,1
+b,RF05,8dc18c66-9d74-4177-9f4a-f7f0b83dd470,VALID,2026-11-07T02:48:27.243Z,bmad-code-review,3
+b,PLAN,96d046e3-c486-47b0-9388-2c729732a35b,ESPEC,2026-10-25T19:14:12.864Z,bmad-forge-idea,"Start from the product input in docs/input/ (requirements.md, prototype/, backend/) and the earlier outputs in _bmad-output/"
+b,PLAN,96d046e3-c486-47b0-9388-2c729732a35b,ESPEC,2026-10-25T19:15:11.856Z,bmad-forge-idea,"Use your technical judgment, following the input package"
+b,PLAN,96d046e3-c486-47b0-9388-2c729732a35b,ESPEC,2026-10-25T19:15:11.856Z,bmad-forge-idea,"Use your technical judgment, following the input package"
+b,PLAN,96d046e3-c486-47b0-9388-2c729732a35b,ESPEC,2026-10-25T19:19:06.718Z,bmad-forge-idea,"Use your technical judgment, following the input package"
+b,RF03,9b74a01d-393e-4cff-af09-7fd2becd2264,IMPL,2026-11-03T20:41:37.318Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF03,9b74a01d-393e-4cff-af09-7fd2becd2264,IMPL,2026-11-03T20:58:13.819Z,bmad-build,A.
+b,RF06,9eb6d2a9-2685-4591-8c27-2c0cf091a467,VALID,2026-11-05T20:23:52.224Z,bmad-code-review,Y
+b,RF06,9eb6d2a9-2685-4591-8c27-2c0cf091a467,VALID,2026-11-05T20:37:41.860Z,bmad-code-review,1
+b,RF06,9eb6d2a9-2685-4591-8c27-2c0cf091a467,VALID,2026-11-05T20:40:17.117Z,bmad-code-review,3.
+b,RF05,a6d688b3-0006-40c2-9a5a-ac79846aa75f,IMPL,2026-11-06T22:16:24.652Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF05,a6d688b3-0006-40c2-9a5a-ac79846aa75f,IMPL,2026-11-06T22:18:33.688Z,bmad-build,A.
+b,F000,ac121b0b-b9aa-4a21-9ab8-c0c6eba8195d,IMPL,2026-10-27T14:27:36.953Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,F000,ac121b0b-b9aa-4a21-9ab8-c0c6eba8195d,IMPL,2026-10-27T14:31:57.667Z,bmad-build,A
+b,RF09,acdd4f88-08cf-4a7d-99f7-3af469654ecf,VALID,2026-11-08T15:17:13.088Z,bmad-code-review,8-4
+b,RF09,acdd4f88-08cf-4a7d-99f7-3af469654ecf,VALID,2026-11-08T15:18:10.689Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,RF09,acdd4f88-08cf-4a7d-99f7-3af469654ecf,VALID,2026-11-08T15:31:07.324Z,bmad-code-review,Apply
+b,RF09,acdd4f88-08cf-4a7d-99f7-3af469654ecf,VALID,2026-11-08T15:39:25.529Z,bmad-code-review,3
+b,RF01,b30b9b55-b7d7-421f-b298-1a73a1f7df2d,IMPL,2026-11-04T19:10:23.173Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF01,b30b9b55-b7d7-421f-b298-1a73a1f7df2d,IMPL,2026-11-04T19:18:32.683Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF01,b30b9b55-b7d7-421f-b298-1a73a1f7df2d,IMPL,2026-11-04T19:23:29.880Z,bmad-build,A.
+b,RF01,b30b9b55-b7d7-421f-b298-1a73a1f7df2d,IMPL,2026-11-04T19:48:06.830Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF10,b4b21209-dfc0-4877-b748-f4108acbaf1b,IMPL,2026-11-06T13:22:19.140Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF10,b4b21209-dfc0-4877-b748-f4108acbaf1b,IMPL,2026-11-06T13:22:37.499Z,bmad-build,A.
+b,RF10,b4b21209-dfc0-4877-b748-f4108acbaf1b,IMPL,2026-11-06T13:57:22.113Z,bmad-build,"Use your technical judgment, following the input package"
+b,RF10,b4b21209-dfc0-4877-b748-f4108acbaf1b,IMPL,2026-11-06T14:01:41.790Z,bmad-build,A.
+b,RF04,b9c686af-3132-4595-9086-ce20d5f04c76,VALID,2026-11-05T23:48:12.926Z,bmad-qa-generate-e2e-tests,The features implemented in story 6-1-send-message-receive-rag-grounded-streaming-response
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:38:07.248Z,bmad-ux,The UX source is the frozen prototype in docs/input/prototype/ (cerne-prototype.html and prototype-extract.md). Do not change the prototype
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:44:44.799Z,bmad-ux,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:44:44.799Z,bmad-ux,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:44:44.799Z,bmad-ux,"Use your technical judgment, following the input package"
+b,PLAN,bab4443d-96c0-4ced-963a-04b49297e3bc,ESPEC,2026-10-26T20:54:00.774Z,bmad-ux,"Use your technical judgment, following the input package"
+b,RF10,be3f9101-c83b-4aab-9a54-2fc1ba7e4773,VALID,2026-11-06T16:08:26.925Z,bmad-code-review,Story 6-4.
+b,RF10,be3f9101-c83b-4aab-9a54-2fc1ba7e4773,VALID,2026-11-06T16:19:14.948Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,RF10,be3f9101-c83b-4aab-9a54-2fc1ba7e4773,VALID,2026-11-06T16:32:11.101Z,bmad-code-review,3
+b,F000,c2faa7f6-5fa8-451e-a6ea-48e2b307c8be,VALID,2026-11-02T20:19:32.182Z,bmad-code-review,Yes
+b,F000,c2faa7f6-5fa8-451e-a6ea-48e2b307c8be,VALID,2026-11-02T20:19:32.182Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,c2faa7f6-5fa8-451e-a6ea-48e2b307c8be,VALID,2026-11-02T20:21:42.378Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,c2faa7f6-5fa8-451e-a6ea-48e2b307c8be,VALID,2026-11-02T20:47:35.106Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,c2faa7f6-5fa8-451e-a6ea-48e2b307c8be,VALID,2026-11-02T20:52:30.141Z,bmad-code-review,3.
+b,RF05,c6f3e67f-4853-463c-8068-2d4f7378cda8,VALID,2026-11-07T17:00:06.755Z,bmad-code-review,Story 7-3.
+b,RF05,c6f3e67f-4853-463c-8068-2d4f7378cda8,VALID,2026-11-07T17:19:28.374Z,bmad-code-review,1.
+b,RF05,c6f3e67f-4853-463c-8068-2d4f7378cda8,VALID,2026-11-07T17:20:28.722Z,bmad-code-review,1.
+b,RF05,c6f3e67f-4853-463c-8068-2d4f7378cda8,VALID,2026-11-07T17:21:40.724Z,bmad-code-review,3
+b,RF07,c97175aa-11bf-439b-8969-dd19687a8a34,IMPL,2026-11-05T03:05:02.294Z,bmad-build,A.
+b,F000,cb26c421-afc2-4fce-83ef-b3633806d0b5,VALID,2026-10-28T02:27:28.375Z,bmad-code-review,Story 1-4
+b,F000,cb26c421-afc2-4fce-83ef-b3633806d0b5,VALID,2026-10-28T02:46:45.315Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,cb26c421-afc2-4fce-83ef-b3633806d0b5,VALID,2026-10-28T02:48:44.470Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,cb26c421-afc2-4fce-83ef-b3633806d0b5,VALID,2026-10-28T02:54:01.901Z,bmad-code-review,3
+b,F000,cd7cbaf2-cfb6-4a84-9e57-8dcf52474860,IMPL,2026-10-27T17:09:19.215Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,F000,cd7cbaf2-cfb6-4a84-9e57-8dcf52474860,IMPL,2026-10-27T17:19:56.581Z,bmad-build,"Use your technical judgment, following the input package"
+b,F000,cd7cbaf2-cfb6-4a84-9e57-8dcf52474860,IMPL,2026-10-27T17:20:53.250Z,bmad-build,A.
+b,F000,cfdba07c-5253-4bab-ad6c-b2ecfdf3de15,IMPL,2026-10-29T00:17:09.272Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,F000,cfdba07c-5253-4bab-ad6c-b2ecfdf3de15,IMPL,2026-10-29T00:30:36.883Z,bmad-build,"Use your technical judgment, following the input package."
+b,F000,cfdba07c-5253-4bab-ad6c-b2ecfdf3de15,IMPL,2026-10-29T00:32:01.115Z,bmad-build,A.
+b,F000,d1fc7bc9-34f3-4b31-8779-2d8730bef565,VALID,2026-10-27T21:20:41.173Z,bmad-code-review,Story 1-3 (account creation & login).
+b,F000,d1fc7bc9-34f3-4b31-8779-2d8730bef565,VALID,2026-10-27T21:34:12.624Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,d1fc7bc9-34f3-4b31-8779-2d8730bef565,VALID,2026-10-27T21:37:44.998Z,bmad-code-review,1.
+b,F000,d1fc7bc9-34f3-4b31-8779-2d8730bef565,VALID,2026-10-27T21:47:37.013Z,bmad-code-review,3.
+b,RF09,d326f5f3-50c7-4a1f-98e2-701645cd2544,IMPL,2026-11-08T15:52:22.334Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF09,d326f5f3-50c7-4a1f-98e2-701645cd2544,IMPL,2026-11-08T16:00:21.927Z,bmad-build,A.
+b,RF06,d4a3fc3b-9540-4fa2-bcc9-5ae8f8944947,VALID,2026-11-05T17:05:49.229Z,bmad-qa-generate-e2e-tests,The features implemented in story 5-1-semantic-search-with-debounced-input
+b,RF01,d633c320-e334-43d6-829f-b909431f0c07,VALID,2026-11-04T19:57:47.888Z,bmad-code-review,Story 3-4.
+b,RF03,d65dfb2d-474d-49e4-99dd-292ffbecd9f9,VALID,2026-11-03T19:17:55.157Z,bmad-code-review,Story 2-3.
+b,RF03,d65dfb2d-474d-49e4-99dd-292ffbecd9f9,VALID,2026-11-03T19:41:53.867Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF03,d65dfb2d-474d-49e4-99dd-292ffbecd9f9,VALID,2026-11-03T19:41:53.867Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF03,d65dfb2d-474d-49e4-99dd-292ffbecd9f9,VALID,2026-11-03T19:45:29.968Z,bmad-code-review,1.
+b,RF03,d65dfb2d-474d-49e4-99dd-292ffbecd9f9,VALID,2026-11-03T20:02:29.058Z,bmad-code-review,3
+b,RF05,dcad482a-2ade-4a81-9e96-3d11bc5b3f29,IMPL,2026-11-07T03:16:27.868Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF05,dcad482a-2ade-4a81-9e96-3d11bc5b3f29,IMPL,2026-11-07T03:47:42.122Z,bmad-build,A.
+b,RF09,e7047020-f13b-4408-9973-86e4e5176511,IMPL,2026-11-07T21:23:43.397Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
+b,RF09,e7047020-f13b-4408-9973-86e4e5176511,IMPL,2026-11-08T12:46:15.787Z,bmad-build,A
+b,RF01,e9c11fc2-936c-4acc-9e0f-89b16fec6eea,VALID,2026-11-04T17:20:59.114Z,bmad-code-review,Story 3-3.
+b,RF01,e9c11fc2-936c-4acc-9e0f-89b16fec6eea,VALID,2026-11-04T17:22:12.467Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF01,e9c11fc2-936c-4acc-9e0f-89b16fec6eea,VALID,2026-11-04T17:22:51.878Z,bmad-code-review,Y.
+b,RF01,e9c11fc2-936c-4acc-9e0f-89b16fec6eea,VALID,2026-11-04T17:54:58.805Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF01,e9c11fc2-936c-4acc-9e0f-89b16fec6eea,VALID,2026-11-04T17:57:22.234Z,bmad-code-review,1.
+b,RF09,ee3ce42a-4d22-43c6-b2a5-7dc1b8ea5cb9,VALID,2026-11-08T16:38:02.439Z,bmad-code-review,Story 8-5.
+b,RF09,ee3ce42a-4d22-43c6-b2a5-7dc1b8ea5cb9,VALID,2026-11-08T16:50:46.989Z,bmad-code-review,1.
+b,RF09,ee3ce42a-4d22-43c6-b2a5-7dc1b8ea5cb9,VALID,2026-11-08T16:57:38.535Z,bmad-code-review,3.
+b,F000,f04da97f-23ff-4115-8fc6-f42076a21563,IMPL,2026-10-27T11:59:49.613Z,bmad-build,"Use your technical judgment, following the input package"
+b,F000,f04da97f-23ff-4115-8fc6-f42076a21563,IMPL,2026-10-27T12:00:57.005Z,bmad-build,A.
+b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:16:50.232Z,bmad-code-review,Story 6-1.
+b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:19:11.674Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:35:55.489Z,bmad-code-review,1.
+b,RF04,f3edc292-5e9b-4a9f-abb3-542a964bb037,VALID,2026-11-05T23:40:36.673Z,bmad-code-review,1.
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:08:50.760Z,bmad-code-review,Story 4-1
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:09:32.361Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:24:40.713Z,bmad-code-review,1.
+b,RF07,f421f7b7-531d-4b1a-9236-44d13cff81a0,VALID,2026-11-05T04:30:08.506Z,bmad-code-review,3.
+b,RF07,f6aab34d-8c99-40fb-b978-4e95009798cc,VALID,2026-11-05T07:02:19.952Z,bmad-code-review,Story 4-3.
+b,RF07,f6aab34d-8c99-40fb-b978-4e95009798cc,VALID,2026-11-05T07:16:07.122Z,bmad-code-review,1.
+b,RF06,fbaba261-426b-4997-9764-863e3551feb5,VALID,2026-11-05T16:39:32.412Z,bmad-code-review,Story 5-1.
+b,RF06,fbaba261-426b-4997-9764-863e3551feb5,VALID,2026-11-05T16:56:59.702Z,bmad-code-review,1.
+b,RF06,fbaba261-426b-4997-9764-863e3551feb5,VALID,2026-11-05T17:01:44.474Z,bmad-code-review,3.
+b,F000,fc0a4a82-4e85-473e-82b5-7362ba1ab9b4,VALID,2026-10-27T20:49:15.576Z,bmad-code-review,"Use your technical judgment, following the input package"
+b,F000,fc0a4a82-4e85-473e-82b5-7362ba1ab9b4,VALID,2026-10-27T20:51:29.889Z,bmad-code-review,Yes
+b,F000,fc0a4a82-4e85-473e-82b5-7362ba1ab9b4,VALID,2026-10-27T21:05:05.327Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,fc0a4a82-4e85-473e-82b5-7362ba1ab9b4,VALID,2026-10-27T21:08:27.734Z,bmad-code-review,"Use your technical judgment, following the input package."
+b,F000,fc0a4a82-4e85-473e-82b5-7362ba1ab9b4,VALID,2026-10-27T21:12:45.350Z,bmad-code-review,3.
