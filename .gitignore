@@ -5,4 +5,5 @@ calibracao/saida/
 node_modules/
 .dart_tool/
 coverage/
-pubspec.lock
+calibracao/v1/pubspec.lock
+calibracao/v2/pubspec.lock

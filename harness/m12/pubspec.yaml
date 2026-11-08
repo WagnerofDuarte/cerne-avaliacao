@@ -1,0 +1,10 @@
+name: m12
+description: CLI do harness para a M12 (complexidade ciclomatica de McCabe) sobre a AST do package:analyzer.
+publish_to: none
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+dependencies:
+  analyzer: ^8.0.0
+  args: ^2.5.0
+dev_dependencies:
+  test: ^1.25.0
