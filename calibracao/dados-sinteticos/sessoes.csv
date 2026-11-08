@@ -1,0 +1,4 @@
+ciclo,id_rf,sessao_id,tipo_sessao,inicio,duracao_s,tokens_input,tokens_output,cache_read,cache_write,sub_tokens_input,sub_tokens_output,sub_cache_read,sub_cache_write,custo_usd
+A,SETUP,inst-A,instalacao,2026-10-01T09:00:00-03:00,600,0,0,0,0,0,0,0,0,0
+A,SETUP,s1,desenvolvimento,2026-10-01T09:10:00-03:00,1800,100,50,400,200,10,5,20,10,0.5
+A,F000,s2,desenvolvimento,2026-10-01T10:00:00-03:00,3600,300,150,600,100,0,0,0,0,1.5
