@@ -111,6 +111,13 @@ class TestLivres(unittest.TestCase):
         out = rd.free_messages(seg, "b", "RF01", "s1")
         self.assertEqual([o["categoria"] for o in out], ["retomada"])
 
+    def test_interrupcao_e_listada_mesmo_sem_origem_humana(self):
+        recs = [{"type": "user", "timestamp": "2026-01-01T00:00:00Z", "uuid": "u9",
+                 "message": {"role": "user", "content": [{"type": "text", "text": "[Request interrupted by user for tool use]"}]}}]
+        seg = col.segment_by_phase(recs)
+        out = rd.free_messages(seg, "b", "RF01", "s1")
+        self.assertEqual([o["categoria"] for o in out], ["interrupcao"])
+
 
 class TestCiclo(unittest.TestCase):
     """Fim a fim com um ciclo sintético: duplicata de coleta, sessão sem coleta, uma linha por sessão."""

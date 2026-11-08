@@ -228,10 +228,30 @@ def categorize_free(text: str) -> str:
     return "outra"
 
 
+def interrupt_text(rec: dict[str, Any]) -> str | None:
+    """`[Request interrupted by user ...]`: o transcrito grava a interrupção (Esc)
+    como registro `user` sem `origin.kind: human`."""
+    if rec.get("type") != "user":
+        return None
+    content = (rec.get("message") or {}).get("content")
+    texts = [content] if isinstance(content, str) else [
+        b.get("text", "") for b in (content or []) if isinstance(b, dict) and b.get("type") == "text"
+    ]
+    for t in texts:
+        if INTERRUPT_RE.match((t or "").strip()):
+            return t.strip()
+    return None
+
+
 def free_messages(segmented, ciclo: str, id_rf: str, sessao_id: str) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
     for rec, fase, _ in segmented:
         ts = rec.get("timestamp", "")
+        it = interrupt_text(rec)
+        if it is not None:
+            out.append({"ciclo": ciclo, "id_rf": id_rf, "sessao_id": sessao_id, "fase": fase, "timestamp": ts,
+                        "origem_msg": "sistema", "categoria": "interrupcao", "texto": it[:120].replace("\n", " ")})
+            continue
         if col.is_human_user_record(rec):
             raw = _orig_human_message_text(rec)
             if "<command-name>" in raw or COLETAR_RE.search(raw):
