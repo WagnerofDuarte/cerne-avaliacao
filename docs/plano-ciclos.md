@@ -1323,3 +1323,12 @@ Só começa depois do `GATE-B05` e do `GATE-H02`. É o primeiro momento em que n
 ---
 
 *Checklist mestre gerado a partir dos documentos-fonte listados no cabeçalho. Em caso de divergência entre este arquivo e os documentos-fonte, os documentos-fonte prevalecem até o congelamento; depois dele, prevalece o protocolo congelado, e toda divergência vai para o registro de desvios.*
+
+
+## Registro da escrita da monografia (08/11/2026)
+
+- **Documento:** "Monografia Inicial - TCC2" (Google Docs `1rw6oi6yfNMk5ppwVjzQOET3mZ13zk6XaVq1lUjbp0Rg`); cópia de segurança anterior à escrita: `18t2cKVE463MDDKi3RfTDngHguI4IlUKv5vHKYyC-tpY`; instantâneo em texto: `docs/monografia/monografia-2026-11-08.md` (a fonte de verdade é o Google Docs).
+- **Escrito nesta data, sem alterar o texto do capítulo 3:** Resumo e Abstract; Lista de Tabelas e Quadros 19 a 21; 4.1 a 4.8 (Tabelas 1 a 6 e Quadro 19); 5.1 a 5.4; completar 6.2 e 6.3; 7.1 e 7.3 (limitações da execução); Apêndice F (Quadro 20, desvios agrupados) e Apêndice G (Quadro 21, conferências do `/context`).
+- **Análise pareada (nova):** `harness/h007/analise_pareada.py` grava `dados/processo/pareado_pares.csv` e `pareado_testes.csv` (9 pares; Wilcoxon-Pratt, p exato; censura no teto só no tempo). Adaptações no **D-098**.
+- **Métricas de produto (M6 a M15) e validação do avaliador:** declaradas "não avaliadas nesta versão" (D-097); o harness (branch `harness`) segue sem congelamento (`GATE-H02` é do pesquisador); nenhum repositório final foi inspecionado para métricas de produto.
+- **Próximos números livres:** desvio D-099; RDR linha 66.
