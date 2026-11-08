@@ -1,0 +1,73 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF01",
+ "tag": "cicloB/rf01-done",
+ "prev": "cicloB/rf03-incompleto",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 16,
+ "M12_media": 3.0,
+ "M12_acima": 1,
+ "M12_metodos": 8,
+ "testes_codigo_saida": 0,
+ "testes_total": 566,
+ "testes_aprovados": 566,
+ "M6": {
+  "M6_tasks": 1.0,
+  "M6_citados_nao_alterados": [
+   "lib/core/failure/failure.dart",
+   "lib/core/network/api_client.dart",
+   "lib/core/network/header_interceptor.dart",
+   "lib/features/account/account_injection.dart",
+   "lib/features/auth/domain/entities/authenticated_user.dart"
+  ],
+  "M6_alterados_nao_citados": [],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [
+   "permission_handler"
+  ],
+  "M6_inexist_backend": {
+   "c1": [
+    "POST ///"
+   ],
+   "c2": [
+    "entries-create",
+    "media-ocr"
+   ],
+   "c3": [
+    "chatMessageId",
+    "confidence",
+    "content",
+    "createdAt",
+    "data",
+    "embeddingStatus",
+    "id",
+    "image",
+    "mediaDurationSeconds",
+    "mimeType",
+    "occurredAt",
+    "piiStatus",
+    "serverRevision",
+    "source",
+    "tags",
+    "text",
+    "unexpected",
+    "updatedAt"
+   ],
+   "c4": [
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 5,
+   "alterados_nao_citados": 0,
+   "inexist_arq": 0,
+   "inexist_pkg": 1,
+   "inexist_backend": 22
+  }
+ },
+ "segundos": 222.5
+}

@@ -1,0 +1,90 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF04",
+ "tag": "cicloB/rf04-done",
+ "prev": "cicloB/rf06-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 16,
+ "M12_media": 2.190476,
+ "M12_acima": 1,
+ "M12_metodos": 63,
+ "testes_codigo_saida": 0,
+ "testes_total": 971,
+ "testes_aprovados": 971,
+ "M6": {
+  "M6_tasks": 1.0,
+  "M6_citados_nao_alterados": [
+   "lib/core/failure/failure.dart",
+   "lib/core/resource.dart",
+   "lib/features/capture/domain/services/mic_recorder.dart",
+   "lib/features/capture/presentation/widgets/insertion_modal.dart",
+   "lib/features/entries/entries_injection.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/features/chat/data/models/chat_message_dto.dart",
+   "lib/features/chat/data/models/chat_session_dto.dart",
+   "lib/features/chat/domain/entities/chat_message.dart",
+   "lib/features/chat/domain/entities/chat_session.dart",
+   "lib/features/chat/domain/entities/chat_stream_event.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "chat-messages-list",
+    "chat-messages-retry",
+    "chat-messages-send",
+    "chat-sessions-create",
+    "chat-sessions-list",
+    "not-a-date",
+    "not-a-list",
+    "wrap-the-real-plugin"
+   ],
+   "c3": [
+    "anything",
+    "content",
+    "context",
+    "createdAt",
+    "data",
+    "delta",
+    "done",
+    "error",
+    "id",
+    "lastUserMessageAt",
+    "m1",
+    "message_created",
+    "personaSnapshot",
+    "retryCount",
+    "role",
+    "s1",
+    "seq",
+    "sessionId",
+    "status",
+    "ta",
+    "this",
+    "title",
+    "token",
+    "updatedAt",
+    "userMessageCount",
+    "whatever"
+   ],
+   "c4": [
+    "FUNCTIONS_BASE_URL",
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 5,
+   "alterados_nao_citados": 5,
+   "inexist_arq": 0,
+   "inexist_pkg": 0,
+   "inexist_backend": 36
+  }
+ },
+ "segundos": 226.5
+}

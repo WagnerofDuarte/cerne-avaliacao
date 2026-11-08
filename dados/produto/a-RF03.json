@@ -1,0 +1,75 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF03",
+ "tag": "cicloA/rf03-done",
+ "prev": "cicloA/f000-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 0,
+ "M10_assinaturas": 26,
+ "M12_media": 1.368421,
+ "M12_acima": 0,
+ "M12_metodos": 19,
+ "testes_codigo_saida": 0,
+ "testes_total": 131,
+ "testes_aprovados": 131,
+ "M6": {
+  "M6_tasks": 0.9814814814814815,
+  "M6_citados_nao_alterados": [],
+  "M6_alterados_nao_citados": [
+   "lib/core/di/service_locator.dart",
+   "lib/core/routing/app_router.dart",
+   "lib/core/routing/app_routes.dart",
+   "lib/features/auth/presentation/pages/login_signup_page.dart",
+   "lib/features/splash/presentation/pages/splash_page.dart",
+   "lib/features/vault/data/account/biometrics_preference_remote_data_source.dart",
+   "lib/features/vault/data/account/biometrics_preference_repository_impl.dart",
+   "lib/features/vault/data/local_auth_biometric_data_source.dart",
+   "lib/features/vault/data/vault_repository_impl.dart",
+   "lib/features/vault/data/vault_secure_storage.dart",
+   "lib/features/vault/domain/entities/biometric_capability.dart",
+   "lib/features/vault/domain/entities/vault_entry_mode.dart",
+   "lib/features/vault/domain/repositories/biometrics_preference_repository.dart",
+   "lib/features/vault/domain/repositories/vault_repository.dart",
+   "lib/features/vault/domain/usecases/determine_vault_entry_usecase.dart",
+   "lib/features/vault/domain/usecases/evaluate_background_resume_usecase.dart",
+   "lib/features/vault/domain/usecases/save_biometrics_preference_usecase.dart",
+   "lib/features/vault/domain/usecases/save_pin_usecase.dart",
+   "lib/features/vault/domain/usecases/verify_pin_usecase.dart",
+   "lib/features/vault/presentation/bloc/vault_bloc.dart",
+   "lib/features/vault/presentation/bloc/vault_event.dart",
+   "lib/features/vault/presentation/bloc/vault_state.dart",
+   "lib/features/vault/presentation/pages/vault_page.dart",
+   "lib/features/vault/presentation/widgets/pin_keypad.dart",
+   "lib/features/vault/presentation/widgets/vault_lifecycle_observer.dart",
+   "lib/main.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [
+   "always_use_package_imports"
+  ],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "account-settings-update"
+   ],
+   "c3": [
+    "biometricEnabled"
+   ],
+   "c4": [
+    "FUNCTIONS_BASE_URL",
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 0,
+   "alterados_nao_citados": 26,
+   "inexist_arq": 0,
+   "inexist_pkg": 1,
+   "inexist_backend": 4
+  }
+ },
+ "segundos": 58.5
+}

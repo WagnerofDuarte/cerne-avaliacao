@@ -1,0 +1,72 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF09",
+ "tag": "cicloB/rf09-done",
+ "prev": "cicloB/rf05-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 18,
+ "M12_media": 1.882353,
+ "M12_acima": 1,
+ "M12_metodos": 102,
+ "testes_codigo_saida": 0,
+ "testes_total": 1309,
+ "testes_aprovados": 1309,
+ "M6": {
+  "M6_tasks": 1.0,
+  "M6_citados_nao_alterados": [
+   "lib/core/network/api_client.dart",
+   "lib/core/resource.dart",
+   "lib/core/widgets/avatar.dart"
+  ],
+  "M6_alterados_nao_citados": [],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [],
+  "M6_inexist_backend": {
+   "c1": [
+    "PATCH ///"
+   ],
+   "c2": [
+    "account-delete",
+    "account-settings-update",
+    "auth-logout",
+    "dashboard-aggregate-get",
+    "dashboard-narrative-get",
+    "not-a-map"
+   ],
+   "c3": [
+    "audio",
+    "buckets",
+    "chat",
+    "confirmation",
+    "count",
+    "data",
+    "date",
+    "displayName",
+    "generatedAt",
+    "manual",
+    "ok",
+    "period",
+    "photo",
+    "sources",
+    "text",
+    "totals",
+    "unexpected"
+   ],
+   "c4": [
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 3,
+   "alterados_nao_citados": 0,
+   "inexist_arq": 0,
+   "inexist_pkg": 0,
+   "inexist_backend": 25
+  }
+ },
+ "segundos": 202.7
+}

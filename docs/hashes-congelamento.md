@@ -167,3 +167,13 @@ Se esse hash mudar numa reconferência futura (ex.: X-002 antes do Ciclo B), é 
 | `holdout/` (**não usado**; D-100 e D-106) | 103 | `aa4ec4a4aca12e02a15a72fde153ff0006f488bcbf93e69a73de9627deed4b73` — antes: `079032dd05abc90323c64942c67eac3614a124c7cb134a62fbc6bc19c17a81ca` |
 
 **Modelo do avaliador (D-099):** `claude-opus-5-5`, via `claude -p`, sem ferramentas, `--setting-sources ""`, `--no-session-persistence`, `--output-format json --json-schema`; o ID canônico observado vem de `modelUsage` e é gravado em cada linha de `julgamentos.jsonl`.
+
+### Alterações depois da tag `harness-v1.0` (D-107, D-108, D-109; 08/11/2026)
+
+A tag `harness-v1.0` (objeto `41b0d30d…`, commit `f85b313b…`, criada às 17h46 de Brasília) marca o harness como congelado. Durante a primeira coleta sobre as tags dos repositórios, três ajustes de ambiente e de seleção foram necessários e foram registrados antes de qualquer resultado válido (rodadas anteriores foram descartadas): `.env` na cópia temporária (D-107), geração de código e exclusão de arquivos gerados (D-108) e verbos "equivalentes" na seleção da M14 (D-109). Só mudou `harness/estatico/` (quatro arquivos: `common.py`, `m14_decisoes.py`, `m8_cobertura.py`, `m8b_mutacao.py`); os demais 19 arquivos da pasta e todos os outros itens da tabela acima mantêm o hash.
+
+| Item | Arquivos | SHA-256 combinado na coleta |
+|---|---:|---|
+| `harness/estatico/` (usado em todas as métricas de produto) | 23 | `b68584997d0c15d1771f3d29242fce05f2a68681f36dc28b2938ac6bbc7fbf89` — antes: `1fe1820b533def0dca66591b14247ba3b7564283a5aaa3ea214ac80c7d0b16da` |
+
+Arquivos novos fora das pastas congeladas, criados depois da tag e usados só para ler e resumir os resultados: `scripts/resumo_produto.py` e `scripts/m9_tokens_estatico.py` (D-110).

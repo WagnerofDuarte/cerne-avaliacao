@@ -28,9 +28,13 @@ from pathlib import Path
 
 from .common import app_name, dart_files, dump, imports_of, mask_dart, read, rel, resolve_import, tag_copy
 
-VERBOS = re.compile(r"\b(use[sd]?|must|should|will|shall|never|always|implements?|implemented\s+with|lives?\s+in|goes\s+through|"
-                    r"placed\s+in|add|keep|is\s+implemented)\b", re.I)
-CLASSE_RE = re.compile(r"`([A-Z][A-Za-z0-9]*(?:Bloc|Cubit|Repository|UseCase|Service|DataSource|Failure|Client|Store|Impl))`")
+# D-109: "ou equivalentes" (regras.md §1) = verbos de escolha, posse e fato tecnico que os documentos reais usam
+# (chosen, fixed, owns, exposes, returns, persists, imports, binds, is/are, via ...); mesma lista nos dois ciclos.
+VERBOS = re.compile(r"\b(use[sd]?|using|must|should|will|shall|never|always|implements?|implemented\s+with|lives?\s+in|goes\s+through|"
+                    r"placed\s+in|add|keep|is\s+implemented|chosen|fixed|selected|adopted|owns?|exposes?|returns?|persists?|"
+                    r"imports?|binds?|prevents?|covered|is|are|via|only)\b", re.I)
+# D-109: o nome de classe com sufixo conta com ou sem crases (regras.md §1 nao exige crases)
+CLASSE_RE = re.compile(r"`?\b([A-Z][A-Za-z0-9]*(?:Bloc|Cubit|Repository|UseCase|Service|DataSource|Failure|Client|Store|Impl))\b`?")
 CLASSE_FREE_RE = re.compile(r"`([A-Z][A-Za-z0-9]+)`")
 PATH_RE = re.compile(r"`?(lib/[A-Za-z0-9_/\.]*)`?")
 PKG_RE = re.compile(r"`([a-z][a-z0-9_]+)`")
@@ -119,7 +123,7 @@ def verificar(decisao, root):
                 faltam.append(i)
         elif not re.search(rf"^\s{{2}}{re.escape(i)}:", pubspec, re.M):
             faltam.append(i)
-    if re.search(r"\b(use[sd]?|implements?|lives?\s+in|goes\s+through|add|keep|placed\s+in)\b", frase, re.I):
+    if re.search(r"\b(use[sd]?|using|implements?|lives?\s+in|goes\s+through|add|keep|placed\s+in|chosen|selected|adopted|owns?|exposes?)\b", frase, re.I):
         return ("falha", "ausentes: " + ", ".join(faltam)) if faltam else ("ok", "identificadores presentes")
     return "juiz", "sem check estatico aplicavel"
 

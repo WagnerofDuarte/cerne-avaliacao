@@ -1,0 +1,1243 @@
+[
+ {
+  "ciclo": "a",
+  "id_rf": "F000",
+  "voto": {
+   "divergences": [
+    {
+     "description": "CheckSessionUseCase handles AuthInvalidFailure from checkSession() by clearing storage and returning unauthenticated. The plan (T044/T039) says only AuthExpiredFailure triggers a refresh, and every other failure must map to a network-error SessionStatus that keeps the user on the splash screen with a retry option.",
+     "evidence": [
+      "lib/features/session/domain/usecases/check_session_usecase.dart:22",
+      "lib/features/session/domain/usecases/check_session_usecase.dart:41",
+      "test/features/session/domain/usecases/check_session_usecase_test.dart:78"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "SessionRepositoryImpl.refresh() saves the new tokens and then makes a second auth-session network call to rebuild the Account. The plan says refresh() only POSTs auth-refresh and persists the Session (T046). The extra call works around the auth-refresh response having no user object.",
+     "evidence": [
+      "lib/features/session/data/session_repository_impl.dart:96",
+      "lib/features/session/data/session_repository_impl.dart:107",
+      "lib/features/session/data/session_repository_impl.dart:114"
+     ],
+     "documented": false,
+     "cause": "ctx"
+    },
+    {
+     "description": "T056 says a second AuthExpiredDetected while the state is already expiredRenewable should re-emit expiredRenewable. The bloc returns early and emits nothing, so the overlay cannot reappear for a second expiration.",
+     "evidence": [
+      "lib/features/session/presentation/bloc/session_bloc.dart:30",
+      "test/features/session/presentation/bloc/session_bloc_test.dart:117"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "After a successful re-login from the 'Sessão expirada' overlay, nothing returns SessionBloc to authenticated. It stays in expiredRenewable, so every later AuthExpiredDetected is ignored and no future expiration shows the overlay (FR-013).",
+     "evidence": [
+      "lib/features/auth/presentation/pages/login_signup_page.dart:96",
+      "lib/features/session/presentation/bloc/session_bloc.dart:30"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "T026/T038 require a generic retry affordance keyed off Failure.retryable. The login/sign-up page only renders a text message; there is no retry control, even though the offline text says 'toque para tentar novamente'.",
+     "evidence": [
+      "lib/features/auth/presentation/pages/login_signup_page.dart:74",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:151"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "T069 (restrict Info.plist UISupportedInterfaceOrientations to portrait) is marked done, but the diff contains no iOS Info.plist change. Orientation is still locked only at the Dart level.",
+     "evidence": [
+      "lib/main.dart:16"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "An unplanned debug-mode dio LogInterceptor logs full request and response bodies, including the email and password sent to auth-login/auth-signup and the returned tokens.",
+     "evidence": [
+      "lib/core/di/service_locator.dart:25",
+      "lib/core/di/service_locator.dart:29"
+     ],
+     "documented": false,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 7
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 505471,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF03",
+  "voto": {
+   "divergences": [
+    {
+     "description": "T010 says the keypad tap-target token should be 72 dp and that no other new token is needed. The diff sets sizeKeypadTapTarget to 56 and also adds three tokens the plan didn't list: sizeProgressDot, sizeBiometricIconContainer and sizeBiometricIcon.",
+     "evidence": [
+      "lib/core/design_tokens.dart:117",
+      "lib/core/design_tokens.dart:118",
+      "lib/core/design_tokens.dart:119",
+      "lib/core/design_tokens.dart:120"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "T001 and T002 are marked done, but the diff has no change to pubspec.yaml (adding local_auth and crypto) or to ios/Runner/Info.plist (adding NSFaceIDUsageDescription). The new code imports both packages, so it won't build or run without those changes.",
+     "evidence": [
+      "lib/features/vault/data/local_auth_biometric_data_source.dart:1",
+      "lib/features/vault/data/vault_secure_storage.dart:3"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "The plan allows a one-line change in login_signup_page.dart (redirect to vault instead of home), and the spec says F000's login screen is reused unmodified. The diff instead redesigns the screen (card container, labels moved out of the fields, hint texts, a different title style, a new mode-toggle text) and adds a new 'usar biometria' link that pushes the vault route.",
+     "evidence": [
+      "lib/features/auth/presentation/pages/login_signup_page.dart:122",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:126",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:208",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:235",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:239",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:241"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The plan allows a one-line change in splash_page.dart (the authenticated branch pushes vault). The diff also changes the splash layout from a centered Column to a Stack, with the loading dots and retry prompt moved to the bottom.",
+     "evidence": [
+      "lib/features/splash/presentation/pages/splash_page.dart:49",
+      "lib/features/splash/presentation/pages/splash_page.dart:59"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The diff adds a UsePinRequested event, a bloc handler for it, and a 'Usar PIN' link on the biometric screen that jumps straight to PIN entry. None of these are in the planned event list (T020) or the planned UI (T028).",
+     "evidence": [
+      "lib/features/vault/presentation/bloc/vault_event.dart:23",
+      "lib/features/vault/presentation/bloc/vault_bloc.dart:27",
+      "lib/features/vault/presentation/bloc/vault_bloc.dart:76",
+      "lib/features/vault/presentation/pages/vault_page.dart:144",
+      "lib/features/vault/presentation/pages/vault_page.dart:147"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "A new 'usar biometria' link on the login screen pushes AppRoutes.vault. This is an unplanned navigation entry into the vault that works without a successful login. No plan task or spec scenario defines it.",
+     "evidence": [
+      "lib/features/auth/presentation/pages/login_signup_page.dart:235",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:239",
+      "lib/features/auth/presentation/pages/login_signup_page.dart:241"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "T048/T049 say the 'usar e-mail e senha' link should dispatch UseEmailPasswordRequested and VaultBloc should handle it. Instead, VaultPage calls context.push directly; the event is declared but never dispatched or handled.",
+     "evidence": [
+      "lib/features/vault/presentation/pages/vault_page.dart:35",
+      "lib/features/vault/presentation/bloc/vault_event.dart:57"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "A wrong PIN only keeps an error that was already there. In PIN-only mode, which starts with no error, a wrong PIN just clears the digits with no message. The spec requires an inline error on incorrect attempts.",
+     "evidence": [
+      "lib/features/vault/presentation/bloc/vault_bloc.dart:192"
+     ],
+     "documented": false,
+     "cause": "inc"
+    }
+   ],
+   "M6_div_nao_doc": 8
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 423874,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF01",
+  "voto": {
+   "divergences": [
+    {
+     "description": "The Áudio tab does not start recording when the tab opens, as plan.md's Summary and tasks T041/T047 say it should (TabSelected(audio) → hasPermission → start → Recording). Instead it opens on an idle state with a round start control and 'Toque para gravar', and recording starts only on tap through a new AudioStartRequested event. This matches spec.md FR-004 and its Assumptions, which the plan carries, but tasks.md and the plan.md Summary/RNF01 notes were never rewritten, so the plan contradicts itself.",
+     "evidence": [
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:85",
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:86",
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:92",
+      "lib/features/capture/presentation/bloc/insertion_modal_event.dart:41",
+      "lib/features/capture/presentation/bloc/insertion_modal_state.dart:45",
+      "lib/features/capture/presentation/widgets/audio_tab_view.dart:91"
+     ],
+     "documented": true,
+     "cause": "amb"
+    },
+    {
+     "description": "Three new design tokens were added to design_tokens.dart. plan.md says this unit needs no new token and reuses the existing F000/RF03 scale entirely (research.md R10).",
+     "evidence": [
+      "lib/core/design_tokens.dart:121",
+      "lib/core/design_tokens.dart:122",
+      "lib/core/design_tokens.dart:123"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "Hardcoded visual values remain outside design_tokens.dart: close icon size 20, SizedBox widths of 12, tab min-heights of 200/180, and a 100 ms padding animation duration. This conflicts with the plan's constraint of zero visual values hardcoded outside lib/core/design_tokens.dart (Principle IV/RNF08). T072 cleaned up only the waveform.",
+     "evidence": [
+      "lib/features/capture/presentation/pages/insertion_modal_page.dart:94",
+      "lib/features/capture/presentation/pages/insertion_modal_page.dart:98",
+      "lib/features/capture/presentation/widgets/foto_tab_view.dart:73",
+      "lib/features/capture/presentation/widgets/audio_tab_view.dart:61",
+      "lib/features/capture/presentation/widgets/texto_tab_view.dart:79",
+      "lib/features/capture/presentation/pages/insertion_modal_page.dart:68"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "The setup tasks T001–T004 are marked done, but the diff has none of them: no pubspec.yaml change adding record/image_picker/whisper_ggml/connectivity_plus/path_provider or the flutter.assets entry, no Info.plist usage strings, no IPHONEOS_DEPLOYMENT_TARGET raise to 15.6, and no bundled ggml-tiny model asset. The new code still imports these packages and loads the asset.",
+     "evidence": [
+      "lib/features/capture/data/whisper_transcription_data_source.dart:44",
+      "lib/features/capture/data/audio_recorder_data_source.dart:2",
+      "lib/features/capture/data/image_picker_data_source.dart:2",
+      "lib/core/network/connectivity_checker.dart:1"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "T059 says to go to FotoCaptura unconditionally and to let image_picker handle permission itself, but the bloc adds behavior the plan doesn't describe: any exception thrown by pickImage is caught and treated as permission denied.",
+     "evidence": [
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:211",
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:213",
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:214"
+     ],
+     "documented": false,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 4
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 570218,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF02",
+  "voto": {
+   "divergences": [
+    {
+     "description": "T001 says to add sizePhotoThumbnail = 64. The diff sets it to 56 and adds three tokens the plan never lists: sizePhotoThumbnailWideWidth, sizePhotoThumbnailWideHeight and valueLoadingIndicatorArc. The plan's Scale/Scope says only two new tokens.",
+     "evidence": [
+      "lib/core/design_tokens.dart:128",
+      "lib/core/design_tokens.dart:129",
+      "lib/core/design_tokens.dart:130",
+      "lib/core/design_tokens.dart:118"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "T024 says an OCR failure shows _noTextMessage only for OcrNoTextFailure and the backend's f.message for any other failure. The diff shows _noTextMessage for every PhotoRecognitionCallFailed. It also changes the copy to 'Não foi possível reconhecer o texto — tente outra foto.', while the spec (FR-007) gives the exact copy 'Não foi possível reconhecer o texto'.",
+     "evidence": [
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:18",
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:376"
+     ],
+     "documented": false,
+     "cause": "amb"
+    },
+    {
+     "description": "FR-003 and Story 2 require 'Áudio — Erro' to show 'Não foi possível transcrever'. When transcription comes back empty (EmptyRecognitionResult), the diff still shows the old RF01 message 'Não foi possível identificar fala no áudio.' instead of the specified copy.",
+     "evidence": [
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:248",
+      "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart:252"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "CaptureLoadingIndicator was rewritten as a stateful widget that rotates a fixed-length arc. The plan says the spinner reuses RF01's existing widget unchanged, and no task covers this visual change.",
+     "evidence": [
+      "lib/features/capture/presentation/widgets/capture_status_views.dart:12",
+      "lib/features/capture/presentation/widgets/capture_status_views.dart:45"
+     ],
+     "documented": false,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 4
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 384245,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF07",
+  "voto": {
+   "divergences": [
+    {
+     "description": "ApiClient.call() gained a second new parameter, `unwrapData`, which returns the full decoded body without validating it. This was needed because `entries-list` returns `data` as an array. The plan (research.md R1, T001) describes only a `queryParameters` addition and says existing behaviour is otherwise unchanged. Nothing in the plan mentions this extra change to the shared HTTP wrapper.",
+     "evidence": [
+      "lib/core/network/api_client.dart:41",
+      "lib/core/network/api_client.dart:61",
+      "lib/core/network/api_client.dart:62",
+      "lib/features/entries/data/entries_remote_data_source.dart:39"
+     ],
+     "documented": false,
+     "cause": "ctx"
+    },
+    {
+     "description": "T023 says RecordsPage dispatches `RecordsStarted` once in initState. T024 also has the route builder dispatch it. The plan asks for both, which contradicts itself. The implementation dispatches only from the route builder and leaves it out of the page's initState.",
+     "evidence": [
+      "lib/core/routing/app_router.dart:51",
+      "lib/features/records/presentation/pages/records_page.dart:34",
+      "lib/features/records/presentation/pages/records_page.dart:37"
+     ],
+     "documented": false,
+     "cause": "amb"
+    },
+    {
+     "description": "T023 plans a `ListView` with one date-heading row per group. The implementation instead uses a CustomScrollView with SliverMainAxisGroup and pinned SliverPersistentHeader date headings. This adds sticky-header scrolling behaviour that neither the plan nor the spec describes.",
+     "evidence": [
+      "lib/features/records/presentation/pages/records_page.dart:99",
+      "lib/features/records/presentation/pages/records_page.dart:127",
+      "lib/features/records/presentation/pages/records_page.dart:129"
+     ],
+     "documented": false,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 3
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 359355,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF06",
+  "voto": {
+   "divergences": [
+    {
+     "description": "The filter sheet leaves out the \"CATEGORIA\" chip group entirely. FR-004 and T024 require it to be rendered (inert) for visual fidelity, and T028 scenario #3 was to test it. The new test instead checks that it is absent.",
+     "evidence": [
+      "lib/features/records/presentation/widgets/filter_sheet.dart:48-92",
+      "test/features/records/presentation/widgets/filter_sheet_test.dart:77-82"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The filter sheet has no \"Limpar\" button. FR-003, T024 and Story 2 Acceptance Scenario 3 require one that resets the sheet's own selections without closing it. Only \"Aplicar\" exists, and the test checks that \"Limpar\" is absent.",
+     "evidence": [
+      "lib/features/records/presentation/widgets/filter_sheet.dart:82-91",
+      "test/features/records/presentation/widgets/filter_sheet_test.dart:84-88"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The date-range group is labeled \"PERÍODO\" instead of \"INTERVALO DE DATA\" and is placed after \"TIPO DE ENTRADA\". This differs from the planned groups and order (INTERVALO DE DATA / CATEGORIA / TIPO DE ENTRADA, per the RNF08 row).",
+     "evidence": [
+      "lib/features/records/presentation/widgets/filter_sheet.dart:51",
+      "lib/features/records/presentation/widgets/filter_sheet.dart:68",
+      "test/features/records/presentation/widgets/filter_sheet_test.dart:90-98"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "A new persistent on-device cache (EntriesLocalCache, backed by flutter_secure_storage) is added and registered in DI. It is injected into EntriesRepositoryImpl, which now persists every created, listed and searched entry. The plan explicitly states \"No new persistence... no new secure-storage key\" and \"1 DI registration unchanged\".",
+     "evidence": [
+      "lib/features/entries/data/entries_local_cache.dart:19-100",
+      "lib/core/di/service_locator.dart:172",
+      "lib/core/di/service_locator.dart:177",
+      "lib/features/entries/data/entries_repository_impl.dart:19-55",
+      "lib/features/entries/data/entries_repository_impl.dart:102-108",
+      "lib/features/entries/data/entries_repository_impl.dart:134-140"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "On a failed first page load, RecordsBloc now falls back to showing the repository's cachedEntries (with nextCursor null and a pageLoadFailure) instead of emitting RecordsLoadFailure. This changes RF07's first-load behavior, which the plan does not cover.",
+     "evidence": [
+      "lib/features/records/presentation/bloc/records_bloc.dart:74-105"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "ApiClient's client-side timeout and offline failures now carry fixed Portuguese user-facing messages instead of Dio's e.message. This is a core network change outside the unit's scope.",
+     "evidence": [
+      "lib/core/network/api_client.dart:86-92",
+      "lib/core/network/api_client.dart:104-105"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "A new offline note (\"Busca limitada ao que está salvo no aparelho.\") is shown under the search bar on NetworkOfflineFailure. This UI is not in the plan or the spec.",
+     "evidence": [
+      "lib/features/records/presentation/pages/records_page.dart:76-100"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The active-filter chips use hardcoded Color values defined outside design_tokens.dart. This breaks the plan's \"zero visual values hardcoded outside design_tokens.dart / zero new color tokens\" constraint (Principle IV/RNF08).",
+     "evidence": [
+      "lib/features/records/presentation/widgets/active_filter_chips_row.dart:24",
+      "lib/features/records/presentation/widgets/active_filter_chips_row.dart:26"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "\"Limpar filtros\" resets the bloc's query, but the search TextField has no controller and is never cleared, so the old search text stays visible after FR-007's \"clear any active search text\".",
+     "evidence": [
+      "lib/features/records/presentation/pages/records_page.dart:258-260",
+      "lib/features/records/presentation/bloc/records_bloc.dart:240-244"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "The funnel icon is always Icons.filter_alt. T032 says to swap between the neutral RF07 icon (filter_alt_outlined) and the filled variant; only the colors change.",
+     "evidence": [
+      "lib/features/records/presentation/pages/records_page.dart:282-291"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "The isApplyingCriteria loading indicator appears as soon as a criteria fetch starts. The plan says it should appear only once a fetch takes longer than 300 ms (RNF01 threshold).",
+     "evidence": [
+      "lib/features/records/presentation/pages/records_page.dart:155-159",
+      "lib/features/records/presentation/bloc/records_bloc.dart:261-268"
+     ],
+     "documented": false,
+     "cause": "inc"
+    }
+   ],
+   "M6_div_nao_doc": 11
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 478187,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF04",
+  "voto": {
+   "divergences": [
+    {
+     "description": "The SSE wire format differs from what the plan describes. Token frames are parsed from a `text` field, not `delta`. `StreamDone` carries only `assistantMessageId`, with no `content` or `createdAt`. Instead of replacing the content with the server's authoritative final text (T008/T022), the message is finalized from the locally accumulated tokens.",
+     "evidence": [
+      "lib/features/chat/data/chat_remote_data_source.dart:119-129",
+      "lib/features/chat/domain/entities/chat_stream_event.dart:42-49",
+      "lib/features/chat/presentation/bloc/chat_bloc.dart:484-494"
+     ],
+     "documented": false,
+     "cause": "ctx"
+    },
+    {
+     "description": "The failed-message state shows the 'Falha ao gerar resposta' text above the timestamp, and the timestamp is still shown. The spec (FR-004) and T017 say the failure text replaces the timestamp.",
+     "evidence": [
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:95-114"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "A `_reconcileSilentFailure` step that is not in the plan was added. After a failure with empty content, it calls `listMessages` again and replaces the failed bubble with the persisted server answer.",
+     "evidence": [
+      "lib/features/chat/presentation/bloc/chat_bloc.dart:378",
+      "lib/features/chat/presentation/bloc/chat_bloc.dart:394-432"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "Global Dio timeouts (connect, send and receive) were added in the service locator. This changes network behavior for every endpoint and is not in the plan.",
+     "evidence": [
+      "lib/core/di/service_locator.dart:65-77"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "The drawer gains an unplanned account header: an initials avatar plus a display name built from the email in the JWT, via the new `SecureTokenStorage.readAccountEmail`. This is outside RF04 scope.",
+     "evidence": [
+      "lib/core/storage/secure_token_storage.dart:41-62",
+      "lib/features/home/presentation/widgets/app_drawer.dart:72-102",
+      "lib/features/home/presentation/widgets/app_drawer.dart:356-381"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "A new design token, `sizeAvatarMenu`, was added. The plan says zero new tokens are needed.",
+     "evidence": [
+      "lib/core/design_tokens.dart:132"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The spec's Key Entities say a generic placeholder title is shown when a session has an empty title. The drawer renders `session.title` directly, with no fallback.",
+     "evidence": [
+      "lib/features/home/presentation/widgets/app_drawer.dart:339"
+     ],
+     "documented": false,
+     "cause": "inc"
+    }
+   ],
+   "M6_div_nao_doc": 7
+  },
+  "sem_maioria": false,
+  "diff_truncado": true,
+  "chars_prompt": 810723,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF10",
+  "voto": {
+   "divergences": [
+    {
+     "description": "ChatMessageBubble's user-message layout goes beyond the planned Row(bubble, 6dp gap, BookmarkButton). It shrinks the user bubble's max width by the gap plus the icon size, so user bubbles no longer get the same 80% max width as assistant bubbles. It adds 4dp of bottom padding under the BookmarkButton, and it replaces the bubble Container's horizontal margin with a Padding around the whole row. None of these layout changes are in plan.md or tasks.md (T022).",
+     "evidence": [
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:44",
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:45",
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:46",
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:87",
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:88",
+      "lib/features/chat/presentation/widgets/chat_message_bubble.dart:112"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "The plan describes test/architecture/no_cross_feature_data_imports_test.dart as already existing and passing against the pre-RF10 codebase (T042, plan.md Testing). The diff creates it as a new file. It is also missing from T046's scope-boundary file list. The plan contradicts itself here: plan.md calls it both \"new\" and \"already passing\".",
+     "evidence": [
+      "test/architecture/no_cross_feature_data_imports_test.dart:1",
+      "test/architecture/no_cross_feature_data_imports_test.dart:17"
+     ],
+     "documented": false,
+     "cause": "amb"
+    }
+   ],
+   "M6_div_nao_doc": 2
+  },
+  "sem_maioria": true,
+  "diff_truncado": false,
+  "chars_prompt": 275923,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF08",
+  "voto": {
+   "divergences": [
+    {
+     "description": "Unplanned behavior change: after lazily creating a session in _onMessageSubmitted, the bloc now immediately emits ChatReady with the new sessionId (previously not written back at that point). No task calls for this; an existing RF04 test expectation was changed to accommodate the extra emission.",
+     "evidence": [
+      "lib/features/chat/presentation/bloc/chat_bloc.dart:341",
+      "lib/features/chat/presentation/bloc/chat_bloc.dart:342",
+      "lib/features/chat/presentation/bloc/chat_bloc.dart:343",
+      "test/features/chat/presentation/bloc/chat_bloc_test.dart:248"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "T038 required a widget test confirming that tapping the dismiss control removes only the card with scroll offset and other message widgets unchanged; the delivered test only verifies InsightDismissed is dispatched to the (mock) bloc, with no scroll/other-widget assertions.",
+     "evidence": [
+      "test/features/home/presentation/pages/home_chat_shell_page_test.dart:387",
+      "test/features/home/presentation/pages/home_chat_shell_page_test.dart:406"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "T039 required verifying no insight reappears after _onConversationSelected, _onNewConversationRequested, and a fresh ChatBloc instance (app restart); only the ConversationSelected path is tested.",
+     "evidence": [
+      "test/features/chat/presentation/bloc/chat_bloc_test.dart:1902",
+      "test/features/chat/presentation/bloc/chat_bloc_test.dart:1933"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "T022 required testing that the card renders at anchorIndex with surrounding messages at shifted indices; the test places anchorIndex at the end of the list (after all messages), so interleaving/index shifting is never exercised (and its comment states anchorIndex 2 while 3 is used).",
+     "evidence": [
+      "test/features/home/presentation/pages/home_chat_shell_page_test.dart:351",
+      "test/features/home/presentation/pages/home_chat_shell_page_test.dart:358"
+     ],
+     "documented": false,
+     "cause": "inc"
+    }
+   ],
+   "M6_div_nao_doc": 4
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 349091,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF05",
+  "voto": {
+   "divergences": [
+    {
+     "description": "T001 says to add `share_plus: ^13.3.1` to pubspec.yaml, but the diff has no pubspec.yaml change. The new code also imports `share_plus_platform_interface` (and the tests import `path_provider_platform_interface`/`plugin_platform_interface`) without declaring them as dependencies.",
+     "evidence": [
+      "lib/features/export/data/export_file_repository_impl.dart:9",
+      "test/features/export/data/export_file_repository_impl_test.dart:9",
+      "test/features/export/data/export_file_repository_impl_test.dart:10"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "T012 says to share the file with `Share.shareXFiles([XFile(file.path)])` from share_plus. The implementation instead calls `SharePlatform.instance.share(ShareParams(...))` from the platform-interface package directly, so the tests can swap in a fake platform.",
+     "evidence": [
+      "lib/features/export/data/export_file_repository_impl.dart:32",
+      "lib/features/export/data/export_file_repository_impl.dart:11"
+     ],
+     "documented": false,
+     "cause": "chk"
+    },
+    {
+     "description": "T018 says the Pendente view uses a `CircularProgressIndicator` with `DesignTokens.colorAccent`. The implementation reuses the capture feature's `CaptureLoadingIndicator` instead, and changes a file outside the plan's scope (`capture_status_views.dart`) to add a size parameter. This also creates a dependency from the export feature on the capture feature.",
+     "evidence": [
+      "lib/features/export/presentation/widgets/export_pending_view.dart:2",
+      "lib/features/export/presentation/widgets/export_pending_view.dart:19",
+      "lib/features/capture/presentation/widgets/capture_status_views.dart:13"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "The plan forbids hardcoding visual values outside `design_tokens.dart` (Principle IV/RNF08), but the 'Fechar' labels hardcode `fontSize: 11`.",
+     "evidence": [
+      "lib/features/export/presentation/widgets/export_pending_view.dart:32",
+      "lib/features/export/presentation/widgets/export_processing_view.dart:31",
+      "lib/features/export/presentation/widgets/export_concluded_view.dart:91"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "T049 says to test a raw download dispatched twice from `ExportNarrativeFailed`. Scenario 12's test seeds `ExportConcluded` instead, so the double-tap guard is never tested from the narrative-failed state.",
+     "evidence": [
+      "test/features/export/presentation/bloc/export_bloc_test.dart:316",
+      "test/features/export/presentation/bloc/export_bloc_test.dart:329"
+     ],
+     "documented": false,
+     "cause": "inc"
+    }
+   ],
+   "M6_div_nao_doc": 5
+  },
+  "sem_maioria": true,
+  "diff_truncado": false,
+  "chars_prompt": 460967,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "a",
+  "id_rf": "RF09",
+  "voto": {
+   "divergences": [
+    {
+     "description": "After sign-out and after account deletion, the plan says the bloc should call VaultRepository.hasPinConfigured() and set signedOutDestination/accountDeletedDestination to vault or login (research.md R10, T041/T043/T054). The code drops this: it always sends the user to AppRoutes.login and replaces the two destination fields with plain signedOut/accountDeleted booleans. The reason is given only in a code comment (the vault unlock goes straight to Home, so a vault screen with no session behind it would be broken), and the plan was never updated.",
+     "evidence": [
+      "lib/features/settings/presentation/bloc/settings_bloc.dart:285",
+      "lib/features/settings/presentation/bloc/settings_bloc.dart:289",
+      "lib/features/settings/presentation/bloc/settings_bloc.dart:331",
+      "lib/features/settings/presentation/bloc/settings_state.dart:35",
+      "lib/features/settings/presentation/pages/settings_page.dart:96"
+     ],
+     "documented": false,
+     "cause": "ctx"
+    },
+    {
+     "description": "AuthBloc was changed so that every successful login or sign-up now clears EntriesRepository and ChatRepository local data, and it gained two new constructor dependencies wired in DI. No plan task covers this. It changes how auth behaves in another feature, and the plan's list of files extended in place does not include auth presentation.",
+     "evidence": [
+      "lib/features/auth/presentation/bloc/auth_bloc.dart:21",
+      "lib/features/auth/presentation/bloc/auth_bloc.dart:78",
+      "lib/features/auth/presentation/bloc/auth_bloc.dart:79",
+      "lib/core/di/service_locator.dart:136"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "T054 says the profile email comes from SessionRepository's cached Account.email. The code instead adds a SecureTokenStorage dependency to SettingsBloc and reads the email from it. A code comment explains that SessionRepository has no cached-session accessor. EntriesRepository and ChatRepository were also added to the bloc's dependencies, beyond the list in T029.",
+     "evidence": [
+      "lib/features/settings/presentation/bloc/settings_bloc.dart:42",
+      "lib/features/settings/presentation/bloc/settings_bloc.dart:92",
+      "lib/core/di/service_locator.dart:365"
+     ],
+     "documented": false,
+     "cause": "ctx"
+    },
+    {
+     "description": "The export feature's empty-period view (copy text, icon and styling) was changed, which no plan task covers. The new style also uses an inline literal fontSize: 11 instead of a design token.",
+     "evidence": [
+      "lib/features/export/presentation/widgets/export_empty_period_view.dart:25",
+      "lib/features/export/presentation/widgets/export_empty_period_view.dart:35"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "New Settings widgets hardcode visual values outside DesignTokens: a 4.0 minimum bar height, a 0.2 single-bar height factor and a size-20 icon. The plan (Principle IV/RNF08) requires zero visual values hardcoded outside lib/core/design_tokens.dart.",
+     "evidence": [
+      "lib/features/settings/presentation/widgets/dashboard_bar_chart.dart:38",
+      "lib/features/settings/presentation/widgets/dashboard_card.dart:142",
+      "lib/features/settings/presentation/widgets/profile_header.dart:104"
+     ],
+     "documented": false,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 5
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 623328,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "F000",
+  "voto": {
+   "divergences": [
+    {
+     "description": "Story 1.2 limits `lib/core/widgets/` to stateless, feature-agnostic presentation primitives with no feature imports. `AppDrawer` sits in `core/widgets` but is a StatefulWidget, kept stateful for its double-tap guard. It also imports `core/navigation/app_router.dart`, which pulls in `features/auth` (AuthCubit, AuthScreen, SessionRepository). Story 1.6's Code Map places the drawer in `core/widgets` but never reconciles this with the 1.2 rule. The 1.6 review finding records the double-tap guard but not the break from the stateless, feature-agnostic boundary.",
+     "evidence": [
+      "lib/core/widgets/app_drawer.dart:5",
+      "lib/core/widgets/app_drawer.dart:17",
+      "lib/core/widgets/app_drawer.dart:30",
+      "lib/core/navigation/app_router.dart:9",
+      "lib/core/navigation/app_router.dart:10"
+     ],
+     "documented": false,
+     "cause": "amb"
+    },
+    {
+     "description": "Story 1.6 plans a portrait-only orientation lock in ios/Runner/Info.plist (Boundaries + Code Map + task checked done), but no Info.plist change appears in the diff; only a code comment claims the lock lives there.",
+     "evidence": [
+      "lib/main.dart:28",
+      "lib/main.dart:31"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "Story 1.1/1.2 scaffold artifacts are absent from the diff: pubspec.yaml (stack pins, fonts section), .fvmrc, .env.example, AGENTS.md 'Running and verifying' edit, and bundled assets/fonts/*.ttf, although the code imports pinned packages and references the bundled font families.",
+     "evidence": [
+      "lib/core/design_tokens.dart:91",
+      "lib/core/design_tokens.dart:93",
+      "lib/core/di/injection_container.dart:25"
+     ],
+     "documented": false,
+     "cause": "inc"
+    }
+   ],
+   "M6_div_nao_doc": 3
+  },
+  "sem_maioria": true,
+  "diff_truncado": true,
+  "chars_prompt": 806716,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF03",
+  "voto": {
+   "divergences": [
+    {
+     "description": "spec-2-1 task 'ios/Runner/Info.plist -- add NSFaceIDUsageDescription' is marked done, but the diff never touches ios/Runner/Info.plist. Without this key the iOS Face ID prompt cannot appear.",
+     "evidence": [
+      "lib/features/vault/data/repositories/vault_repository_impl.dart:204",
+      "lib/features/vault/vault_injection.dart:13"
+     ],
+     "documented": false,
+     "cause": "inc"
+    },
+    {
+     "description": "spec-2-4's Code Map says the biometricEnabled stream should join _GoRouterRefreshStream. The router only subscribes to the vault and session streams and reads currentBiometricEnabled synchronously when /vault is built. The reason given is that go_router does not re-invoke the builder for an unchanged match.",
+     "evidence": [
+      "lib/core/navigation/app_router.dart:78",
+      "lib/core/navigation/app_router.dart:94"
+     ],
+     "documented": true,
+     "cause": "ctx"
+    },
+    {
+     "description": "spec-2-4 says to fire-and-forget fetchBiometricEnabled() next to restoreSession(). The code instead awaits a bounded fetch (2s timeout) in main() before runApp(), and keeps a redundant second fire-and-forget fetch in initState.",
+     "evidence": [
+      "lib/main.dart:39",
+      "lib/main.dart:41",
+      "lib/main.dart:126"
+     ],
+     "documented": true,
+     "cause": "prd"
+    },
+    {
+     "description": "spec-2-4's Design Notes say 'no new tokens', but new DesignTokens were added for an inline saving spinner (size and stroke width) next to the Configurações toggle.",
+     "evidence": [
+      "lib/core/design_tokens.dart:379",
+      "lib/core/design_tokens.dart:383",
+      "lib/features/account/presentation/screens/account_settings_screen.dart:87"
+     ],
+     "documented": true,
+     "cause": "prd"
+    },
+    {
+     "description": "spec-2-3's frozen Never clause forbids changes to vault_lock_screen.dart. The diff still changes it (and the coupled pin_keypad.dart): a 10s submitPin timeout with its own error copy, plus the PinKeypad enabled/disabled state.",
+     "evidence": [
+      "lib/features/vault/presentation/screens/vault_lock_screen.dart:69",
+      "lib/features/vault/presentation/screens/vault_lock_screen.dart:187",
+      "lib/features/vault/presentation/widgets/pin_keypad.dart:39"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "Visual 'corrections' for Story 2.1 and 2.2 that no plan mentions: a redesigned biometric view (96px fingerprint circle, 'Toque para desbloquear' / Face ID copy), a tinted PIN error band with icon and a new caption style, and a top-aligned pinScreenPadding. Each comes with new design tokens beyond the keypad tokens spec-2-2 called for.",
+     "evidence": [
+      "lib/core/design_tokens.dart:90",
+      "lib/core/design_tokens.dart:170",
+      "lib/core/design_tokens.dart:254",
+      "lib/core/design_tokens.dart:367",
+      "lib/features/vault/presentation/screens/vault_lock_screen.dart:292",
+      "lib/features/vault/presentation/screens/vault_lock_screen.dart:380"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "Beyond the planned flip/revert, the diff adds AccountSettingsState.isSaving (which disables the switch), clearStaleError() on screen mount, and a supersededMessage generation guard that returns Failure.malformedResponse for superseded calls, so the account settings contract goes further than spec-2-4 specified.",
+     "evidence": [
+      "lib/features/account/domain/repositories/account_settings_repository.dart:23",
+      "lib/features/account/data/repositories/account_settings_repository_impl.dart:93",
+      "lib/features/account/presentation/cubit/account_settings_cubit.dart:119",
+      "lib/features/account/presentation/cubit/account_settings_cubit.dart:138"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "VaultLockScreen gains didUpdateWidget logic that switches to the PIN keypad when attemptBiometricFirst changes from true to false. spec-2-4 only asked for the initState gating.",
+     "evidence": [
+      "lib/features/vault/presentation/screens/vault_lock_screen.dart:145",
+      "lib/features/vault/presentation/screens/vault_lock_screen.dart:164"
+     ],
+     "documented": true,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 2
+  },
+  "sem_maioria": true,
+  "diff_truncado": true,
+  "chars_prompt": 771665,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF01",
+  "voto": {
+   "divergences": [
+    {
+     "description": "Story 3.2's acceptance criterion says recording starts as soon as the user switches into the Áudio tab. In the diff, entering Áudio shows an idle mic button with \"Toque para gravar\", and recording only starts when the user taps it. The tab-switch listener no longer calls startRecording(). The code comments call this a prototype 'correction', but nothing in spec 3.2 records it: its Spec Change Log is empty and the AC is unchanged.",
+     "evidence": [
+      "lib/features/capture/presentation/widgets/insertion_modal.dart:347",
+      "lib/features/capture/presentation/widgets/insertion_modal.dart:354",
+      "lib/features/capture/presentation/cubit/audio_entry_cubit.dart:152",
+      "lib/features/capture/presentation/cubit/audio_entry_cubit.dart:21"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "Several UI changes labelled as prototype 'corrections' are not mentioned in any plan: the close 'x' moved to the left of the tabs, a pill-shaped tab track, 72pt round record/stop buttons, a 12-bar waveform, Câmera/Galeria shown as icon cards instead of buttons, two thumbnail sizes with the small one beside the text, duration captions on the processing and transcribed audio states, and a red timer. Each one comes with new design tokens.",
+     "evidence": [
+      "lib/core/design_tokens.dart:285",
+      "lib/core/design_tokens.dart:299",
+      "lib/core/design_tokens.dart:306",
+      "lib/core/design_tokens.dart:335",
+      "lib/features/capture/presentation/widgets/insertion_modal.dart:538"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "Áudio-tab robustness changes (try/catch around hasPermission/start/stop, the _stopping guard, _safeCancelRecorder, the negative-duration clamp with an injectable clock, the waveform onError handler) were bundled despite spec 3.3's Never-clause against touching the Áudio tab beyond shared InsertionModal wiring.",
+     "evidence": [
+      "lib/features/capture/presentation/cubit/audio_entry_cubit.dart:174",
+      "lib/features/capture/presentation/cubit/audio_entry_cubit.dart:145",
+      "lib/features/capture/presentation/cubit/audio_entry_cubit.dart:481",
+      "lib/features/capture/data/services/record_mic_recorder.dart:84"
+     ],
+     "documented": true,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 2
+  },
+  "sem_maioria": true,
+  "diff_truncado": true,
+  "chars_prompt": 783365,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF02",
+  "pulado": "sem stories (nota B7)"
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF07",
+  "voto": {
+   "divergences": [
+    {
+     "description": "PendingEntryWriteTracker's public API goes beyond the frozen 4.2 contract (create/retry/pendingWrites only): it adds a `confirmedWrites` stream that broadcasts (tempId, Entry) on success, which MeusRegistrosCubit uses to prepend the confirmed entry, and a `dispose()` method wired into DI teardown. Both are recorded as review-round fixes in the plan's Suggested Review Order, but the frozen Boundaries text was never updated.",
+     "evidence": [
+      "lib/features/entries/domain/services/pending_entry_write_tracker.dart:46",
+      "lib/features/entries/domain/services/pending_entry_write_tracker.dart:80",
+      "lib/features/entries/domain/services/pending_entry_write_tracker.dart:226",
+      "lib/features/entries/presentation/cubit/meus_registros_cubit.dart:30",
+      "lib/features/entries/entries_injection.dart:47"
+     ],
+     "documented": true,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 0
+  },
+  "sem_maioria": false,
+  "diff_truncado": true,
+  "chars_prompt": 761014,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF06",
+  "voto": {
+   "divergences": [
+    {
+     "description": "EntriesSearchBar is not the planned paper-elevated box (colorSurfaceElevated + radiusMd + elevation1). It is two separate bordered pills: a radiusFull text field with a colorBorder outline and a circular bordered funnel button. elevation1 and radiusMd are not used.",
+     "evidence": [
+      "lib/features/entries/presentation/widgets/entries_search_bar.dart:46",
+      "lib/features/entries/presentation/widgets/entries_search_bar.dart:49",
+      "lib/features/entries/presentation/widgets/entries_search_bar.dart:51",
+      "lib/features/entries/presentation/widgets/entries_search_bar.dart:96"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "A leading magnifying-glass icon (Icons.search) was added to the search bar, and the widget test now expects it. Spec-5-1's review order lists a widget test asserting 'no search icon'.",
+     "evidence": [
+      "lib/features/entries/presentation/widgets/entries_search_bar.dart:62",
+      "lib/features/entries/presentation/widgets/entries_search_bar.dart:63"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "New design tokens were added (colorSecondaryTint, entriesSearchBarIconSize, activeFilterChipIconGap, activeFilterChipCloseIconSize, activeFilterChipPadding). Specs 5-1 and 5-2 both say to reuse existing tokens with 'no new token'.",
+     "evidence": [
+      "lib/core/design_tokens.dart:98",
+      "lib/core/design_tokens.dart:444",
+      "lib/core/design_tokens.dart:447",
+      "lib/core/design_tokens.dart:450",
+      "lib/core/design_tokens.dart:454"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The filter sheet does not match spec-5-2. The date group is labelled 'PERÍODO' instead of 'INTERVALO DE DATA' and placed after 'TIPO DE ENTRADA'. A 'Filtrar registros' title was added. The planned 'Limpar' button that resets the pending selection is missing; only 'Aplicar' exists.",
+     "evidence": [
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:186",
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:193",
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:225",
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:244"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "Active-filter chips use a colorSecondaryTint fill and radiusSm corners instead of the planned colorSecondary/colorCategoryChipText/radiusFull pill. The selected chip inside the filter sheet uses colorPrimary/colorOnPrimary.",
+     "evidence": [
+      "lib/features/entries/presentation/screens/meus_registros_screen.dart:783",
+      "lib/features/entries/presentation/screens/meus_registros_screen.dart:789",
+      "lib/features/entries/presentation/screens/meus_registros_screen.dart:791",
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:292"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "UI changes outside the plan's scope: EntryRecordCard moves the SyncBadge into the header row; SyncBadge gains a new 'compact' variant (lowercase text, secondary colour); and the day-group label style in Meus Registros changes from textTitleSm/colorTextPrimary to textMonoCaption/colorTextSecondary.",
+     "evidence": [
+      "lib/features/entries/presentation/widgets/entry_record_card.dart:142",
+      "lib/features/entries/presentation/widgets/sync_badge.dart:31",
+      "lib/features/entries/presentation/widgets/sync_badge.dart:103",
+      "lib/features/entries/presentation/screens/meus_registros_screen.dart:612"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "In the filter sheet, a selected chip uses colorPrimary/colorOnPrimary. Spec-5-2 assigns colorSecondary to the filter chip styling.",
+     "evidence": [
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:292",
+      "lib/features/entries/presentation/widgets/entries_filter_sheet.dart:308"
+     ],
+     "documented": false,
+     "cause": "prd"
+    }
+   ],
+   "M6_div_nao_doc": 7
+  },
+  "sem_maioria": false,
+  "diff_truncado": true,
+  "chars_prompt": 754138,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF04",
+  "voto": {
+   "divergences": [
+    {
+     "description": "Spec-6-2 Boundaries say to reuse _DrawerNavItem's tokens and add no new design tokens. The diff adds a new token, DesignTokens.drawerSessionItemGap, for the gap between a CONVERSAS row's title and its timestamp.",
+     "evidence": [
+      "lib/core/design_tokens.dart:422",
+      "lib/core/widgets/app_drawer.dart:417"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The spec-6-2 Code Map places the CONVERSAS section between the pinned _DrawerPrimaryAction ('Novo Chat') and the bordered nav container. The diff instead moves 'Novo Chat' inside _ConversasSection, below the CONVERSAS label and above the session rows, all within one scrollable area. The plan does not update this layout decision.",
+     "evidence": [
+      "lib/core/widgets/app_drawer.dart:73",
+      "lib/core/widgets/app_drawer.dart:362"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "No plan asks for it, but the 'Meus Registros' drawer nav icon changes from Icons.menu_book_outlined to Icons.note_outlined. This is a visible UI change.",
+     "evidence": [
+      "lib/core/widgets/app_drawer.dart:126"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "Spec-6-1 says the failure indicator (colorError/colorErrorBg) replaces the timestamp slot on a failed bubble. The diff drops the colorErrorBg band entirely, adds a new timestamp caption ('agora' or HH:mm) to every bubble, and shows the failure text above that timestamp instead of in its place.",
+     "evidence": [
+      "lib/features/chat/presentation/widgets/chat_bubble.dart:104",
+      "lib/features/chat/presentation/widgets/chat_bubble.dart:144",
+      "lib/features/chat/presentation/widgets/chat_bubble.dart:212",
+      "lib/core/design_tokens.dart:663"
+     ],
+     "documented": false,
+     "cause": "prd"
+    },
+    {
+     "description": "The plan only asks for a streaming postStream through ApiClient that reuses the existing error mapping. The diff also disables the client-side receive timeout (receiveTimeout: Duration.zero) and turns off connection pooling (persistentConnection: false) for every streaming send and retry. That changes transport and timeout behavior beyond what the plan specifies.",
+     "evidence": [
+      "lib/core/network/api_client.dart:153",
+      "lib/core/network/api_client.dart:155",
+      "lib/core/network/api_client.dart:156"
+     ],
+     "documented": false,
+     "cause": "out"
+    },
+    {
+     "description": "I/O matrix 'Send while offline' expects the send to fail immediately with the bubble marked failed (Failure.networkOffline); the cubit now silently no-ops sendMessage/retryMessage whenever ChatReady.isOffline is true, so no failed bubble or Failure is produced.",
+     "evidence": [
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:332",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:390"
+     ],
+     "documented": false,
+     "cause": "prd"
+    }
+   ],
+   "M6_div_nao_doc": 6
+  },
+  "sem_maioria": false,
+  "diff_truncado": true,
+  "chars_prompt": 762186,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF10",
+  "voto": {
+   "divergences": [
+    {
+     "description": "bookmarkMessage() now records every save outcome in a new cubit-level `_bookmarkStateByServerId` map. `_fromDomain` re-applies it when a session's history reloads, and the final emit matches messages by `serverId` instead of the local `messageId`. The original Code Map only called for a rebuild that matched by message id inside the current ChatReady. This changes how state behaves across switchSession/startNewSession.",
+     "evidence": [
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:118",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:332",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:333",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:662",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:701",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:715",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:725"
+     ],
+     "documented": true,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 0
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 494537,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF08",
+  "voto": {
+   "divergences": [
+    {
+     "description": "_fireInsightTrigger skips the generateInsight network call entirely while offline (_isOffline). The window still closes and reopens, but no request is sent. The Code Map's _fireInsightTrigger always calls isolatedSideEffect unawaited and has no offline guard.",
+     "evidence": [
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:875",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:876",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:877"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "Added a monotonic _insightRequestSeq stale-result guard. _applyInsightResult now takes a requestSeq parameter and drops any result that is not from the most recently fired request. The Code Map only specified isClosed and sessionId guards.",
+     "evidence": [
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:170",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:873",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:885",
+      "lib/features/chat/presentation/cubit/chat_cubit.dart:929"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "The repository mapping requires non-blank content (content?.trim().isNotEmpty) before it builds a ChatInsight. The Code Map specified only `dto.content != null`. A 'ready' response with whitespace-only content now maps to null.",
+     "evidence": [
+      "lib/features/chat/data/repositories/chat_repository_impl.dart:155"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "Added a shared test/support/testwidgets_with_cleanup.dart helper. app_router_test, app_drawer_test, main_test and chat_screen_test now use local testWidgets overrides built on it, and main_test's dispose is changed too. The goal is to close ChatCubit before flutter_test's pending-timers check, which now fails because of the real inactivity Timer. These files and this helper are outside the Code Map's list of test files.",
+     "evidence": [
+      "test/support/testwidgets_with_cleanup.dart:22",
+      "test/core/navigation/app_router_test.dart:299",
+      "test/core/widgets/app_drawer_test.dart:146",
+      "test/main_test.dart:234",
+      "test/main_test.dart:345",
+      "test/features/chat/presentation/screens/chat_screen_test.dart:232"
+     ],
+     "documented": true,
+     "cause": "chk"
+    }
+   ],
+   "M6_div_nao_doc": 0
+  },
+  "sem_maioria": false,
+  "diff_truncado": false,
+  "chars_prompt": 382539,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF05",
+  "voto": {
+   "divergences": [
+    {
+     "description": "Spec 7-2 Code Map asked for a `Failure? lastDownloadFailure` field on ExportJobCubit, read by the sheet's `_handleDownload`. The code drops the field: downloadPdf()/downloadRawData() return Future<Failure?> and `_handleDownload` reads that return value directly.",
+     "evidence": [
+      "lib/features/export/presentation/cubit/export_job_cubit.dart:163",
+      "lib/features/export/presentation/cubit/export_job_cubit.dart:166",
+      "lib/features/export/presentation/widgets/export_status_sheet.dart:285"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "Spec 7-1 Design Notes say polling runs at a fixed 2s with no client timeout until a terminal state. The code adds a cap: after 5 consecutive getStatus failures it cancels the poll timer and emits ExportJobState.error.",
+     "evidence": [
+      "lib/features/export/presentation/cubit/export_job_cubit.dart:41",
+      "lib/features/export/presentation/cubit/export_job_cubit.dart:126"
+     ],
+     "documented": true,
+     "cause": "out"
+    },
+    {
+     "description": "An app-wide pt_BR locale and localization delegates were added to MaterialApp.router so showDateRangePicker renders in Portuguese. No spec-7-1 task asked for this; it was added during review.",
+     "evidence": [
+      "lib/main.dart:161"
+     ],
+     "documented": true,
+     "cause": "out"
+    }
+   ],
+   "M6_div_nao_doc": 0
+  },
+  "sem_maioria": false,
+  "diff_truncado": true,
+  "chars_prompt": 743511,
+  "vazamentos_no_prompt": 0
+ },
+ {
+  "ciclo": "b",
+  "id_rf": "RF09",
+  "voto": {
+   "divergences": [],
+   "M6_div_nao_doc": 0
+  },
+  "sem_maioria": false,
+  "diff_truncado": true,
+  "chars_prompt": 793420,
+  "vazamentos_no_prompt": 0
+ }
+]

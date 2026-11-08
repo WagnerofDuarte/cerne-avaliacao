@@ -1,0 +1,88 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF05",
+ "tag": "cicloA/rf05-done",
+ "prev": "cicloA/rf08-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 15,
+ "M10_assinaturas": 48,
+ "M12_media": 1.490909,
+ "M12_acima": 0,
+ "M12_metodos": 55,
+ "testes_codigo_saida": 0,
+ "testes_total": 586,
+ "testes_aprovados": 586,
+ "M6": {
+  "M6_tasks": 0.92,
+  "M6_citados_nao_alterados": [
+   "lib/core/design_tokens.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/core/network/api_client.dart",
+   "lib/features/capture/presentation/widgets/capture_status_views.dart",
+   "lib/features/export/data/export_file_repository_impl.dart",
+   "lib/features/export/data/export_remote_data_source.dart",
+   "lib/features/export/data/export_repository_impl.dart",
+   "lib/features/export/domain/entities/export_job.dart",
+   "lib/features/export/domain/repositories/export_file_repository.dart",
+   "lib/features/export/domain/repositories/export_repository.dart",
+   "lib/features/export/presentation/bloc/export_bloc.dart",
+   "lib/features/export/presentation/bloc/export_event.dart",
+   "lib/features/export/presentation/bloc/export_state.dart",
+   "lib/features/export/presentation/widgets/export_concluded_view.dart",
+   "lib/features/export/presentation/widgets/export_empty_period_view.dart",
+   "lib/features/export/presentation/widgets/export_failed_view.dart",
+   "lib/features/export/presentation/widgets/export_narrative_failed_view.dart",
+   "lib/features/export/presentation/widgets/export_pending_view.dart",
+   "lib/features/export/presentation/widgets/export_processing_view.dart",
+   "lib/features/export/presentation/widgets/export_sheet.dart",
+   "lib/features/records/presentation/pages/records_page.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "cerne-dados",
+    "cerne-resumo",
+    "export-download-get",
+    "export-status-get",
+    "export-summary-create"
+   ],
+   "c3": [
+    "data_ready",
+    "done",
+    "downloadAvailable",
+    "entryCount",
+    "error",
+    "errorCode",
+    "format",
+    "includeNarrative",
+    "jobId",
+    "narrativeErrorCode",
+    "narrativeStatus",
+    "pdf",
+    "pending",
+    "periodEnd",
+    "periodStart",
+    "processing",
+    "status"
+   ],
+   "c4": [
+    "FUNCTIONS_BASE_URL",
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 1,
+   "alterados_nao_citados": 19,
+   "inexist_arq": 0,
+   "inexist_pkg": 0,
+   "inexist_backend": 24
+  }
+ },
+ "segundos": 167.7
+}

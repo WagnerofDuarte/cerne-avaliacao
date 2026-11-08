@@ -1,0 +1,147 @@
+{
+ "ciclo": "b",
+ "tag": "cicloB/final",
+ "M15": {
+  "referencia": "capture",
+  "por_feature": {
+   "account": {
+    "C1": 5,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 5,
+    "respeitadas": 3
+   },
+   "auth": {
+    "C1": 7,
+    "C2": 0,
+    "C3": 0,
+    "C4": 1,
+    "total": 8,
+    "respeitadas": 2
+   },
+   "chat": {
+    "C1": 3,
+    "C2": 0,
+    "C3": 0,
+    "C4": 1,
+    "total": 4,
+    "respeitadas": 2
+   },
+   "dashboard": {
+    "C1": 4,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 4,
+    "respeitadas": 3
+   },
+   "entries": {
+    "C1": 5,
+    "C2": 0,
+    "C3": 0,
+    "C4": 1,
+    "total": 6,
+    "respeitadas": 2
+   },
+   "export": {
+    "C1": 2,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 2,
+    "respeitadas": 3
+   },
+   "vault": {
+    "C1": 6,
+    "C2": 0,
+    "C3": 0,
+    "C4": 1,
+    "total": 7,
+    "respeitadas": 2
+   }
+  },
+  "M15_divergencias": 36
+ },
+ "M14_selecao": {
+  "decisoes": [
+   {
+    "ordem": 1,
+    "fonte": "constitution",
+    "texto": "Only `data/` imports `dio`/`hive_ce`/platform plugins.",
+    "identificadores": [
+     "dio",
+     "hive_ce"
+    ],
+    "estatica": false,
+    "esperado": "juiz",
+    "evidencia": "sem check estatico aplicavel"
+   },
+   {
+    "ordem": 2,
+    "fonte": "constitution",
+    "texto": "**Rule:** retry logic is implemented once (the `dio` interceptor / `ApiClient` wrapper), fires only for the 6 server `retryable:true` codes (`NETWORK_TIMEOUT`, `NETWORK_OFFLINE`, `PII_CHECK_FAILED`, `EMBEDDING_FAILED`, `AI_GENERATION_TIMEOUT`, `RATE_LIMITED`).",
+    "identificadores": [
+     "ApiClient",
+     "dio"
+    ],
+    "estatica": false,
+    "esperado": "juiz",
+    "evidencia": "sem check estatico aplicavel"
+   },
+   {
+    "ordem": 3,
+    "fonte": "constitution",
+    "texto": "From RF01 on, `entries/domain` owns the `Entry` entity, the `EntriesRepository` port (`create`, `read` — see AD-11), and the entries Hive box.",
+    "identificadores": [
+     "EntriesRepository"
+    ],
+    "estatica": true,
+    "esperado": "ok",
+    "evidencia": "identificadores presentes"
+   },
+   {
+    "ordem": 4,
+    "fonte": "constitution",
+    "texto": "`entries` exposes an abstract `CreateEntryUseCase`/`SaveEntryUseCase`-shaped port;",
+    "identificadores": [
+     "CreateEntryUseCase",
+     "SaveEntryUseCase"
+    ],
+    "estatica": true,
+    "esperado": "falha",
+    "evidencia": "ausentes: CreateEntryUseCase, SaveEntryUseCase"
+   },
+   {
+    "ordem": 5,
+    "fonte": "constitution",
+    "texto": "**Prevents:** F000 and RF03 each building an independent navigation gate (two competing `redirect` callbacks, or RF03 bolting a second check onto screens individually) — `go_router` supports only one top-level `redirect`, so two independently-built gates cannot both \"just work.\"",
+    "identificadores": [
+     "go_router"
+    ],
+    "estatica": false,
+    "esperado": "juiz",
+    "evidencia": "sem check estatico aplicavel"
+   },
+   {
+    "ordem": 6,
+    "fonte": "constitution",
+    "texto": "**Integration spike flagged, not yet run:** `dio` + `flutter_secure_storage` + `get_it` have not been verified working together in one scaffold (each is independently current per the Stack table, but their combination at F000's bootstrap time is unverified).",
+    "identificadores": [
+     "dio",
+     "flutter_secure_storage",
+     "get_it"
+    ],
+    "estatica": false,
+    "esperado": "juiz",
+    "evidencia": "sem check estatico aplicavel"
+   }
+  ],
+  "total_selecionadas": 6,
+  "total_candidatas": 6,
+  "menos_de_8": true,
+  "estaticas_ok": 1,
+  "estaticas_total": 2,
+  "para_o_juiz": 4
+ }
+}

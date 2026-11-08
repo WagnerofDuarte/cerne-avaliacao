@@ -31,6 +31,16 @@ def tag_copy(repo, tag, prefix="harness-"):
         p = subprocess.run(f"git -C '{repo}' archive '{tag}' | tar -x -C '{tmp}'", shell=True, capture_output=True, text=True)
         if p.returncode != 0:
             raise RuntimeError(f"git archive {tag}: {p.stderr.strip()}")
+        # D-107: `.env` e ignorado pelo git (guarda segredos), mas o pubspec o declara como asset; sem o arquivo o
+        # `flutter test` nao monta o pacote de assets. A copia recebe o `.env.example` do proprio repositorio
+        # (valores de exemplo) ou, sem ele, um `.env` vazio; nenhum segredo e usado.
+        pub = tmp / "pubspec.yaml"
+        if pub.exists() and any(l.strip() == "- .env" for l in pub.read_text(encoding="utf-8", errors="ignore").splitlines()):
+            exemplo = tmp / ".env.example"
+            if exemplo.exists():
+                shutil.copy(exemplo, tmp / ".env")
+            else:
+                (tmp / ".env").touch(exist_ok=True)
         yield tmp
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -161,9 +171,12 @@ def read(p):
     return Path(p).read_text(encoding="utf-8", errors="replace")
 
 
+GERADO = re.compile(r"\.(freezed|g)\.dart$")  # D-108: codigo gerado por build_runner nao e codigo do produto
+
+
 def dart_files(root, sub="lib"):
     base = Path(root) / sub
-    return sorted(p for p in base.rglob("*.dart")) if base.exists() else []
+    return sorted(p for p in base.rglob("*.dart") if not GERADO.search(p.name)) if base.exists() else []
 
 
 def rel(root, p):
@@ -230,11 +243,23 @@ def flutter_bin():
     return shutil.which("flutter") or "flutter"
 
 
+def preparar_dependencias(root, env=None, timeout=600):
+    """D-108: `flutter pub get` e, se o pubspec depende de `build_runner`, a geracao de codigo no procedimento
+    documentado pelo proprio repositorio (`pub run build_runner build --delete-conflicting-outputs`). Os arquivos
+    `*.freezed.dart` e `*.g.dart` sao ignorados pelo git nas tags; sem a geracao, os testes nao compilam."""
+    env = env or flutter_env()
+    subprocess.run([flutter_bin(), "pub", "get"], cwd=root, capture_output=True, text=True, env=env, timeout=timeout)
+    pub = Path(root) / "pubspec.yaml"
+    if pub.exists() and re.search(r"^\s*build_runner\s*:", pub.read_text(encoding="utf-8", errors="ignore"), re.M):
+        subprocess.run([flutter_bin(), "pub", "run", "build_runner", "build", "--delete-conflicting-outputs"], cwd=root,
+                       capture_output=True, text=True, env=env, timeout=timeout)
+
+
 def run_flutter_tests_json(root, extra=(), timeout=600, pub_get=True):
     """Roda `flutter test --reporter json` em `root` (uma copia temporaria!) e devolve
     (codigo_saida, {id_teste: 'success'|'failure'|'error'|'skipped'})."""
     if pub_get:
-        subprocess.run([flutter_bin(), "pub", "get"], cwd=root, capture_output=True, text=True, env=flutter_env(), timeout=timeout)
+        preparar_dependencias(root, flutter_env(), timeout)
     p = subprocess.run([flutter_bin(), "test", "--reporter", "json", "--no-pub", *extra], cwd=root,
                        capture_output=True, text=True, env=flutter_env(), timeout=timeout)
     return p.returncode, parse_test_json(p.stdout, root)

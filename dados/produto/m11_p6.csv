@@ -1,0 +1,23 @@
+ciclo,unidade,p6_rodadas,p6_1a_rodada_aprovada,p6_aprovada_final,natureza_falhas_1a_rodada,linhas_fonte,observacao
+A,F000,3,não,sim,ambiente,666-670;672,"1ª rodada: splash branca e cadastro sem conexão, atribuídos a ambiente (D-017/D-018); a 2ª falhou por defeito do app (sessão inválida, S3)."
+A,RF03,2,não,sim,design,690-691;693,Roteiro funcional passou na 1ª rodada; as diferenças de tela contra o protótipo (4 telas) motivaram a correção.
+A,RF01,4,não,sim,funcional,709-720,"Nota de fecho diz 4 rodadas; a 1ª falhou por teclado cobrindo o modal e Áudio gravando sozinho, as 2ª e 3ª por design."
+A,RF02,3,não,sim,design,737-744,Roteiro funcional passou na 1ª rodada; 6 estados da Tela 2 diferiam do protótipo e na 2ª restaram 2 diferenças.
+A,RF07,2,não,sim,design,751-755,Funcional passou; 6 diferenças de design na Tela 4; sessão expirada só verificada em parte por limitação do ambiente (D-023).
+A,RF06,3,não,sim,funcional+design,762-768,1ª rodada: cache offline falhou em parte (funcional) e a Tela 4 diferia do protótipo; a 2ª ainda tinha diferenças na sheet.
+A,RF04,5,não,incompleta,funcional+design,775-786;788,Fechada incompleta por decisão do pesquisador (D-026): tentar de novo após falha do stream seguia sem funcionar; contei 5 rodadas (4 rotuladas mais a verificação após a sessão 24).
+A,RF10,2,não,sim,design,796-798;800,Itens 1 a 4 do roteiro passaram; só a posição do botão de salvar e a largura do balão diferiam do protótipo.
+A,RF08,2,não,sim,funcional+design,815-818;820,Gatilho por inatividade não disparou em conversa nova e a lombada do cartão diferia do protótipo; a sessão de correção inválida (D-032) não conta como rodada.
+A,RF05,3,não,sim,design,834-838;840,"Funcional passou (Período vazio verificado em parte por limitação do ambiente, D-034); folha de exportação com diferenças de design em 3 rodadas e resíduo S1 aceito."
+A,RF09,4,não,sim,funcional+design,854-859;861,"1ª rodada: vazamento de dados entre contas e Tela 6 e Período vazio fora do protótipo; as rodadas 2 e 3 acharam novos defeitos (ProviderNotFoundException, Sair)."
+B,F000,2,não,sim,funcional,1029;1139,"Build para iOS falhou no pod install (whisper_ggml exige iOS 15.6), bloqueando a P6(d) (D-058 em desvios.md); a 2ª rodada passou nos 5 itens."
+B,RF03,2,não,incompleta,design,1040-1042;1140,Funcional passou; diferenças de design em PIN e biometria e link 'usar e-mail e senha' ausente (S2); fechada incompleta (D-061) e a 2ª rodada foi parcial (biometria sem reconferência).
+B,RF01,3,não,sim,funcional+design,1057-1060;1141,"1ª rodada: teclado não sai, áudio grava sozinho, overflow e telas fora do protótipo; a 3ª rodada é inferida da nota de fecho (passou depois de 4 correções)."
+B,RF02,1,sim,sim,nenhuma,1142;1158,"Sem sessões próprias, mas a nota B7 registra P6 de 1 rodada com os 4 itens aprovados (diverge da instrução de marcar 'sem registro')."
+B,RF07,1,sim,sim,nenhuma,1072;1143,"Aprovada na 1ª rodada segundo o pesquisador; sessão expirada e estado vazio verificados em parte (D-023, D-034)."
+B,RF06,2,não,sim,design,1082-1084;1144,Funcional passou na 1ª rodada; 8 diferenças de design da Tela 4 (2 vindas da RF07) levadas a 1 correção; a 2ª aprovou.
+B,RF04,3,não,sim,funcional+design,1094-1098;1145,1ª rodada: stream do chat falhava ao vivo (S3) e 8 diferenças de design; a 1ª correção não mudou o sintoma e a 2ª (D-025) resolveu.
+B,RF10,1,sim,sim,nenhuma,1102;1146,"Aprovada na 1ª rodada segundo o pesquisador, sem prints nem conferência de design pelo assistente."
+B,RF08,1,sim,sim,nenhuma,1107;1147,"Aprovada na 1ª rodada segundo o pesquisador, sem prints nem conferência de design pelo assistente."
+B,RF05,1,sim,sim,nenhuma,1117;1148,"Aprovada na 1ª rodada segundo o pesquisador, sem prints; falha da narrativa verificada em parte."
+B,RF09,1,sim,sim,nenhuma,1133;1149,"Aprovada na 1ª rodada segundo o pesquisador, sem prints nem conferência de design pelo assistente."

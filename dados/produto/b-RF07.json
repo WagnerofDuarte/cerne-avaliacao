@@ -1,0 +1,86 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF07",
+ "tag": "cicloB/rf07-done",
+ "prev": "cicloB/rf02-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 16,
+ "M12_media": 2.065217,
+ "M12_acima": 1,
+ "M12_metodos": 46,
+ "testes_codigo_saida": 0,
+ "testes_total": 721,
+ "testes_aprovados": 721,
+ "M6": {
+  "M6_tasks": 1.0,
+  "M6_citados_nao_alterados": [
+   "lib/core/di/injection_container.dart",
+   "lib/core/failure/failure.dart",
+   "lib/core/network/api_client.dart",
+   "lib/core/resource.dart",
+   "lib/core/widgets/app_button.dart",
+   "lib/core/widgets/back_arrow_header.dart",
+   "lib/features/auth/data/repositories/session_repository_impl.dart",
+   "lib/features/auth/domain/repositories/session_repository.dart",
+   "lib/features/capture/presentation/widgets/insertion_modal.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/features/capture/presentation/cubit/audio_entry_cubit.dart",
+   "lib/features/capture/presentation/cubit/photo_entry_cubit.dart",
+   "lib/features/entries/domain/entities/entries_page.dart",
+   "lib/features/entries/domain/entities/entry.dart",
+   "lib/features/entries/presentation/widgets/entry_skeleton_card.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "entries-create",
+    "entries-get",
+    "entries-list",
+    "next-page",
+    "not-a-date",
+    "unknown-id"
+   ],
+   "c3": [
+    "chatMessageId",
+    "content",
+    "createdAt",
+    "cursor",
+    "data",
+    "e1",
+    "e2",
+    "embeddingStatus",
+    "id",
+    "limit",
+    "mediaDurationSeconds",
+    "meta",
+    "nextCursor",
+    "not",
+    "occurredAt",
+    "piiStatus",
+    "serverRevision",
+    "source",
+    "tags",
+    "unexpected",
+    "updatedAt"
+   ],
+   "c4": [
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 9,
+   "alterados_nao_citados": 5,
+   "inexist_arq": 0,
+   "inexist_pkg": 0,
+   "inexist_backend": 28
+  }
+ },
+ "segundos": 246.3
+}

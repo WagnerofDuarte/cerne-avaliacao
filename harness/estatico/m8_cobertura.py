@@ -18,7 +18,7 @@ import shutil
 import subprocess
 from pathlib import Path
 
-from .common import app_name, dart_files, dump, flutter_bin, flutter_env, rel, tag_copy
+from .common import GERADO, app_name, dart_files, dump, flutter_bin, flutter_env, preparar_dependencias, rel, tag_copy
 
 
 def injetar_importa_dominio(root):
@@ -52,7 +52,7 @@ def parse_lcov(text):
 
 
 def so_dominio(lcov):
-    return {f: v for f, v in lcov.items() if "/domain/" in "/" + f.replace("\\", "/")}
+    return {f: v for f, v in lcov.items() if "/domain/" in "/" + f.replace("\\", "/") and not GERADO.search(f)}
 
 
 def resumo(dom):
@@ -65,7 +65,7 @@ def resumo(dom):
 def medir(root, saida_lcov=None, timeout=600):
     n = injetar_importa_dominio(root)
     env = flutter_env()
-    subprocess.run([flutter_bin(), "pub", "get"], cwd=root, capture_output=True, text=True, env=env, timeout=timeout)
+    preparar_dependencias(root, env, timeout)
     p = subprocess.run([flutter_bin(), "test", "--coverage", "--no-pub"], cwd=root, capture_output=True, text=True, env=env, timeout=timeout)
     lcov = Path(root) / "coverage" / "lcov.info"
     if not lcov.exists():

@@ -1,0 +1,62 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF10",
+ "tag": "cicloA/rf10-done",
+ "prev": "cicloA/rf04-incompleto",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 12,
+ "M10_assinaturas": 48,
+ "M12_media": 1.55102,
+ "M12_acima": 0,
+ "M12_metodos": 49,
+ "testes_codigo_saida": 0,
+ "testes_total": 468,
+ "testes_aprovados": 468,
+ "M6": {
+  "M6_tasks": 0.9,
+  "M6_citados_nao_alterados": [],
+  "M6_alterados_nao_citados": [
+   "lib/core/di/service_locator.dart",
+   "lib/features/chat/data/chat_local_cache.dart",
+   "lib/features/chat/data/chat_repository_impl.dart",
+   "lib/features/chat/domain/repositories/chat_repository.dart",
+   "lib/features/chat/presentation/bloc/chat_bloc.dart",
+   "lib/features/chat/presentation/bloc/chat_event.dart",
+   "lib/features/chat/presentation/bloc/chat_state.dart",
+   "lib/features/chat/presentation/widgets/bookmark_button.dart",
+   "lib/features/chat/presentation/widgets/chat_message_bubble.dart",
+   "lib/features/entries/data/entries_remote_data_source.dart",
+   "lib/features/entries/data/entries_repository_impl.dart",
+   "lib/features/entries/domain/repositories/entries_repository.dart",
+   "lib/features/entries/domain/usecases/create_entry_usecase.dart",
+   "lib/features/home/presentation/pages/home_chat_shell_page.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "entries-create"
+   ],
+   "c3": [
+    "chatMessageId",
+    "content",
+    "m1",
+    "occurredAt",
+    "source"
+   ],
+   "c4": []
+  },
+  "contagens": {
+   "citados_nao_alterados": 0,
+   "alterados_nao_citados": 14,
+   "inexist_arq": 0,
+   "inexist_pkg": 0,
+   "inexist_backend": 6
+  }
+ },
+ "segundos": 106.3
+}

@@ -1,0 +1,72 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF03",
+ "tag": "cicloB/rf03-incompleto",
+ "prev": "cicloB/f000-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 16,
+ "M12_media": 2.2,
+ "M12_acima": 0,
+ "M12_metodos": 5,
+ "testes_codigo_saida": 0,
+ "testes_total": 367,
+ "testes_aprovados": 367,
+ "M6": {
+  "M6_tasks": 1.0,
+  "M6_citados_nao_alterados": [
+   "lib/core/failure/failure.dart",
+   "lib/features/auth/auth_injection.dart",
+   "lib/features/auth/data/datasources/secure_storage_access_token_provider.dart",
+   "lib/features/auth/domain/entities/session_status.dart",
+   "lib/src/local_auth.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/features/account/data/models/account_settings_dto.dart"
+  ],
+  "M6_inexist_arq": [
+   "lib/features/auth/data/datasources/secure_storage_access_token_provider.dart",
+   "lib/src/local_auth.dart"
+  ],
+  "M6_inexist_pkg": [
+   "clock",
+   "fake_async",
+   "group"
+  ],
+  "M6_inexist_backend": {
+   "c1": [
+    "GET ///",
+    "PATCH ///"
+   ],
+   "c2": [
+    "account-settings-update"
+   ],
+   "c3": [
+    "biometricEnabled",
+    "createdAt",
+    "data",
+    "displayName",
+    "email",
+    "id",
+    "persona",
+    "serverRevision",
+    "unexpected",
+    "updatedAt"
+   ],
+   "c4": [
+    "FUNCTIONS_BASE_URL"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 5,
+   "alterados_nao_citados": 1,
+   "inexist_arq": 2,
+   "inexist_pkg": 3,
+   "inexist_backend": 14
+  }
+ },
+ "segundos": 176.5
+}

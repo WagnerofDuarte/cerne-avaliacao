@@ -20,7 +20,7 @@ import argparse
 import re
 import subprocess
 
-from .common import (dart_files, dump, flutter_bin, flutter_env, line_of, mask_dart, parse_test_json, read, rel,
+from .common import (dart_files, dump, flutter_bin, flutter_env, line_of, preparar_dependencias, mask_dart, parse_test_json, read, rel,
                      tag_copy)
 
 OPS = [
@@ -62,7 +62,7 @@ def _falhas(res):
 
 
 def medir(root, timeout=180, max_mutantes=None, filtro_arquivo=None, amostra=None, semente=20261108):
-    subprocess.run([flutter_bin(), "pub", "get"], cwd=root, capture_output=True, text=True, env=flutter_env(), timeout=600)
+    preparar_dependencias(root, flutter_env(), 600)
     rc, base = _rodar(root, 600)
     if not base:
         raise RuntimeError("linha de base sem resultados de teste")

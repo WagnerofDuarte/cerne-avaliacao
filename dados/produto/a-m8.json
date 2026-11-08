@@ -1,0 +1,234 @@
+{
+ "M8": 0.921212,
+ "linhas_executaveis": 330,
+ "linhas_cobertas": 304,
+ "por_arquivo": {
+  "lib/features/auth/domain/entities/account.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/auth/domain/usecases/login_usecase.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/auth/domain/usecases/sign_up_usecase.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/entities/recognition_failure.dart": {
+   "executaveis": 3,
+   "cobertas": 0,
+   "nao_cobertas": [
+    5,
+    10,
+    15
+   ]
+  },
+  "lib/features/capture/domain/repositories/photo_recognition_repository.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/usecases/confirm_entry_save_usecase.dart": {
+   "executaveis": 10,
+   "cobertas": 10,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/usecases/recognize_photo_usecase.dart": {
+   "executaveis": 10,
+   "cobertas": 10,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/usecases/save_text_entry_usecase.dart": {
+   "executaveis": 4,
+   "cobertas": 4,
+   "nao_cobertas": []
+  },
+  "lib/features/chat/domain/entities/chat_message.dart": {
+   "executaveis": 12,
+   "cobertas": 12,
+   "nao_cobertas": []
+  },
+  "lib/features/chat/domain/entities/chat_session.dart": {
+   "executaveis": 10,
+   "cobertas": 10,
+   "nao_cobertas": []
+  },
+  "lib/features/chat/domain/entities/chat_session_timestamp_formatter.dart": {
+   "executaveis": 11,
+   "cobertas": 10,
+   "nao_cobertas": [
+    6
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_sessions_page.dart": {
+   "executaveis": 3,
+   "cobertas": 1,
+   "nao_cobertas": [
+    16,
+    17
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_stream_event.dart": {
+   "executaveis": 13,
+   "cobertas": 10,
+   "nao_cobertas": [
+    27,
+    29,
+    30
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_title_deriver.dart": {
+   "executaveis": 5,
+   "cobertas": 4,
+   "nao_cobertas": [
+    5
+   ]
+  },
+  "lib/features/chat/domain/entities/insight_trigger.dart": {
+   "executaveis": 7,
+   "cobertas": 6,
+   "nao_cobertas": [
+    25
+   ]
+  },
+  "lib/features/chat/domain/entities/proactive_insight.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/entries/domain/entities/entries_page.dart": {
+   "executaveis": 3,
+   "cobertas": 1,
+   "nao_cobertas": [
+    16,
+    17
+   ]
+  },
+  "lib/features/entries/domain/entities/entry.dart": {
+   "executaveis": 23,
+   "cobertas": 23,
+   "nao_cobertas": []
+  },
+  "lib/features/entries/domain/usecases/create_entry_usecase.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/export/domain/entities/export_job.dart": {
+   "executaveis": 9,
+   "cobertas": 9,
+   "nao_cobertas": []
+  },
+  "lib/features/records/domain/entities/active_filter_chip.dart": {
+   "executaveis": 12,
+   "cobertas": 11,
+   "nao_cobertas": [
+    31
+   ]
+  },
+  "lib/features/records/domain/entities/date_group.dart": {
+   "executaveis": 24,
+   "cobertas": 21,
+   "nao_cobertas": [
+    29,
+    30,
+    36
+   ]
+  },
+  "lib/features/records/domain/entities/date_range_filter.dart": {
+   "executaveis": 8,
+   "cobertas": 8,
+   "nao_cobertas": []
+  },
+  "lib/features/records/domain/entities/entry_merger.dart": {
+   "executaveis": 18,
+   "cobertas": 17,
+   "nao_cobertas": [
+    7
+   ]
+  },
+  "lib/features/records/domain/entities/sync_badge_state.dart": {
+   "executaveis": 5,
+   "cobertas": 4,
+   "nao_cobertas": [
+    14
+   ]
+  },
+  "lib/features/session/domain/entities/session.dart": {
+   "executaveis": 8,
+   "cobertas": 8,
+   "nao_cobertas": []
+  },
+  "lib/features/session/domain/entities/session_status.dart": {
+   "executaveis": 20,
+   "cobertas": 20,
+   "nao_cobertas": []
+  },
+  "lib/features/session/domain/usecases/check_session_usecase.dart": {
+   "executaveis": 17,
+   "cobertas": 17,
+   "nao_cobertas": []
+  },
+  "lib/features/settings/domain/entities/account_profile.dart": {
+   "executaveis": 23,
+   "cobertas": 21,
+   "nao_cobertas": [
+    47,
+    48
+   ]
+  },
+  "lib/features/settings/domain/entities/dashboard_aggregate.dart": {
+   "executaveis": 26,
+   "cobertas": 22,
+   "nao_cobertas": [
+    7,
+    19,
+    20,
+    65
+   ]
+  },
+  "lib/features/settings/domain/entities/dashboard_narrative.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/settings/domain/usecases/save_settings_biometric_preference_usecase.dart": {
+   "executaveis": 7,
+   "cobertas": 7,
+   "nao_cobertas": []
+  },
+  "lib/features/vault/domain/usecases/determine_vault_entry_usecase.dart": {
+   "executaveis": 6,
+   "cobertas": 6,
+   "nao_cobertas": []
+  },
+  "lib/features/vault/domain/usecases/evaluate_background_resume_usecase.dart": {
+   "executaveis": 4,
+   "cobertas": 3,
+   "nao_cobertas": [
+    5
+   ]
+  },
+  "lib/features/vault/domain/usecases/save_biometrics_preference_usecase.dart": {
+   "executaveis": 4,
+   "cobertas": 4,
+   "nao_cobertas": []
+  },
+  "lib/features/vault/domain/usecases/save_pin_usecase.dart": {
+   "executaveis": 2,
+   "cobertas": 2,
+   "nao_cobertas": []
+  },
+  "lib/features/vault/domain/usecases/verify_pin_usecase.dart": {
+   "executaveis": 2,
+   "cobertas": 2,
+   "nao_cobertas": []
+  }
+ },
+ "testes_falharam": false,
+ "arquivos_de_dominio": 54
+}

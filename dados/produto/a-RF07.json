@@ -1,0 +1,93 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF07",
+ "tag": "cicloA/rf07-done",
+ "prev": "cicloA/rf02-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 38,
+ "M12_media": 1.545455,
+ "M12_acima": 0,
+ "M12_metodos": 33,
+ "testes_codigo_saida": 0,
+ "testes_total": 264,
+ "testes_aprovados": 264,
+ "M6": {
+  "M6_tasks": 0.9512195121951219,
+  "M6_citados_nao_alterados": [
+   "lib/core/design_tokens.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/core/di/service_locator.dart",
+   "lib/core/network/api_client.dart",
+   "lib/core/routing/app_router.dart",
+   "lib/features/capture/presentation/widgets/open_insertion_modal.dart",
+   "lib/features/entries/data/entries_remote_data_source.dart",
+   "lib/features/entries/data/entries_repository_impl.dart",
+   "lib/features/entries/domain/entities/entries_page.dart",
+   "lib/features/entries/domain/entities/entry.dart",
+   "lib/features/entries/domain/repositories/entries_repository.dart",
+   "lib/features/home/presentation/pages/home_chat_shell_page.dart",
+   "lib/features/records/domain/entities/date_group.dart",
+   "lib/features/records/domain/entities/entry_merger.dart",
+   "lib/features/records/domain/entities/sync_badge_state.dart",
+   "lib/features/records/presentation/bloc/records_bloc.dart",
+   "lib/features/records/presentation/bloc/records_event.dart",
+   "lib/features/records/presentation/bloc/records_state.dart",
+   "lib/features/records/presentation/pages/records_page.dart",
+   "lib/features/records/presentation/pages/records_placeholder_page.dart",
+   "lib/features/records/presentation/widgets/record_card.dart",
+   "lib/features/records/presentation/widgets/records_empty_state.dart",
+   "lib/features/records/presentation/widgets/sync_badge_dot.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [
+   "auth",
+   "intl"
+  ],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "entries-create",
+    "entries-get",
+    "entries-list"
+   ],
+   "c3": [
+    "chatMessageId",
+    "content",
+    "createdAt",
+    "cursor",
+    "data",
+    "embeddingStatus",
+    "end",
+    "id",
+    "mediaDurationSeconds",
+    "meta",
+    "name",
+    "nextCursor",
+    "occurredAt",
+    "piiSpans",
+    "piiStatus",
+    "serverRevision",
+    "source",
+    "start",
+    "tags",
+    "type",
+    "unexpected",
+    "updatedAt"
+   ],
+   "c4": []
+  },
+  "contagens": {
+   "citados_nao_alterados": 1,
+   "alterados_nao_citados": 21,
+   "inexist_arq": 0,
+   "inexist_pkg": 2,
+   "inexist_backend": 25
+  }
+ },
+ "segundos": 74.8
+}

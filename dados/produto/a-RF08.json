@@ -1,0 +1,67 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF08",
+ "tag": "cicloA/rf08-done",
+ "prev": "cicloA/rf10-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 12,
+ "M10_assinaturas": 48,
+ "M12_media": 1.509434,
+ "M12_acima": 0,
+ "M12_metodos": 53,
+ "testes_codigo_saida": 1,
+ "testes_total": 517,
+ "testes_aprovados": 516,
+ "M6": {
+  "M6_tasks": 0.9761904761904762,
+  "M6_citados_nao_alterados": [],
+  "M6_alterados_nao_citados": [
+   "lib/core/routing/app_router.dart",
+   "lib/features/chat/data/chat_remote_data_source.dart",
+   "lib/features/chat/data/chat_repository_impl.dart",
+   "lib/features/chat/domain/entities/insight_trigger.dart",
+   "lib/features/chat/domain/entities/proactive_insight.dart",
+   "lib/features/chat/domain/repositories/chat_repository.dart",
+   "lib/features/chat/presentation/bloc/chat_bloc.dart",
+   "lib/features/chat/presentation/bloc/chat_event.dart",
+   "lib/features/chat/presentation/bloc/chat_state.dart",
+   "lib/features/chat/presentation/widgets/insight_card.dart",
+   "lib/features/home/presentation/pages/home_chat_shell_page.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [
+   "clock",
+   "fake_async"
+  ],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "chat-insight-create"
+   ],
+   "c3": [
+    "content",
+    "errorCode",
+    "id",
+    "s1",
+    "status",
+    "triggerKey",
+    "triggerType"
+   ],
+   "c4": [
+    "FUNCTIONS_BASE_URL",
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 0,
+   "alterados_nao_citados": 11,
+   "inexist_arq": 0,
+   "inexist_pkg": 2,
+   "inexist_backend": 10
+  }
+ },
+ "segundos": 143.3
+}
