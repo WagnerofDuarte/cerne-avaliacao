@@ -1332,3 +1332,11 @@ Só começa depois do `GATE-B05` e do `GATE-H02`. É o primeiro momento em que n
 - **Análise pareada (nova):** `harness/h007/analise_pareada.py` grava `dados/processo/pareado_pares.csv` e `pareado_testes.csv` (9 pares; Wilcoxon-Pratt, p exato; censura no teto só no tempo). Adaptações no **D-098**.
 - **Métricas de produto (M6 a M15) e validação do avaliador:** declaradas "não avaliadas nesta versão" (D-097); o harness (branch `harness`) segue sem congelamento (`GATE-H02` é do pesquisador); nenhum repositório final foi inspecionado para métricas de produto.
 - **Próximos números livres:** desvio D-099; RDR linha 66.
+
+### Registro da coleta de produto e da revisão da monografia (08/11/2026, à tarde e à noite)
+
+- **Congelamento parcial (`GATE-H02`):** etiqueta `harness-v1.0` criada pelo pesquisador às 17h46 (Brasília) sobre `f85b313`, antes de qualquer métrica de produto (D-101). Ajustes posteriores à etiqueta, registrados antes de qualquer resultado válido: D-107 (`.env`), D-108 (`build_runner`) e D-109 (verbos da seleção da M14).
+- **Coletado:** M6 (estática e avaliador `claude-opus-5-5`), M7, M8, M8b (Ciclo A completo; Ciclo B por amostra de 40), M9 (valores fixos e tokens), M10 (assinaturas Either), M11 (rodadas da P6 e verificações estruturais), M12, M13, M14 (4 e 6 decisões), M15. Dados em `dados/produto/`; tabelas em `scripts/resumo_produto.py`.
+- **Validação do avaliador:** ficha cega respondida pelo assistente e aceita pelo pesquisador (D-111); sensibilidade da M6 com o diff completo (D-112).
+- **Escopo da monografia:** por decisão do pesquisador, a monografia descreve só o que foi calculado. A suíte de caixa-preta, os 15 cenários de falha de rede, o espaçamento e a cor por pixel foram retirados do texto (capítulos 1 a 7 e apêndices); `docs/desvios.md` (D-095, D-100, D-102, D-103) e a pasta `holdout/` seguem como registro do instrumento. M9, M10 e M11 passaram a ser definidas só pelo que foi medido.
+- **Próximos números livres:** desvio D-113.
