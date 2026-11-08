@@ -258,3 +258,6 @@ b,RF09,79ed7a52-07cd-408f-bb2f-5e02729ac52a,VALID,2026-11-07T21:06:50.816Z,bmad-
 b,RF09,6f49585d-d493-4dfd-be18-d90ab6a6328b,VALID,2026-11-07T21:17:51.983Z,bmad-qa-generate-e2e-tests,The features implemented in story 8-2-independent-narrative-text-narrative-unavailable-state
 b,RF09,e7047020-f13b-4408-9973-86e4e5176511,IMPL,2026-11-07T21:23:43.397Z,bmad-build,Proceed. The uncommitted changes come from earlier workflow steps of this project
 b,RF09,e7047020-f13b-4408-9973-86e4e5176511,IMPL,2026-11-08T12:46:15.787Z,bmad-build,A
+b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T13:48:58.577Z,bmad-code-review,Story 8-3.
+b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T14:02:59.889Z,bmad-code-review,1
+b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T14:08:25.395Z,bmad-code-review,3
