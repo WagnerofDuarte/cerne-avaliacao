@@ -30,9 +30,34 @@ Regras que guiam o desenho: cegamento (testes só na `calibracao/`), nenhum outp
 
 (demais decisões entram abaixo conforme o trabalho avança)
 
-## 4. Status por item
+## 4. Status por item (08/11/2026, sessão na nuvem)
 
-(atualizado a cada commit)
+Ferramentas instaladas nesta sessão (em `/root/tools`, fora do repositório): Dart 3.13.7, Flutter 3.47.9 (stable), Deno 2.9.8, mitmproxy 12.3.1 (venv Python), pytest, PyYAML, Pillow. Pub.dev, GitHub e npm responderam pelo proxy da sessão.
+
+| Item | Estado | Verificado | Falta / não verificável |
+|---|---|---|---|
+| T0 | feito | — | — |
+| H-001 | **atendido** | v1/v2 montam, testes rodam (v1: 10 passam; v2: 8 passam, 1 falha, 1 apagado); gabarito com arquivo:linha e CC à mão | — |
+| H-002 | **atendido na calibração** (M4, M6-D, M7+RF07/RF10, M8, M8b, M9-D, M10-D, M12, M13, M14-D, M15) | 1 módulo = 1 teste contra `gabarito.json`; nem mais, nem menos | Formatos reais de `openapi.yaml`/taxonomia/README (M6) e os caminhos de saída do BMAD (M4) não foram vistos: ver pendências |
+| Plano B | escrito, **não executado** | revisado por leitura contra `cenarios.md`/`rnf09.md`/`estados-m9.md` | execução é do Wagner/guia |
+| H-003 | (a fazer) | | |
+| H-004 | (a fazer) | | |
+| H-005 | (a fazer) | | |
+| H-006 | (a fazer) | | |
+| H-007 | fora de escopo (guia) | | |
+
+**M8b:** o módulo encontrou o mutante plantado (`validate_entry.dart:5`, `<=`→`<`) e reproduziu exatamente a lista de 17 mutantes (9 mortos, 8 sobreviventes, score 0,5294) derivada à mão antes da execução. **Recomendação: manter a M8b** (condição do GATE-C02 item 8 satisfeita). Ferramenta: módulo próprio (Python), `mutation_test` do pub.dev não foi avaliado a fundo.
+
+### Interpretações adotadas (nenhuma contradiz texto congelado; todas deterministas e documentadas no código)
+
+- M7: "`package:flutter`" = `package:flutter/`; BLoC = arquivo `*_bloc.dart`/`*_cubit.dart`; RF10 = arquivo de chat importa, na feature de entradas, algo em `data/` ou com `repository|datasource` no nome. Os nomes das features (`chat`, `entries`) são parâmetros (`--chat-feature`, `--entries-feature`): **para cada ciclo é preciso informar os nomes reais** (ou detectar pelo diff de `rf10-done`).
+- M9 hardcodes: `Colors.<x>` (exceto `transparent`) conta como cor; espaçamento = `EdgeInsets.*` e `SizedBox(width|height)` com literal numérico ≠ 0.
+- M10: `M10_assinaturas` conta **assinaturas** fora do padrão (a §5.2 diz "repositórios fora do padrão"; a saída traz também `repositorios_fora`).
+- M12: `for` de coleção e braço de `switch` expression **não** contam (não estão na lista); closure conta no método que a contém; só declarações com corpo entram.
+- M6: referências inexistentes contadas por token **distinto** por categoria; (c2)/(c3) só em arquivos `data/`; citados × alterados usa só `plan.md` e arquivos `lib/**.dart` do diff.
+- M14: dedup = conjunto de identificadores igual ou subconjunto; verbos de prescrição ampliados (`add`, `keep`, `goes through`, `placed in`…).
+- M15: unidade de divergência definida em `m15_consistencia.py` (simétrica por subpasta/papel; por classe nas convenções C2/C3).
+- M8: como o lcov só lista arquivos importados por algum teste, o módulo injeta na cópia um teste que importa todo o domínio (senão arquivos sem teste somem do denominador).
 
 ## 5. Rascunhos de desvio
 
