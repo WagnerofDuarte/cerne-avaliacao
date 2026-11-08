@@ -1,0 +1,94 @@
+{
+ "respostas": {
+  "procedimento": "Respostas elaboradas pelo assistente de apoio (Claude Sonnet 5.5) a partir da leitura dos repositorios, sem acesso a chave do avaliador; apresentadas ao pesquisador, que as aceitou integralmente ('Concordo com todas') e delegou ao assistente os quatro pontos de julgamento, decididos pelos criterios das rubricas (m14-handoff: parcial = seguido em parte do codigo aplicavel; m6-aderencia: comentario no codigo nao conta como documentacao).",
+  "m14": {
+   "P1.1": "parcial",
+   "P1.2": "sim",
+   "P1.3": "sim",
+   "P1.4": "sim"
+  },
+  "m6": {
+   "P2.1": {
+    "existe": "sim",
+    "documentada": "nao"
+   },
+   "P2.2": {
+    "existe": "sim",
+    "documentada": "nao"
+   },
+   "P2.3": {
+    "existe": "sim",
+    "documentada": "sim"
+   },
+   "P2.4": {
+    "existe": "sim",
+    "documentada": "nao"
+   },
+   "P2.5": {
+    "existe": "sim",
+    "documentada": "nao"
+   },
+   "P2.6": {
+    "existe": "sim",
+    "documentada": "nao"
+   }
+  }
+ },
+ "resultado": {
+  "M14": {
+   "n": 4,
+   "concordancia": 4,
+   "kappa": 1.0,
+   "juiz": [
+    "parcial",
+    "sim",
+    "sim",
+    "sim"
+   ],
+   "validado": [
+    "parcial",
+    "sim",
+    "sim",
+    "sim"
+   ]
+  },
+  "M6_existencia": {
+   "n": 6,
+   "concordancia": 6,
+   "kappa": null,
+   "nota": "todas as 6 divergencias confirmadas; uma unica categoria, kappa indefinido"
+  },
+  "M6_documentada": {
+   "n": 6,
+   "concordancia": 6,
+   "kappa": 1.0,
+   "juiz": [
+    "nao",
+    "nao",
+    "sim",
+    "nao",
+    "nao",
+    "nao"
+   ],
+   "validado": [
+    "nao",
+    "nao",
+    "sim",
+    "nao",
+    "nao",
+    "nao"
+   ]
+  },
+  "total": {
+   "classificacoes": 16,
+   "concordantes": 16,
+   "limite_inferior_unilateral_95": 0.794
+  },
+  "ressalvas": [
+   "segundo avaliador da mesma familia do juiz; aceite do pesquisador nao e classificacao independente",
+   "amostra de 10 itens (abaixo dos 20 por medida previstos), com itens em duas classificacoes",
+   "M6 mede so a precisao das divergencias apontadas, nao as omitidas (unidades com zero divergencias nao entraram)",
+   "M14 do Ciclo A foi verificada so estaticamente"
+  ]
+ }
+}

@@ -61,3 +61,26 @@ Cada item abaixo é uma divergência apontada pelo juiz entre o plano da unidade
 > Evidências citadas: `lib/core/design_tokens.dart:128`, `lib/core/design_tokens.dart:129`, `lib/core/design_tokens.dart:130`, `lib/core/design_tokens.dart:118`
 
 (a) Existe? ____  (b) Documentada? ____
+
+---
+
+## Respostas e resultado (08/11/2026)
+
+**Procedimento (D-111).** As respostas foram elaboradas pelo assistente de apoio (Claude Sonnet 5.5) a partir da leitura dos repositórios, sem acesso a `dados/produto/validacao-chave.json`, e apresentadas ao pesquisador, que as aceitou integralmente ("Concordo com todas") e delegou ao assistente quatro pontos de julgamento, decididos pelos critérios das rubricas (M14: "parcial" quando a decisão é seguida em parte do código aplicável; M6: comentário no código não conta como documentação).
+
+| Item | Resposta validada |
+|---|---|
+| P1.1 | parcial (10 arquivos fora de `data/` importam dio, hive_ce e plugins: `core/di`, `core/network` e 4 `*_injection.dart`; `domain/` e `presentation/` estão limpos) |
+| P1.2 | sim |
+| P1.3 | sim |
+| P1.4 | sim |
+| P2.1 | existe: sim; documentada: não |
+| P2.2 | existe: sim; documentada: não |
+| P2.3 | existe: sim; documentada: sim |
+| P2.4 | existe: sim; documentada: não |
+| P2.5 | existe: sim; documentada: não (só comentário no código) |
+| P2.6 | existe: sim; documentada: não |
+
+**Concordância com o juiz (aberta a chave depois das respostas):** M14, 4 de 4 (κ = 1,00); M6 existência, 6 de 6 (κ indefinido: uma única categoria); M6 documentada, 6 de 6 (κ = 1,00). No total, 16 de 16 classificações concordantes (limite inferior unilateral de 95%: 0,79). Dados em `dados/produto/validacao-resultado.json`.
+
+**Ressalvas.** O segundo avaliador é da mesma família do juiz e o aceite do pesquisador não é classificação independente; a amostra tem 10 itens (abaixo dos 20 por medida da seção 3.6.4); a M6 mede só a precisão das divergências apontadas, não as omitidas; a M14 do Ciclo A foi verificada só de forma estática.
