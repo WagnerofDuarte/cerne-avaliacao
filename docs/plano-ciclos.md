@@ -1151,7 +1151,7 @@ Tudo aqui acontece em `cerne-ciclo-b`, aberto sempre com `abrir-ciclo b`. Unidad
 ## Encerramento do Ciclo B
 **Prazo proposto: 13/11/2026**
 
-- [ ] `B-009` Conferência de completude dos dados, igual ao `A-003`, incluindo o `mapa-stories.csv`.
+- [x] `B-009` Conferência de completude dos dados, igual ao `A-003`, incluindo o `mapa-stories.csv`. **Registro (08/11/2026):** conferido em `$AVAL/dados/cicloB`: **136 transcritos** na pasta do ciclo no Mac; **130 linhas** de sessão em `sessoes.csv` (fora a linha de instalação, que não tem transcrito) e 130 brutos principais correspondentes, sem sobras de nenhum dos lados; **6 transcritos sem coleta** (tentativas descartadas de 1,6 a 9,6 s, achadas pela conferência), copiados para `brutos/` sem linhas nos CSVs, para decidir na re-derivação da `H-007`: **D-094** (repete o D-037); com eles, 136 brutos principais. As **11 unidades têm tag** (10 `done` e a RF03 `incompleto`), mais `baseline`, `instalado`, `setup-done` e `plan-done`. O `mapa-stories.csv` tem **34 stories**, igual ao `sprint-status.yaml` (34). **As 8 retrospectivas estão feitas** (a do épico 8 numa sessão `PLAN` e as dos épicos 1 a 7 em outra, D-092 e D-093), sem commit no repositório do ciclo até o `cicloB/final`. Planejamento: 13 sessões `PLAN` (11 de B2 a B4 e 2 de retrospectivas).
 - [ ] 📏 **[COLETA]** Tag `cicloB/final`.
 - [ ] 🔴 **[MANUAL] `GATE-B05`** — Nota de encerramento do Ciclo B.
 
