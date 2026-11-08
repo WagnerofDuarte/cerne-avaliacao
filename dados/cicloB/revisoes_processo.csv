@@ -261,3 +261,5 @@ b,RF09,e7047020-f13b-4408-9973-86e4e5176511,IMPL,2026-11-08T12:46:15.787Z,bmad-b
 b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T13:48:58.577Z,bmad-code-review,Story 8-3.
 b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T14:02:59.889Z,bmad-code-review,1
 b,RF09,1feb7015-5fa1-4410-90aa-a0c35f795acc,VALID,2026-11-08T14:08:25.395Z,bmad-code-review,3
+b,RF09,52022b8e-0c6c-4d28-bb7e-3201618dddc8,VALID,2026-11-08T14:10:22.348Z,bmad-qa-generate-e2e-tests,"Use your technical judgment, following the input package"
+b,RF09,52022b8e-0c6c-4d28-bb7e-3201618dddc8,VALID,2026-11-08T14:10:22.348Z,bmad-qa-generate-e2e-tests,8-3
