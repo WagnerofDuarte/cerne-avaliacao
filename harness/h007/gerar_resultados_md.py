@@ -68,7 +68,7 @@ for k, nome in [("M5_sens_sem_coleta", "intervenções de sessões descartadas s
                 ("M5_sens_neutra", "mensagens neutras (`Yes`, `Yes, proceed.`; não contam)"), ("M5_sens_painel_sem_prefixo", "respostas de painel por clique, sem prefixo (não contam)")]:
     w(f"| {nome} | {g(A, k, 0)} | {g(B, k, 0)} |")
 w("\n## 3. Por unidade\n")
-w("Tempo ativo (h), tempo de calendário desde a tag anterior (h), custo (USD), intervenções (M5, leitura principal) e `PROCESSO:` (M5b). `>teto`: tempo ativo acima do teto de 8 h (12 h na F000); a unidade seguiu por decisão registrada (D-058, D-060, D-064, D-080, D-090). RF02 do B não teve sessões (D-061 e a nota B7).\n")
+w("Tempo ativo (h), tempo de calendário desde a tag anterior (h), custo (USD), intervenções (M5, leitura principal) e `PROCESSO:` (M5b). `>teto`: tempo ativo acima do teto de 8 h (12 h na F000); a unidade seguiu por decisão registrada (D-058, D-060, D-064, D-080, D-090). RF02 do B não teve sessões (nota B7).\n")
 w("| Unid. | Ciclo | Fecho | Sessões | Ativo (h) | Calendário (h) | Custo (USD) | M5 | M5b | |\n|---|---|---|---:|---:|---:|---:|---:|---:|---|")
 for u in ["F000", "RF03", "RF01", "RF02", "RF07", "RF06", "RF04", "RF10", "RF08", "RF05", "RF09"]:
     for c in ("a", "b"):

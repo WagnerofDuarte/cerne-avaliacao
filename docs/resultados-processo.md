@@ -67,7 +67,7 @@
 
 ## 3. Por unidade
 
-Tempo ativo (h), tempo de calendário desde a tag anterior (h), custo (USD), intervenções (M5, leitura principal) e `PROCESSO:` (M5b). `>teto`: tempo ativo acima do teto de 8 h (12 h na F000); a unidade seguiu por decisão registrada (D-058, D-060, D-064, D-080, D-090). RF02 do B não teve sessões (D-061 e a nota B7).
+Tempo ativo (h), tempo de calendário desde a tag anterior (h), custo (USD), intervenções (M5, leitura principal) e `PROCESSO:` (M5b). `>teto`: tempo ativo acima do teto de 8 h (12 h na F000); a unidade seguiu por decisão registrada (D-058, D-060, D-064, D-080, D-090). RF02 do B não teve sessões (nota B7).
 
 | Unid. | Ciclo | Fecho | Sessões | Ativo (h) | Calendário (h) | Custo (USD) | M5 | M5b | |
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
