@@ -1,0 +1,65 @@
+{
+ "original": {
+  "mediana_A": 5,
+  "mediana_B": 0,
+  "mediana_dif": -4,
+  "B_maior": 0,
+  "B_menor": 9,
+  "p_exato": 0.0039,
+  "r_bisserial": -1.0,
+  "diferencas": [
+   -6,
+   -6,
+   -3,
+   -4,
+   -1,
+   -2,
+   -4,
+   -5,
+   -5
+  ]
+ },
+ "sensibilidade": {
+  "mediana_A": 5,
+  "mediana_B": 0,
+  "mediana_dif": -5,
+  "B_maior": 0,
+  "B_menor": 9,
+  "p_exato": 0.0039,
+  "r_bisserial": -1.0,
+  "diferencas": [
+   -7,
+   -6,
+   -3,
+   -6,
+   -1,
+   -2,
+   -4,
+   -5,
+   -5
+  ]
+ },
+ "total_A": {
+  "original": 60,
+  "sensibilidade": 59
+ },
+ "total_B": {
+  "original": 20,
+  "sensibilidade": 14
+ },
+ "unidades_refeitas": 9,
+ "truncadas_ainda": [
+  [
+   "b",
+   "RF05"
+  ]
+ ],
+ "sem_maioria_apos": [
+  [
+   "a",
+   "RF04"
+  ]
+ ],
+ "custo_usd": 15.57,
+ "chamadas": 27
+}
