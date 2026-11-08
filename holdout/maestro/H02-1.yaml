@@ -1,0 +1,38 @@
+# H02-1 (RF02) — bloco III, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Áudio"
+- tapOn: "Toque para gravar"
+# cronometro correndo = estado 'gravando'
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 2000
+    optional: true
+- tapOn:
+    text: "Toque para gravar"
+    optional: true
+- assertVisible: "Transcrevendo..."
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 15000
+    optional: true
+# transcrito: texto editavel com a duracao do audio
+# erro de transcricao: nova gravacao de 2 s de SILENCIO
+- assertVisible: "Não foi possível transcrever"
+- assertVisible: "Tentar novamente"
+- tapOn:
+    point: "93%,8%"   # fechar_modal
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Foto"
+- tapOn: "Galeria"
+# escolher ocr_fixture_ilegivel.png
+- assertVisible: "Reconhecendo texto..."
+- assertVisible: "Não foi possível reconhecer o texto — tente outra foto."
+- assertVisible: "Tentar novamente"
+# DIVERGENCIA: cenarios.md cita o botao 'Salvar só a foto'; esse texto NAO existe no prototipo

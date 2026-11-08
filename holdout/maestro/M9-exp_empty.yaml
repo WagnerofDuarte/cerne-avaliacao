@@ -1,0 +1,11 @@
+# estado M9 `exp_empty` (estados-m9.md, conta C)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-vazio@cerne.test", SENHA: "${SENHA_C}"}
+- runFlow: _comum/registros.yaml
+- tapOn:
+    point: "93%,8%"   # download
+- assertVisible: "Nenhum registro nesse período."
+- takeScreenshot: ${CICLO_ANON}-exp_empty

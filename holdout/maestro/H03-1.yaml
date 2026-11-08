@@ -1,0 +1,12 @@
+# H03-1 (RF03) — bloco III, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+# bloquear o app (fluxo do app) e relancar
+- tapOn: "Toque para desbloquear"
+# simular rosto nao reconhecido (aparelho fisico: cobrir a camera)
+- assertVisible: "Não foi possível reconhecer — digite seu PIN"
+# digitar o PIN cadastrado pelo fluxo do app (passo especifico do app)
+- assertVisible: "Escreva uma mensagem..."

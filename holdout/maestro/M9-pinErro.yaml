@@ -1,0 +1,7 @@
+# estado M9 `pinErro` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- tapOn: "Toque para desbloquear"
+# simular rosto nao reconhecido
+- assertVisible: "Não foi possível reconhecer — digite seu PIN"
+- takeScreenshot: ${CICLO_ANON}-pinErro

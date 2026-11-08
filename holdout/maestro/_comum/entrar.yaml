@@ -1,0 +1,16 @@
+# Entra com e-mail e senha. Env: EMAIL, SENHA (a senha vem do ambiente do operador, nunca do repositorio).
+appId: ${APP_ID}
+---
+- launchApp
+- tapOn:
+    text: "usar e-mail e senha"
+    optional: true
+- tapOn: "E-mail"
+- inputText: ${EMAIL}
+- tapOn: "Senha"
+- inputText: ${SENHA}
+- hideKeyboard
+- tapOn: "Entrar"
+- extendedWaitUntil:
+    visible: "Escreva uma mensagem..."
+    timeout: 20000

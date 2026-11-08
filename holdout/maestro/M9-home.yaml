@@ -1,0 +1,10 @@
+# estado M9 `home` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow:
+    file: _comum/conversa.yaml
+    env: {CONVERSA: "Conversa sobre o dia no trabalho"}
+- takeScreenshot: ${CICLO_ANON}-home

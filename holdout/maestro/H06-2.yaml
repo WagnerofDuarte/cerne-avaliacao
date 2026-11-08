@@ -1,0 +1,20 @@
+# H06-2 (RF06) — bloco I, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+- tapOn: "Buscar nos registros..."
+# digitar 'ansiedade' caractere a caractere com ~50 ms entre teclas
+- inputText: "ansiedade"
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 1000
+    optional: true
+- runScript:
+    file: ../scripts/agora.js
+- runScript:
+    file: ../scripts/checar.js
+    env: {QUERY: "regra=debounce&fn=entries-search&q=ansiedade&gap_ms=300", MARCA_MS: "${output.ms}"}
+- assertTrue: ${output.ok}

@@ -1,0 +1,40 @@
+# H01-1 (RF01) — bloco III, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Texto"
+- inputText: "Consegui separar um tempo hoje só pra organizar as ideias sobre a semana — nada muito importante, mas ajudou a colocar ordem na cabeça."
+- tapOn: "Salvar"
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Áudio"
+# tocar audio_fixture_01.wav perto do microfone durante a gravacao
+- tapOn: "Toque para gravar"
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 8000
+    optional: true
+- tapOn:
+    text: "Toque para gravar"
+    optional: true
+- assertVisible: "Transcrevendo..."
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 15000
+    optional: true
+- tapOn: "Salvar"
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Foto"
+- tapOn: "Galeria"
+# escolher ocr_fixture_01.png
+- assertVisible: "Reconhecendo texto..."
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 15000
+    optional: true
+- tapOn: "Salvar"

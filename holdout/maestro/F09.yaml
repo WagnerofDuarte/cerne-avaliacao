@@ -1,0 +1,32 @@
+# F09 — media-ocr / offline (rnf09.md)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "F09"}
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Foto"
+- tapOn: "Galeria"
+# escolher ocr_fixture_01.png
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 3000
+    optional: true
+- assertVisible: "Não foi possível reconhecer o texto — tente outra foto."
+- takeScreenshot: ${CICLO_ANON}-F09-erro
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: disarm}
+# recuperacao: repetir a mesma acao SEM reiniciar o app; condicao 4 do criterio 'tratado'
+- tapOn:
+    text: "Tentar novamente"
+    optional: true
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 3000
+    optional: true
+- takeScreenshot: ${CICLO_ANON}-F09-recuperado

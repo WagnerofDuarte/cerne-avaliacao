@@ -1,0 +1,12 @@
+{
+  "_nota": "Tokens lidos do HTML de referencia congelado (holdout/referencia/Cerne - Prototipo Final.html, SHA-256 61032a92...185d2fff), secao 'Design Tokens & Componentes' da pagina. Equivalem a §4 do doc-prototipo.md, que fica em entrada/ (ausente neste checkout): CONFERIR contra o doc-prototipo.md antes do GATE-H02. Usado por harness/m9 (H-003 tipografia, H-004 cor).",
+  "corPrimaria": "#1F3D34",
+  "cores": {"colorPrimary": "#1F3D34", "colorPrimaryPressed": "#16281F", "colorOnPrimary": "#F5F1E8", "colorAccent": "#C98A3E", "colorOnAccent": "#241C0D",
+            "colorSecondary": "#7C8B6F", "colorSurfaceBg": "#F2EFE7", "colorSurfaceElevated": "#FBF9F4", "colorBorder": "#E1DACB", "colorTextPrimary": "#241F19",
+            "colorTextSecondary": "#6B6255", "colorError": "#B3402A", "colorSuccess": "#4C6B4F", "colorWarningSync": "#C98A3E", "colorInfoOffline": "#5C7A93"},
+  "fontFamilies": ["Fraunces", "Karla", "IBM Plex Mono"],
+  "fontSizes": [32, 24, 20, 16, 14, 13, 12],
+  "estilos": {"textDisplayLg": "Fraunces 600 32/38", "textHeadlineMd": "Fraunces 600 24/30", "textTitleLg": "Karla 700 20/26", "textTitleSm": "Karla 700 16/22",
+              "textBodyLg": "Karla 400 16/24", "textBodyMd": "Karla 400 14/20", "textLabelMd": "Karla 500 13/18", "textMonoCaption": "IBM Plex Mono 500 12/16"},
+  "espacamento_dp": {"spacingXs": 4, "spacingSm": 8, "spacingMd": 16, "spacingLg": 24, "spacingXl": 32, "spacing2xl": 48}
+}

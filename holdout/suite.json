@@ -1,0 +1,529 @@
+{
+  "_nota": "Gerado por holdout/maestro/gerar.py. ordem dos blocos: I, II, III (cenarios.md §0); estruturais fora (analise estatica).",
+  "cenarios": {
+    "H01-1": {
+      "rf": "RF01",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H01-1.yaml",
+      "proxy": null,
+      "sql": [
+        "tres_modalidades"
+      ]
+    },
+    "H01-2": {
+      "rf": "RF01",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H01-2.yaml",
+      "proxy": null,
+      "sql": [
+        "contagem"
+      ]
+    },
+    "H02-1": {
+      "rf": "RF02",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H02-1.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H03-1": {
+      "rf": "RF03",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H03-1.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H03-2": {
+      "rf": "RF03",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H03-2.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H04-1": {
+      "rf": "RF04",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H04-1.yaml",
+      "proxy": "H04-1",
+      "sql": [
+        "log_falha:chat-messages-send:ai_timeout"
+      ]
+    },
+    "H04-2": {
+      "rf": "RF04",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H04-2.yaml",
+      "proxy": "H04-2",
+      "sql": [
+        "mensagens_usuario"
+      ]
+    },
+    "H05-1": {
+      "rf": "RF05",
+      "bloco": "II",
+      "conta": "C",
+      "flow": "maestro/H05-1.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H05-2": {
+      "rf": "RF05",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H05-2.yaml",
+      "proxy": "H05-2",
+      "sql": [
+        "log_falha:export-summary-create:ai_timeout"
+      ]
+    },
+    "H06-1": {
+      "rf": "RF06",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H06-1.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H06-2": {
+      "rf": "RF06",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H06-2.yaml",
+      "proxy": "H06-2",
+      "sql": []
+    },
+    "H06-3": {
+      "rf": "RF06",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H06-3.yaml",
+      "proxy": "H06-3",
+      "sql": [
+        "contagem"
+      ]
+    },
+    "H06-4": {
+      "rf": "RF06",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H06-4.yaml",
+      "proxy": null,
+      "sql": [
+        "filtro_fonte_mes"
+      ]
+    },
+    "H06-5": {
+      "rf": "RF06",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H06-5.yaml",
+      "proxy": null,
+      "sql": [
+        "contagem"
+      ]
+    },
+    "H07-1": {
+      "rf": "RF07",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H07-1.yaml",
+      "proxy": "H07-1",
+      "sql": []
+    },
+    "H08-1": {
+      "rf": "RF08",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H08-1.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H08-2": {
+      "rf": "RF08",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H08-2.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H08-3": {
+      "rf": "RF08",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H08-3.yaml",
+      "proxy": "H08-3",
+      "sql": [
+        "log_falha:chat-insight-create:ai_timeout"
+      ]
+    },
+    "H08-4": {
+      "rf": "RF08",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H08-4.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H09-1": {
+      "rf": "RF09",
+      "bloco": "II",
+      "conta": "ABC",
+      "flow": "maestro/H09-1.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H09-2": {
+      "rf": "RF09",
+      "bloco": "II",
+      "conta": "B",
+      "flow": "maestro/H09-2.yaml",
+      "proxy": null,
+      "sql": []
+    },
+    "H09-3": {
+      "rf": "RF09",
+      "bloco": "II",
+      "conta": "B",
+      "flow": "maestro/H09-3.yaml",
+      "proxy": "H09-3a",
+      "sql": []
+    },
+    "H10-2": {
+      "rf": "RF10",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H10-2.yaml",
+      "proxy": null,
+      "sql": [
+        "idempotencia_chat"
+      ]
+    },
+    "H10-3": {
+      "rf": "RF10",
+      "bloco": "III",
+      "conta": "A",
+      "flow": "maestro/H10-3.yaml",
+      "proxy": "H10-3",
+      "sql": [
+        "log_falha:entries-create:offline"
+      ]
+    },
+    "H10-4": {
+      "rf": "RF10",
+      "bloco": "I",
+      "conta": "A",
+      "flow": "maestro/H10-4.yaml",
+      "proxy": null,
+      "sql": []
+    }
+  },
+  "falhas": {
+    "F01": {
+      "fn": "entries-create",
+      "falha": "timeout",
+      "flow": "maestro/F01.yaml",
+      "proxy": "F01",
+      "sql": [
+        "log_falha:entries-create:timeout",
+        "contagem"
+      ]
+    },
+    "F02": {
+      "fn": "entries-create",
+      "falha": "malformed",
+      "flow": "maestro/F02.yaml",
+      "proxy": "F02",
+      "sql": [
+        "log_falha:entries-create:malformed",
+        "contagem"
+      ]
+    },
+    "F03": {
+      "fn": "entries-create",
+      "falha": "offline",
+      "flow": "maestro/F03.yaml",
+      "proxy": "F03",
+      "sql": [
+        "log_falha:entries-create:offline",
+        "contagem"
+      ]
+    },
+    "F04": {
+      "fn": "chat-messages-send",
+      "falha": "timeout",
+      "flow": "maestro/F04.yaml",
+      "proxy": "F04",
+      "sql": [
+        "log_falha:chat-messages-send:timeout"
+      ]
+    },
+    "F05": {
+      "fn": "chat-messages-send",
+      "falha": "malformed",
+      "flow": "maestro/F05.yaml",
+      "proxy": "F05",
+      "sql": [
+        "log_falha:chat-messages-send:malformed"
+      ]
+    },
+    "F06": {
+      "fn": "chat-messages-send",
+      "falha": "offline",
+      "flow": "maestro/F06.yaml",
+      "proxy": "F06",
+      "sql": [
+        "log_falha:chat-messages-send:offline"
+      ]
+    },
+    "F07": {
+      "fn": "media-ocr",
+      "falha": "timeout",
+      "flow": "maestro/F07.yaml",
+      "proxy": "F07",
+      "sql": [
+        "log_falha:media-ocr:timeout"
+      ]
+    },
+    "F08": {
+      "fn": "media-ocr",
+      "falha": "malformed",
+      "flow": "maestro/F08.yaml",
+      "proxy": "F08",
+      "sql": [
+        "log_falha:media-ocr:malformed"
+      ]
+    },
+    "F09": {
+      "fn": "media-ocr",
+      "falha": "offline",
+      "flow": "maestro/F09.yaml",
+      "proxy": "F09",
+      "sql": [
+        "log_falha:media-ocr:offline"
+      ]
+    },
+    "F10": {
+      "fn": "export-summary-create",
+      "falha": "timeout",
+      "flow": "maestro/F10.yaml",
+      "proxy": "F10",
+      "sql": [
+        "log_falha:export-summary-create:timeout"
+      ]
+    },
+    "F11": {
+      "fn": "export-summary-create",
+      "falha": "malformed",
+      "flow": "maestro/F11.yaml",
+      "proxy": "F11",
+      "sql": [
+        "log_falha:export-summary-create:malformed"
+      ]
+    },
+    "F12": {
+      "fn": "export-summary-create",
+      "falha": "offline",
+      "flow": "maestro/F12.yaml",
+      "proxy": "F12",
+      "sql": [
+        "log_falha:export-summary-create:offline"
+      ]
+    },
+    "F13": {
+      "fn": "chat-insight-create",
+      "falha": "timeout",
+      "flow": "maestro/F13.yaml",
+      "proxy": "F13",
+      "sql": [
+        "log_falha:chat-insight-create:timeout"
+      ]
+    },
+    "F14": {
+      "fn": "chat-insight-create",
+      "falha": "malformed",
+      "flow": "maestro/F14.yaml",
+      "proxy": "F14",
+      "sql": [
+        "log_falha:chat-insight-create:malformed"
+      ]
+    },
+    "F15": {
+      "fn": "chat-insight-create",
+      "falha": "offline",
+      "flow": "maestro/F15.yaml",
+      "proxy": "F15",
+      "sql": [
+        "log_falha:chat-insight-create:offline"
+      ]
+    }
+  },
+  "estados": {
+    "splash": {
+      "conta": null,
+      "flow": "maestro/M9-splash.yaml",
+      "proxy": null
+    },
+    "bio": {
+      "conta": "A",
+      "flow": "maestro/M9-bio.yaml",
+      "proxy": null
+    },
+    "login": {
+      "conta": null,
+      "flow": "maestro/M9-login.yaml",
+      "proxy": null
+    },
+    "pinInicial": {
+      "conta": "A",
+      "flow": "maestro/M9-pinInicial.yaml",
+      "proxy": null
+    },
+    "pinErro": {
+      "conta": "A",
+      "flow": "maestro/M9-pinErro.yaml",
+      "proxy": null
+    },
+    "home": {
+      "conta": "A",
+      "flow": "maestro/M9-home.yaml",
+      "proxy": null
+    },
+    "t2texto": {
+      "conta": "A",
+      "flow": "maestro/M9-t2texto.yaml",
+      "proxy": null
+    },
+    "t2audio_recording": {
+      "conta": "A",
+      "flow": "maestro/M9-t2audio_recording.yaml",
+      "proxy": null
+    },
+    "t2audio_processing": {
+      "conta": "A",
+      "flow": "maestro/M9-t2audio_processing.yaml",
+      "proxy": "t2audio_processing"
+    },
+    "t2audio_transcribed": {
+      "conta": "A",
+      "flow": "maestro/M9-t2audio_transcribed.yaml",
+      "proxy": null
+    },
+    "t2audio_error": {
+      "conta": "A",
+      "flow": "maestro/M9-t2audio_error.yaml",
+      "proxy": null
+    },
+    "t2foto_idle": {
+      "conta": "A",
+      "flow": "maestro/M9-t2foto_idle.yaml",
+      "proxy": null
+    },
+    "t2foto_processing": {
+      "conta": "A",
+      "flow": "maestro/M9-t2foto_processing.yaml",
+      "proxy": "t2foto_processing"
+    },
+    "t2foto_recognized": {
+      "conta": "A",
+      "flow": "maestro/M9-t2foto_recognized.yaml",
+      "proxy": null
+    },
+    "t2foto_error": {
+      "conta": "A",
+      "flow": "maestro/M9-t2foto_error.yaml",
+      "proxy": null
+    },
+    "menu": {
+      "conta": "A",
+      "flow": "maestro/M9-menu.yaml",
+      "proxy": null
+    },
+    "sessao": {
+      "conta": "A",
+      "flow": "maestro/M9-sessao.yaml",
+      "proxy": "sessao"
+    },
+    "registros": {
+      "conta": "A",
+      "flow": "maestro/M9-registros.yaml",
+      "proxy": null
+    },
+    "vazio": {
+      "conta": "C",
+      "flow": "maestro/M9-vazio.yaml",
+      "proxy": null
+    },
+    "filtro": {
+      "conta": "A",
+      "flow": "maestro/M9-filtro.yaml",
+      "proxy": null
+    },
+    "filtrosAtivos": {
+      "conta": "A",
+      "flow": "maestro/M9-filtrosAtivos.yaml",
+      "proxy": null
+    },
+    "exp_pending": {
+      "conta": "A",
+      "flow": "maestro/M9-exp_pending.yaml",
+      "proxy": "exp_pending"
+    },
+    "exp_processing": {
+      "conta": "A",
+      "flow": "maestro/M9-exp_processing.yaml",
+      "proxy": "exp_processing"
+    },
+    "exp_done": {
+      "conta": "A",
+      "flow": "maestro/M9-exp_done.yaml",
+      "proxy": null
+    },
+    "exp_error": {
+      "conta": "A",
+      "flow": "maestro/M9-exp_error.yaml",
+      "proxy": "exp_error"
+    },
+    "exp_empty": {
+      "conta": "C",
+      "flow": "maestro/M9-exp_empty.yaml",
+      "proxy": null
+    },
+    "config": {
+      "conta": "A",
+      "flow": "maestro/M9-config.yaml",
+      "proxy": null
+    },
+    "dashZero": {
+      "conta": "C",
+      "flow": "maestro/M9-dashZero.yaml",
+      "proxy": null
+    },
+    "dashUma": {
+      "conta": "B",
+      "flow": "maestro/M9-dashUma.yaml",
+      "proxy": null
+    },
+    "dashNarrativeError": {
+      "conta": "A",
+      "flow": "maestro/M9-dashNarrativeError.yaml",
+      "proxy": "dashNarrativeError"
+    },
+    "excluir": {
+      "conta": "A",
+      "flow": "maestro/M9-excluir.yaml",
+      "proxy": null
+    }
+  },
+  "estruturais": [
+    "H07-2",
+    "H07-3",
+    "H10-1"
+  ]
+}

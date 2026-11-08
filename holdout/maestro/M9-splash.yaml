@@ -1,0 +1,5 @@
+# estado M9 `splash` (estados-m9.md, conta —)
+appId: ${APP_ID}
+---
+# abrir a frio; capturar no primeiro quadro estavel
+- takeScreenshot: ${CICLO_ANON}-splash

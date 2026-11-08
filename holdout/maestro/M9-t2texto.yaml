@@ -1,0 +1,10 @@
+# estado M9 `t2texto` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Texto"
+- takeScreenshot: ${CICLO_ANON}-t2texto
