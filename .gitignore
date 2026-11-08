@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+calibracao/saida/
+node_modules/
+.dart_tool/
+coverage/
+pubspec.lock

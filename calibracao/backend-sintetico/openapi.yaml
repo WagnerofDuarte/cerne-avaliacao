@@ -1,0 +1,19 @@
+openapi: 3.0.3
+info: {title: Backend sintetico, version: "1"}
+paths:
+  /entries:
+    get: {summary: list}
+    post: {summary: create}
+  /entries/{id}:
+    get: {summary: one}
+  /chat/messages:
+    post: {summary: send}
+components:
+  schemas:
+    Entry:
+      type: object
+      properties:
+        id: {type: string}
+        content: {type: string}
+        source: {type: string}
+        createdAt: {type: string}
