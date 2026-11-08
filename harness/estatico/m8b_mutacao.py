@@ -61,7 +61,7 @@ def _falhas(res):
     return {t for t, r in res.items() if r in ("failure", "error")}
 
 
-def medir(root, timeout=180, max_mutantes=None, filtro_arquivo=None):
+def medir(root, timeout=180, max_mutantes=None, filtro_arquivo=None, amostra=None, semente=20261108):
     subprocess.run([flutter_bin(), "pub", "get"], cwd=root, capture_output=True, text=True, env=flutter_env(), timeout=600)
     rc, base = _rodar(root, 600)
     if not base:
@@ -77,6 +77,11 @@ def medir(root, timeout=180, max_mutantes=None, filtro_arquivo=None):
             mutantes.append((r, f, src, pos, de, para, linha))
     if max_mutantes:
         mutantes = mutantes[:max_mutantes]
+    total_enumerados = len(mutantes)
+    if amostra and len(mutantes) > amostra:   # D-104: amostra deterministica (semente fixa, ordem original preservada)
+        import random
+        idx = sorted(random.Random(semente).sample(range(len(mutantes)), amostra))
+        mutantes = [mutantes[i] for i in idx]
     out = []
     for r, f, src, pos, de, para, linha in mutantes:
         f.write_text(src[:pos] + para + src[pos + len(de):])
@@ -93,7 +98,8 @@ def medir(root, timeout=180, max_mutantes=None, filtro_arquivo=None):
         out.append({"arquivo": r, "linha": linha, "de": de, "para": para, "estado": estado})
     mortos = sum(1 for m in out if m["estado"].startswith("morto"))
     viv = sum(1 for m in out if m["estado"] == "sobrevivente")
-    return {"M8b_mutation": round(mortos / (mortos + viv), 6) if (mortos + viv) else None, "mortos": mortos,
+    return {"M8b_mutation": round(mortos / (mortos + viv), 6) if (mortos + viv) else None, "mutantes_enumerados": total_enumerados,
+            "amostra": amostra, "semente": semente if amostra else None, "mortos": mortos,
             "sobreviventes": viv, "erros_compilacao": sum(1 for m in out if m["estado"] == "erro_compilacao"),
             "falhas_linha_de_base": sorted(base_f), "mutantes": out}
 
@@ -104,9 +110,10 @@ def main():
     ap.add_argument("--tag", required=True)
     ap.add_argument("--timeout", type=int, default=180)
     ap.add_argument("--max-mutantes", type=int)
+    ap.add_argument("--amostra", type=int, help="D-104: tamanho da amostra deterministica de mutantes")
     a = ap.parse_args()
     with tag_copy(a.repo, a.tag) as root:
-        dump(medir(root, a.timeout, a.max_mutantes))
+        dump(medir(root, a.timeout, a.max_mutantes, amostra=a.amostra))
 
 
 if __name__ == "__main__":

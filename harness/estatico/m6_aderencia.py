@@ -55,8 +55,9 @@ def carregar_contrato(openapi, taxonomia, readme):
     return {"rotas": rotas, "campos": campos, "codigos": codigos, "funcoes": funcoes}
 
 
-def analisar(repo, prev, tag, unidade, contrato, exclusoes=EXCLUSOES_PADRAO):
-    docs = {n: show(repo, tag, f"{unidade}/{n}") for n in ("spec.md", "plan.md", "tasks.md")}
+def analisar(repo, prev, tag, unidade, contrato, exclusoes=EXCLUSOES_PADRAO, docs=None):
+    # `docs` (D-105): textos do plano da unidade quando nao ha spec.md/plan.md/tasks.md (Ciclo B: stories da unidade)
+    docs = docs or {n: show(repo, tag, f"{unidade}/{n}") for n in ("spec.md", "plan.md", "tasks.md")}
     ns = diff_name_status(repo, prev, tag)
     added = diff_added_lines(repo, prev, tag)
     alterados = {p for s, p in ns if p.startswith("lib/") and p.endswith(".dart")}

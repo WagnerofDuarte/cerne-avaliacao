@@ -23,7 +23,7 @@
 
 | Nº (a registrar) | Mudança | Por quê | Efeito/ameaça |
 |---|---|---|---|
-| **D-099** | **Avaliador LLM: de `gpt-5.5-2026-04-23` (OpenAI) para um modelo Claude diferente do gerador**, chamado por `claude -p --model <ID>` em diretório neutro, sem ferramentas, com os **mesmos prompts e schemas congelados** de `harness/juiz/`. Modelo proposto: `claude-opus-5-5` (o agente dos ciclos foi `claude-sonnet-5`) | Não há chave da OpenAI no ambiente e o prazo não comporta obtê-la; o próprio documento de métricas (§6) já prevê o fallback: "manter um avaliador Claude, ampliar a amostra humana e registrar a ameaça como não mitigada" | **Viés de autopreferência não mitigado por família** (mesmo fornecedor do gerador). Mitigações: modelo ≠ do gerador, anonimização, 3 execuções, cegamento do rótulo do ciclo, e rotular os resultados J como **exploratórios** até a validação humana (§6 do documento de métricas, regra do κ). Se houver chave OpenAI depois, repetir os itens como checagem cruzada |
+| **D-099** | **Avaliador LLM: de `gpt-5.5-2026-04-23` (OpenAI) para um modelo Claude diferente do gerador**, chamado por `claude -p --model <ID>` em diretório neutro, sem ferramentas, com os **mesmos prompts e schemas congelados** de `harness/juiz/`. Modelo: `claude-opus-5-5` (decisão do pesquisador em 08/11: **somente** Opus 5.5; o agente dos ciclos foi `claude-sonnet-5`) | Não há chave da OpenAI no ambiente e o prazo não comporta obtê-la; o próprio documento de métricas (§6) já prevê o fallback: "manter um avaliador Claude, ampliar a amostra humana e registrar a ameaça como não mitigada" | **Viés de autopreferência não mitigado por família** (mesmo fornecedor do gerador). Mitigações: modelo ≠ do gerador, anonimização, 3 execuções, cegamento do rótulo do ciclo, e rotular os resultados J como **exploratórios** até a validação humana (§6 do documento de métricas, regra do κ). Se houver chave OpenAI depois, repetir os itens como checagem cruzada |
 | **D-100** | **Hold-out de caixa-preta não é executado hoje.** M10 (15 cenários), M11 (28 cenários) e a parte por imagem da M9 (cor por pixel, espaçamento ±4dp) ficam fora, com substitutos (ver §3) | Maestro não roda em iPhone físico e o app não compila no simulador; o plano B (checklist manual) leva 2 a 2,5 h por ciclo, mais mitmproxy, reset do ambiente e esperas reais | M11 e M10-cenários ficam sem medida independente; declarado como limitação central |
 | **D-101** | **Congelamento parcial (`GATE-H02`)**: congela-se só o que será usado hoje (`harness/estatico/`, `harness/m12/`, `harness/m9/` (hardcodes), `harness/avaliador/`, `harness/juiz/`, `harness/regras.md`, `harness/precos.md`). `holdout/` não é congelado nem usado | Menos itens para conferir antes da tag | Hash do conjunto congelado é registrado; o resto fica para a Parte IV completa |
 | **D-102** | **M9 estático**: cor primária e tipografia comparadas por **tokens** (`design_tokens.dart` × tokens do protótipo), não por pixel nem por árvore de widgets; espaçamento ±4dp **não avaliado** | Sem aparelho, não há screenshots | M9 vira "disciplina de tokens", não "fidelidade renderizada" (construto mais fraco, declarado) |
@@ -55,7 +55,7 @@ Legenda de prioridade: **P0** estático e barato (sem aparelho, sem juiz); **P1*
 | **M13** (regressão) | `flutter test` da suíte do agente em cada tag de unidade | 11 tags × 2 ciclos = 22 execuções; IDs de testes aprovados por tag; taxa com e sem apagados | P1 | Eu | 60–90 min (paralelo) | Reportar as tags que rodaram e declarar as que não |
 | **M14** (fidelidade de handoff) | 10 decisões por critério pré-registrado; checks D + juiz J | Extrair as 10 decisões por ciclo aplicando o critério congelado (`C-022`), checks estáticos onde houver, juiz Claude nas demais (20 itens × 3), **exploratório** | P0+P2 | Eu (+ você confere a lista das 20 decisões, 10 min) | 50 min | Só a parte D |
 | **M15** (consistência) | Script, 4 convenções, referência RF01 | Todas as features das duas `final` | P0 | Eu | 15 min | — |
-| **Validação do juiz (κ)** | ≥20 itens por métrica, cego, você classifica | **Concordância entre dois juízes Claude** (Opus 5.5 × outro modelo) como validação **parcial hoje**; validação humana vira **opcional** (M14: 20 decisões, cerca de 1 h de leitura de código) | P2 | Você (opcional) | 60 min | Resultados J ficam exploratórios (regra do documento de métricas) |
+| **Validação do juiz (κ)** | ≥20 itens por métrica, cego, você classifica | Validação humana só da **M14** (20 decisões, cerca de 1 h), "se couber"; M6-J sem validação humana hoje | P2 | Você (opcional) | 60 min | Resultados J ficam exploratórios (regra do documento de métricas) |
 | D16 (log auxiliar) | Juiz sobre 54 correções | **Fora de hoje** (não é métrica numerada) | — | — | — | — |
 
 ### O que isso entrega
@@ -73,7 +73,7 @@ Legenda de prioridade: **P0** estático e barato (sem aparelho, sem juiz); **P1*
 2. **Chamada.** `cd /tmp/juiz && claude -p "<entrada>" --model claude-opus-5-5 --output-format json --max-turns 1`, sem ferramentas, sem `CLAUDE.md`, sem skills nem conectores (diretório neutro e `--setting-sources` vazio), em paralelo (8 a 10 por vez). Cada resposta fornece `modelUsage` com o **ID canônico do modelo** e o custo, gravados em `julgamentos.jsonl` junto com data, parâmetros e hash do prompt.
 3. **Validação do schema.** Resposta fora do schema = execução inválida, repetida uma vez; se falhar de novo, o item vai para a fila humana.
 4. **Voto.** 3 execuções por item, maioria; sem maioria → fila humana.
-5. **Concordância entre juízes (validação parcial hoje).** Os mesmos itens rodam uma vez num **segundo modelo Claude** (por exemplo `claude-fable-5-1`); reporta-se o κ entre os dois e a taxa de concordância. Não substitui a validação humana, mas dá uma medida de estabilidade.
+5. **Sem segundo juiz** (decisão do pesquisador). A estabilidade é medida só pela concordância entre as 3 execuções do mesmo modelo. A validação humana (M14, 20 decisões) fica **opcional**, "se couber".
 6. **Rótulo.** Todo resultado J sai como **exploratório** (κ humano pendente), ao lado do resultado D da mesma métrica. Nenhuma troca de modelo ou rubrica depois de ver resultado.
 7. **Ameaça a declarar:** autopreferência (mesmo fornecedor do gerador), além do viés próprio do avaliador e da dependência de um fornecedor.
 8. **Custo estimado:** cada chamada tem cerca de US$ 0,09 só de contexto base mais a entrada; cerca de 130 a 200 chamadas ⇒ ordem de US$ 20 a 60 a preço de lista. Sai da sua assinatura.
@@ -101,11 +101,11 @@ Legenda de prioridade: **P0** estático e barato (sem aparelho, sem juiz); **P1*
 ## 6. O que preciso de você
 
 1. **Aprovar o plano e os desvios** D-099 a D-104 (ou cortar algum).
-2. **Escolher o modelo do juiz** (proposta: `claude-opus-5-5`; segundo juiz: `claude-fable-5-1`).
-3. **Dizer se tem chave da OpenAI** disponível agora. Se tiver, uso o `gpt-5.5-2026-04-23` no lugar (ou além) do Claude, sem o desvio D-099.
-4. **Criar a tag `harness-v1.0`** por volta das 19h, depois de eu mostrar os hashes. Eu mesmo posso executar se você autorizar por escrito.
+2. ~~Escolher o modelo do juiz~~ **Decidido: `claude-opus-5-5`, sem segundo juiz.**
+3. ~~Chave da OpenAI~~ **Decidido: não será usada hoje.**
+4. **Autorizar a tag `harness-v1.0`** por volta das 19h, depois de eu mostrar os hashes e explicar o que ela faz. Você disse que não sabe fazer: **eu executo e narro cada passo; você só diz "pode criar" no chat.**
 5. **Conferir a lista de 10 decisões da M14 por ciclo** (cerca de 10 min, às 19h45).
-6. **Opcional, se quiser aumentar a força dos resultados J:** classificar às cegas as 20 decisões da M14 (cerca de 1 h), entre 20h30 e 21h30. Sem isso, a M14-J e a M6-J ficam exploratórias.
+6. **"Sim, se couber" (decidido):** classificar às cegas as 20 decisões da M14 (cerca de 1 h), entre 20h30 e 21h30, numa planilha que eu preparo sem o voto do juiz. Se atrasar, vale o corte das 21h30 e a M14-J fica exploratória.
 7. **Opcional e pouco provável hoje:** executar no iPhone uma amostra do checklist manual (um cenário por RF + 3 falhas, cerca de 45 min por ciclo mais a preparação do mitmproxy). Só vale se você quiser trocar a sua revisão por isso; eu desaconselho.
 
 ---

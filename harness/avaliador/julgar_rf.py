@@ -18,13 +18,14 @@ from . import anonimizar, csvio, julgar
 from .cliente import ClienteReal, ClienteSimulado
 
 
-def montar_entrada(repo, tag, anterior, unidade, secs=None):
+def montar_entrada(repo, tag, anterior, unidade, secs=None, arquivos=None):
+    # `arquivos` (D-105): {caminho_no_repo: texto}; Ciclo B passa as stories da unidade
     secs = secs or anonimizar.carregar()
     docs = []
-    for n in ("spec.md", "plan.md", "tasks.md"):
-        t = show(repo, tag, f"{unidade}/{n}")
+    fontes = arquivos if arquivos is not None else {f"{unidade}/{n}": show(repo, tag, f"{unidade}/{n}") for n in ("spec.md", "plan.md", "tasks.md")}
+    for caminho, t in fontes.items():
         if t:
-            docs.append(f"--- {anonimizar.anonimizar_caminho(unidade + '/' + n, secs)} ---\n{anonimizar.anonimizar(t, secs)}")
+            docs.append(f"--- {anonimizar.anonimizar_caminho(caminho, secs)} ---\n{anonimizar.anonimizar(t, secs)}")
     plano = "\n\n".join(docs)
     diff = git(repo, "diff", "--no-renames", "-U3", anterior, tag, "--", "lib", "test")
     anot = ["", "ADDED LINES WITH NEW-FILE LINE NUMBERS:"]
@@ -34,8 +35,8 @@ def montar_entrada(repo, tag, anterior, unidade, secs=None):
     return plano, anonimizar.anonimizar(diff, secs) + "\n".join(anot)
 
 
-def julgar_unidade(repo, ciclo, id_rf, tag, anterior, unidade, saida, cliente):
-    plano, diff = montar_entrada(repo, tag, anterior, unidade)
+def julgar_unidade(repo, ciclo, id_rf, tag, anterior, unidade, saida, cliente, arquivos=None):
+    plano, diff = montar_entrada(repo, tag, anterior, unidade, arquivos=arquivos)
     prompt = julgar.preencher("M6", PLAN=plano, DIFF=diff)
     h = hashlib.sha256(prompt.encode()).hexdigest()
     anon = anonimizar.mapa_para(ciclo, id_rf)
