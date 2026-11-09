@@ -1,0 +1,292 @@
+{
+ "M8b_mutation": 0.15,
+ "mutantes_enumerados": 133,
+ "amostra": 40,
+ "semente": 20261108,
+ "mortos": 6,
+ "sobreviventes": 34,
+ "erros_compilacao": 0,
+ "falhas_linha_de_base": [],
+ "mutantes": [
+  {
+   "arquivo": "lib/features/auth/domain/entities/authenticated_user.dart",
+   "linha": 13,
+   "de": "||",
+   "para": "&&",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/auth/domain/entities/authenticated_user.dart",
+   "linha": 14,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/auth/domain/entities/authenticated_user.dart",
+   "linha": 14,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_insight.dart",
+   "linha": 17,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_insight.dart",
+   "linha": 17,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_message.dart",
+   "linha": 59,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_message.dart",
+   "linha": 60,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_session.dart",
+   "linha": 41,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_session.dart",
+   "linha": 43,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_session.dart",
+   "linha": 45,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_stream_event.dart",
+   "linha": 34,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_stream_event.dart",
+   "linha": 55,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_stream_event.dart",
+   "linha": 55,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/dashboard/domain/entities/dashboard_aggregate.dart",
+   "linha": 29,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/dashboard/domain/entities/dashboard_aggregate.dart",
+   "linha": 29,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/dashboard/domain/entities/dashboard_aggregate.dart",
+   "linha": 43,
+   "de": "false",
+   "para": "true",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/dashboard/domain/entities/dashboard_aggregate.dart",
+   "linha": 46,
+   "de": "!=",
+   "para": "==",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/date_range_preset.dart",
+   "linha": 33,
+   "de": "-",
+   "para": "+",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entries_page.dart",
+   "linha": 34,
+   "de": "!=",
+   "para": "==",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entries_page.dart",
+   "linha": 38,
+   "de": "true",
+   "para": "false",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry.dart",
+   "linha": 57,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry.dart",
+   "linha": 61,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry.dart",
+   "linha": 62,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry.dart",
+   "linha": 63,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry.dart",
+   "linha": 64,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry_date_group.dart",
+   "linha": 75,
+   "de": "!=",
+   "para": "==",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry_date_group.dart",
+   "linha": 76,
+   "de": "false",
+   "para": "true",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/entry_date_group.dart",
+   "linha": 79,
+   "de": "!=",
+   "para": "==",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 42,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 102,
+   "de": "||",
+   "para": "&&",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 104,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 106,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 107,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 108,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/pending_entry_write.dart",
+   "linha": 108,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/sync_badge_state.dart",
+   "linha": 66,
+   "de": "&&",
+   "para": "||",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/entities/sync_badge_state.dart",
+   "linha": 93,
+   "de": "!=",
+   "para": "==",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/services/pending_entry_write_tracker.dart",
+   "linha": 124,
+   "de": "true",
+   "para": "false",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/entries/domain/services/pending_entry_write_tracker.dart",
+   "linha": 180,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/export/domain/entities/export_job_state.dart",
+   "linha": 153,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  }
+ ]
+}

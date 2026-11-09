@@ -1,0 +1,24 @@
+# H09-2 (RF09) — bloco II, conta B
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-uma@cerne.test", SENHA: "${SENHA_B}"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- takeScreenshot: ${CICLO_ANON}-H09-2-antes
+# voltar a Home; criar uma entrada de texto; voltar a Configuracoes
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Texto"
+- inputText: "Consegui separar um tempo hoje só pra organizar as ideias sobre a semana — nada muito importante, mas ajudou a colocar ordem na cabeça."
+- tapOn: "Salvar"
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- runScript:
+    file: ../scripts/checar.js
+    env: {QUERY: "regra=contagem&fn=dashboard-aggregate-get&min=2"}
+- assertTrue: ${output.ok}
+- takeScreenshot: ${CICLO_ANON}-H09-2-depois

@@ -1,0 +1,144 @@
+{
+ "ciclo": "a",
+ "tag": "cicloA/final",
+ "M15": {
+  "referencia": "capture",
+  "por_feature": {
+   "auth": {
+    "C1": 1,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 1,
+    "respeitadas": 3
+   },
+   "chat": {
+    "C1": 2,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 2,
+    "respeitadas": 3
+   },
+   "entries": {
+    "C1": 3,
+    "C2": 0,
+    "C3": 0,
+    "C4": 3,
+    "total": 6,
+    "respeitadas": 2
+   },
+   "export": {
+    "C1": 2,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 2,
+    "respeitadas": 3
+   },
+   "home": {
+    "C1": 4,
+    "C2": 0,
+    "C3": 0,
+    "C4": 3,
+    "total": 7,
+    "respeitadas": 2
+   },
+   "records": {
+    "C1": 2,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 2,
+    "respeitadas": 3
+   },
+   "session": {
+    "C1": 1,
+    "C2": 0,
+    "C3": 0,
+    "C4": 1,
+    "total": 2,
+    "respeitadas": 2
+   },
+   "settings": {
+    "C1": 0,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 0,
+    "respeitadas": 4
+   },
+   "splash": {
+    "C1": 5,
+    "C2": 0,
+    "C3": 0,
+    "C4": 3,
+    "total": 8,
+    "respeitadas": 2
+   },
+   "vault": {
+    "C1": 1,
+    "C2": 0,
+    "C3": 0,
+    "C4": 0,
+    "total": 1,
+    "respeitadas": 3
+   }
+  },
+  "M15_divergencias": 31
+ },
+ "M14_selecao": {
+  "decisoes": [
+   {
+    "ordem": 1,
+    "fonte": "plan",
+    "texto": "`dio` (HTTP client — chosen, see R2)",
+    "identificadores": [
+     "dio"
+    ],
+    "estatica": true,
+    "esperado": "ok",
+    "evidencia": "identificadores presentes"
+   },
+   {
+    "ordem": 2,
+    "fonte": "plan",
+    "texto": "`go_router` (navigation — chosen, see R3)",
+    "identificadores": [
+     "go_router"
+    ],
+    "estatica": true,
+    "esperado": "ok",
+    "evidencia": "identificadores presentes"
+   },
+   {
+    "ordem": 3,
+    "fonte": "plan",
+    "texto": "`get_it` (service locator / DI — chosen, see R4)",
+    "identificadores": [
+     "get_it"
+    ],
+    "estatica": true,
+    "esperado": "ok",
+    "evidencia": "identificadores presentes"
+   },
+   {
+    "ordem": 4,
+    "fonte": "plan",
+    "texto": "`flutter_secure_storage` (on-device token persistence — chosen, see R5)",
+    "identificadores": [
+     "flutter_secure_storage"
+    ],
+    "estatica": true,
+    "esperado": "ok",
+    "evidencia": "identificadores presentes"
+   }
+  ],
+  "total_selecionadas": 4,
+  "total_candidatas": 4,
+  "menos_de_8": true,
+  "estaticas_ok": 4,
+  "estaticas_total": 4,
+  "para_o_juiz": 0
+ }
+}

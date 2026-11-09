@@ -1,0 +1,70 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF06",
+ "tag": "cicloB/rf06-done",
+ "prev": "cicloB/rf07-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 16,
+ "M12_media": 2.106383,
+ "M12_acima": 1,
+ "M12_metodos": 47,
+ "testes_codigo_saida": 0,
+ "testes_total": 840,
+ "testes_aprovados": 840,
+ "M6": {
+  "M6_tasks": 1.0,
+  "M6_citados_nao_alterados": [
+   "lib/core/resource.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/core/design_tokens.dart",
+   "lib/features/entries/domain/entities/date_range_preset.dart",
+   "lib/features/entries/presentation/widgets/entry_record_card.dart",
+   "lib/features/entries/presentation/widgets/sync_badge.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "audio-only",
+    "entries-get",
+    "entries-list",
+    "entries-search",
+    "manual-too",
+    "unknown-id"
+   ],
+   "c3": [
+    "cursor",
+    "data",
+    "dateFrom",
+    "dateTo",
+    "e1",
+    "e2",
+    "limit",
+    "mode",
+    "not",
+    "q",
+    "similarity",
+    "source",
+    "unexpected"
+   ],
+   "c4": [
+    "FUNCTIONS_BASE_URL",
+    "SUPABASE_ANON_KEY"
+   ]
+  },
+  "contagens": {
+   "citados_nao_alterados": 1,
+   "alterados_nao_citados": 4,
+   "inexist_arq": 0,
+   "inexist_pkg": 0,
+   "inexist_backend": 21
+  }
+ },
+ "segundos": 238.5
+}

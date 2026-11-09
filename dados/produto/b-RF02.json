@@ -1,0 +1,22 @@
+{
+ "ciclo": "b",
+ "id_rf": "RF02",
+ "tag": "cicloB/rf02-done",
+ "prev": "cicloB/rf01-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 16,
+ "M12_media": 3.0,
+ "M12_acima": 1,
+ "M12_metodos": 8,
+ "testes_codigo_saida": 0,
+ "testes_total": 566,
+ "testes_aprovados": 566,
+ "M6": {
+  "sem_stories": true
+ },
+ "segundos": 249.1
+}

@@ -1,0 +1,27 @@
+{
+ "M14": 1.0,
+ "decisoes": [
+  {
+   "ordem": 1,
+   "via": "estatica",
+   "implementada": true
+  },
+  {
+   "ordem": 2,
+   "via": "estatica",
+   "implementada": true
+  },
+  {
+   "ordem": 3,
+   "via": "estatica",
+   "implementada": true
+  },
+  {
+   "ordem": 4,
+   "via": "estatica",
+   "implementada": true
+  }
+ ],
+ "selecionadas": 4,
+ "candidatas": 4
+}

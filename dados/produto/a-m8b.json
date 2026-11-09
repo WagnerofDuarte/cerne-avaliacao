@@ -1,0 +1,166 @@
+{
+ "M8b_mutation": 0.863636,
+ "mutantes_enumerados": 22,
+ "amostra": null,
+ "semente": null,
+ "mortos": 19,
+ "sobreviventes": 3,
+ "erros_compilacao": 0,
+ "falhas_linha_de_base": [],
+ "mutantes": [
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_session_timestamp_formatter.dart",
+   "linha": 26,
+   "de": "<=",
+   "para": "<",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_session_timestamp_formatter.dart",
+   "linha": 27,
+   "de": "<",
+   "para": "<=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/chat/domain/entities/chat_title_deriver.dart",
+   "linha": 14,
+   "de": "<=",
+   "para": "<",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/records/domain/entities/active_filter_chip.dart",
+   "linha": 41,
+   "de": "!=",
+   "para": "==",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/records/domain/entities/date_group.dart",
+   "linha": 47,
+   "de": "!=",
+   "para": "==",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/records/domain/entities/date_group.dart",
+   "linha": 55,
+   "de": "!=",
+   "para": "==",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/records/domain/entities/date_group.dart",
+   "linha": 71,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/records/domain/entities/date_group.dart",
+   "linha": 72,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/records/domain/entities/date_range_filter.dart",
+   "linha": 17,
+   "de": "-",
+   "para": "+",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/account_profile.dart",
+   "linha": 39,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/account_profile.dart",
+   "linha": 40,
+   "de": "+",
+   "para": "-",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/account_profile.dart",
+   "linha": 45,
+   "de": "&&",
+   "para": "||",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/account_profile.dart",
+   "linha": 45,
+   "de": "<=",
+   "para": "<",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/dashboard_aggregate.dart",
+   "linha": 74,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/dashboard_aggregate.dart",
+   "linha": 79,
+   "de": "+",
+   "para": "-",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/settings/domain/entities/dashboard_aggregate.dart",
+   "linha": 85,
+   "de": "+",
+   "para": "-",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/vault/domain/usecases/determine_vault_entry_usecase.dart",
+   "linha": 20,
+   "de": "==",
+   "para": "!=",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/vault/domain/usecases/determine_vault_entry_usecase.dart",
+   "linha": 20,
+   "de": "&&",
+   "para": "||",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/vault/domain/usecases/evaluate_background_resume_usecase.dart",
+   "linha": 10,
+   "de": "==",
+   "para": "!=",
+   "estado": "sobrevivente"
+  },
+  {
+   "arquivo": "lib/features/vault/domain/usecases/evaluate_background_resume_usecase.dart",
+   "linha": 10,
+   "de": "false",
+   "para": "true",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/vault/domain/usecases/evaluate_background_resume_usecase.dart",
+   "linha": 12,
+   "de": "&&",
+   "para": "||",
+   "estado": "morto"
+  },
+  {
+   "arquivo": "lib/features/vault/domain/usecases/evaluate_background_resume_usecase.dart",
+   "linha": 12,
+   "de": ">=",
+   "para": ">",
+   "estado": "morto"
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+# H06-1 (RF06) — bloco I, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+- tapOn: "Buscar nos registros..."
+# buscar, um por vez, os 3 termos de seeded-search-entries.md; comparar lista da UI com o corpo de entries-search no log do proxy
+- runScript:
+    file: ../scripts/checar.js
+    env: {QUERY: "regra=contagem&fn=entries-search&min=3"}
+- assertTrue: ${output.ok}

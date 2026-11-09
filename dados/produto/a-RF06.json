@@ -1,0 +1,92 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF06",
+ "tag": "cicloA/rf06-done",
+ "prev": "cicloA/rf07-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 6,
+ "M10_assinaturas": 38,
+ "M12_media": 1.615385,
+ "M12_acima": 0,
+ "M12_metodos": 39,
+ "testes_codigo_saida": 0,
+ "testes_total": 336,
+ "testes_aprovados": 336,
+ "M6": {
+  "M6_tasks": 0.9777777777777777,
+  "M6_citados_nao_alterados": [
+   "lib/core/design_tokens.dart"
+  ],
+  "M6_alterados_nao_citados": [
+   "lib/core/di/service_locator.dart",
+   "lib/core/network/api_client.dart",
+   "lib/features/entries/data/entries_local_cache.dart",
+   "lib/features/entries/data/entries_remote_data_source.dart",
+   "lib/features/entries/data/entries_repository_impl.dart",
+   "lib/features/entries/domain/entities/entry.dart",
+   "lib/features/entries/domain/repositories/entries_repository.dart",
+   "lib/features/records/domain/entities/active_filter_chip.dart",
+   "lib/features/records/domain/entities/date_range_filter.dart",
+   "lib/features/records/domain/entities/entry_merger.dart",
+   "lib/features/records/presentation/bloc/records_bloc.dart",
+   "lib/features/records/presentation/bloc/records_event.dart",
+   "lib/features/records/presentation/bloc/records_state.dart",
+   "lib/features/records/presentation/pages/records_page.dart",
+   "lib/features/records/presentation/widgets/active_filter_chips_row.dart",
+   "lib/features/records/presentation/widgets/filter_sheet.dart",
+   "lib/features/records/presentation/widgets/no_results_for_criteria_view.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [
+   "similarity"
+  ],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [
+    "entries-list",
+    "entries-search"
+   ],
+   "c3": [
+    "chatMessageId",
+    "content",
+    "createdAt",
+    "cursor",
+    "data",
+    "dateFrom",
+    "dateTo",
+    "embeddingStatus",
+    "end",
+    "id",
+    "limit",
+    "mediaDurationSeconds",
+    "meta",
+    "name",
+    "nextCursor",
+    "occurredAt",
+    "piiSpans",
+    "piiStatus",
+    "q",
+    "serverRevision",
+    "similarity",
+    "source",
+    "start",
+    "tags",
+    "type",
+    "unexpected",
+    "updatedAt"
+   ],
+   "c4": []
+  },
+  "contagens": {
+   "citados_nao_alterados": 1,
+   "alterados_nao_citados": 17,
+   "inexist_arq": 0,
+   "inexist_pkg": 1,
+   "inexist_backend": 29
+  }
+ },
+ "segundos": 90.4
+}

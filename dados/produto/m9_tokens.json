@@ -1,0 +1,26 @@
+{
+ "a": {
+  "cor_primaria_igual": true,
+  "cores_iguais": 15,
+  "cores_total": 15,
+  "cores_ausentes": [],
+  "familias_presentes": 3,
+  "familias_total": 3,
+  "familias_ausentes": [],
+  "tamanhos_presentes": 7,
+  "tamanhos_total": 7,
+  "tamanhos_ausentes": []
+ },
+ "b": {
+  "cor_primaria_igual": true,
+  "cores_iguais": 15,
+  "cores_total": 15,
+  "cores_ausentes": [],
+  "familias_presentes": 3,
+  "familias_total": 3,
+  "familias_ausentes": [],
+  "tamanhos_presentes": 7,
+  "tamanhos_total": 7,
+  "tamanhos_ausentes": []
+ }
+}

@@ -1,0 +1,54 @@
+{
+ "ciclo": "a",
+ "id_rf": "RF02",
+ "tag": "cicloA/rf02-done",
+ "prev": "cicloA/rf01-done",
+ "M7": 0,
+ "M7_detalhe": [],
+ "RF07_bloc_importa_bloc": 0,
+ "RF10_chat_importa_entradas": 0,
+ "M9_hardcodes": 2,
+ "M10_assinaturas": 38,
+ "M12_media": 1.37037,
+ "M12_acima": 0,
+ "M12_metodos": 27,
+ "testes_codigo_saida": 0,
+ "testes_total": 214,
+ "testes_aprovados": 214,
+ "M6": {
+  "M6_tasks": 0.9782608695652174,
+  "M6_citados_nao_alterados": [],
+  "M6_alterados_nao_citados": [
+   "lib/core/di/service_locator.dart",
+   "lib/features/capture/domain/usecases/confirm_entry_save_usecase.dart",
+   "lib/features/capture/domain/usecases/recognize_photo_usecase.dart",
+   "lib/features/capture/domain/usecases/save_audio_entry_usecase.dart",
+   "lib/features/capture/domain/usecases/save_photo_entry_usecase.dart",
+   "lib/features/capture/presentation/bloc/insertion_modal_bloc.dart",
+   "lib/features/capture/presentation/bloc/insertion_modal_event.dart",
+   "lib/features/capture/presentation/bloc/insertion_modal_state.dart",
+   "lib/features/capture/presentation/pages/insertion_modal_page.dart",
+   "lib/features/capture/presentation/widgets/audio_tab_view.dart",
+   "lib/features/capture/presentation/widgets/capture_status_views.dart",
+   "lib/features/capture/presentation/widgets/foto_tab_view.dart"
+  ],
+  "M6_inexist_arq": [],
+  "M6_inexist_pkg": [
+   "always_use_package_imports"
+  ],
+  "M6_inexist_backend": {
+   "c1": [],
+   "c2": [],
+   "c3": [],
+   "c4": []
+  },
+  "contagens": {
+   "citados_nao_alterados": 0,
+   "alterados_nao_citados": 12,
+   "inexist_arq": 0,
+   "inexist_pkg": 1,
+   "inexist_backend": 0
+  }
+ },
+ "segundos": 72.5
+}

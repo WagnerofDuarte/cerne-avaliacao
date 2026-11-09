@@ -1,0 +1,5 @@
+ciclo,id_rf,sessao_id,fase,duracao_s,tokens_input,tokens_output,cache_read,cache_write,sub_tokens_input,sub_tokens_output,sub_cache_read,sub_cache_write,excluido_rate_limit
+A,SETUP,s1,ESPEC,1800,100,50,400,200,10,5,20,10,false
+A,F000,s2,ESPEC,1200,100,50,200,50,0,0,0,0,false
+A,F000,s2,IMPL,2000,200,100,400,50,0,0,0,0,false
+A,F000,s2,VALID,400,0,0,0,0,0,0,0,0,true

@@ -1,0 +1,62 @@
+{
+ "m14": [
+  {
+   "ordem": 1,
+   "voto": "partial",
+   "implementada": false
+  },
+  {
+   "ordem": 2,
+   "voto": "yes",
+   "implementada": true
+  },
+  {
+   "ordem": 5,
+   "voto": "yes",
+   "implementada": true
+  },
+  {
+   "ordem": 6,
+   "voto": "yes",
+   "implementada": true
+  }
+ ],
+ "m6": [
+  {
+   "ciclo": "a",
+   "unidade": "RF03",
+   "causa": "inc",
+   "documentada_pelo_juiz": false
+  },
+  {
+   "ciclo": "a",
+   "unidade": "RF06",
+   "causa": "prd",
+   "documentada_pelo_juiz": false
+  },
+  {
+   "ciclo": "b",
+   "unidade": "RF05",
+   "causa": "out",
+   "documentada_pelo_juiz": true
+  },
+  {
+   "ciclo": "b",
+   "unidade": "RF06",
+   "causa": "prd",
+   "documentada_pelo_juiz": false
+  },
+  {
+   "ciclo": "b",
+   "unidade": "RF04",
+   "causa": "prd",
+   "documentada_pelo_juiz": false
+  },
+  {
+   "ciclo": "a",
+   "unidade": "RF02",
+   "causa": "out",
+   "documentada_pelo_juiz": false
+  }
+ ]
+}

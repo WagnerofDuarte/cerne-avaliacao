@@ -1,0 +1,9 @@
+# estado M9 `bio` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+# relancar o app com sessao salva
+- assertVisible: "Toque para desbloquear"
+- takeScreenshot: ${CICLO_ANON}-bio

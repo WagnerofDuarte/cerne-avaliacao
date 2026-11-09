@@ -1,0 +1,20 @@
+# H06-4 (RF06) — bloco III, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+- tapOn:
+    point: "91%,14%"   # funil
+- assertVisible: "Filtrar registros"
+- assertVisible: "PERÍODO"
+- tapOn: "Este mês"
+- assertVisible: "TIPO DE ENTRADA"
+- tapOn: "Áudio"
+- tapOn: "Aplicar"
+- runScript:
+    file: ../scripts/checar.js
+    env: {QUERY: "regra=contagem&fn=entries-search&source=audio&min=1"}
+- assertTrue: ${output.ok}
+# DIVERGENCIA: cenarios.md cita 'INTERVALO DE DATA'; o prototipo usa 'PERÍODO'

@@ -1,0 +1,32 @@
+# F03 — entries-create / offline (rnf09.md)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "F03"}
+- tapOn:
+    point: "6%,97%"   # plus
+- tapOn: "Texto"
+- inputText: "texto de teste das falhas"
+- tapOn: "Salvar"
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 3000
+    optional: true
+- assertVisible: "Tentar novamente"
+- takeScreenshot: ${CICLO_ANON}-F03-erro
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: disarm}
+# recuperacao: repetir a mesma acao SEM reiniciar o app; condicao 4 do criterio 'tratado'
+- tapOn:
+    text: "Tentar novamente"
+    optional: true
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 3000
+    optional: true
+- takeScreenshot: ${CICLO_ANON}-F03-recuperado

@@ -1,0 +1,3 @@
+ciclo,id_rf,sessao_id,fase,timestamp,tipo,severidade,nivel,causa,texto
+A,F000,s2,IMPL,2026-10-01T10:30:00-03:00,correção,S2,,ctx,x
+A,F000,s2,IMPL,2026-10-01T10:40:00-03:00,redirecionamento,,,prd,y

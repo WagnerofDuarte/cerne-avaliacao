@@ -1,0 +1,25 @@
+# H09-3 (RF09) — bloco II, conta B
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-uma@cerne.test", SENHA: "${SENHA_B}"}
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "H09-3a"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- assertVisible: "Sua evolução"
+- takeScreenshot: ${CICLO_ANON}-H09-3-texto-longo
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "H09-3b"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Meus Registros"
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- assertVisible: "Sua evolução"
+- takeScreenshot: ${CICLO_ANON}-H09-3-texto-vazio

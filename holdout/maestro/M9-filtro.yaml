@@ -1,0 +1,11 @@
+# estado M9 `filtro` (estados-m9.md, conta A)
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+- tapOn:
+    point: "91%,14%"   # funil
+- assertVisible: "Filtrar registros"
+- takeScreenshot: ${CICLO_ANON}-filtro

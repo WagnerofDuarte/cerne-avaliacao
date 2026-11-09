@@ -1,3 +1,12 @@
 __pycache__/
 *.pyc
 .pytest_cache/
+calibracao/saida/
+node_modules/
+.dart_tool/
+coverage/
+calibracao/v1/pubspec.lock
+calibracao/v2/pubspec.lock
+
+# Credenciais dos ambientes de backend: nunca versionar (plano C-014)
+segredos/

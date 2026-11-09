@@ -1,0 +1,131 @@
+[
+ {
+  "id_rf": "F000",
+  "M13": null,
+  "nota": "primeira unidade"
+ },
+ {
+  "id_rf": "RF03",
+  "anterior": "F000",
+  "M13": 0.011364,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 3,
+  "M13_seguranca": 0.988636,
+  "aprovados_anterior": 264,
+  "regressoes": [],
+  "apagados": [
+   "test/core/navigation/placeholder_screens_test.dart::MeusRegistrosPlaceholderScreen / ConfiguracoesPlaceholderScreen Configurações: shows a back-arrow header titled \"Configurações\", and its back arrow also targets /",
+   "test/core/navigation/placeholder_screens_test.dart::MeusRegistrosPlaceholderScreen / ConfiguracoesPlaceholderScreen Meus Registros: shows a back-arrow header titled \"Meus Registros\", never a broken/unfinished look",
+   "test/core/navigation/placeholder_screens_test.dart::MeusRegistrosPlaceholderScreen / ConfiguracoesPlaceholderScreen Meus Registros: the back arrow navigates to / (Boundaries: \"back arrow always targets /\")"
+  ]
+ },
+ {
+  "id_rf": "RF01",
+  "anterior": "RF03",
+  "M13": 0.0,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 0,
+  "M13_seguranca": 1.0,
+  "aprovados_anterior": 367,
+  "regressoes": [],
+  "apagados": []
+ },
+ {
+  "id_rf": "RF02",
+  "anterior": "RF01",
+  "M13": 0.0,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 0,
+  "M13_seguranca": 1.0,
+  "aprovados_anterior": 566,
+  "regressoes": [],
+  "apagados": []
+ },
+ {
+  "id_rf": "RF07",
+  "anterior": "RF02",
+  "M13": 0.003534,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 2,
+  "M13_seguranca": 0.996466,
+  "aprovados_anterior": 566,
+  "regressoes": [],
+  "apagados": [
+   "test/core/navigation/placeholder_screens_test.dart::MeusRegistrosPlaceholderScreen Meus Registros: shows a back-arrow header titled \"Meus Registros\", never a broken/unfinished look",
+   "test/core/navigation/placeholder_screens_test.dart::MeusRegistrosPlaceholderScreen Meus Registros: the back arrow navigates to / (Boundaries: \"back arrow always targets /\")"
+  ]
+ },
+ {
+  "id_rf": "RF06",
+  "anterior": "RF07",
+  "M13": 0.0,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 0,
+  "M13_seguranca": 1.0,
+  "aprovados_anterior": 721,
+  "regressoes": [],
+  "apagados": []
+ },
+ {
+  "id_rf": "RF04",
+  "anterior": "RF06",
+  "M13": 0.004762,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 4,
+  "M13_seguranca": 0.995238,
+  "aprovados_anterior": 840,
+  "regressoes": [],
+  "apagados": [
+   "test/core/navigation/placeholder_screens_test.dart::HomeChatPlaceholderScreen dark-green header shows the \"Cerne\" wordmark; ☰ opens AppDrawer",
+   "test/core/navigation/placeholder_screens_test.dart::HomeChatPlaceholderScreen the \"+\" control is always tappable and opens the Insertion Modal on Texto (Story 3.1)",
+   "test/core/widgets/app_drawer_test.dart::no CONVERSAS section / past-session list exists in the drawer",
+   "test/core/widgets/app_drawer_test.dart::tapping \"Novo Chat\" closes the drawer and stays on / (no-op, no real chat)"
+  ]
+ },
+ {
+  "id_rf": "RF10",
+  "anterior": "RF04",
+  "M13": 0.0,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 0,
+  "M13_seguranca": 1.0,
+  "aprovados_anterior": 971,
+  "regressoes": [],
+  "apagados": []
+ },
+ {
+  "id_rf": "RF08",
+  "anterior": "RF10",
+  "M13": 0.0,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 0,
+  "M13_seguranca": 1.0,
+  "aprovados_anterior": 1006,
+  "regressoes": [],
+  "apagados": []
+ },
+ {
+  "id_rf": "RF05",
+  "anterior": "RF08",
+  "M13": 0.0,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 0,
+  "M13_seguranca": 1.0,
+  "aprovados_anterior": 1051,
+  "regressoes": [],
+  "apagados": []
+ },
+ {
+  "id_rf": "RF09",
+  "anterior": "RF05",
+  "M13": 0.000881,
+  "M13_sem_apagados": 0.0,
+  "M13_apagados": 1,
+  "M13_seguranca": 0.999119,
+  "aprovados_anterior": 1135,
+  "regressoes": [],
+  "apagados": [
+   "test/features/account/presentation/screens/account_settings_screen_test.dart::shows the header titled Configurações and exactly one switch — no other content (AC: \"shows only the biometric toggle\")"
+  ]
+ }
+]

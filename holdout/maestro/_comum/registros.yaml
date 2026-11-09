@@ -1,0 +1,5 @@
+appId: ${APP_ID}
+---
+- tapOn:
+    point: "7%,8%"
+- tapOn: "Meus Registros"

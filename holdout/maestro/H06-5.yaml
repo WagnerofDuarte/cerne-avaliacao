@@ -1,0 +1,10 @@
+# H06-5 (RF06) — bloco III, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+- tapOn: "Limpar filtros"
+- assertVisible: "Buscar nos registros..."
+- assertVisible: "Meus Registros"

@@ -1,0 +1,336 @@
+{
+ "M8": 0.448454,
+ "linhas_executaveis": 388,
+ "linhas_cobertas": 174,
+ "por_arquivo": {
+  "lib/features/auth/domain/entities/authenticated_user.dart": {
+   "executaveis": 7,
+   "cobertas": 3,
+   "nao_cobertas": [
+    16,
+    17,
+    19,
+    20
+   ]
+  },
+  "lib/features/auth/domain/validators/auth_validators.dart": {
+   "executaveis": 6,
+   "cobertas": 6,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/repositories/media_repository.dart": {
+   "executaveis": 1,
+   "cobertas": 1,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/services/mic_recorder.dart": {
+   "executaveis": 1,
+   "cobertas": 1,
+   "nao_cobertas": []
+  },
+  "lib/features/capture/domain/services/photo_picker.dart": {
+   "executaveis": 1,
+   "cobertas": 1,
+   "nao_cobertas": []
+  },
+  "lib/features/chat/domain/entities/bookmark_state.dart": {
+   "executaveis": 26,
+   "cobertas": 8,
+   "nao_cobertas": [
+    25,
+    30,
+    31,
+    33,
+    40,
+    45,
+    46,
+    48,
+    55,
+    60,
+    61,
+    63,
+    77,
+    80,
+    82,
+    83,
+    85,
+    86
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_insight.dart": {
+   "executaveis": 10,
+   "cobertas": 6,
+   "nao_cobertas": [
+    19,
+    20,
+    22,
+    23
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_message.dart": {
+   "executaveis": 36,
+   "cobertas": 1,
+   "nao_cobertas": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    52,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    77,
+    78,
+    79,
+    80,
+    81
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_session.dart": {
+   "executaveis": 25,
+   "cobertas": 2,
+   "nao_cobertas": [
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+   ]
+  },
+  "lib/features/chat/domain/entities/chat_stream_event.dart": {
+   "executaveis": 22,
+   "cobertas": 3,
+   "nao_cobertas": [
+    31,
+    34,
+    35,
+    37,
+    38,
+    40,
+    41,
+    52,
+    55,
+    57,
+    58,
+    60,
+    61,
+    66,
+    68,
+    69,
+    71,
+    72,
+    74
+   ]
+  },
+  "lib/features/dashboard/domain/entities/dashboard_aggregate.dart": {
+   "executaveis": 15,
+   "cobertas": 1,
+   "nao_cobertas": [
+    25,
+    28,
+    29,
+    30,
+    32,
+    33,
+    35,
+    36,
+    37,
+    38,
+    41,
+    42,
+    45,
+    46
+   ]
+  },
+  "lib/features/entries/domain/entities/date_range_preset.dart": {
+   "executaveis": 7,
+   "cobertas": 7,
+   "nao_cobertas": []
+  },
+  "lib/features/entries/domain/entities/entries_page.dart": {
+   "executaveis": 13,
+   "cobertas": 1,
+   "nao_cobertas": [
+    14,
+    17,
+    18,
+    19,
+    21,
+    22,
+    24,
+    26,
+    29,
+    30,
+    33,
+    34
+   ]
+  },
+  "lib/features/entries/domain/entities/entry.dart": {
+   "executaveis": 30,
+   "cobertas": 12,
+   "nao_cobertas": [
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86
+   ]
+  },
+  "lib/features/entries/domain/entities/entry_date_group.dart": {
+   "executaveis": 26,
+   "cobertas": 14,
+   "nao_cobertas": [
+    17,
+    20,
+    21,
+    22,
+    24,
+    25,
+    27,
+    29,
+    74,
+    75,
+    78,
+    79
+   ]
+  },
+  "lib/features/entries/domain/entities/pending_entry_write.dart": {
+   "executaveis": 44,
+   "cobertas": 23,
+   "nao_cobertas": [
+    23,
+    24,
+    26,
+    44,
+    45,
+    47,
+    48,
+    97,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    121,
+    122,
+    123,
+    124,
+    125
+   ]
+  },
+  "lib/features/entries/domain/entities/sync_badge_state.dart": {
+   "executaveis": 24,
+   "cobertas": 14,
+   "nao_cobertas": [
+    32,
+    33,
+    35,
+    47,
+    48,
+    50,
+    68,
+    69,
+    71,
+    72
+   ]
+  },
+  "lib/features/entries/domain/services/pending_entry_write_tracker.dart": {
+   "executaveis": 52,
+   "cobertas": 52,
+   "nao_cobertas": []
+  },
+  "lib/features/entries/domain/usecases/save_chat_message_as_entry_use_case.dart": {
+   "executaveis": 3,
+   "cobertas": 3,
+   "nao_cobertas": []
+  },
+  "lib/features/export/domain/entities/export_job_state.dart": {
+   "executaveis": 39,
+   "cobertas": 15,
+   "nao_cobertas": [
+    68,
+    73,
+    74,
+    76,
+    81,
+    86,
+    87,
+    89,
+    96,
+    101,
+    102,
+    104,
+    133,
+    134,
+    136,
+    137,
+    155,
+    156,
+    158,
+    159,
+    165,
+    170,
+    171,
+    173
+   ]
+  }
+ },
+ "testes_falharam": false,
+ "arquivos_de_dominio": 36
+}

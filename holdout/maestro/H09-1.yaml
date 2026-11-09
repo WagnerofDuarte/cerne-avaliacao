@@ -1,0 +1,14 @@
+# H09-1 (RF09) — bloco II, conta ABC
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-vazio@cerne.test", SENHA: "${SENHA_C}"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Configurações"
+- assertVisible: "Ainda não há registros suficientes para mostrar sua evolução. Comece a escrever para ver seu gráfico aqui."
+# DIVERGENCIA: cenarios.md cita 'Comece a registrar para ver sua evolução aqui'; o prototipo traz o texto acima
+# repetir com a conta B (primeiro passo) e com a conta A (gráfico + resumo)
+- assertVisible: "Você deu o primeiro passo. Continue registrando para ver padrões surgirem ao longo do tempo."
+# DIVERGENCIA: cenarios.md cita 'Ainda é cedo pra ver um padrão — volte em alguns dias.'

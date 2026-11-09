@@ -1,0 +1,24 @@
+# H06-3 (RF06) — bloco I, conta A
+appId: ${APP_ID}
+---
+- runFlow:
+    file: _comum/entrar.yaml
+    env: {EMAIL: "cenario-cheio@cerne.test", SENHA: "${SENHA_A}"}
+- runFlow: _comum/registros.yaml
+- takeScreenshot: ${CICLO_ANON}-H06-3-com-rede
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: arm, CENARIO: "H06-3"}
+- tapOn:
+    point: "7%,8%"   # menu
+- tapOn: "Meus Registros"
+- takeScreenshot: ${CICLO_ANON}-H06-3-offline-cache
+- runScript:
+    file: ../scripts/proxy.js
+    env: {ACAO: disarm}
+- extendedWaitUntil:
+    visible: "__espera_tempo_real__"
+    timeout: 5000
+    optional: true
+- takeScreenshot: ${CICLO_ANON}-H06-3-reconectado
+# nº de cartoes = contagem SQL; nenhuma entrada duplicada
