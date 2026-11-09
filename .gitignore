@@ -7,3 +7,6 @@ node_modules/
 coverage/
 calibracao/v1/pubspec.lock
 calibracao/v2/pubspec.lock
+
+# Credenciais dos ambientes de backend: nunca versionar (plano C-014)
+segredos/
